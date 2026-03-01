@@ -10,10 +10,10 @@ Content-Type: application/json
 Accept: application/json
 
 {
-  "fullName": "RM Foods",
-  "email": "vinay@maxim.com",
-  "phone": "8887774521",
-  "address": "Mahuva"
+  "fullName": "Maxim Overseas",
+  "email": "sales+1@maxim.com",
+  "phone": "9896989698",
+  "address": "Ahmedabad"
 }
 
 ###

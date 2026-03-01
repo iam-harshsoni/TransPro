@@ -31,19 +31,19 @@ builder.Services.AddSwaggerGen(options =>
 {
     options.SwaggerDoc("v1", new OpenApiInfo
     {
-        Title       = "TransPro API",
-        Version     = "v1",
+        Title = "TransPro API",
+        Version = "v1",
         Description = "Shipment and Trip Management System"
     });
 
     options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
-        Name         = "Authorization",
-        Type         = SecuritySchemeType.ApiKey,
-        Scheme       = "Bearer",
+        Name = "Authorization",
+        Type = SecuritySchemeType.ApiKey,
+        Scheme = "Bearer",
         BearerFormat = "JWT",
-        In           = ParameterLocation.Header,
-        Description  = "Enter: Bearer {your JWT token}"
+        In = ParameterLocation.Header,
+        Description = "Enter: Bearer {your JWT token}"
     });
 
     options.AddSecurityRequirement(new OpenApiSecurityRequirement
@@ -67,7 +67,11 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "TransPro API v1");
+        c.RoutePrefix = string.Empty;
+    });
 }
 
 app.UseHttpsRedirection();
