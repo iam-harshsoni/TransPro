@@ -6,6 +6,7 @@ using TransProAPI.Features.Customer.DeleteCustomer;
 using TransProAPI.Features.Customer.GetCustomerById;
 using TransProAPI.Features.Customer.GetCustomers;
 using TransProAPI.Features.Customer.UpdateCustomer;
+using TransProAPI.Features.Drivers;
 using TransProAPI.Infrastructure.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -25,6 +26,8 @@ builder.Services.AddScoped<GetCustomerHandler>();
 builder.Services.AddScoped<GetCustomerByIdHandler>();
 builder.Services.AddScoped<UpdateCustomerHandler>();
 builder.Services.AddScoped<DeleteCustomerHandler>();
+
+builder.Services.AddScoped<DriverHandler>();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
