@@ -34,7 +34,7 @@ namespace TransProAPI.Features.Drivers
         }
 
         [HttpPut("{id:int}")]
-        public async Task<IActionResult> GetById(int id, [FromBody] UpdateDriverRequest request)
+        public async Task<IActionResult> Update(int id, [FromBody] UpdateDriverRequest request)
         {
             var result = await _driverHandler.UpdateAsync(id, request);
             return result.Success ? Ok(result) : BadRequest(result);
