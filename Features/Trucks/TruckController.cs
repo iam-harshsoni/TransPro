@@ -22,21 +22,21 @@ namespace TransProAPI.Features.Trucks
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAll([FromQuery] PaginationRequest request)
+        public async Task<IActionResult> GetAll([FromQuery] PaginationRequest request, bool? availableOnly = null)
         {
             var result = await _truckHandler.GetAllAsync(request);
             return result.Success ? Ok(result) : NotFound(result);
         }
 
-        [HttpGet("{id: int}")]
+        [HttpGet("{id:int}")]
         public async Task<IActionResult> GetById(int id)
         {
             var result = await _truckHandler.GetByIdAsync(id);
             return result.Success ? Ok(result) : NotFound(result);
         }
 
-        [HttpPut("{id: int}")]
-        public async Task<IActionResult> Update([FromBody] UpdateTruckRequest request, int id)
+        [HttpPut("{id:int}")]
+        public async Task<IActionResult> Update(int id, [FromBody] UpdateTruckRequest request)
         {
             var result = await _truckHandler.UpdateAsync(id, request);
             return result.Success ? Ok(result) : BadRequest(result);
@@ -45,14 +45,14 @@ namespace TransProAPI.Features.Trucks
         // Notice: this is a dedicated endpoint for a business operation.
         // PATCH /api/drivers/3/toggle-availability
         // It's not a generic update — it represents a specific state transition.
-        [HttpPatch("{id: int}/toggle-availability")]
+        [HttpPatch("{id:int}/toggle-availability")]
         public async Task<IActionResult> ToggleAvailability(int id)
         {
             var result = await _truckHandler.ToggleAvailabilityAsync(id);
             return result.Success ? Ok(result) : BadRequest(result);
         }
 
-        [HttpDelete("{id: int}")]
+        [HttpDelete("{id:int}")]
         public async Task<IActionResult> Deleted(int id)
         {
             var result = await _truckHandler.DeleteAsync(id);
