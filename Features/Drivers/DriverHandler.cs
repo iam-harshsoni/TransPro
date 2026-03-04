@@ -45,7 +45,7 @@ namespace TransProAPI.Features.Drivers
             return ApiResponses<DriverResponse>.Ok(driver.ToResponse(), "Driver created successfully.");
         }
 
-        public async Task<ApiResponses<List<DriverResponse>>> GetAllAsync(bool? availableOnly = null)
+        public async Task<ApiResponses<PagedResponse<DriverResponse>>> GetAllAsync(PaginationRequest request, bool? availableOnly = null)
         {
             var query = _db.Drivers.AsQueryable();
 
@@ -55,13 +55,25 @@ namespace TransProAPI.Features.Drivers
             if (availableOnly.HasValue)
                 query = query.Where(d => d.IsAvailable == availableOnly.HasValue);
 
-            var drivers = await _db.Drivers
+            var totalCount = await query.CountAsync();
+
+            var drivers = await query
                 .AsNoTracking()
                 .OrderByDescending(d => d.CreatedAt)
+                .Skip((request.PageNumber - 1) * request.PageSize)
+                .Take(request.PageSize)
                 .Select(d => d.ToResponse())
                 .ToListAsync();
 
-            return ApiResponses<List<DriverResponse>>.Ok(drivers);
+            var response = new PagedResponse<DriverResponse>()
+            {
+                TotalCount = totalCount,
+                PageNumber = request.PageNumber,
+                PageSize = request.PageSize,
+                Data = drivers
+            };
+
+            return ApiResponses<PagedResponse<DriverResponse>>.Ok(response);
         }
 
         public async Task<ApiResponses<DriverResponse>> GetByIdAsync(int id)

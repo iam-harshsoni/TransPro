@@ -9,7 +9,8 @@ namespace TransProAPI.Common
     {
         public int TotalCount { get; set; }
         public int PageNumber { get; set; } = 1;
-        public int PageSize { get; set; }   = 10;
-        public List<T> Data { get; set; }   = new();
+        public int PageSize { get; set; } = 10;
+
+        public List<T> Data { get; set; } = new();
     }
 }

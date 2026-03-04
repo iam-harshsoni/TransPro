@@ -15,8 +15,6 @@ namespace TransProAPI.Features.Customer.GetCustomers
         {
             request.Validate();
 
-            var stopwatch = Stopwatch.StartNew();
-
             var query = _db.Customers
                 .AsNoTracking()
                 .Where(c => c.IsActive);
@@ -38,9 +36,6 @@ namespace TransProAPI.Features.Customer.GetCustomers
                     IsActive = c.IsActive,
                 })
                 .ToListAsync();
-
-            stopwatch.Stop();
-            Console.WriteLine($"Query time: {stopwatch.ElapsedMilliseconds} ms");
 
             var response = new PagedResponse<GetCustomerRespose>
             {
