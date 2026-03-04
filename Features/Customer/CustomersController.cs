@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using TransProAPI.Common;
 using TransProAPI.Features.Customer.CreateCustomer;
 using TransProAPI.Features.Customer.DeleteCustomer;
 using TransProAPI.Features.Customer.GetCustomerById;
@@ -29,9 +30,9 @@ namespace TransProAPI.Features.Customer
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAll([FromQuery] PaginationRequest request)
         {
-            var result = await _getCustomerHandler.Handle();
+            var result = await _getCustomerHandler.Handle(request);
             return Ok(result);
         }
 

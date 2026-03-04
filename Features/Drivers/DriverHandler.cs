@@ -56,6 +56,7 @@ namespace TransProAPI.Features.Drivers
                 query = query.Where(d => d.IsAvailable == availableOnly.HasValue);
 
             var drivers = await _db.Drivers
+                .AsNoTracking()
                 .OrderByDescending(d => d.CreatedAt)
                 .Select(d => d.ToResponse())
                 .ToListAsync();

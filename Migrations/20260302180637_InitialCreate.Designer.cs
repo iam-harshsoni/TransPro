@@ -12,7 +12,7 @@ using TransProAPI.Infrastructure.Persistence;
 namespace TransProAPI.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20260301093847_InitialCreate")]
+    [Migration("20260302180637_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -36,7 +36,7 @@ namespace TransProAPI.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<string>("FirstName")
+                    b.Property<string>("FullName")
                         .IsRequired()
                         .HasColumnType("text");
 

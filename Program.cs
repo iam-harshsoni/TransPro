@@ -75,6 +75,13 @@ if (app.Environment.IsDevelopment())
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "TransPro API v1");
         c.RoutePrefix = string.Empty;
     });
+
+    // using var scope = app.Services.CreateScope();
+    // var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+
+    // Console.WriteLine("\n🚀 Starting seed check...\n");
+    // await SeedData.SeedAsync(db);
+    // Console.WriteLine("🏁 Seed check complete.\n");
 }
 
 app.UseHttpsRedirection();

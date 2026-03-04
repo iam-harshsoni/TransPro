@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
@@ -10,24 +11,46 @@ namespace TransProAPI.Features.Customer.GetCustomers
 {
     public class GetCustomerHandler(AppDbContext _db)
     {
-        public async Task<ApiResponses<List<GetCustomerRespose>>> Handle()
+        public async Task<ApiResponses<PagedResponse<GetCustomerRespose>>> Handle(PaginationRequest request)
         {
-            var customers = await _db.Customers
-                .Where(c => c.IsActive)
+            request.Validate();
+
+            var stopwatch = Stopwatch.StartNew();
+
+            var query = _db.Customers
+                .AsNoTracking()
+                .Where(c => c.IsActive);
+
+            var totalCount = await query.CountAsync();
+
+            var customers = await query
                 .OrderByDescending(c => c.CreatedAt)
+                .Skip((request.PageNumber - 1) * request.PageSize)
+                .Take(request.PageSize)
                 .Select(c => new GetCustomerRespose
                 {
-                    Id        = c.Id,
-                    FullName  = c.FullName,
-                    Email     = c.Email,
-                    Phone     = c.Phone,
-                    Address   = c.Address,
+                    Id = c.Id,
+                    FullName = c.FullName,
+                    Email = c.Email,
+                    Phone = c.Phone,
+                    Address = c.Address,
                     CreatedAt = c.CreatedAt,
-                    IsActive  = c.IsActive,
+                    IsActive = c.IsActive,
                 })
                 .ToListAsync();
 
-            return ApiResponses<List<GetCustomerRespose>>.Ok(customers);
+            stopwatch.Stop();
+            Console.WriteLine($"Query time: {stopwatch.ElapsedMilliseconds} ms");
+
+            var response = new PagedResponse<GetCustomerRespose>
+            {
+                TotalCount = totalCount,
+                PageNumber = request.PageNumber,
+                PageSize = request.PageSize,
+                Data = customers
+            };
+
+            return ApiResponses<PagedResponse<GetCustomerRespose>>.Ok(response);
 
             /* Why use .Select() directly instead of fetching entities then mapping?
                 

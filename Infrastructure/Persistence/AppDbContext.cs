@@ -23,6 +23,14 @@ namespace TransProAPI.Infrastructure.Persistence
         {
             base.OnModelCreating(modelBuilder);
 
+            modelBuilder.Entity<Customer>()
+                .HasIndex(c => new { c.IsActive, c.CreatedAt })
+                .HasDatabaseName("IX_Customers_IsActive_CreatedAt");
+            
+            modelBuilder.Entity<Customer>()
+                .HasIndex(c => new { c.Id })
+                .HasDatabaseName("IX_Customers_Id");
+
             // Configure composite primary key for join table
             modelBuilder.Entity<TripContainer>()
                 .HasKey(tc => new {tc.TripId, tc.ContianerId});
