@@ -8,7 +8,6 @@ using Microsoft.EntityFrameworkCore;
 using TransProAPI.Common;
 using TransProAPI.Domain.Entities;
 using TransProAPI.Infrastructure.Persistence;
-using static TransProAPI.Features.Containers.ContainerDtos;
 
 namespace TransProAPI.Features.Containers
 {

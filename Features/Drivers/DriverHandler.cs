@@ -11,7 +11,6 @@ using TransProAPI.Common;
 using TransProAPI.Domain;
 using TransProAPI.Domain.Entities;
 using TransProAPI.Infrastructure.Persistence;
-using static TransProAPI.Features.Drivers.DriverDtos;
 
 namespace TransProAPI.Features.Drivers
 {

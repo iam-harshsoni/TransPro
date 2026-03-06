@@ -1,5 +1,5 @@
 using TransProAPI.Domain;
-using static TransProAPI.Features.Drivers.DriverDtos;
+using TransProAPI.Features.Drivers;
 // ── Extension Method ──────────────────────────────────────────────────────────
 // Kept here since it's small. Move to DriverExtensions.cs if it grows complex.
 

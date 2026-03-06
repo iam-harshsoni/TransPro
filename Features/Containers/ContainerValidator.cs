@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using FluentValidation;
-using static TransProAPI.Features.Containers.ContainerDtos;
 
 namespace TransProAPI.Features.Containers
 {

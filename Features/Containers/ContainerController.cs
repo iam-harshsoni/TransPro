@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TransProAPI.Common;
 using TransProAPI.Domain.Entities;
-using static TransProAPI.Features.Containers.ContainerDtos;
 
 namespace TransProAPI.Features.Containers
 {
