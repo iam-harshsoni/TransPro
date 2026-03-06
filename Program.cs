@@ -1,7 +1,12 @@
+using System.Text;
 using FluentValidation;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using TransProAPI.Domain;
+using TransProAPI.Features.Auth;
 using TransProAPI.Features.Customer.CreateCustomer;
 using TransProAPI.Features.Customer.DeleteCustomer;
 using TransProAPI.Features.Customer.GetCustomerById;
@@ -10,13 +15,41 @@ using TransProAPI.Features.Customer.UpdateCustomer;
 using TransProAPI.Features.Drivers;
 using TransProAPI.Features.Trucks;
 using TransProAPI.Infrastructure.Persistence;
+using TransProAPI.Infrastructure.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+//Database
 builder.Services.AddDbContext<AppDbContext>(option =>
     option.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"))
 );
+
+// JWT Authentication
+var jwtSettings = builder.Configuration.GetSection("JwtSettings");
+var secretKey   = jwtSettings["SecretKey"];
+
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme    = JwtBearerDefaults.AuthenticationScheme;
+})
+.AddJwtBearer(options =>
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuer           = true,
+        ValidateAudience         = true,
+        ValidateLifetime         = true,                                                          // rejects expired tokens
+        ValidateIssuerSigningKey = true,
+        ValidIssuer              = jwtSettings["Issuer"],
+        ValidAudience            = jwtSettings["Audience"],
+        IssuerSigningKey         = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey)),
+        ClockSkew                = TimeSpan.Zero                                                  // no grace period on expiry
+    }
+);
+
+builder.Services.AddAuthorization();
 
 builder.Services.AddControllers();
 
@@ -29,8 +62,12 @@ builder.Services.AddScoped<GetCustomerByIdHandler>();
 builder.Services.AddScoped<UpdateCustomerHandler>();
 builder.Services.AddScoped<DeleteCustomerHandler>();
 
+builder.Services.AddScoped<TokenService>();
+
 builder.Services.AddScoped<DriverHandler>();
 builder.Services.AddScoped<TruckHandler>();
+builder.Services.AddScoped<AuthHandler>();
+
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
@@ -44,12 +81,12 @@ builder.Services.AddSwaggerGen(options =>
 
     options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
-        Name = "Authorization",
-        Type = SecuritySchemeType.ApiKey,
-        Scheme = "Bearer",
+        Name         = "Authorization",
+        Type         = SecuritySchemeType.ApiKey,
+        Scheme       = "Bearer",
         BearerFormat = "JWT",
-        In = ParameterLocation.Header,
-        Description = "Enter: Bearer {your JWT token}"
+        In           = ParameterLocation.Header,
+        Description  = "Enter: Bearer {your JWT token}"
     });
 
     options.AddSecurityRequirement(new OpenApiSecurityRequirement

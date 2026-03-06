@@ -2,8 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TransProAPI.Common;
+using TransProAPI.Domain.Entities;
 using TransProAPI.Features.Customer.CreateCustomer;
 using TransProAPI.Features.Customer.DeleteCustomer;
 using TransProAPI.Features.Customer.GetCustomerById;
@@ -14,6 +16,7 @@ namespace TransProAPI.Features.Customer
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize(Roles = UserRoles.Admin)]
     public class CustomersController(
         CreateCustomerHandler _createCustomerHandler,
         GetCustomerHandler _getCustomerHandler,

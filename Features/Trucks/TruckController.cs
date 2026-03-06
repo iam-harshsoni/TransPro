@@ -4,14 +4,17 @@ using System.Linq;
 using System.Net.NetworkInformation;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TransProAPI.Common;
+using TransProAPI.Domain.Entities;
 using static TransProAPI.Features.Trucks.TruckDto;
 
 namespace TransProAPI.Features.Trucks
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize(Roles = UserRoles.Admin)]
     public class TruckController(TruckHandler _truckHandler) : ControllerBase
     {
         [HttpPost]
