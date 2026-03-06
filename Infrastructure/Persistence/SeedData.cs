@@ -15,6 +15,7 @@ namespace TransProAPI.Infrastructure.Persistence
             await SeedCustomersAsync(db);
             await SeedDriversAsync(db);
             await SeedTrucksAsync(db);
+            await SeedContainersAsync(db);
         }
 
         private static async Task SeedCustomersAsync(AppDbContext db)
@@ -221,6 +222,70 @@ namespace TransProAPI.Infrastructure.Persistence
             }
 
             Console.WriteLine("✅ Trucks seeded.\n");
+        }
+
+        // ── CONTAINERS ───────────────────────────────────────────────────────────
+        private static async Task SeedContainersAsync(AppDbContext db)
+        {
+            if (await db.Containers.AnyAsync())
+            {
+                Console.WriteLine("⏭  Containers already seeded. Skipping.");
+                return;
+            }
+
+            Console.WriteLine("🌱 Seeding 10,000 Containers...");
+
+            var types = new[]
+            {
+                "Dry", "Reefer", "Flat", "OpenTop", "Tank"
+            };
+
+            var prefixes = new[]
+            {
+                "MSKU", "TGHU", "OOLU", "CMAU", "HLCU",
+                "MEDU", "NYKU", "APZU", "GESU", "TCLU"
+            };
+
+            var containers = new List<Container>();
+            var random = new Random(42);
+            var usedNumbers = new HashSet<string>();
+
+            for (int i = 1; i <= 10_000; i++)
+            {
+                var prefix = prefixes[random.Next(prefixes.Length)];
+                var number = random.Next(1000000, 9999999);
+
+                var containerNumber = $"{prefix}{number}";
+
+                // ensure unique container numbers
+                while (usedNumbers.Contains(containerNumber))
+                {
+                    number++;
+                    containerNumber = $"{prefix}{number}";
+                }
+
+                usedNumbers.Add(containerNumber);
+
+                containers.Add(new Container
+                {
+                    ContainerNumber = containerNumber,
+                    Type = types[random.Next(types.Length)],
+                    WeightCapacity = Math.Round((decimal)(random.Next(200, 350) / 10.0), 1), // 20–35 tons
+                    IsAvailable = random.Next(0, 5) != 0,
+                    CreatedAt = DateTime.UtcNow.AddDays(-random.Next(0, 730))
+                });
+
+                if (i % 1000 == 0)
+                {
+                    await db.Containers.AddRangeAsync(containers);
+                    await db.SaveChangesAsync();
+                    containers.Clear();
+
+                    Console.WriteLine($"   ✅ {i} containers inserted...");
+                }
+            }
+
+            Console.WriteLine("✅ Containers seeded.\n");
         }
     }
 }

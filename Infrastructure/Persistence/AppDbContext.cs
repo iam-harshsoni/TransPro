@@ -38,7 +38,7 @@ namespace TransProAPI.Infrastructure.Persistence
 
             // Configure composite primary key for join table
             modelBuilder.Entity<TripContainer>()
-                .HasKey(tc => new { tc.TripId, tc.ContianerId });
+                .HasKey(tc => new { tc.TripId, tc.ContainerId });
 
             // Trip → Customer
             modelBuilder.Entity<Trip>()
@@ -77,7 +77,7 @@ namespace TransProAPI.Infrastructure.Persistence
             modelBuilder.Entity<TripContainer>()
                 .HasOne(tc => tc.Container)
                 .WithMany(c => c.TripContainers)
-                .HasForeignKey(tc => tc.ContianerId);
+                .HasForeignKey(tc => tc.ContainerId);
 
             // Store enum as string in DB (readable, not magic numbers)
             modelBuilder.Entity<Trip>()

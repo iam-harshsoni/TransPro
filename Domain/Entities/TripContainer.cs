@@ -11,7 +11,7 @@ namespace TransProAPI.Domain.Entities
         public int TripId { get; set; }
         public Trip Trip { get; set; } = null!;
 
-        public int ContianerId { get; set; }
+        public int ContainerId { get; set; }
         public Container Container { get; set; } = null!;
     }
 }

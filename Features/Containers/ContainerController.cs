@@ -1,0 +1,57 @@
+using System;
+using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using TransProAPI.Common;
+using TransProAPI.Domain.Entities;
+using static TransProAPI.Features.Containers.ContainerDtos;
+
+namespace TransProAPI.Features.Containers
+{
+    [ApiController]
+    [Route("api/[controller]")]
+    [Authorize]
+    public class ContainerController(
+        ContainerHandler _handler
+    ) : ControllerBase
+    {
+        [HttpPost]
+        public async Task<IActionResult> Create([FromBody] CreateContainerRequest request)
+        {
+            var result = await _handler.CreateAsync(request);
+            return result.Success ? Ok(result) : BadRequest(result);
+        }
+
+        [HttpPut("{id:int}")]
+        public async Task<IActionResult> Update(int id, [FromBody] UpdateContainerRequest request)
+        {
+            var result = await _handler.UpdateAsync(id, request);
+            return result.Success ? Ok(result) : BadRequest(result);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAll([FromQuery] PaginationRequest request, bool? availableOnly = null)
+        {
+            var result = await _handler.GetAllAsync(request);
+            return result.Success ? Ok(result) : NotFound(result);
+        }
+
+        [HttpGet("{id:int}")]
+        public async Task<IActionResult> GetById(int id)
+        {
+            var result = await _handler.GetByIdAsync(id);
+            return result.Success ? Ok(result) : NotFound(result);
+        }
+
+        [HttpDelete("{id:int}")]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var result = await _handler.DeleteAsync(id);
+            return result.Success ? Ok(result) : NotFound(result);
+        }
+    }
+}
