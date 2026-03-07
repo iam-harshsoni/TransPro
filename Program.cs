@@ -45,7 +45,7 @@ builder.Services.AddAuthentication(options =>
         ValidateIssuerSigningKey = true,
         ValidIssuer = jwtSettings["Issuer"],
         ValidAudience = jwtSettings["Audience"],
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey)),
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey!)),
         ClockSkew = TimeSpan.Zero                                                  // no grace period on expiry
     }
 );
@@ -68,6 +68,7 @@ builder.Services.AddScoped<TokenService>();
 builder.Services.AddScoped<DriverHandler>();
 builder.Services.AddScoped<TruckHandler>();
 builder.Services.AddScoped<ContainerHandler>();
+builder.Services.AddScoped<TransProAPI.Features.Routes.RouteHandler>();
 builder.Services.AddScoped<AuthHandler>();
 
 

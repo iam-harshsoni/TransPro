@@ -1,5 +1,4 @@
 using TransProAPI.Domain;
-using static TransProAPI.Features.Trucks.TruckDto;
 
 namespace TransProAPI.Features.Trucks
 {

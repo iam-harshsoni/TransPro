@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TransProAPI.Common;
 using TransProAPI.Domain.Entities;
-using static TransProAPI.Features.Trucks.TruckDto;
 
 namespace TransProAPI.Features.Trucks
 {
