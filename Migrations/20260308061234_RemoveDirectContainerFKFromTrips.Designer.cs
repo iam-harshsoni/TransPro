@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using TransProAPI.Infrastructure.Persistence;
@@ -11,9 +12,11 @@ using TransProAPI.Infrastructure.Persistence;
 namespace TransProAPI.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260308061234_RemoveDirectContainerFKFromTrips")]
+    partial class RemoveDirectContainerFKFromTrips
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -161,6 +164,9 @@ namespace TransProAPI.Migrations
 
                     b.Property<DateTime?>("ArrivalDate")
                         .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("ContainerId")
+                        .HasColumnType("integer");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");

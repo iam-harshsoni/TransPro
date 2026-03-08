@@ -14,6 +14,7 @@ using TransProAPI.Features.Customer.GetCustomerById;
 using TransProAPI.Features.Customer.GetCustomers;
 using TransProAPI.Features.Customer.UpdateCustomer;
 using TransProAPI.Features.Drivers;
+using TransProAPI.Features.Trips;
 using TransProAPI.Features.Trucks;
 using TransProAPI.Infrastructure.Persistence;
 using TransProAPI.Infrastructure.Services;
@@ -69,6 +70,7 @@ builder.Services.AddScoped<DriverHandler>();
 builder.Services.AddScoped<TruckHandler>();
 builder.Services.AddScoped<ContainerHandler>();
 builder.Services.AddScoped<TransProAPI.Features.Routes.RouteHandler>();
+builder.Services.AddScoped<TripHandler>();
 builder.Services.AddScoped<AuthHandler>();
 
 
