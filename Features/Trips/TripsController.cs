@@ -35,5 +35,19 @@ namespace TransProAPI.Features.Trips
             var result = await _handler.GetByIdAsync(id);
             return result.Success ? Ok(result) : NotFound(result);
         }
+
+        [HttpPatch("{id:int}/status")]
+        public async Task<IActionResult> UpdateStatus(int id, [FromBody] UpdateTripStatusRequest request)
+        {
+            var result = await _handler.UpdateStatusAsync(id, request);
+            return result.Success ? Ok(result) : BadRequest(result);
+        }
+
+        [HttpDelete("{id:int}")]
+        public async Task<IActionResult> Cancel(int id)
+        {
+            var result = await _handler.CancelAsync(id);
+            return result.Success ? Ok(result) : BadRequest(result);
+        }
     }
 }

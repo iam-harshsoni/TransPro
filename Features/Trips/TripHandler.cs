@@ -296,6 +296,38 @@ namespace TransProAPI.Features.Trips
             }
         }
 
+        /*What Are We Building and Why?
+            In a real transport system, you rarely hard-delete trips — they're historical records. But you can cancel them.
+            Cancelling a trip means:
+
+            Setting status to Cancelled
+            Freeing all resources (driver, truck, containers)
+            The trip record stays in the database for audit purposes
+
+            We intentionally reuse the UpdateStatusAsync logic here rather than duplicating it.
+        
+        */
+        public async Task<ApiResponses<string>> CancelAsync(int id)
+        {
+            var trip = await _db.Trips.FirstOrDefaultAsync(t => t.Id == id);
+
+            if (trip is null)
+                return ApiResponses<string>.Fail($"Trip with ID {id} was not found.");
+
+            if (trip.Status == TripStatus.Completed)
+                return ApiResponses<string>.Fail("Cannot cancel a completed trip. The trip has already been delivered.");
+
+            if (trip.Status == TripStatus.Cancelled)
+                return ApiResponses<string>.Fail("This trip is already cancelled.");
+
+            var cancelRequest = new UpdateTripStatusRequest(TripStatus.Cancelled);
+            var result = await UpdateStatusAsync(id, cancelRequest);
+
+            return result.Success
+                ? ApiResponses<string>.Ok("Trip cancelled successfully. All resources have been released.")
+                : ApiResponses<string>.Fail(result.Message);
+        }
+
         /* PRIVATE HELPER
              Builds the full TripDetailResponse by loading all related entities
             
