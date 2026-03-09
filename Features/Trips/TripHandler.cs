@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Net.Quic;
 using System.Threading.Tasks;
 using FluentValidation;
@@ -248,24 +249,19 @@ namespace TransProAPI.Features.Trips
 
             /* Validate the State Transition
                Define what transitions are allowed from each state
-               This is a finite state machine — illegal transitions are rejected
+               Using Switch Statement with tuple.
             */
-            var allowedTransitions = new Dictionary<TripStatus, List<TripStatus>>
+            var isValidTransition = (trip.Status, request.NewStatus) switch
             {
-                { TripStatus.Planned, new () {TripStatus.InTransit, TripStatus.Cancelled} },
-                { TripStatus.InTransit, new () {TripStatus.Completed, TripStatus.Cancelled} },
-                { TripStatus.Completed, new () }, // terminal — no transitions allowed
-                { TripStatus.Cancelled, new () }, // terminal — no transitions allowed
+                (TripStatus.Planned, TripStatus.InTransit) => true,
+                (TripStatus.Planned, TripStatus.Cancelled) => true,
+                (TripStatus.InTransit, TripStatus.Cancelled) => true,
+                (TripStatus.InTransit, TripStatus.Completed) => true,
+                _ => false
             };
 
-            var allowed = allowedTransitions[trip.Status];
-
-            if (!allowed.Contains(request.NewStatus))
-            {
-                return ApiResponses<TripDetailResponse>.Fail(
-                    $"Cannot transition trip from '{trip.Status}' to '{request.NewStatus}'. " +
-                    $"Allowed transitions: {(allowed.Count != 0 ? string.Join(", ", allowed) : "none — this is a terminal state")}.");
-            }
+            if (!isValidTransition)
+                return ApiResponses<TripDetailResponse>.Fail($"Cannot transition from '{trip.Status} to '{request.NewStatus}'.");
 
             // Execute the transition
             await using var transaction = await _db.Database.BeginTransactionAsync();
