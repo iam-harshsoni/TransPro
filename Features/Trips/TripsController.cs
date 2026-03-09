@@ -15,8 +15,25 @@ namespace TransProAPI.Features.Trips
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreateTripRequest request)
         {
+            if (request is null)
+                return BadRequest(new { message = "Request body could not be parsed - request is null" });
+
             var result = await _handler.CreateAsync(request);
-            return result.Success ? Ok(result) : BadRequest(request);
+            return result.Success ? Ok(result) : BadRequest(result);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAll([FromQuery] TripQueryParams request)
+        {
+            var result = await _handler.GetAllAsync(request);
+            return result.Success ? Ok(result) : NotFound(result);
+        }
+
+        [HttpGet("{id:int}")]
+        public async Task<IActionResult> GetById(int id)
+        {
+            var result = await _handler.GetByIdAsync(id);
+            return result.Success ? Ok(result) : NotFound(result);
         }
     }
 }

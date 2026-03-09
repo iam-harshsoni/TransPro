@@ -19,6 +19,8 @@ using TransProAPI.Features.Trucks;
 using TransProAPI.Infrastructure.Persistence;
 using TransProAPI.Infrastructure.Services;
 
+AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -53,7 +55,11 @@ builder.Services.AddAuthentication(options =>
 
 builder.Services.AddAuthorization();
 
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+       .ConfigureApiBehaviorOptions(options =>
+       {
+           options.SuppressModelStateInvalidFilter = true;
+       });
 
 builder.Services.AddValidatorsFromAssemblyContaining<Program>();
 
@@ -107,6 +113,16 @@ builder.Services.AddSwaggerGen(options =>
             },
             Array.Empty<string>()
         }
+    });
+});
+
+builder.Services.AddCors(options =>
+  {
+    options.AddPolicy("AllowAll", policy =>
+    {
+        policy.AllowAnyOrigin()
+              .AllowAnyHeader()
+              .AllowAnyMethod();
     });
 });
 

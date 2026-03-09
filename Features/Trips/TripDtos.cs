@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TransProAPI.Common;
 using TransProAPI.Domain.Entities;
 
 namespace TransProAPI.Features.Trips
@@ -14,6 +15,8 @@ namespace TransProAPI.Features.Trips
         List<int> ContainerIds,
         DateTime DepartureDate,
         string Notes);
+
+    public record UpdateTripStatusRequest(TripStatus NewStatus);
 
     /* 
     Used for the LIST endpoint — lean, no heavy nested objects. When you have 1000 trips, you don't want full driver/truck objects on each row   */
@@ -81,4 +84,18 @@ namespace TransProAPI.Features.Trips
         string ContainerNumber,
         string Type,
         decimal WeightCapacity);
+
+    public class TripQueryParams : PaginationRequest
+    {
+        /* 
+         All Filters are multiple - null means 'Dont filter by this'
+         Client can send any combination or none at all
+         */
+
+        public TripStatus? Status { get; set; }
+        public int? CustomerId{ get; set; }
+        public int? DriverId { get; set; }
+        public DateTime? FromDate{ get; set; }
+        public DateTime? ToDate{ get; set; }
+    }
 }

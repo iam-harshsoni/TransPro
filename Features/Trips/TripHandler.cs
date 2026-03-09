@@ -1,8 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Quic;
 using System.Threading.Tasks;
 using FluentValidation;
+using FluentValidation.TestHelper;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using TransProAPI.Common;
 using TransProAPI.Domain.Entities;
@@ -12,7 +15,8 @@ namespace TransProAPI.Features.Trips
 {
     public class TripHandler(
         AppDbContext _db,
-        IValidator<CreateTripRequest> _createValidator)
+        IValidator<CreateTripRequest> _createValidator
+        )
     {
         public async Task<ApiResponses<TripDetailResponse>> CreateAsync(CreateTripRequest request)
         {
@@ -158,6 +162,141 @@ namespace TransProAPI.Features.Trips
                 await transaction.RollbackAsync();
                 return ApiResponses<TripDetailResponse>.Fail(
                     $"An error occurred while creating the trip. " + $"All changes have been rolled back. Error: {ex.Message}");
+            }
+        }
+
+        public async Task<ApiResponses<PagedResponse<TripSummaryResponse>>> GetAllAsync(TripQueryParams request)
+        {
+            /* Always validate first — enforces PageNumber >= 1 and PageSize <= 100 This uses existing Validate() method from PaginationRequest
+             */
+
+            request.Validate();
+
+            var query = _db.Trips.AsNoTracking().AsQueryable();
+
+            // Apply Filters Dynamically
+            if (request.Status.HasValue)
+                query = query.Where(t => t.Status == request.Status.Value);
+
+            if (request.CustomerId.HasValue)
+                query = query.Where(t => t.CustomerId == request.CustomerId.Value);
+
+            if (request.DriverId.HasValue)
+                query = query.Where(t => t.DriverId == request.DriverId.Value);
+
+            if (request.FromDate.HasValue)
+                query = query.Where(t => t.DepartureDate >= request.FromDate.Value);
+
+            if (request.ToDate.HasValue)
+                query = query.Where(t => t.DepartureDate <= request.ToDate.Value);
+
+            var totalCount = await query.CountAsync();
+
+            var trips = await query
+                .OrderByDescending(x => x.Id)
+                .Skip((request.PageNumber - 1) * request.PageSize)
+                .Take(request.PageSize)
+                .Select(x => new TripSummaryResponse(
+                    x.Id,
+                    x.Customer.FullName,
+                    x.Driver.FullName,
+                    x.Truck.PlateNumber,
+                    x.Route.Origin,
+                    x.Route.Destination,
+                    x.Status.ToString(),
+                    x.DepartureDate,
+                    x.ArrivalDate
+                    ))
+                .ToListAsync();
+
+            var response = new PagedResponse<TripSummaryResponse>()
+            {
+                TotalCount = totalCount,
+                PageNumber = request.PageNumber,
+                PageSize = request.PageSize,
+                Data = trips,
+            };
+
+            return ApiResponses<PagedResponse<TripSummaryResponse>>.Ok(response);
+        }
+
+        public async Task<ApiResponses<TripDetailResponse>> GetByIdAsync(int id)
+        {
+            var response = await BuildDetailsReponseAsync(id);
+
+            return response is null
+                ? ApiResponses<TripDetailResponse>.Fail($"Trip with ID {id} was not found.")
+                : ApiResponses<TripDetailResponse>.Ok(response);
+        }
+
+        public async Task<ApiResponses<TripDetailResponse>> UpdateStatusAsync(int id, UpdateTripStatusRequest request)
+        {
+            /* Load trip with all related entities we might need to update
+               We use Include() here — NOT AsNoTracking() — because we WILL
+               be modifying driver, truck, and container availability
+               EF Core needs to track these objects to detect and save changes
+            */
+            var trip = await _db.Trips
+                .Include(x => x.Driver)
+                .Include(x => x.Truck)
+                .Include(x => x.TripContainers)
+                    .ThenInclude(x => x.Container)
+                .FirstOrDefaultAsync(x => x.Id == id);
+
+            if (trip is null)
+                return ApiResponses<TripDetailResponse>.Fail($"Trip with ID {id} was not found.");
+
+            /* Validate the State Transition
+               Define what transitions are allowed from each state
+               This is a finite state machine — illegal transitions are rejected
+            */
+            var allowedTransitions = new Dictionary<TripStatus, List<TripStatus>>
+            {
+                { TripStatus.Planned, new () {TripStatus.InTransit, TripStatus.Cancelled} },
+                { TripStatus.InTransit, new () {TripStatus.Completed, TripStatus.Cancelled} },
+                { TripStatus.Completed, new () }, // terminal — no transitions allowed
+                { TripStatus.Cancelled, new () }, // terminal — no transitions allowed
+            };
+
+            var allowed = allowedTransitions[trip.Status];
+
+            if (!allowed.Contains(request.NewStatus))
+            {
+                return ApiResponses<TripDetailResponse>.Fail(
+                    $"Cannot transition trip from '{trip.Status}' to '{request.NewStatus}'. " +
+                    $"Allowed transitions: {(allowed.Count != 0 ? string.Join(", ", allowed) : "none — this is a terminal state")}.");
+            }
+
+            // Execute the transition
+            await using var transaction = await _db.Database.BeginTransactionAsync();
+
+            try
+            {
+                trip.Status = request.NewStatus;
+
+                if (request.NewStatus == TripStatus.Completed || request.NewStatus == TripStatus.Cancelled)
+                {
+                    trip.ArrivalDate = DateTime.UtcNow;
+                    trip.Driver.IsAvailable = true;
+                    trip.Truck.IsAvailable = true;
+
+                    foreach (var items in trip.TripContainers)
+                        items.Container.IsAvailable = true;
+                }
+
+                await _db.SaveChangesAsync();
+                await transaction.CommitAsync();
+
+                var response = await BuildDetailsReponseAsync(trip.Id);
+                return ApiResponses<TripDetailResponse>.Ok(
+                    response!,
+                    $"Trip status updated to '{request.NewStatus}' successfully.");
+            }
+            catch (Exception ex)
+            {
+                await transaction.RollbackAsync();
+                return ApiResponses<TripDetailResponse>.Fail(
+                    $"Failed to update trip status. All changes rolled back. Error: {ex.Message}");
             }
         }
 
