@@ -23,30 +23,17 @@ using TransProAPI.Infrastructure.Persistence;
 using TransProAPI.Infrastructure.Services;
 using TransProAPI.Middleware;
 
-// ── Configure Serilog BEFORE anything else ────────────────────────────────────
-// We configure it here so it captures startup errors too
-// If we waited until after builder.Build(), crashes during startup
-// would not be logged
 Log.Logger = new LoggerConfiguration()
     .MinimumLevel.Information()
 
-    // Silence noisy EF Core query logs in production
-    // Change to Information during debugging if you need to see SQL
     .MinimumLevel.Override("Microsoft.EntityFrameworkCore.Database.Command", LogEventLevel.Warning)
     .MinimumLevel.Override("Microsoft.EntityFrameworkCore", LogEventLevel.Warning)
     .MinimumLevel.Override("Microsoft.AspNetCore", LogEventLevel.Warning)
 
-    // ── Console Sink ─────────────────────────────────────────────────────
-    // What you see in your terminal while running
     .WriteTo.Console(
        theme: SystemConsoleTheme.Literate,
         outputTemplate: "[{Timestamp:HH:mm:ss} {Level:u3}] [{SourceContext}] {Message:lj}{NewLine}{Exception}")
 
-    // ── File Sink ────────────────────────────────────────────────────────
-    // Writes to /logs/transpro-.log
-    // rollingInterval: new file created every day
-    // retainedFileCountLimit: keeps last 30 days of logs, deletes older ones
-    // fileSizeLimitBytes: max 10MB per file, then rolls to next file
     .WriteTo.File(
         path: "logs/transpro-.log",
         rollingInterval: RollingInterval.Day,
@@ -54,26 +41,21 @@ Log.Logger = new LoggerConfiguration()
         fileSizeLimitBytes: 10_000_000,
         outputTemplate: "[{Timestamp:yyyy-MM-dd HH:mm:ss} {Level:u3}] [{SourceContext}] {Message:lj}{NewLine}{Exception}")
 
-    .Enrich.FromLogContext()      // captures contextual properties added via LogContext
-    .Enrich.WithMachineName()     // adds server name — useful when running multiple instances
-    .Enrich.WithThreadId()        // adds thread ID — useful for debugging async issues
+    .Enrich.FromLogContext()
+    .Enrich.WithMachineName()
+    .Enrich.WithThreadId() 
     .CreateLogger();
 
 AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Tell ASP.NET Core to use Serilog instead of default logger
 builder.Host.UseSerilog();
 
-// Add services to the container.
-
-//Database
 builder.Services.AddDbContext<AppDbContext>(option =>
     option.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"))
 );
 
-// JWT Authentication
 var jwtSettings = builder.Configuration.GetSection("JwtSettings");
 var secretKey = jwtSettings["SecretKey"];
 
@@ -87,12 +69,12 @@ builder.Services.AddAuthentication(options =>
     {
         ValidateIssuer = true,
         ValidateAudience = true,
-        ValidateLifetime = true,                                                          // rejects expired tokens
+        ValidateLifetime = true,
         ValidateIssuerSigningKey = true,
         ValidIssuer = jwtSettings["Issuer"],
         ValidAudience = jwtSettings["Audience"],
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey!)),
-        ClockSkew = TimeSpan.Zero                                                  // no grace period on expiry
+        ClockSkew = TimeSpan.Zero
     }
 );
 
@@ -168,21 +150,14 @@ builder.Services.AddCors(options =>
       });
   });
 
-
-// Wrap everything in try/catch so startup errors are captured
-// Without this, a crash during startup produces no log output
 try
 {
     Log.Information("=== TransPro API Starting ===");
 
     var app = builder.Build();
 
-    /* Why first? 
-    Middleware executes in registration order. If the exception middleware is registered after authentication, and authentication throws — the exception middleware never sees it. First position means it wraps everything.*/
     app.UseMiddleware<GlobalExceptionMiddleware>();
 
-    // Logs every request: method, path, status code, response time
-    // Format: POST /api/trips responded 200 in 45.3ms
     app.UseSerilogRequestLogging(Options =>
     {
         Options.MessageTemplate = "{RequestMethod} {RequestPath} responded {StatusCode} in {Elapsed:0.0000}ms";
@@ -230,7 +205,5 @@ catch (Exception ex)
 }
 finally
 {
-    // Always flush logs before the process exits
-    // Without this, the last few log entries might not be written to file
     Log.CloseAndFlush();
 }
