@@ -18,6 +18,7 @@ using TransProAPI.Features.Trips;
 using TransProAPI.Features.Trucks;
 using TransProAPI.Infrastructure.Persistence;
 using TransProAPI.Infrastructure.Services;
+using TransProAPI.Middleware;
 
 AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 
@@ -118,15 +119,19 @@ builder.Services.AddSwaggerGen(options =>
 
 builder.Services.AddCors(options =>
   {
-    options.AddPolicy("AllowAll", policy =>
-    {
-        policy.AllowAnyOrigin()
-              .AllowAnyHeader()
-              .AllowAnyMethod();
-    });
-});
+      options.AddPolicy("AllowAll", policy =>
+      {
+          policy.AllowAnyOrigin()
+                .AllowAnyHeader()
+                .AllowAnyMethod();
+      });
+  });
 
 var app = builder.Build();
+
+/* Why first? 
+Middleware executes in registration order. If the exception middleware is registered after authentication, and authentication throws — the exception middleware never sees it. First position means it wraps everything.*/
+app.UseMiddleware<GlobalExceptionMiddleware>();
 
 if (app.Environment.IsDevelopment())
 {

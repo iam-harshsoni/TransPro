@@ -49,5 +49,11 @@ namespace TransProAPI.Features.Trips
             var result = await _handler.CancelAsync(id);
             return result.Success ? Ok(result) : BadRequest(result);
         }
+
+        [HttpGet("crash-test")]
+        public IActionResult CrashTest()
+        {
+            throw new Exception("Simulated server crash");
+        }
     }
 }

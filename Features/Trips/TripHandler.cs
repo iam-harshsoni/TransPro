@@ -160,9 +160,15 @@ namespace TransProAPI.Features.Trips
             }
             catch (Exception ex)
             {
+                // Roll back the transaction — then let the exception bubble up
+                // GlobalExceptionMiddleware will catch it and return a clean 500
                 await transaction.RollbackAsync();
-                return ApiResponses<TripDetailResponse>.Fail(
-                    $"An error occurred while creating the trip. " + $"All changes have been rolled back. Error: {ex.Message}");
+                await transaction.RollbackAsync();
+                throw; // ← re-throw, don't swallow
+
+                /* Why throw instead of return Fail(...)? 
+                Because returning Fail with ex.Message leaks internal error details to the client. Re-throwing lets the middleware handle it — it logs the full details server-side and sends a safe message to the client.
+                */
             }
         }
 
