@@ -21,9 +21,9 @@ namespace TransProAPI.Features.Routes
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAll([FromQuery] PaginationRequest request)
+        public async Task<IActionResult> GetAll([FromQuery] RouteQueryParams query)
         {
-            var result = await _handler.GetAllAsync(request);
+            var result = await _handler.GetAllAsync(query);
             return Ok(result);
         }
 

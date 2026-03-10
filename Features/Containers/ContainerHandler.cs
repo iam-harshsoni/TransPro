@@ -57,28 +57,41 @@ namespace TransProAPI.Features.Containers
             return ApiResponses<string>.Ok("Container Updated.");
         }
 
-        public async Task<ApiResponses<PagedResponse<ContainerResponse>>> GetAllAsync(PaginationRequest request, bool? availableOnly = null)
+        public async Task<ApiResponses<PagedResponse<ContainerResponse>>> GetAllAsync(ContainerQueryParams query)
         {
-            var query = _db.Containers.AsQueryable();
+            query.Validate();
 
-            if (availableOnly.HasValue)
-                query = query.Where(x => x.IsAvailable == availableOnly.Value);
+            var q = _db.Containers
+                .AsNoTracking()
+                .AsQueryable();
+
+            if (!string.IsNullOrEmpty(query.Search))
+            {
+                var search = query.Search.ToLower();
+                q = q.Where(c =>
+                    c.ContainerNumber.ToLower().Contains(search));
+            }
+
+            if (query.IsAvailable.HasValue)
+                q = q.Where(x => x.IsAvailable == query.IsAvailable.Value);
+
+            if (!string.IsNullOrEmpty(query.Type))
+                q = q.Where(c => c.Type.ToLower() == query.Type.ToLower());
 
             var totalCount = await _db.Containers.CountAsync();
 
-            var list = await query
-                .AsNoTracking()
-                .Skip((request.PageNumber - 1) * request.PageSize)
-                .Take(request.PageSize)
+            var list = await q
                 .OrderByDescending(x => x.CreatedAt)
+                .Skip((query.PageNumber - 1) * query.PageSize)
+                .Take(query.PageSize)
                 .Select(x => x.ToResponse())
                 .ToListAsync();
 
             var result = new PagedResponse<ContainerResponse>()
             {
                 TotalCount = totalCount,
-                PageNumber = request.PageNumber,
-                PageSize = request.PageSize,
+                PageNumber = query.PageNumber,
+                PageSize = query.PageSize,
                 Data = list
             };
 

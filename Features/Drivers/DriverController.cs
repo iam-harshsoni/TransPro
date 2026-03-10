@@ -22,9 +22,9 @@ namespace TransProAPI.Features.Drivers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAll([FromQuery] PaginationRequest request, bool? availableOnly = null)
+        public async Task<IActionResult> GetAll([FromQuery] DriverQueryParams query)
         {
-            var result = await _driverHandler.GetAllAsync(request, availableOnly);
+            var result = await _driverHandler.GetAllAsync(query);
             return result.Success ? Ok(result) : NotFound(result);
         }
 

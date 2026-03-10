@@ -42,14 +42,34 @@ namespace TransProAPI.Features.Routes
             return ApiResponses<RouteResponse>.Ok(route.ToResponse(), "Route created.");
         }
 
-        public async Task<ApiResponses<PagedResponse<RouteResponse>>> GetAllAsync(PaginationRequest request)
+        public async Task<ApiResponses<PagedResponse<RouteResponse>>> GetAllAsync(RouteQueryParams query)
         {
+            query.Validate();
+
+            var q = _db.Routes
+                .AsNoTracking()
+                .AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(query.Search))
+            {
+                var search = query.Search.ToLower().Trim();
+                q = q.Where(r =>
+                    r.Origin.ToLower().Contains(search) ||
+                    r.Destination.ToLower().Contains(search));
+            }
+
+            if (!string.IsNullOrWhiteSpace(query.Origin))
+                q = q.Where(r => r.Origin.ToLower() == query.Origin.ToLower());
+
+            if (!string.IsNullOrWhiteSpace(query.Destination))
+                q = q.Where(r => r.Destination.ToLower() == query.Destination.ToLower());
+
             var totalCount = await _db.Routes.CountAsync();
 
-            var routes = await _db.Routes
+            var routes = await q
                 .AsNoTracking()
-                .Skip((request.PageNumber - 1) * request.PageSize)
-                .Take(request.PageSize)
+                .Skip((query.PageNumber - 1) * query.PageSize)
+                .Take(query.PageSize)
                 .OrderBy(r => r.Origin)
                 .Select(r => r.ToResponse())
                 .ToListAsync();
@@ -57,8 +77,8 @@ namespace TransProAPI.Features.Routes
             var result = new PagedResponse<RouteResponse>
             {
                 TotalCount = totalCount,
-                PageNumber = request.PageNumber,
-                PageSize = request.PageSize,
+                PageNumber = query.PageNumber,
+                PageSize = query.PageSize,
                 Data = routes
             };
 

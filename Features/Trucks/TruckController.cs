@@ -24,9 +24,9 @@ namespace TransProAPI.Features.Trucks
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAll([FromQuery] PaginationRequest request, bool? availableOnly = null)
+        public async Task<IActionResult> GetAll([FromQuery] TruckQueryParams query)
         {
-            var result = await _truckHandler.GetAllAsync(request);
+            var result = await _truckHandler.GetAllAsync(query);
             return result.Success ? Ok(result) : NotFound(result);
         }
 

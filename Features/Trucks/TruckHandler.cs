@@ -43,28 +43,42 @@ namespace TransProAPI.Features.Trucks
             return ApiResponses<TruckResponse>.Ok(truck.ToResponse(), "Truck created successfully.");
         }
 
-        public async Task<ApiResponses<PagedResponse<TruckResponse>>> GetAllAsync(PaginationRequest request, bool? availableOnly = true)
+        public async Task<ApiResponses<PagedResponse<TruckResponse>>> GetAllAsync(TruckQueryParams query)
         {
-            var query = _db.Trucks.AsQueryable();
+            query.Validate();
 
-            if (availableOnly.HasValue)
-                query = query.Where(x => x.IsAvailable == availableOnly.Value);
-
-            var totalCount = await query.CountAsync();
-
-            var trucks = await query
+            var q = _db.Trucks
                 .AsNoTracking()
+                .AsQueryable();
+
+            if (!string.IsNullOrEmpty(query.Search))
+            {
+                var search = query.Search.ToLower();
+                q = q.Where(t =>
+                    t.PlateNumber.ToLower().Contains(search) ||
+                    t.Model.ToLower().Contains(search));
+            }
+
+            if (query.IsAvailable.HasValue)
+                q = q.Where(x => x.IsAvailable == query.IsAvailable.Value);
+
+            if (query.MinCapacity.HasValue)
+                q = q.Where(t => t.Capacity >= query.MinCapacity.Value);
+
+            var totalCount = await q.CountAsync();
+
+            var trucks = await q
                 .OrderByDescending(x => x.CreatedAt)
-                .Skip((request.PageNumber - 1) * request.PageSize)
-                .Take(request.PageSize)
+                .Skip((query.PageNumber - 1) * query.PageSize)
+                .Take(query.PageSize)
                 .Select(x => x.ToResponse())
                 .ToListAsync();
 
             var response = new PagedResponse<TruckResponse>()
             {
                 TotalCount = totalCount,
-                PageNumber = request.PageNumber,
-                PageSize = request.PageSize,
+                PageNumber = query.PageNumber,
+                PageSize = query.PageSize,
                 Data = trucks
             };
 

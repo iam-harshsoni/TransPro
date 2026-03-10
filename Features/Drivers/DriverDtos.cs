@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TransProAPI.Common;
 
 namespace TransProAPI.Features.Drivers
 {
@@ -16,4 +17,10 @@ namespace TransProAPI.Features.Drivers
         string Phone,
         bool IsAvailable,
         DateTime CreatedAt);
+
+    public class DriverQueryParams : PaginationRequest
+    {
+        public string? Search { get; set; }
+        public bool? IsAvailable { get; set; }
+    }
 }

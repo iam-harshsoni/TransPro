@@ -44,31 +44,43 @@ namespace TransProAPI.Features.Drivers
             return ApiResponses<DriverResponse>.Ok(driver.ToResponse(), "Driver created successfully.");
         }
 
-        public async Task<ApiResponses<PagedResponse<DriverResponse>>> GetAllAsync(PaginationRequest request, bool? availableOnly = null)
+        public async Task<ApiResponses<PagedResponse<DriverResponse>>> GetAllAsync(
+               DriverQueryParams query)
         {
-            var query = _db.Drivers.AsQueryable();
+            query.Validate();
 
-            // Optional filter — caller can ask for only available drivers
-            // This is useful when the Trip creation screen needs to show
-            // only drivers that can actually be assigned
-            if (availableOnly.HasValue)
-                query = query.Where(d => d.IsAvailable == availableOnly.HasValue);
-
-            var totalCount = await query.CountAsync();
-
-            var drivers = await query
+            var q = _db.Drivers
                 .AsNoTracking()
+                .AsQueryable();
+
+            /* Optional filter — caller can ask for only available drivers
+               This is useful when the Trip creation screen needs to show
+               only drivers that can actually be assigned */
+            if (!string.IsNullOrEmpty(query.Search))
+            {
+                var search = query.Search.ToLower().Trim();
+                q = q.Where(d =>
+                    d.FullName.ToLower().Contains(search) ||
+                    d.LicenseNumber.ToLower().Contains(search));
+            }
+
+            if (query.IsAvailable.HasValue)
+                q = q.Where(d => d.IsAvailable == query.IsAvailable.HasValue);
+
+            var totalCount = await q.CountAsync();
+
+            var drivers = await q
                 .OrderByDescending(d => d.CreatedAt)
-                .Skip((request.PageNumber - 1) * request.PageSize)
-                .Take(request.PageSize)
+                .Skip((query.PageNumber - 1) * query.PageSize)
+                .Take(query.PageSize)
                 .Select(d => d.ToResponse())
                 .ToListAsync();
 
             var response = new PagedResponse<DriverResponse>()
             {
                 TotalCount = totalCount,
-                PageNumber = request.PageNumber,
-                PageSize = request.PageSize,
+                PageNumber = query.PageNumber,
+                PageSize = query.PageSize,
                 Data = drivers
             };
 

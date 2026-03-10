@@ -32,9 +32,9 @@ namespace TransProAPI.Features.Containers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAll([FromQuery] PaginationRequest request, bool? availableOnly = null)
+        public async Task<IActionResult> GetAll([FromQuery] ContainerQueryParams query)
         {
-            var result = await _handler.GetAllAsync(request);
+            var result = await _handler.GetAllAsync(query);
             return result.Success ? Ok(result) : NotFound(result);
         }
 
