@@ -22,15 +22,14 @@ namespace TransProAPI.Features.Trips
         public async Task<ApiResponses<TripDetailResponse>> CreateAsync(CreateTripRequest request)
         {
             var validation = await _createValidator.ValidateAsync(request);
+
             if (!validation.IsValid)
                 return ApiResponses<TripDetailResponse>.Fail("Validation failed", validation.Errors.Select(x => x.ErrorMessage).ToList());
 
-            // Customer check
             var customer = await _db.Customers.FirstOrDefaultAsync(c => c.Id == request.CustomerId && c.IsActive);
             if (customer is null)
                 return ApiResponses<TripDetailResponse>.Fail($"Customer with ID {request.CustomerId} was not found or is inavtive");
 
-            // Driver check
             var driver = await _db.Drivers.FirstOrDefaultAsync(d => d.Id == request.DriverId);
             if (driver is null)
                 return ApiResponses<TripDetailResponse>.Fail($"Driver with ID {request.DriverId} was not found");
@@ -40,7 +39,6 @@ namespace TransProAPI.Features.Trips
                     $"Driver '{driver.FullName}' is currently unavailable. " +
                     $"They may be assigned to another active trip.");
 
-            // Truck check
             var truck = await _db.Trucks.FirstOrDefaultAsync(t => t.Id == request.TruckId);
             if (truck is null)
                 return ApiResponses<TripDetailResponse>.Fail($"Truck with ID {request.TruckId} was not found");
@@ -50,24 +48,15 @@ namespace TransProAPI.Features.Trips
                     $"Truck '{truck.PlateNumber}' is currently unavailable. " +
                     $"It may be assigned to another active trip.");
 
-            // Route Check
             var route = await _db.Routes.FirstOrDefaultAsync(x => x.Id == request.RouteId);
             if (route is null)
                 return ApiResponses<TripDetailResponse>.Fail(
                     $"Route with ID {request.RouteId} was not found.");
 
-            /* Containers Check  (IMP Query)
-                Fetch all requested containers in ONE query
-                Never query inside a loop — that's N+1 problem territory  
-            */
             var containers = await _db.Containers.
                     Where(x => request.ContainerIds.Contains(x.Id))
                     .ToListAsync();
 
-            /*  Check if every requested ID was found
-                The count check tells us IF some are missing
-                The Except tells us WHICH ones are missing
-            */
             if (containers.Count != request.ContainerIds.Count)
             {
                 var foundIds = containers.Select(c => c.Id).ToList();
@@ -78,10 +67,6 @@ namespace TransProAPI.Features.Trips
                     $"{string.Join(", ", missingIds)}");
             }
 
-            /* Containers — Availability
-                Separate from existence check — gives a clearer error message
-                We report by ContainerNumber, not ID, because that's what operations staff actually know and care about
-            */
             var unavailableContainers = containers.Where(uc => !uc.IsAvailable).ToList();
 
             if (unavailableContainers.Count != 0)
@@ -92,31 +77,10 @@ namespace TransProAPI.Features.Trips
                     $"They may be assigned to another active trip.");
             }
 
-            /*  LAYER 3: Atomic Operation (Transaction)
-                All checks passed. Now we execute the actual operation.
-            
-                WHY a transaction?
-                We're about to write to multiple tables:
-                - Trips table          (insert)
-                - TripContainers table (insert multiple rows)
-                - Drivers table        (update IsAvailable)
-                - Trucks table         (update IsAvailable)
-                - Containers table     (update IsAvailable for each)
-            
-                If ANYTHING fails mid-way, we need ALL changes to roll back.
-                Without a transaction, a crash after inserting the Trip but
-                before marking the driver unavailable leaves your data
-                permanently inconsistent.
-            
-                With a transaction: either everything succeeds, or
-                nothing changes. This is ACID compliance in action.
-            */
-
             await using var transaction = await _db.Database.BeginTransactionAsync();
 
             try
             {
-                //Create the trip record
                 var trip = new Trip
                 {
                     CustomerId = request.CustomerId,
@@ -132,7 +96,6 @@ namespace TransProAPI.Features.Trips
                 _db.Trips.Add(trip);
                 await _db.SaveChangesAsync();
 
-                // Link containers to this trip (Entry in tripContainers Model)
                 var tripContainers = containers
                     .Select(x => new TripContainer
                     {
@@ -140,48 +103,35 @@ namespace TransProAPI.Features.Trips
                         ContainerId = x.Id
                     }).ToList();
 
-                await _db.TripContainers.AddRangeAsync(tripContainers);  // inserts all 3 rows into the database in one operation.
+                await _db.TripContainers.AddRangeAsync(tripContainers);
 
-                // Lock all resources (Update driver and truck availability - EF Core already tracking it from above)
                 driver.IsAvailable = false;
                 truck.IsAvailable = false;
 
                 foreach (var container in containers)
                     container.IsAvailable = false;
 
-                //Persist everything and commit
                 await _db.SaveChangesAsync();
                 await transaction.CommitAsync();
 
-                // Build and return the full detail response
                 var response = await BuildDetailsReponseAsync(trip.Id);
 
                 return ApiResponses<TripDetailResponse>.Ok(response!, "Trip created successfully.");
             }
             catch (Exception ex)
             {
-                // Roll back the transaction — then let the exception bubble up
-                // GlobalExceptionMiddleware will catch it and return a clean 500
                 await transaction.RollbackAsync();
-                await transaction.RollbackAsync();
-                throw; // ← re-throw, don't swallow
-
-                /* Why throw instead of return Fail(...)? 
-                Because returning Fail with ex.Message leaks internal error details to the client. Re-throwing lets the middleware handle it — it logs the full details server-side and sends a safe message to the client.
-                */
+                throw;
             }
         }
 
         public async Task<ApiResponses<PagedResponse<TripSummaryResponse>>> GetAllAsync(TripQueryParams request)
         {
-            /* Always validate first — enforces PageNumber >= 1 and PageSize <= 100 This uses existing Validate() method from PaginationRequest
-             */
-
             request.Validate();
 
             var query = _db.Trips.AsNoTracking().AsQueryable();
 
-            // Apply Filters Dynamically
+            // Can simplify this If conditions Using WhereIf extension, will do it later
             if (request.Status.HasValue)
                 query = query.Where(t => t.Status == request.Status.Value);
 
@@ -238,11 +188,6 @@ namespace TransProAPI.Features.Trips
 
         public async Task<ApiResponses<TripDetailResponse>> UpdateStatusAsync(int id, UpdateTripStatusRequest request)
         {
-            /* Load trip with all related entities we might need to update
-               We use Include() here — NOT AsNoTracking() — because we WILL
-               be modifying driver, truck, and container availability
-               EF Core needs to track these objects to detect and save changes
-            */
             var trip = await _db.Trips
                 .Include(x => x.Driver)
                 .Include(x => x.Truck)
@@ -253,10 +198,6 @@ namespace TransProAPI.Features.Trips
             if (trip is null)
                 return ApiResponses<TripDetailResponse>.Fail($"Trip with ID {id} was not found.");
 
-            /* Validate the State Transition
-               Define what transitions are allowed from each state
-               Using Switch Statement with tuple.
-            */
             var isValidTransition = (trip.Status, request.NewStatus) switch
             {
                 (TripStatus.Planned, TripStatus.InTransit) => true,
@@ -269,7 +210,6 @@ namespace TransProAPI.Features.Trips
             if (!isValidTransition)
                 return ApiResponses<TripDetailResponse>.Fail($"Cannot transition from '{trip.Status} to '{request.NewStatus}'.");
 
-            // Execute the transition
             await using var transaction = await _db.Database.BeginTransactionAsync();
 
             try
@@ -297,22 +237,10 @@ namespace TransProAPI.Features.Trips
             catch (Exception ex)
             {
                 await transaction.RollbackAsync();
-                return ApiResponses<TripDetailResponse>.Fail(
-                    $"Failed to update trip status. All changes rolled back. Error: {ex.Message}");
+                throw;
             }
         }
 
-        /*What Are We Building and Why?
-            In a real transport system, you rarely hard-delete trips — they're historical records. But you can cancel them.
-            Cancelling a trip means:
-
-            Setting status to Cancelled
-            Freeing all resources (driver, truck, containers)
-            The trip record stays in the database for audit purposes
-
-            We intentionally reuse the UpdateStatusAsync logic here rather than duplicating it.
-        
-        */
         public async Task<ApiResponses<string>> CancelAsync(int id)
         {
             var trip = await _db.Trips.FirstOrDefaultAsync(t => t.Id == id);
@@ -334,25 +262,6 @@ namespace TransProAPI.Features.Trips
                 : ApiResponses<string>.Fail(result.Message);
         }
 
-        /* PRIVATE HELPER
-             Builds the full TripDetailResponse by loading all related entities
-            
-             WHY a separate private method?
-             We'll reuse this same query in GetByIdAsync and UpdateStatusAsync later.
-             One method, used in multiple places — no duplication.
-             If the response shape changes, we update it in one place only.
-            
-             WHY AsNoTracking()?
-             This is a READ operation — we're not going to modify these entities.
-             AsNoTracking tells EF Core to skip change tracking for this query,
-             which is faster and uses less memory. Always use it for read-only queries.
-            
-             WHY project with .Select() instead of loading entities then mapping?
-             .Select() translates directly to a SQL SELECT with only the columns
-             we need. Loading full entities first pulls every column from every
-             related table, then we discard most of it. On large tables,
-             projection is significantly faster.
-        */
         private async Task<TripDetailResponse?> BuildDetailsReponseAsync(int tripId)
         {
             return await _db.Trips
