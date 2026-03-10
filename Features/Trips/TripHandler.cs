@@ -118,7 +118,7 @@ namespace TransProAPI.Features.Trips
 
                 return ApiResponses<TripDetailResponse>.Ok(response!, "Trip created successfully.");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 await transaction.RollbackAsync();
                 throw;
@@ -234,7 +234,7 @@ namespace TransProAPI.Features.Trips
                     response!,
                     $"Trip status updated to '{request.NewStatus}' successfully.");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 await transaction.RollbackAsync();
                 throw;
