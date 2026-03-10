@@ -20,10 +20,13 @@ namespace TransProAPI.Middleware
             }
             catch (Exception ex)
             {
+                // Serilog captures structured properties with {Name} syntax
+                // These become searchable fields in log files
                 logger.LogError(ex,
-                    "Unhandled exception on {Method} {Path}",
+                    "Unhandled exception. Method: {Method} Path: {Path} User: {User}",
                     context.Request.Method,
-                    context.Request.Path);
+                    context.Request.Path,
+                    context.User.Identity?.Name ?? "anonymous");
 
                 await HandleExceptionAsync(context, ex);
             }

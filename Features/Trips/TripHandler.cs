@@ -16,7 +16,8 @@ namespace TransProAPI.Features.Trips
 {
     public class TripHandler(
         AppDbContext _db,
-        IValidator<CreateTripRequest> _createValidator
+        IValidator<CreateTripRequest> _createValidator,
+        ILogger<TripHandler> _logger
         )
     {
         public async Task<ApiResponses<TripDetailResponse>> CreateAsync(CreateTripRequest request)
@@ -24,7 +25,15 @@ namespace TransProAPI.Features.Trips
             var validation = await _createValidator.ValidateAsync(request);
 
             if (!validation.IsValid)
+            {
+                // Log validation failures — helps identify bad clients or UI bugs
+                _logger.LogWarning(
+                    "Trip creation validation failed. CustomerId: {CustomerId} Errors: {Errors}",
+                    request.CustomerId,
+                    string.Join(", ", validation.Errors.Select(e => e.ErrorMessage)));
+
                 return ApiResponses<TripDetailResponse>.Fail("Validation failed", validation.Errors.Select(x => x.ErrorMessage).ToList());
+            }
 
             var customer = await _db.Customers.FirstOrDefaultAsync(c => c.Id == request.CustomerId && c.IsActive);
             if (customer is null)
@@ -114,13 +123,28 @@ namespace TransProAPI.Features.Trips
                 await _db.SaveChangesAsync();
                 await transaction.CommitAsync();
 
-                var response = await BuildDetailsReponseAsync(trip.Id);
+                // Log successful creation with key identifiers
+                _logger.LogInformation(
+                    "Trip created successfully. TripId: {TripId} CustomerId: {CustomerId} " +
+                    "DriverId: {DriverId} TruckId: {TruckId} RouteId: {RouteId}",
+                    trip.Id,
+                    trip.CustomerId,
+                    trip.DriverId,
+                    trip.TruckId,
+                    trip.RouteId);
 
+                var response = await BuildDetailsReponseAsync(trip.Id);
                 return ApiResponses<TripDetailResponse>.Ok(response!, "Trip created successfully.");
             }
             catch (Exception)
             {
                 await transaction.RollbackAsync();
+
+                // Log that rollback happened — middleware logs the exception itself
+                _logger.LogError(
+                    "Trip creation failed and was rolled back. CustomerId: {CustomerId}",
+                    request.CustomerId);
+
                 throw;
             }
         }
@@ -228,6 +252,13 @@ namespace TransProAPI.Features.Trips
 
                 await _db.SaveChangesAsync();
                 await transaction.CommitAsync();
+
+                // Log every status transition — this is an audit trail
+                _logger.LogInformation(
+                    "Trip status updated. TripId: {TripId} From: {OldStatus} To: {NewStatus}",
+                    trip.Id,
+                    trip.Status,
+                    request.NewStatus);
 
                 var response = await BuildDetailsReponseAsync(trip.Id);
                 return ApiResponses<TripDetailResponse>.Ok(
