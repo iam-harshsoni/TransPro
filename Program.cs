@@ -32,18 +32,18 @@ Log.Logger = new LoggerConfiguration()
 
     .WriteTo.Console(
        theme: SystemConsoleTheme.Literate,
-        outputTemplate: "[{Timestamp:HH:mm:ss} {Level:u3}] [{SourceContext}] {Message:lj}{NewLine}{Exception}")
+        outputTemplate: "[{Timestamp:HH:mm:ss} {Level:u3}] {Message:lj}{NewLine}{Exception}")
 
     .WriteTo.File(
         path: "logs/transpro-.log",
         rollingInterval: RollingInterval.Day,
         retainedFileCountLimit: 30,
         fileSizeLimitBytes: 10_000_000,
-        outputTemplate: "[{Timestamp:yyyy-MM-dd HH:mm:ss} {Level:u3}] [{SourceContext}] {Message:lj}{NewLine}{Exception}")
+        outputTemplate: "[{Timestamp:yyyy-MM-dd HH:mm:ss} {Level:u3}] {Message:lj}{NewLine}{Exception}")
 
     .Enrich.FromLogContext()
     .Enrich.WithMachineName()
-    .Enrich.WithThreadId() 
+    .Enrich.WithThreadId()
     .CreateLogger();
 
 AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
