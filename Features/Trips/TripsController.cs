@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -19,7 +20,7 @@ namespace TransProAPI.Features.Trips
                 return BadRequest(new { message = "Request body could not be parsed - request is null" });
 
             var result = await _handler.CreateAsync(request);
-            return result.Success ? Ok(result) : BadRequest(result);
+            return result.Success ? CreatedAtAction(nameof(GetById), new { id = result.Data!.Id }, result) : BadRequest(result);
         }
 
         [HttpGet]

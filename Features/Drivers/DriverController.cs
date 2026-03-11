@@ -18,7 +18,8 @@ namespace TransProAPI.Features.Drivers
         public async Task<IActionResult> Create([FromBody] CreateDriverRequest request)
         {
             var result = await _driverHandler.CreateAsync(request);
-            return result.Success ? Ok(result) : BadRequest(result);
+            return result.Success ?
+                CreatedAtAction(nameof(GetById), new { id = result.Data!.Id }, result) : BadRequest(result);
         }
 
         [HttpGet]

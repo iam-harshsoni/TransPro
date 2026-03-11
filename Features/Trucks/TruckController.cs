@@ -20,7 +20,7 @@ namespace TransProAPI.Features.Trucks
         public async Task<IActionResult> Create([FromBody] CreateTruckRequest request)
         {
             var result = await _truckHandler.CreateAsync(request);
-            return result.Success ? Ok(result) : BadRequest(result);
+            return result.Success ? CreatedAtAction(nameof(GetById), new { id = result.Data!.Id }, result) : BadRequest(result);
         }
 
         [HttpGet]
