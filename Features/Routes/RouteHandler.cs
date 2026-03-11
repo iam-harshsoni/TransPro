@@ -30,8 +30,8 @@ namespace TransProAPI.Features.Routes
 
             var route = new Domain.Entities.Route
             {
-                Origin = request.Origin,
-                Destination = request.Destination,
+                Origin = request.Origin.Trim().ToUpper(),
+                Destination = request.Destination.Trim().ToUpper(),
                 DistanceKm = request.DistanceKm,
                 EstimatedHours = request.EstimatedHours
             };

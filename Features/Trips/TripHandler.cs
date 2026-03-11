@@ -97,7 +97,7 @@ namespace TransProAPI.Features.Trips
                     TruckId = request.TruckId,
                     RouteId = request.RouteId,
                     DepartureDate = request.DepartureDate,
-                    Notes = request.Notes,
+                    Notes = request.Notes.Trim(),
                     Status = TripStatus.Planned,
                     CreatedAt = DateTime.UtcNow
                 };

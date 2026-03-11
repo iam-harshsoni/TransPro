@@ -30,8 +30,8 @@ namespace TransProAPI.Features.Trucks
 
             var truck = new Truck
             {
-                PlateNumber = request.PlateNumber,
-                Model = request.Model,
+                PlateNumber = request.PlateNumber.Trim(),
+                Model = request.Model.Trim(),
                 Capacity = request.Capacity,
                 IsAvailable = true,
                 CreatedAt = DateTime.UtcNow
@@ -107,7 +107,7 @@ namespace TransProAPI.Features.Trucks
             if (truck is null)
                 return ApiResponses<string>.Fail("Truck not found.");
 
-            truck.Model = request.Model;
+            truck.Model = request.Model.Trim();
             truck.Capacity = request.Capacity;
 
             await _db.SaveChangesAsync();

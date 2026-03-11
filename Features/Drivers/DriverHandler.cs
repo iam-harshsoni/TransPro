@@ -31,9 +31,9 @@ namespace TransProAPI.Features.Drivers
 
             var driver = new Driver
             {
-                FullName = request.FullName,
-                LicenseNumber = request.LicenseNumber,
-                Phone = request.Phone,
+                FullName = request.FullName.Trim(),
+                LicenseNumber = request.LicenseNumber.Trim(),
+                Phone = request.Phone.Trim(),
                 IsAvailable = true,
                 CreatedAt = DateTime.UtcNow
             };
@@ -109,8 +109,8 @@ namespace TransProAPI.Features.Drivers
             if (driver is null)
                 return ApiResponses<string>.Fail("Driver not found.");
 
-            driver.FullName = request.FullName;
-            driver.Phone = request.Phone;
+            driver.FullName = request.FullName.Trim();
+            driver.Phone = request.Phone.Trim();
 
             await _db.SaveChangesAsync();
             return ApiResponses<string>.Ok("Driver updated successfully.");
