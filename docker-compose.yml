@@ -1,0 +1,64 @@
+services:
+
+  # ── TransPro API ─────────────────────────────────────────────────────────────
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: transpro_api
+    ports:
+      - "8080:8080" # host:container — access at http://localhost:8080
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      # Secrets injected as environment variables — never hardcoded here
+      # Set these in your shell or a .env file before running docker-compose up
+      - ConnectionStrings__DefaultConnection=${ConnectionStrings__DefaultConnection}
+      - JwtSettings__SecretKey=${JwtSettings__SecretKey}
+      - JwtSettings__Issuer=${JwtSettings__Issuer}
+      - JwtSettings__Audience=${JwtSettings__Audience}
+      - JwtSettings__ExpiryMinutes=${JwtSettings__ExpiryMinutes}
+    volumes:
+      # Mount logs directory so logs persist outside the container
+      # If the container restarts, logs are not lost
+      - transpro_logs:/app/logs
+    depends_on:
+      db:
+        condition: service_healthy # wait until PostgreSQL is ready
+    restart: unless-stopped
+    networks:
+      - transpro_network
+
+  # ── PostgreSQL Database ───────────────────────────────────────────────────────
+  # Only used for local Docker testing
+  # In production you use Neon (already configured in your .env)
+  db:
+    image: postgres:16-alpine # alpine variant = much smaller image
+    container_name: transpro_db
+    environment:
+      - POSTGRES_DB=transpro_db
+      - POSTGRES_USER=${DB_USER:-postgres}
+      - POSTGRES_PASSWORD=${DB_PASSWORD:-postgres}
+    ports:
+      - "5433:5432" # mapped to 5433 on host to avoid conflict with local postgres
+    volumes:
+      - transpro_pgdata:/var/lib/postgresql/data # persist DB data between restarts
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U ${DB_USER:-postgres} -d transpro_db" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    restart: unless-stopped
+    networks:
+      - transpro_network
+
+# ── Named Volumes ─────────────────────────────────────────────────────────────
+volumes:
+  transpro_pgdata: # PostgreSQL data — persists between container restarts
+  transpro_logs:
+    # Application logs — persists between container restarts
+
+    # ── Network ───────────────────────────────────────────────────────────────────
+networks:
+  transpro_network:
+    driver: bridge
