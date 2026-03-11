@@ -164,6 +164,9 @@ builder.Services.AddCors(options =>
       });
   });
 
+builder.Services.AddHealthChecks()
+    .AddNpgSql(builder.Configuration.GetConnectionString("DefaultConnection")!);
+
 try
 {
     Log.Information("=== TransPro API Starting ===");
@@ -210,6 +213,8 @@ try
     app.UseAuthentication();
     app.UseAuthorization();
     app.MapControllers();
+
+    app.MapHealthChecks("/health");
 
     app.Run();
 }
