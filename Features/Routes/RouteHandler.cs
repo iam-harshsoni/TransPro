@@ -16,9 +16,15 @@ namespace TransProAPI.Features.Routes
         AppDbContext _db,
         IValidator<CreateRouteRequest> _createValidator,
         IValidator<UpdateRouteRequest> _updateValidator,
+        ILogger<RouteHandler> _logger,
         IDistributedCache _cache)
     {
         private const string RoutesCacheKey = "routes_all";
+
+        private static readonly DistributedCacheEntryOptions CacheOptions = new()
+        {
+            AbsoluteExpirationRelativeToNow = TimeSpan.FromHours(1)
+        };
 
         public async Task<ApiResponses<RouteResponse>> CreateAsync(CreateRouteRequest request)
         {
@@ -48,79 +54,61 @@ namespace TransProAPI.Features.Routes
             return ApiResponses<RouteResponse>.Ok(routes.ToResponse(), "Route created.");
         }
 
-        public async Task<ApiResponses<PagedResponse<RouteResponse>>> GetAllAsync(RouteQueryParams query)
+        public async Task<ApiResponses<PagedResponse<RouteResponse>>> GetAllAsync(
+             RouteQueryParams query)
         {
             query.Validate();
 
-            // ── Try cache first ───────────────────────────────────────────────
-            List<RouteResponse>? allRoutes = null;
+            var cacheKey = BuildCacheKey(query);
 
-            var cached = await _cache.GetStringAsync(RoutesCacheKey);
+            // ── Try cache first ───────────────────────────────────────────────────
+            // Cache stores the FINAL paged result — not the full dataset
+            // On hit: deserialize ~10 records instead of 10,000
+            var cached = await GetFromCacheAsync<PagedResponse<RouteResponse>>(cacheKey);
+            if (cached != null)
+                return ApiResponses<PagedResponse<RouteResponse>>.Ok(cached);
 
-            if (!string.IsNullOrEmpty(cached))
-            {
-                // Cache HIT — deserialize from JSON back to list
-                allRoutes = JsonSerializer.Deserialize<List<RouteResponse>>(cached);
-            }
-
-            if (allRoutes == null)
-            {
-                // Cache MISS — load from DB
-                allRoutes = await _db.Routes
-                    .AsNoTracking()
-                    .OrderBy(r => r.Origin)
-                    .Select(r => r.ToResponse())
-                    .ToListAsync();
-
-                // Serialize and store in cache
-                var serialized = JsonSerializer.Serialize(allRoutes);
-
-                await _cache.SetStringAsync(
-                    RoutesCacheKey,
-                    serialized,
-                    new DistributedCacheEntryOptions
-                    {
-                        // Cache for 1 hour — survives app restarts, shared across instances
-                        AbsoluteExpirationRelativeToNow = TimeSpan.FromHours(1)
-                    });
-            }
-
-            // ── Apply filters in memory from cached data ──────────────────────
-            var filtered = allRoutes.AsEnumerable();
+            // ── Cache miss — query DB with filters and pagination ─────────────────
+            var q = _db.Routes.AsNoTracking().AsQueryable();
 
             if (!string.IsNullOrWhiteSpace(query.Search))
             {
                 var search = query.Search.ToLower().Trim();
-                filtered = filtered.Where(r =>
+                q = q.Where(r =>
                     r.Origin.ToLower().Contains(search) ||
                     r.Destination.ToLower().Contains(search));
             }
 
             if (!string.IsNullOrWhiteSpace(query.Origin))
-                filtered = filtered.Where(r =>
-                    r.Origin.ToLower() == query.Origin.ToLower().Trim());
+                q = q.Where(r => r.Origin.ToLower() == query.Origin.ToLower().Trim());
 
             if (!string.IsNullOrWhiteSpace(query.Destination))
-                filtered = filtered.Where(r =>
-                    r.Destination.ToLower() == query.Destination.ToLower().Trim());
+                q = q.Where(r => r.Destination.ToLower() == query.Destination.ToLower().Trim());
 
-            var filteredList = filtered.ToList();
+            // Count filtered total — runs as SELECT COUNT(*)
+            var totalCount = await q.CountAsync();
 
-            var page = filteredList
+            // Fetch only the requested page from DB
+            var items = await q
+                .OrderBy(r => r.Origin)
                 .Skip((query.PageNumber - 1) * query.PageSize)
                 .Take(query.PageSize)
-                .ToList();
+                .Select(r => r.ToResponse())
+                .ToListAsync();
 
-            return ApiResponses<PagedResponse<RouteResponse>>.Ok(
-                new PagedResponse<RouteResponse>
-                {
-                    Data = page,
-                    TotalCount = filteredList.Count,
-                    PageNumber = query.PageNumber,
-                    PageSize = query.PageSize
-                });
+            var result = new PagedResponse<RouteResponse>
+            {
+                Data = items,
+                TotalCount = totalCount,
+                PageNumber = query.PageNumber,
+                PageSize = query.PageSize
+            };
+
+            // Cache the FINAL result — only 10 records, tiny JSON, fast to deserialize
+            await SetCacheAsync(cacheKey, result);
+
+            return ApiResponses<PagedResponse<RouteResponse>>.Ok(result);
         }
-
         public async Task<ApiResponses<RouteResponse>> GetByIdAsync(int id)
         {
             var route = await _db.Routes
@@ -170,6 +158,92 @@ namespace TransProAPI.Features.Routes
             await _cache.RemoveAsync(RoutesCacheKey);
 
             return ApiResponses<string>.Ok("Route deleted.");
+        }
+
+        private async Task<List<RouteResponse>?> GetFromCacheAsync()
+        {
+            try
+            {
+                var cached = await _cache.GetStringAsync(RoutesCacheKey);
+
+                if (string.IsNullOrEmpty(cached))
+                    return null;
+
+                return JsonSerializer.Deserialize<List<RouteResponse>>(cached);
+            }
+            catch (Exception ex)
+            {
+                // Redis is down or unreachable — log and continue to DB
+                // Don't crash the request just because cache is unavailable
+                _logger.LogWarning("Redis cache unavailable, falling back to database. Error: {Error}",
+                    ex.Message);
+                return null;
+            }
+        }
+
+        private async Task SetCacheAsync(List<RouteResponse> routes)
+        {
+            try
+            {
+                var serialized = JsonSerializer.Serialize(routes);
+                await _cache.SetStringAsync(RoutesCacheKey, serialized, CacheOptions);
+            }
+            catch (Exception ex)
+            {
+                // Redis write failed — log and move on
+                // The request already has data from DB, don't fail because of cache
+                _logger.LogWarning("Failed to write to Redis cache. Error: {Error}", ex.Message);
+            }
+        }
+
+        public async Task InvalidateCacheAsync()
+        {
+            try
+            {
+                await _cache.RemoveAsync(RoutesCacheKey);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogWarning("Failed to invalidate Redis cache. Error: {Error}", ex.Message);
+            }
+        }
+
+        private static string BuildCacheKey(RouteQueryParams query)
+        {
+            // Unique key per unique combination of filters + page
+            var search = query.Search?.ToLower().Trim() ?? "";
+            var origin = query.Origin?.ToLower().Trim() ?? "";
+            var destination = query.Destination?.ToLower().Trim() ?? "";
+
+            return $"routes_s{search}_o{origin}_d{destination}_p{query.PageNumber}_ps{query.PageSize}";
+        }
+
+        private async Task<T?> GetFromCacheAsync<T>(string key)
+        {
+            try
+            {
+                var cached = await _cache.GetStringAsync(key);
+                if (string.IsNullOrEmpty(cached)) return default;
+                return JsonSerializer.Deserialize<T>(cached);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogWarning("Redis read failed for key {Key}. Error: {Error}", key, ex.Message);
+                return default;
+            }
+        }
+
+        private async Task SetCacheAsync<T>(string key, T value)
+        {
+            try
+            {
+                var serialized = JsonSerializer.Serialize(value);
+                await _cache.SetStringAsync(key, serialized, CacheOptions);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogWarning("Redis write failed for key {Key}. Error: {Error}", key, ex.Message);
+            }
         }
     }
 }

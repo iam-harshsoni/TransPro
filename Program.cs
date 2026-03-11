@@ -11,6 +11,7 @@ using Microsoft.OpenApi.Models;
 using Serilog;
 using Serilog.Events;
 using Serilog.Sinks.SystemConsole.Themes;
+using StackExchange.Redis;
 using TransProAPI.Domain;
 using TransProAPI.Features.Auth;
 using TransProAPI.Features.Containers;
@@ -181,8 +182,10 @@ if (!string.IsNullOrEmpty(redisConnection))
     // Redis available — use distributed cache (works across instances + survives restarts)
     builder.Services.AddStackExchangeRedisCache(options =>
     {
-        options.Configuration = redisConnection;
-        options.InstanceName = "TransPro_";   // prefix for all keys, avoids collisions
+        options.ConfigurationOptions = ConfigurationOptions.Parse(redisConnection);
+        options.ConfigurationOptions.Ssl = true;   // ← force TLS
+        options.ConfigurationOptions.AbortOnConnectFail = false; // ← don't crash if Redis is temporarily down
+        options.InstanceName = "TransPro_";
     });
 
     Log.Information("Redis cache configured");
