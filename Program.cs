@@ -174,7 +174,25 @@ builder.Services.AddCors(options =>
 builder.Services.AddHealthChecks()
     .AddNpgSql(builder.Configuration.GetConnectionString("DefaultConnection")!);
 
-builder.Services.AddMemoryCache();
+// builder.Services.AddMemoryCache();
+var redisConnection = builder.Configuration["Redis:ConnectionString"];
+if (!string.IsNullOrEmpty(redisConnection))
+{
+    // Redis available — use distributed cache (works across instances + survives restarts)
+    builder.Services.AddStackExchangeRedisCache(options =>
+    {
+        options.Configuration = redisConnection;
+        options.InstanceName = "TransPro_";   // prefix for all keys, avoids collisions
+    });
+
+    Log.Information("Redis cache configured");
+}
+else
+{
+    // Redis not configured — fall back to memory cache (local dev)
+    builder.Services.AddDistributedMemoryCache();
+    Log.Warning("Redis not configured, falling back to in-memory cache");
+}
 
 try
 {
