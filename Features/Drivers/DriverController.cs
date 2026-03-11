@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Asp.Versioning;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TransProAPI.Common;
@@ -10,6 +11,7 @@ using TransProAPI.Domain.Entities;
 namespace TransProAPI.Features.Drivers
 {
     [ApiController]
+    [ApiVersion(1)]
     [Route("api/[controller]")]
     [Authorize(Roles = UserRoles.Admin)]
     public class DriverController(DriverHandler _driverHandler) : ControllerBase

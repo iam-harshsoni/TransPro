@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Asp.Versioning;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TransProAPI.Common;
@@ -15,6 +16,7 @@ using TransProAPI.Features.Customer.UpdateCustomer;
 namespace TransProAPI.Features.Customer
 {
     [ApiController]
+    [ApiVersion(1)]
     [Route("api/[controller]")]
     [Authorize(Roles = UserRoles.Admin)]
     public class CustomersController(
@@ -32,6 +34,7 @@ namespace TransProAPI.Features.Customer
             return result.Success ? Ok(result) : BadRequest(result);
         }
 
+        /// <summary>Get list of All customers</summary>
         [HttpGet]
         public async Task<IActionResult> GetAll([FromQuery] PaginationRequest request)
         {
