@@ -1,6 +1,7 @@
 using System.Reflection;
 using System.Text;
 using Asp.Versioning;
+using DotNetEnv;
 using FluentValidation;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
@@ -24,6 +25,14 @@ using TransProAPI.Features.Trucks;
 using TransProAPI.Infrastructure.Persistence;
 using TransProAPI.Infrastructure.Services;
 using TransProAPI.Middleware;
+
+if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development"
+    || Environment.GetEnvironmentVariable("DOTNET_ENVIRONMENT") == "Development")
+{
+    Env.Load();
+}
+
+var builder = WebApplication.CreateBuilder(args);
 
 Log.Logger = new LoggerConfiguration()
     .MinimumLevel.Information()
@@ -49,8 +58,6 @@ Log.Logger = new LoggerConfiguration()
     .CreateLogger();
 
 AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
-
-var builder = WebApplication.CreateBuilder(args);
 
 builder.Host.UseSerilog();
 

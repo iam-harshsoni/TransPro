@@ -52,3 +52,15 @@ CodeCoverage/
 *.VisualState.xml
 TestResult.xml
 nunit-*.xml
+
+# Environment files — never commit these
+.env
+.env.local
+.env.production
+
+# User secrets
+secrets.json
+
+# Logs
+logs/
+*.log
