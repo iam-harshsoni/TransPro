@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Memory;
 using TransProAPI.Common;
 using TransProAPI.Infrastructure.Persistence;
 
@@ -12,8 +13,11 @@ namespace TransProAPI.Features.Routes
     public class RouteHandler(
         AppDbContext _db,
         IValidator<CreateRouteRequest> _createValidator,
-        IValidator<UpdateRouteRequest> _updateValidator)
+        IValidator<UpdateRouteRequest> _updateValidator,
+        IMemoryCache _cache)
     {
+        private const string RoutesCacheKey = "routes_all";
+
         public async Task<ApiResponses<RouteResponse>> CreateAsync(CreateRouteRequest request)
         {
             var validation = await _createValidator.ValidateAsync(request);
@@ -22,13 +26,11 @@ namespace TransProAPI.Features.Routes
                     validation.Errors.Select(e => e.ErrorMessage).ToList());
 
             // Business rule: same origin→destination route should not be duplicated
-            if (await _db.Routes.AnyAsync(r =>
-                    r.Origin == request.Origin &&
-                    r.Destination == request.Destination))
+            if (await _db.Routes.AnyAsync(r => r.Origin == request.Origin && r.Destination == request.Destination))
                 return ApiResponses<RouteResponse>.Fail(
                     "A route with this origin and destination already exists.");
 
-            var route = new Domain.Entities.Route
+            var routes = new Domain.Entities.Route
             {
                 Origin = request.Origin.Trim().ToUpper(),
                 Destination = request.Destination.Trim().ToUpper(),
@@ -36,19 +38,66 @@ namespace TransProAPI.Features.Routes
                 EstimatedHours = request.EstimatedHours
             };
 
-            _db.Routes.Add(route);
+            _db.Routes.Add(routes);
             await _db.SaveChangesAsync();
 
-            return ApiResponses<RouteResponse>.Ok(route.ToResponse(), "Route created.");
+            return ApiResponses<RouteResponse>.Ok(routes.ToResponse(), "Route created.");
         }
 
         public async Task<ApiResponses<PagedResponse<RouteResponse>>> GetAllAsync(RouteQueryParams query)
         {
             query.Validate();
 
-            var q = _db.Routes
-                .AsNoTracking()
-                .AsQueryable();
+            var isUnfiltered = string.IsNullOrWhiteSpace(query.Search) && string.IsNullOrWhiteSpace(query.Origin) && string.IsNullOrWhiteSpace(query.Destination);
+
+            if (isUnfiltered)
+            {
+                // ── Try to serve from cache
+                if (_cache.TryGetValue(RoutesCacheKey, out List<RouteResponse>? cachedRoutes) && cachedRoutes != null)
+                {
+                    // Cache hit — apply pagination in memory, zero DB calls
+                    var cachedTotal = cachedRoutes.Count();
+                    var cachedPage = cachedRoutes.Skip((query.PageNumber - 1) * query.PageSize)
+                                                 .Take(query.PageSize)
+                                                 .ToList();
+
+                    return ApiResponses<PagedResponse<RouteResponse>>.Ok(new PagedResponse<RouteResponse>
+                    {
+                        TotalCount = cachedTotal,
+                        PageNumber = query.PageNumber,
+                        PageSize = query.PageSize,
+                        Data = cachedPage
+                    });
+                }
+
+                // ── Cache miss — load ALL routes from DB and cache them ───────────
+                var allRoutes = await _db.Routes
+                    .AsNoTracking()
+                    .OrderBy(r => r.Origin)
+                    .Select(r => r.ToResponse())
+                    .ToListAsync();
+
+                // Store in cache for 1 hour
+                _cache.Set(RoutesCacheKey, allRoutes, TimeSpan.FromHours(1));
+
+                // Paginate from the freshly loaded data
+                var pagedFromFresh = allRoutes
+                    .Skip((query.PageNumber - 1) * query.PageSize)
+                    .Take(query.PageSize)
+                    .ToList();
+
+                return ApiResponses<PagedResponse<RouteResponse>>.Ok(
+                    new PagedResponse<RouteResponse>
+                    {
+                        Data = pagedFromFresh,
+                        TotalCount = allRoutes.Count,
+                        PageNumber = query.PageNumber,
+                        PageSize = query.PageSize
+                    });
+            }
+
+            // Filtered request — always hit the database. Filters produce unique result sets that aren't worth caching
+            var q = _db.Routes.AsNoTracking().AsQueryable();
 
             if (!string.IsNullOrWhiteSpace(query.Search))
             {
@@ -64,7 +113,7 @@ namespace TransProAPI.Features.Routes
             if (!string.IsNullOrWhiteSpace(query.Destination))
                 q = q.Where(r => r.Destination.ToLower() == query.Destination.ToLower());
 
-            var totalCount = await _db.Routes.CountAsync();
+            var totalCount = await q.CountAsync();
 
             var routes = await q
                 .AsNoTracking()

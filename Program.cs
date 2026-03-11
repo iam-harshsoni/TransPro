@@ -167,6 +167,8 @@ builder.Services.AddCors(options =>
 builder.Services.AddHealthChecks()
     .AddNpgSql(builder.Configuration.GetConnectionString("DefaultConnection")!);
 
+builder.Services.AddMemoryCache();
+
 try
 {
     Log.Information("=== TransPro API Starting ===");
@@ -192,7 +194,7 @@ try
         };
     });
 
-    if (app.Environment.IsDevelopment())
+    // if (app.Environment.IsDevelopment())
     {
         app.UseSwagger();
         app.UseSwaggerUI(c =>
