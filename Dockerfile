@@ -24,16 +24,7 @@ RUN apt-get update \
 
 WORKDIR /app
 
-RUN addgroup --system --gid 1001 appgroup \
-    && adduser --system --uid 1001 --ingroup appgroup appuser
-
-RUN mkdir -p /app/logs && chown -R appuser:appgroup /app/logs
-
 COPY --from=build /app/publish .
-
-RUN chown -R appuser:appgroup /app
-
-USER appuser
 
 EXPOSE 8080
 
