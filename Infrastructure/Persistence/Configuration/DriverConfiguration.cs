@@ -12,7 +12,7 @@ namespace TransProAPI.Infrastructure.Persistence.Configuration
     {
         public void Configure(EntityTypeBuilder<Driver> builder)
         {
-            builder.ToTable("Driver");
+            builder.ToTable("Drivers");
             builder.HasKey(d => d.Id);
 
             builder.Property(d => d.FullName).IsRequired().HasMaxLength(100);

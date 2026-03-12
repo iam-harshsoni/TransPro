@@ -12,7 +12,7 @@ namespace TransProAPI.Infrastructure.Persistence.Configuration
     {
         public void Configure(EntityTypeBuilder<Truck> builder)
         {
-            builder.ToTable("Truck");
+            builder.ToTable("Trucks");
             builder.HasKey(t => t.Id);
 
             builder.Property(t => t.Model).IsRequired().HasMaxLength(200);
