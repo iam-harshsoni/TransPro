@@ -35,22 +35,35 @@ namespace TransProAPI.Migrations
 
                     b.Property<string>("FullName")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
 
                     b.Property<bool>("IsAvailable")
                         .HasColumnType("boolean");
 
                     b.Property<string>("LicenseNumber")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
 
                     b.Property<string>("Phone")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Drivers");
+                    b.HasIndex("CreatedAt")
+                        .HasDatabaseName("IX_Drivers_CreatedAt");
+
+                    b.HasIndex("IsAvailable")
+                        .HasDatabaseName("IX_Drivers_IsAvailable");
+
+                    b.HasIndex("LicenseNumber")
+                        .IsUnique()
+                        .HasDatabaseName("IX_Drivers_LicenseNumber");
+
+                    b.ToTable("Driver", (string)null);
                 });
 
             modelBuilder.Entity("TransProAPI.Domain.Entities.Container", b =>
@@ -63,7 +76,8 @@ namespace TransProAPI.Migrations
 
                     b.Property<string>("ContainerNumber")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp without time zone");
@@ -73,14 +87,29 @@ namespace TransProAPI.Migrations
 
                     b.Property<string>("Type")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)");
 
                     b.Property<decimal>("WeightCapacity")
-                        .HasColumnType("numeric");
+                        .HasPrecision(10, 2)
+                        .HasColumnType("numeric(10,2)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Containers");
+                    b.HasIndex("ContainerNumber")
+                        .IsUnique()
+                        .HasDatabaseName("IX_Containers_ContainerNumber");
+
+                    b.HasIndex("CreatedAt")
+                        .HasDatabaseName("IX_Containers_CreatedAt");
+
+                    b.HasIndex("IsAvailable")
+                        .HasDatabaseName("IX_Containers_IsAvailable");
+
+                    b.HasIndex("Type")
+                        .HasDatabaseName("IX_Containers_Type");
+
+                    b.ToTable("Containers", (string)null);
                 });
 
             modelBuilder.Entity("TransProAPI.Domain.Entities.Customer", b =>
@@ -93,35 +122,43 @@ namespace TransProAPI.Migrations
 
                     b.Property<string>("Address")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(300)
+                        .HasColumnType("character varying(300)");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)");
 
                     b.Property<string>("FullName")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("boolean");
 
                     b.Property<string>("Phone")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Id")
-                        .HasDatabaseName("IX_Customers_Id");
+                    b.HasIndex("CreatedAt")
+                        .HasDatabaseName("IX_Customers_CreatedAt");
 
-                    b.HasIndex("IsActive", "CreatedAt")
-                        .HasDatabaseName("IX_Customers_IsActive_CreatedAt");
+                    b.HasIndex("Email")
+                        .IsUnique()
+                        .HasDatabaseName("IX_Customers_Email");
 
-                    b.ToTable("Customers");
+                    b.HasIndex("IsActive")
+                        .HasDatabaseName("IX_Customers_IsActive");
+
+                    b.ToTable("Customers", (string)null);
                 });
 
             modelBuilder.Entity("TransProAPI.Domain.Entities.Route", b =>
@@ -134,21 +171,34 @@ namespace TransProAPI.Migrations
 
                     b.Property<string>("Destination")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
 
                     b.Property<decimal>("DistanceKm")
-                        .HasColumnType("numeric");
+                        .HasPrecision(10, 2)
+                        .HasColumnType("numeric(10,2)");
 
                     b.Property<decimal>("EstimatedHours")
-                        .HasColumnType("numeric");
+                        .HasPrecision(10, 2)
+                        .HasColumnType("numeric(10,2)");
 
                     b.Property<string>("Origin")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Routes");
+                    b.HasIndex("Destination")
+                        .HasDatabaseName("IX_Routes_Destination");
+
+                    b.HasIndex("Origin")
+                        .HasDatabaseName("IX_Routes_Origin");
+
+                    b.HasIndex("Origin", "Destination")
+                        .HasDatabaseName("IX_Routes_Origin_Destination");
+
+                    b.ToTable("Routes", (string)null);
                 });
 
             modelBuilder.Entity("TransProAPI.Domain.Entities.Trip", b =>
@@ -176,29 +226,47 @@ namespace TransProAPI.Migrations
 
                     b.Property<string>("Notes")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
 
                     b.Property<int>("RouteId")
                         .HasColumnType("integer");
 
                     b.Property<string>("Status")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)");
 
                     b.Property<int>("TruckId")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CustomerId");
+                    b.HasIndex("CreatedAt")
+                        .HasDatabaseName("IX_Trips_CreatedAt");
 
-                    b.HasIndex("DriverId");
+                    b.HasIndex("CustomerId")
+                        .HasDatabaseName("IX_Trips_CustomerId");
 
-                    b.HasIndex("RouteId");
+                    b.HasIndex("DepartureDate")
+                        .HasDatabaseName("IX_Trips_DepartureDate");
 
-                    b.HasIndex("TruckId");
+                    b.HasIndex("DriverId")
+                        .HasDatabaseName("IX_Trips_DriverId");
 
-                    b.ToTable("Trips");
+                    b.HasIndex("RouteId")
+                        .HasDatabaseName("IX_Trips_RouteId");
+
+                    b.HasIndex("Status")
+                        .HasDatabaseName("IX_Trips_Status");
+
+                    b.HasIndex("TruckId")
+                        .HasDatabaseName("IX_Trips_TruckId");
+
+                    b.HasIndex("Status", "DepartureDate")
+                        .HasDatabaseName("IX_Trips_Status_DepartureDate");
+
+                    b.ToTable("Trips", (string)null);
                 });
 
             modelBuilder.Entity("TransProAPI.Domain.Entities.TripContainer", b =>
@@ -213,7 +281,7 @@ namespace TransProAPI.Migrations
 
                     b.HasIndex("ContainerId");
 
-                    b.ToTable("TripContainers");
+                    b.ToTable("TripContainers", (string)null);
                 });
 
             modelBuilder.Entity("TransProAPI.Domain.Entities.User", b =>
@@ -229,11 +297,13 @@ namespace TransProAPI.Migrations
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)");
 
                     b.Property<string>("FullName")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("boolean");
@@ -244,14 +314,16 @@ namespace TransProAPI.Migrations
 
                     b.Property<string>("Role")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("Email")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasDatabaseName("IX_Users_Email");
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
                 });
 
             modelBuilder.Entity("TransProAPI.Domain.Truck", b =>
@@ -263,7 +335,8 @@ namespace TransProAPI.Migrations
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<decimal>("Capacity")
-                        .HasColumnType("numeric");
+                        .HasPrecision(10, 2)
+                        .HasColumnType("numeric(10,2)");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp without time zone");
@@ -273,15 +346,27 @@ namespace TransProAPI.Migrations
 
                     b.Property<string>("Model")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)");
 
                     b.Property<string>("PlateNumber")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Trucks");
+                    b.HasIndex("CreatedAt")
+                        .HasDatabaseName("IX_Trucks_CreatedAt");
+
+                    b.HasIndex("IsAvailable")
+                        .HasDatabaseName("IX_Trucks_IsAvailable");
+
+                    b.HasIndex("PlateNumber")
+                        .IsUnique()
+                        .HasDatabaseName("IX_Trucks_PlateNumber");
+
+                    b.ToTable("Truck", (string)null);
                 });
 
             modelBuilder.Entity("TransProAPI.Domain.Entities.Trip", b =>
