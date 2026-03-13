@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.RateLimiting;
 using TransProAPI.Common;
 using TransProAPI.Domain.Entities;
 
@@ -13,6 +14,7 @@ namespace TransProAPI.Features.Containers
     [ApiController]
     [Route("api/[controller]")]
     [Authorize]
+    [EnableRateLimiting("general")]
     public class ContainerController(
         ContainerHandler _handler
     ) : ControllerBase

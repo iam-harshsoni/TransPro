@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Asp.Versioning;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.RateLimiting;
 
 namespace TransProAPI.Features.Trips
 {
@@ -13,6 +14,7 @@ namespace TransProAPI.Features.Trips
     [ApiVersion(1)]
     [Route("api/[controller]")]
     [Authorize]
+    [EnableRateLimiting("general")]
     public class TripsController(TripHandler _handler) : ControllerBase
     {
         [HttpPost]

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Asp.Versioning;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.RateLimiting;
 using TransProAPI.Common;
 using TransProAPI.Domain.Entities;
 
@@ -16,6 +17,7 @@ namespace TransProAPI.Features.Trucks
     [ApiVersion(1)]
     [Route("api/[controller]")]
     [Authorize(Roles = UserRoles.Admin)]
+    [EnableRateLimiting("general")]
     public class TruckController(TruckHandler _truckHandler) : ControllerBase
     {
         [HttpPost]

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Asp.Versioning;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.RateLimiting;
 using TransProAPI.Common;
 
 namespace TransProAPI.Features.Routes
@@ -14,6 +15,7 @@ namespace TransProAPI.Features.Routes
     [ApiVersion(1)]
     [Route("api/trans-route")]
     [Authorize]
+    [EnableRateLimiting("general")]
     public class RouteController(RouteHandler _handler) : ControllerBase
     {
         [HttpPost]

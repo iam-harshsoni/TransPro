@@ -1,19 +1,18 @@
-using System.Reflection;
-using System.Text;
 using Asp.Versioning;
 using DotNetEnv;
 using FluentValidation;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using Scalar.AspNetCore;
 using Serilog;
 using Serilog.Events;
 using Serilog.Sinks.SystemConsole.Themes;
 using StackExchange.Redis;
-using TransProAPI.Domain;
+using System.Reflection;
+using System.Text;
+using System.Threading.RateLimiting;
 using TransProAPI.Features.Auth;
 using TransProAPI.Features.Containers;
 using TransProAPI.Features.Customer.CreateCustomer;
@@ -173,6 +172,82 @@ builder.Services.AddCors(options =>
       });
   });
 
+//Rate Limiting
+builder.Services.AddRateLimiter(options =>
+{
+    // ── Policy 1: Auth endpoints — strictest limits ───────────────────────
+    // Protects against brute force on login and register
+    // 5 requests per minute per IP address
+    // If exceeded → 429 Too Many Requests
+    options.AddFixedWindowLimiter("auth", limiterOptions =>
+    {
+        limiterOptions.PermitLimit          = 5;
+        limiterOptions.Window               = TimeSpan.FromMinutes(1);
+        limiterOptions.QueueProcessingOrder = QueueProcessingOrder.OldestFirst;
+        limiterOptions.QueueLimit           = 0;                                 // no queuing — reject immediately
+    });
+
+    // ── Policy 2: General API endpoints ──────────────────────────────────
+    // Authenticated users get more breathing room
+    // 100 requests per minute per IP address
+    options.AddFixedWindowLimiter("general", limiterOptions =>
+    {
+        limiterOptions.PermitLimit          = 100;
+        limiterOptions.Window               = TimeSpan.FromMinutes(1);
+        limiterOptions.QueueProcessingOrder = QueueProcessingOrder.OldestFirst;
+        limiterOptions.QueueLimit           = 0;
+    });
+
+    // ── Global fallback — applies to ALL endpoints not covered above ──────
+    // Last line of defence
+    options.GlobalLimiter = PartitionedRateLimiter.Create<HttpContext, string>(context =>
+    {
+        // Partition by IP address — each IP gets its own counter
+        // If IP can't be determined, use "unknown" as the key
+        var ipAddress = context.Connection.RemoteIpAddress?.ToString() ?? "unknown";
+
+        return RateLimitPartition.GetFixedWindowLimiter(
+            partitionKey: ipAddress,
+            factory     : _ => new FixedWindowRateLimiterOptions
+            {
+                PermitLimit          = 200,
+                Window               = TimeSpan.FromMinutes(1),
+                QueueProcessingOrder = QueueProcessingOrder.OldestFirst,
+                QueueLimit           = 0,
+            });
+    });
+
+    // ── Custom 429 Response ───────────────────────────────────────────────
+    // By default ASP.NET returns an empty 429 response
+    // We override it to return your standard ApiResponse envelope
+    options.OnRejected = async (context, cancellationToken) =>
+    {
+        context.HttpContext.Response.StatusCode  = StatusCodes.Status429TooManyRequests;
+        context.HttpContext.Response.ContentType = "application/json";
+
+        // Tell the client when they can try again
+        var retryAfter = context.Lease.TryGetMetadata(
+            MetadataName.RetryAfter, out var retryAfterValue)
+            ? (int)retryAfterValue.TotalSeconds
+            : 60;
+        context.HttpContext.Response.Headers["Retry-After"] = retryAfterValue.ToString();
+
+        var response = new
+        {
+            success = false,
+            message = $"Too many request. Please wait {retryAfter} seconds before trying again",
+            data    = (object?)null,
+            errors  = Array.Empty<string>()
+        };
+
+        await context.HttpContext.Response.WriteAsJsonAsync(response, cancellationToken);
+
+        Log.Warning("Rate limit exceeded. IP: {IP} Path: {Path}",
+            context.HttpContext.Connection.RemoteIpAddress,
+            context.HttpContext.Request.Path);
+    };
+});
+
 builder.Services.AddHealthChecks()
     .AddNpgSql(builder.Configuration.GetConnectionString("DefaultConnection")!);
 
@@ -183,10 +258,10 @@ if (!string.IsNullOrEmpty(redisConnection))
     // Redis available — use distributed cache (works across instances + survives restarts)
     builder.Services.AddStackExchangeRedisCache(options =>
     {
-        options.ConfigurationOptions = ConfigurationOptions.Parse(redisConnection);
-        options.ConfigurationOptions.Ssl = true;   // ← force TLS
-        options.ConfigurationOptions.AbortOnConnectFail = false; // ← don't crash if Redis is temporarily down
-        options.InstanceName = "TransPro_";
+        options.ConfigurationOptions                    = ConfigurationOptions.Parse(redisConnection);
+        options.ConfigurationOptions.Ssl                = true;                                         // ← force TLS
+        options.ConfigurationOptions.AbortOnConnectFail = false;                                        // ← don't crash if Redis is temporarily down
+        options.InstanceName                            = "TransPro_";
     });
 
     Log.Information("Redis cache configured");
@@ -240,6 +315,7 @@ try
         Console.WriteLine("🏁 Seed check complete.\n");
     }
 
+    app.UseRateLimiter();
     app.UseHttpsRedirection();
     app.UseAuthentication();
     app.UseAuthorization();

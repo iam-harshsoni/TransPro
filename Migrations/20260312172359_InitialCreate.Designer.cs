@@ -12,8 +12,8 @@ using TransProAPI.Infrastructure.Persistence;
 namespace TransProAPI.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20260312171308_IntialCreate")]
-    partial class IntialCreate
+    [Migration("20260312172359_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -66,7 +66,7 @@ namespace TransProAPI.Migrations
                         .IsUnique()
                         .HasDatabaseName("IX_Drivers_LicenseNumber");
 
-                    b.ToTable("Driver", (string)null);
+                    b.ToTable("Drivers", (string)null);
                 });
 
             modelBuilder.Entity("TransProAPI.Domain.Entities.Container", b =>
@@ -369,7 +369,7 @@ namespace TransProAPI.Migrations
                         .IsUnique()
                         .HasDatabaseName("IX_Trucks_PlateNumber");
 
-                    b.ToTable("Truck", (string)null);
+                    b.ToTable("Trucks", (string)null);
                 });
 
             modelBuilder.Entity("TransProAPI.Domain.Entities.Trip", b =>

@@ -63,7 +63,7 @@ namespace TransProAPI.Migrations
                         .IsUnique()
                         .HasDatabaseName("IX_Drivers_LicenseNumber");
 
-                    b.ToTable("Driver", (string)null);
+                    b.ToTable("Drivers", (string)null);
                 });
 
             modelBuilder.Entity("TransProAPI.Domain.Entities.Container", b =>
@@ -366,7 +366,7 @@ namespace TransProAPI.Migrations
                         .IsUnique()
                         .HasDatabaseName("IX_Trucks_PlateNumber");
 
-                    b.ToTable("Truck", (string)null);
+                    b.ToTable("Trucks", (string)null);
                 });
 
             modelBuilder.Entity("TransProAPI.Domain.Entities.Trip", b =>

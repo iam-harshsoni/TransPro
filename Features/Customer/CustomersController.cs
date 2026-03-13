@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Asp.Versioning;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.RateLimiting;
 using TransProAPI.Common;
 using TransProAPI.Domain.Entities;
 using TransProAPI.Features.Customer.CreateCustomer;
@@ -19,6 +20,7 @@ namespace TransProAPI.Features.Customer
     [ApiVersion(1)]
     [Route("api/[controller]")]
     [Authorize(Roles = UserRoles.Admin)]
+    [EnableRateLimiting("general")]
     public class CustomersController(
         CreateCustomerHandler _createCustomerHandler,
         GetCustomerHandler _getCustomerHandler,

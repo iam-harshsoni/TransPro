@@ -7,7 +7,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace TransProAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class IntialCreate : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -48,7 +48,7 @@ namespace TransProAPI.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Driver",
+                name: "Drivers",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
@@ -61,7 +61,7 @@ namespace TransProAPI.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Driver", x => x.Id);
+                    table.PrimaryKey("PK_Drivers", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -81,7 +81,7 @@ namespace TransProAPI.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Truck",
+                name: "Trucks",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
@@ -94,7 +94,7 @@ namespace TransProAPI.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Truck", x => x.Id);
+                    table.PrimaryKey("PK_Trucks", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -141,9 +141,9 @@ namespace TransProAPI.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Trips_Driver_DriverId",
+                        name: "FK_Trips_Drivers_DriverId",
                         column: x => x.DriverId,
-                        principalTable: "Driver",
+                        principalTable: "Drivers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
@@ -153,9 +153,9 @@ namespace TransProAPI.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Trips_Truck_TruckId",
+                        name: "FK_Trips_Trucks_TruckId",
                         column: x => x.TruckId,
-                        principalTable: "Truck",
+                        principalTable: "Trucks",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -223,17 +223,17 @@ namespace TransProAPI.Migrations
 
             migrationBuilder.CreateIndex(
                 name: "IX_Drivers_CreatedAt",
-                table: "Driver",
+                table: "Drivers",
                 column: "CreatedAt");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Drivers_IsAvailable",
-                table: "Driver",
+                table: "Drivers",
                 column: "IsAvailable");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Drivers_LicenseNumber",
-                table: "Driver",
+                table: "Drivers",
                 column: "LicenseNumber",
                 unique: true);
 
@@ -299,17 +299,17 @@ namespace TransProAPI.Migrations
 
             migrationBuilder.CreateIndex(
                 name: "IX_Trucks_CreatedAt",
-                table: "Truck",
+                table: "Trucks",
                 column: "CreatedAt");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Trucks_IsAvailable",
-                table: "Truck",
+                table: "Trucks",
                 column: "IsAvailable");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Trucks_PlateNumber",
-                table: "Truck",
+                table: "Trucks",
                 column: "PlateNumber",
                 unique: true);
 
@@ -339,13 +339,13 @@ namespace TransProAPI.Migrations
                 name: "Customers");
 
             migrationBuilder.DropTable(
-                name: "Driver");
+                name: "Drivers");
 
             migrationBuilder.DropTable(
                 name: "Routes");
 
             migrationBuilder.DropTable(
-                name: "Truck");
+                name: "Trucks");
         }
     }
 }

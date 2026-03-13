@@ -2,12 +2,16 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TransProAPI.Infrastructure.Persistence;
 
 namespace TransProAPI.Common
 {
     // The Common ApiResponse Wrapper
     public class ApiResponses<T>
     {
+        private readonly AppDbContext _db;
+        private readonly ILogger<TripService> _logger;
+
         public bool Success { get; set; }
         public string Message { get; set; } = string.Empty;
         public T? Data { get; set; }
