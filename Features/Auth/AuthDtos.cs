@@ -16,10 +16,16 @@ namespace TransProAPI.Features.Auth
         string Password);
 
     public record AuthResponse(
-        int UserId,
+        string AccessToken,
+        string RefreshToken,
+        string TokenType,       // always "Bearer"
+        int ExpiresIn,          // seconds until access token expires
         string FullName,
-        string Email,
-        string Role,
-        string Token,
-        DateTime ExpiresAt);
+        string Role);
+
+    // Request to get a new Refresh Token
+    public record RefreshTokenRequest(string RefreshToken);
+
+    // Request to logout (revoke a specific token)
+    public record RevokeTokenRequest(string RefreshToken);
 }

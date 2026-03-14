@@ -27,5 +27,28 @@ namespace TransProAPI.Features.Auth
             var result = await _handler.LoginAsync(request);
             return result.Success ? Ok(result) : Unauthorized(result);
         }
+
+        /// <summary>
+        /// Exchange a valid refresh token for a new token pair.
+        /// The used refresh token is immediately rotated (invalidated).
+        /// Call this when the access token expires (401 response).
+        /// </summary>
+        [HttpPost("refresh")]
+        public async Task<IActionResult> Refresh([FromBody] RefreshTokenRequest request)
+        {
+            var result = await _handler.RefreshAsync(request);
+            return result.Success ? Ok(result) : Unauthorized(result);
+        }
+
+        /// <summary>
+        /// Logout — revokes the provided refresh token.
+        /// The access token will expire naturally after 15 minutes.
+        /// </summary>
+        [HttpPost("logout")]
+        public async Task<IActionResult> Logout([FromBody] RefreshTokenRequest request)
+        {
+            var result = await _handler.LogoutAsync(request);
+            return Ok(result);
+        }
     }
 }

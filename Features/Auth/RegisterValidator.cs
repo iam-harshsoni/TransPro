@@ -44,4 +44,14 @@ namespace TransProAPI.Features.Auth
                 .NotEmpty().WithMessage("Password is required.");
         }
     }
+
+    public class RefreshTokenRequestValidator : AbstractValidator<RefreshTokenRequest>
+    {
+        public RefreshTokenRequestValidator()
+        {
+            RuleFor(x => x.RefreshToken)
+                .NotEmpty().WithMessage("Refresh token is required.")
+                .MinimumLength(10).WithMessage("Invalid refresh token format.");
+        }
+    }
 }

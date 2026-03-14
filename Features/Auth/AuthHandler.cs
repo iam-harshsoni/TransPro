@@ -16,7 +16,8 @@ namespace TransProAPI.Features.Auth
         TokenService _tokenService,
         IValidator<RegisterRequest> _registerValidator,
         IValidator<LoginRequest> _loginValidator,
-        IConfiguration _config
+        IValidator<RefreshTokenRequest> _refreshValidator,
+        ILogger<AuthHandler> _logger
         )
     {
         public async Task<ApiResponses<AuthResponse>> RegisterAsync(RegisterRequest request)
@@ -41,17 +42,12 @@ namespace TransProAPI.Features.Auth
             _db.Users.Add(user);
             await _db.SaveChangesAsync();
 
-            var token = _tokenService.GenerateToken(user);
-            var expiryMins = int.Parse(_config["JwtSettings:ExpiryMinutes"]!);
+            // Issue both tokens immediately on register
+            // User shouldnt have to log in right after registering
+            var (authResponse, refreshToken) = await IssueTokenPairAsync(user);
 
-            return ApiResponses<AuthResponse>.Ok(new AuthResponse(
-                user.Id,
-                user.FullName,
-                user.Email,
-                user.Role,
-                token,
-                DateTime.UtcNow.AddMinutes(expiryMins)
-            ), "Registration successful.");
+            _logger.LogInformation("New user registered. UserId: {UserId} Email: {EmailId} Role: {Role}", user.Id, user.Email, user.Role);
+            return ApiResponses<AuthResponse>.Ok(authResponse, "Registration successful.");
         }
 
         public async Task<ApiResponses<AuthResponse>> LoginAsync(LoginRequest request)
@@ -60,22 +56,128 @@ namespace TransProAPI.Features.Auth
             if (!validation.IsValid)
                 return ApiResponses<AuthResponse>.Fail("Validation Error", validation.Errors.Select(x => x.ErrorMessage).ToList());
 
-            var user = await _db.Users.FirstOrDefaultAsync(u => u.Email == request.Email && u.IsActive);
+            var user = await _db.Users.FirstOrDefaultAsync(u => u.Email == request.Email.ToLower().Trim() && u.IsActive);
+
+            var dummyHash = "$2a$11$dummy.hash.to.prevent.timing.attack.abcdefghijk";
+            var passwordToVerigy = user?.PasswordHash ?? dummyHash;
 
             if (user is null || !BCrypt.Net.BCrypt.Verify(request.Password, user.PasswordHash))
                 return ApiResponses<AuthResponse>.Fail("Invalid email or password");
 
-            var token = _tokenService.GenerateToken(user);
-            var expiryMins = int.Parse(_config["JwtSettings:ExpiryMinutes"]!);
+            await RevokeAllUserTokenAsync(user.Id, "New Login");
 
-            return ApiResponses<AuthResponse>.Ok(new AuthResponse(
-                user.Id,
-                user.FullName,
-                user.Email,
-                user.Role,
-                token,
-                DateTime.UtcNow.AddMinutes(expiryMins)
-            ), "Login successful.");
+            var (authResponse, refreshToken) = await IssueTokenPairAsync(user);
+
+            _logger.LogInformation("User logged in. UserId: {UserId} Email: {Email}", user.Id, user.Email);
+            return ApiResponses<AuthResponse>.Ok(authResponse, "Login successful.");
+        }
+
+        public async Task<ApiResponses<AuthResponse>> RefreshAsync(RefreshTokenRequest request)
+        {
+            var validation = await _refreshValidator.ValidateAsync(request);
+            if (!validation.IsValid)
+                return ApiResponses<AuthResponse>.Fail(
+                    "Validation failed",
+                    validation.Errors.Select(e => e.ErrorMessage).ToList());
+
+            // Look up the refresh token in DB
+            var existingToken = await _db.RefreshTokens.Include(rt => rt.User).FirstOrDefaultAsync(rt => rt.Token == request.RefreshToken);
+
+            // Token not found
+            if (existingToken is null)
+                return ApiResponses<AuthResponse>.Fail("Invalid refresh token.");
+
+            // Token was revoked — possible token theft detected
+            if (existingToken.IsRevoked)
+            {
+                // Security: if a revoked token is used, someone may have stolen it
+                // Revoke ALL tokens for this user — force full re-login
+                await RevokeAllUserTokenAsync(existingToken.UserId, "Revoked token reuse detected");
+
+                _logger.LogInformation("Revoked toke reuse detected. UserId: {UserId} - all tokens revoked", existingToken.UserId);
+                return ApiResponses<AuthResponse>.Fail("This token has been revoked. Please log in again.");
+            }
+
+            // Token expired naturally
+            if (DateTime.UtcNow >= existingToken.ExpiresAt)
+                return ApiResponses<AuthResponse>.Fail("Refresh token has expired. Please log in again.");
+
+            // User account deactivated since token was issued
+            if (!existingToken.User.IsActive)
+                return ApiResponses<AuthResponse>.Fail("Account is inactive. Please contact support.");
+
+            /* ── Token Rotation
+                Revoke the used token — it can never be used again
+                Issue a brand new token pair
+                This means a stolen refresh token can only be used once before the legitimate user's next refresh invalidates it */
+            existingToken.IsRevoked = true;
+            existingToken.RevokedAt = DateTime.UtcNow;
+
+            var (authResponse, newRefreshToken) = await IssueTokenPairAsync(existingToken.User);
+
+            _logger.LogInformation("Tokens refreshed. UserId: {UserId}", existingToken.UserId);
+            return ApiResponses<AuthResponse>.Ok(authResponse, "Tokens refreshed successfully.");
+        }
+
+        public async Task<ApiResponses<string>> LogoutAsync(RefreshTokenRequest request)
+        {
+            var token = await _db.RefreshTokens.FirstOrDefaultAsync(rt => rt.Token == request.RefreshToken);
+
+            if (token is null || token.IsRevoked)
+                return ApiResponses<string>.Ok("Logged out successfully.");
+
+            token.IsRevoked = true;
+            token.RevokedAt = DateTime.UtcNow;
+
+            await _db.SaveChangesAsync();
+
+            _logger.LogInformation("User logged out. UserId: {UserId}", token.UserId);
+            return ApiResponses<string>.Ok("Logged out successfully.");
+        }
+
+
+        /* ── PRIVATE HELPERS
+            Issues a new access token + refresh token pair
+            Saves the refresh token to DB
+            Returns the AuthResponse DTO */
+        private async Task<(AuthResponse response, RefreshToken refreshToken)> IssueTokenPairAsync(User user)
+        {
+            var accessToken = _tokenService.GenerateAccessToken(user);
+            var refreshToken = _tokenService.GenerateRefreshToken(user.Id);
+
+            _db.RefreshTokens.Add(refreshToken);
+            await _db.SaveChangesAsync();
+
+            var response = new AuthResponse(
+                AccessToken: accessToken,
+                RefreshToken: refreshToken.Token,
+                TokenType: "Bearer",
+                ExpiresIn: 15 * 60,
+                FullName: user.FullName,
+                Role: user.Role
+            );
+
+            return (response, refreshToken);
+        }
+
+        // Revokes all active refresh tokens for a user
+        // Called on: new login, suspicious activity, admin action
+        private async Task RevokeAllUserTokenAsync(int userId, string reason)
+        {
+            var activeToken = await _db.RefreshTokens.Where(rt => rt.UserId == userId && !rt.IsRevoked).ToListAsync();
+
+            foreach (var token in activeToken)
+            {
+                token.IsRevoked = true;
+                token.RevokedAt = DateTime.UtcNow;
+            }
+
+            if (activeToken.Count > 0)
+            {
+                await _db.SaveChangesAsync();
+
+                _logger.LogInformation("Revoked {Count} tokens for UserId: {UserId}. Reason {Reason}", activeToken.Count, userId, reason);
+            }
         }
     }
 }
