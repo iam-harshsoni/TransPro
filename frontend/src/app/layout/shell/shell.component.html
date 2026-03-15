@@ -1,0 +1,9 @@
+<div class="layout-wrapper" [class.sidebar-collapsed]="layout.sidebarCollapsed()">
+  <app-sidebar />
+  <div class="layout-main">
+    <app-topbar />
+    <div class="layout-content">
+      <router-outlet />
+    </div>
+  </div>
+</div>

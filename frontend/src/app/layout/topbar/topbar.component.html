@@ -1,0 +1,27 @@
+<div class="topbar">
+
+    <div class="topbar-left">
+        <button class="topbar-menu-btn" (click)="layout.toggle()">
+            <i class="pi pi-bars"></i>
+        </button>
+        <span>TransPro</span>
+        <span class="breadcrumb-sep">/</span>
+        <span class="breadcrumb-current">Dashboard</span>
+    </div>
+
+    <div class="topbar-right">
+
+        <div class="topbar-search" (click)="focusSearch()">
+            <i class="pi pi-search"></i>
+            <input #searchInput type="text" placeholder="Search... (Ctrl+K)" (keydown)="onSearchKeydown($event)" />
+        </div>
+
+        <button class="topbar-icon-btn">
+            <i class="pi pi-bell"></i>
+        </button>
+
+        <div class="topbar-avatar">AD</div>
+
+    </div>
+
+</div>

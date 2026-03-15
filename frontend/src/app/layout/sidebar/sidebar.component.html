@@ -1,0 +1,52 @@
+<div class="sidebar">
+
+    <!-- Logo -->
+    <div class="sidebar-logo">
+        <i class="pi pi-send logo-icon"></i>
+        @if (!layout.sidebarCollapsed()) {
+        <span class="logo-text">TransPro</span>
+        }
+    </div>
+
+    <!-- Navigation -->
+    <nav class="sidebar-nav">
+        @for (group of navGroups; track group.groupLabel) {
+        <div class="nav-group">
+
+            @if (!layout.sidebarCollapsed()) {
+            <span class="nav-group-label">{{ group.groupLabel }}</span>
+            } @else {
+            <div class="nav-group-divider"></div>
+            }
+
+            @for (item of group.items; track item.route) {
+
+            <a [routerLink]="item.route" routerLinkActive="active" class="nav-item"
+                [pTooltip]="layout.sidebarCollapsed() ? item.label : ''" tooltipPosition="right">
+                <i [class]="item.icon"></i>
+
+                @if (!layout.sidebarCollapsed()) {
+                <span>{{ item.label }}</span>
+                }
+            </a>
+            }
+
+        </div>
+        }
+    </nav>
+
+    <!-- Footer -->
+    <div class="sidebar-footer">
+        <div class="sidebar-user">
+            <div class="user-avatar-small">AD</div>
+            @if (!layout.sidebarCollapsed()) {
+            <div class="user-info-small">
+                <div class="user-name-small">Admin</div>
+                <div class="user-role-small">Administrator</div>
+            </div>
+            <i class="pi pi-sign-out logout-btn"></i>
+            }
+        </div>
+    </div>
+
+</div>
