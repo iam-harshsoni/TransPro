@@ -14,7 +14,7 @@ namespace TransProAPI.Features.Drivers
     [ApiController]
     [ApiVersion(1)]
     [Route("api/[controller]")]
-    [Authorize(Roles = UserRoles.Admin)]
+    // [Authorize(Roles = UserRoles.Admin)]
     [EnableRateLimiting("general")]
     public class DriverController(DriverHandler _driverHandler) : ControllerBase
     {
