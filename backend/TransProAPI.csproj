@@ -34,4 +34,9 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="7.2.0" />
   </ItemGroup>
 
+  <Target Name="BuildAngular" BeforeTargets="Build">
+    <Exec WorkingDirectory="../frontend" Command="npm install" />
+    <Exec WorkingDirectory="../frontend" Command="npm run build" />
+  </Target>
+
 </Project>

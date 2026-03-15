@@ -29,6 +29,7 @@ namespace TransProAPI.Features.Customer.UpdateCustomer
             customer.FullName = request.FullName;
             customer.Phone = request.Phone;
             customer.Address = request.Address;
+            customer.IsActive = request.IsActive;
 
             // Persist
             await _db.SaveChangesAsync();

@@ -19,7 +19,7 @@ namespace TransProAPI.Features.Customer
     [ApiController]
     [ApiVersion(1)]
     [Route("api/[controller]")]
-    [Authorize(Roles = UserRoles.Admin)]
+    // [Authorize(Roles = UserRoles.Admin)]
     [EnableRateLimiting("general")]
     public class CustomersController(
         CreateCustomerHandler _createCustomerHandler,
@@ -38,7 +38,7 @@ namespace TransProAPI.Features.Customer
 
         /// <summary>Get list of All customers</summary>
         [HttpGet]
-        public async Task<IActionResult> GetAll([FromQuery] PaginationRequest request)
+        public async Task<IActionResult> GetAll([FromQuery] CustomerQueryParams request)
         {
             var result = await _getCustomerHandler.Handle(request);
             return Ok(result);

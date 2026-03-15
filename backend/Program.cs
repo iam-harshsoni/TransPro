@@ -33,7 +33,11 @@ if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development
     Env.Load();
 }
 
-var builder = WebApplication.CreateBuilder(args);
+var builder = WebApplication.CreateBuilder(new WebApplicationOptions
+{
+    Args = args,
+    WebRootPath = "wwwroot/browser"
+});
 
 Log.Logger = new LoggerConfiguration()
     .MinimumLevel.Information()
@@ -166,9 +170,10 @@ builder.Services.AddCors(options =>
   {
       options.AddPolicy("AllowAll", policy =>
       {
-          policy.AllowAnyOrigin()
+          policy.WithOrigins("http://localhost:4200")
                 .AllowAnyHeader()
                 .AllowAnyMethod();
+          // .AllowAnyOrigin()
       });
   });
 
@@ -181,10 +186,10 @@ builder.Services.AddRateLimiter(options =>
     // If exceeded → 429 Too Many Requests
     options.AddFixedWindowLimiter("auth", limiterOptions =>
     {
-        limiterOptions.PermitLimit          = 5;
-        limiterOptions.Window               = TimeSpan.FromMinutes(1);
+        limiterOptions.PermitLimit = 5;
+        limiterOptions.Window = TimeSpan.FromMinutes(1);
         limiterOptions.QueueProcessingOrder = QueueProcessingOrder.OldestFirst;
-        limiterOptions.QueueLimit           = 0;                                 // no queuing — reject immediately
+        limiterOptions.QueueLimit = 0;                                 // no queuing — reject immediately
     });
 
     // ── Policy 2: General API endpoints ──────────────────────────────────
@@ -192,10 +197,10 @@ builder.Services.AddRateLimiter(options =>
     // 100 requests per minute per IP address
     options.AddFixedWindowLimiter("general", limiterOptions =>
     {
-        limiterOptions.PermitLimit          = 100;
-        limiterOptions.Window               = TimeSpan.FromMinutes(1);
+        limiterOptions.PermitLimit = 100;
+        limiterOptions.Window = TimeSpan.FromMinutes(1);
         limiterOptions.QueueProcessingOrder = QueueProcessingOrder.OldestFirst;
-        limiterOptions.QueueLimit           = 0;
+        limiterOptions.QueueLimit = 0;
     });
 
     // ── Global fallback — applies to ALL endpoints not covered above ──────
@@ -208,12 +213,12 @@ builder.Services.AddRateLimiter(options =>
 
         return RateLimitPartition.GetFixedWindowLimiter(
             partitionKey: ipAddress,
-            factory     : _ => new FixedWindowRateLimiterOptions
+            factory: _ => new FixedWindowRateLimiterOptions
             {
-                PermitLimit          = 200,
-                Window               = TimeSpan.FromMinutes(1),
+                PermitLimit = 200,
+                Window = TimeSpan.FromMinutes(1),
                 QueueProcessingOrder = QueueProcessingOrder.OldestFirst,
-                QueueLimit           = 0,
+                QueueLimit = 0,
             });
     });
 
@@ -222,7 +227,7 @@ builder.Services.AddRateLimiter(options =>
     // We override it to return your standard ApiResponse envelope
     options.OnRejected = async (context, cancellationToken) =>
     {
-        context.HttpContext.Response.StatusCode  = StatusCodes.Status429TooManyRequests;
+        context.HttpContext.Response.StatusCode = StatusCodes.Status429TooManyRequests;
         context.HttpContext.Response.ContentType = "application/json";
 
         // Tell the client when they can try again
@@ -236,8 +241,8 @@ builder.Services.AddRateLimiter(options =>
         {
             success = false,
             message = $"Too many request. Please wait {retryAfter} seconds before trying again",
-            data    = (object?)null,
-            errors  = Array.Empty<string>()
+            data = (object?)null,
+            errors = Array.Empty<string>()
         };
 
         await context.HttpContext.Response.WriteAsJsonAsync(response, cancellationToken);
@@ -258,10 +263,10 @@ if (!string.IsNullOrEmpty(redisConnection))
     // Redis available — use distributed cache (works across instances + survives restarts)
     builder.Services.AddStackExchangeRedisCache(options =>
     {
-        options.ConfigurationOptions                    = ConfigurationOptions.Parse(redisConnection);
-        options.ConfigurationOptions.Ssl                = true;                                         // ← force TLS
+        options.ConfigurationOptions = ConfigurationOptions.Parse(redisConnection);
+        options.ConfigurationOptions.Ssl = true;                                         // ← force TLS
         options.ConfigurationOptions.AbortOnConnectFail = false;                                        // ← don't crash if Redis is temporarily down
-        options.InstanceName                            = "TransPro_";
+        options.InstanceName = "TransPro_";
     });
 
     Log.Information("Redis cache configured");
@@ -304,7 +309,7 @@ try
         app.UseSwaggerUI(c =>
         {
             c.SwaggerEndpoint("/swagger/v1/swagger.json", "TransPro API v1");
-            c.RoutePrefix = string.Empty;
+            c.RoutePrefix = "swagger";
         });
 
         using var scope = app.Services.CreateScope();
@@ -316,10 +321,15 @@ try
     }
 
     app.UseRateLimiter();
+    app.UseCors("AllowAll");
     app.UseHttpsRedirection();
     app.UseAuthentication();
     app.UseAuthorization();
+    app.UseDefaultFiles();
+    app.UseStaticFiles();
     app.MapControllers();
+
+    app.MapFallbackToFile("index.html");
 
     app.MapHealthChecks("/health");
 

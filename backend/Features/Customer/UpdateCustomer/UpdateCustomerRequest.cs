@@ -10,7 +10,7 @@ namespace TransProAPI.Features.Customer.UpdateCustomer
         public string FullName { get; set; } = string.Empty;
         public string Phone { get; set; }    = string.Empty;
         public string Address { get; set; }  = string.Empty;
-
+        public bool IsActive { get; set; }   = true;
         /* Notice we don't allow Email updates here. 
         
             Email is often used as an identity anchor. Changing it requires extra verification steps (re-confirm email, check for duplicates). By excluding it from the update DTO, we make the decision explicit and intentional — not an oversight.        

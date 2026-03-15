@@ -11,13 +11,22 @@ namespace TransProAPI.Features.Customer.GetCustomers
 {
     public class GetCustomerHandler(AppDbContext _db)
     {
-        public async Task<ApiResponses<PagedResponse<GetCustomerRespose>>> Handle(PaginationRequest request)
+        public async Task<ApiResponses<PagedResponse<GetCustomerRespose>>> Handle(CustomerQueryParams request)
         {
             request.Validate();
 
             var query = _db.Customers
                 .AsNoTracking()
                 .Where(c => c.IsActive);
+
+            if (!string.IsNullOrEmpty(request.Search))
+            {
+                var search = request.Search.ToLower();
+                query = query.Where(c =>
+                    c.FullName.ToLower().Contains(search) ||
+                    c.Phone.ToLower().Contains(search) ||
+                    c.Email.ToLower().Contains(search));
+            }
 
             var totalCount = await query.CountAsync();
 
