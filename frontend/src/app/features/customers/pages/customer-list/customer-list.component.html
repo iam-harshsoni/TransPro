@@ -1,0 +1,96 @@
+<p-toast />
+<p-confirmDialog />
+
+<div class="page-header">
+    <div class="breadcrumb-trail">
+        Home <i class="pi pi-angle-right"></i>
+        <span>Customers</span>
+    </div>
+    <div class="page-title">Customers</div>
+    <div class="page-subtitle">Manage your customer records</div>
+</div>
+
+<div class="card">
+
+    <p-toolbar class="table-toolbar">
+        <ng-template #start>
+            <p-iconfield>
+                <p-inputicon class="pi pi-search" />
+                <input pInputText type="text" placeholder="Search customers..." (input)="onSearch($event)" />
+            </p-iconfield>
+        </ng-template>
+        <ng-template #end>
+            <p-button label="New Customer" icon="pi pi-plus" (onClick)="navigateToCreate()" />
+        </ng-template>
+
+    </p-toolbar>
+
+    <!-- [lazy]="true" tells PrimeNG to NOT paginate client-side.
+    Instead it fires (onLazyLoad) every time the page changes.
+    Our component handles that event and fetches the correct page from API.
+
+    [totalRecords] tells the paginator how many total records exist
+    so it can calculate how many pages to show.
+    This value comes from the API response (response.totalCount).
+  -->
+    <p-table #dt [value]="customers()" [loading]="isLoading" [lazy]="true" (onLazyLoad)="onLazyLoad($event)"
+        [totalRecords]="totalRecords" [paginator]="true" [rows]="pageSize" [rowsPerPageOptions]="[10, 25, 50, 100]"
+        [rowHover]="true" dataKey="id" [showCurrentPageReport]="true"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} customers"
+        [tableStyle]="{ 'min-width': '60rem' }">
+
+        <ng-template pTemplate="caption">
+            <div class="table-caption">
+                <span class="table-title">Customer List:</span>
+                <span class="table-count">{{ totalRecords }} total</span>
+            </div>
+        </ng-template>
+
+        <ng-template pTemplate="header">
+            <tr>
+                <th pSortableColumn="fullName" style="min-width: 14rem">
+                    Name <p-sortIcon field="fullName" />
+                </th>
+                <th pSortableColumn="email" style="min-width: 16rem">
+                    Email <p-sortIcon field="email" />
+                </th>
+                <th style="min-width: 11rem">Phone</th>
+                <th style="min-width: 8rem">Status</th>
+                <th style="width: 8rem; text-align: center">Actions</th>
+            </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-customer>
+            <tr>
+                <td><span class="row-name">{{ customer.fullName }}</span></td>
+                <td>{{ customer.email }}</td>
+                <td>{{ customer.phone }}</td>
+                <td>
+                    <p-tag [value]="customer.isActive ? 'Active' : 'Inactive'"
+                        [severity]="getSeverity(customer.isActive)" />
+                </td>
+                <td>
+                    <div class="row-actions">
+                        <p-button icon="pi pi-pencil" [rounded]="true" [outlined]="true" size="small" pTooltip="Edit"
+                            tooltipPosition="top" (onClick)="navigateToEdit(customer)" />
+                        <!-- <p-button icon="pi pi-trash" severity="danger" [rounded]="true" [outlined]="true" size="small"
+                            pTooltip="Delete" tooltipPosition="top" (onClick)="confirmDelete(customer)" /> -->
+                    </div>
+                </td>
+            </tr>
+        </ng-template>
+
+        <ng-template pTemplate="emptymessage">
+            <tr>
+                <td colspan="6">
+                    <div class="empty-state">
+                        <i class="pi pi-users"></i>
+                        <span>No customers found</span>
+                        <small>Add your first customer to get started</small>
+                    </div>
+                </td>
+            </tr>
+        </ng-template>
+
+    </p-table>
+</div>

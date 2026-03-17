@@ -16,6 +16,18 @@ export const routes: Routes = [{
 				This keeps initial app load fast */
 		},
 		{
+			path: 'customers',
+			loadChildren: () =>
+				import('./features/customers/customers.routes')
+					.then(m => m.customerRoutes)
+		},
+		{
+			path: 'drivers',
+			loadChildren: () =>
+				import('./features/drivers/drivers.routes')
+					.then(m => m.driverRoutes)
+		},
+		{
 			path: '',
 			redirectTo: 'dashboard',		// localhost:4200/ redirects to /dashboard
 			pathMatch: 'full'

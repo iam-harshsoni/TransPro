@@ -1,0 +1,115 @@
+<p-toast />
+
+<div class="page-header">
+    <div class="breadcrumb-trail">
+        Home <i class="pi pi-angle-right"></i>
+        Customers <i class="pi pi-angle-right"></i>
+        <span>{{ isEditMode() ? 'Edit Customer' : 'New Customer' }}</span>
+    </div>
+    <!-- Ternary operator in template: condition ? valueIfTrue : valueIfFalse -->
+    <div class="page-title">{{ isEditMode() ? 'Edit Customer' : 'New Customer' }}</div>
+</div>
+
+<div class="form-card">
+    <div class="card-header">
+        <span class="card-title">Customer Information</span>
+    </div>
+
+    <div class="card-body">
+
+        <!--
+      [formGroup]="form" connects this HTML form to our TypeScript FormGroup.
+      (ngSubmit) fires when form is submitted (Enter key or submit button).
+      This replaces traditional HTML form submission entirely.
+    -->
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+            <div class="form-grid-2">
+
+                <!-- Name Field -->
+                <div class="form-field">
+                    <label class="form-label">
+                        Customer Name <span class="required-star">*</span>
+                    </label>
+                    <!--
+            formControlName="name" links this input to the 'name' FormControl.
+            [class.ng-invalid-touched] adds error styling when field is invalid.
+            pInputText is PrimeNG's styled input directive.
+          -->
+                    <input pInputText formControlName="fullName" placeholder="Enter customer full name"
+                        [class.input-error]="isInvalid('fullName')" />
+                    <!-- Error messages — only visible when field is invalid and touched -->
+                    @if (isInvalid('fullName')) {
+                    <small class="error-msg">
+                        @if (form.get('fullName')?.hasError('required')) { Full Name is required. }
+                        @if (form.get('fullName')?.hasError('maxlength')) { Max 100 characters. }
+                    </small>
+                    }
+                </div>
+
+                <!-- Email Field -->
+                <div class="form-field">
+                    <label class="form-label">
+                        Email Address <span class="required-star">*</span>
+                    </label>
+                    <input pInputText formControlName="email" type="email" placeholder="Enter email address"
+                        [class.input-error]="isInvalid('email')" />
+                    @if (isInvalid('email')) {
+                    <small class="error-msg">
+                        @if (form.get('email')?.hasError('required')) { Email is required. }
+                        @if (form.get('email')?.hasError('email')) { Enter a valid email. }
+                    </small>
+                    }
+                </div>
+
+                <!-- Phone Field -->
+                <div class="form-field">
+                    <label class="form-label">
+                        Phone <span class="required-star">*</span>
+                    </label>
+                    <input pInputText formControlName="phone" placeholder="Enter phone number"
+                        [class.input-error]="isInvalid('phone')" />
+                    @if (isInvalid('phone')) {
+                    <small class="error-msg">Phone is required.</small>
+                    }
+                </div>
+
+                <!-- Address Field — spans full width -->
+                <div class="form-field form-field-full">
+                    <label class="form-label">
+                        Address <span class="required-star">*</span>
+                    </label>
+                    <input pInputText formControlName="address" placeholder="Enter full address"
+                        [class.input-error]="isInvalid('address')" />
+                    @if (isInvalid('address')) {
+                    <small class="error-msg">Address is required.</small>
+                    }
+                </div>
+
+                <!-- Active Toggle -->
+                <div class="form-field">
+                    <label class="form-label">Status</label>
+                    <div class="toggle-row">
+                        <!--
+              p-toggleswitch is PrimeNG's toggle component.
+              formControlName links it to the isActive FormControl.
+            -->
+                        <p-toggleswitch formControlName="isActive" />
+                        <span class="toggle-label">
+                            {{ form.get('isActive')?.value ? 'Active' : 'Inactive' }}
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Form Actions -->
+            <div class="form-actions">
+                <p-button label="Cancel" severity="secondary" [outlined]="true" (onClick)="onCancel()" />
+                <p-button [label]="isEditMode() ? 'Update Customer' : 'Create Customer'" icon="pi pi-check"
+                    type="submit" [loading]="isSaving()" />
+            </div>
+
+        </form>
+    </div>
+</div>
