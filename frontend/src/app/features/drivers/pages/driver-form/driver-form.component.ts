@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 
@@ -25,7 +25,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 	templateUrl: './driver-form.component.html',
 	styleUrl: './driver-form.component.scss',
 })
-export class DriverFormComponent {
+export class DriverFormComponent implements OnInit{
 
 	private fb = inject(FormBuilder);
 	private driverService = inject(DriverService);

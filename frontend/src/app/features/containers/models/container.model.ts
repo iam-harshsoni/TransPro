@@ -8,5 +8,4 @@ export interface Container {
 }
 
 export type CreateContainerDto = Omit<Container, 'id' | 'createdAt'>;
-
 export type UpdateContainerDto = Partial<CreateContainerDto> & { id: number }

@@ -1,1 +1,0 @@
-import{Aa as o,Wa as t,Xa as r,qb as a}from"./chunk-OU4WXZAT.js";import"./chunk-7CGTOI24.js";var i=class n{static \u0275fac=function(e){return new(e||n)};static \u0275cmp=o({type:n,selectors:[["app-container-form"]],decls:2,vars:0,template:function(e,p){e&1&&(t(0,"p"),a(1,"container-form works!"),r())},encapsulation:2})};export{i as ContainerFormComponent};

@@ -40,6 +40,7 @@ export class ContainerListComponent {
 	private containerService = inject(ContainerService);
 	private router = inject(Router);
 	private messageService = inject(MessageService);
+	private searchTimeout: any;
 
 	containers = signal<Container[]>([]);
 	isLoading = false;
@@ -48,8 +49,6 @@ export class ContainerListComponent {
 	pageSize: number = 10;
 	currentPage: number = 1;
 	searchValue: string = '';
-
-	private searchTimeout: any;
 
 	loadContainers(page: number, size: number, search: string): void {
 		this.isLoading = true;
@@ -102,5 +101,14 @@ export class ContainerListComponent {
 	// getSeverity maps isAvailable boolean to PrimeNG tag color
 	getSeverity(isAvailable: boolean): 'success' | 'danger' {
 		return isAvailable ? 'success' : 'danger';
+	}
+
+	getTypeSeverity(type: string): 'info' | 'success' | 'warn' | 'secondary' {
+		switch (type.toLowerCase()) {
+			case 'dry'  : return 'info';
+			case 'refer': return 'success';
+			case 'flat' : return 'warn';
+			     default: return 'secondary';
+		}
 	}
 }

@@ -23,15 +23,23 @@
         </ng-template>
     </p-toolbar>
 
-    <p-table #dt [value]="containers()" [loading]="isLoading" [lazy]="true" (onLazyLoad)="onLazyLoad($event)"
-        [totalRecords]="totalRecords" [paginator]="true" [rows]="pageSize" [rowsPerPageOptions]="[10, 25, 50, 100]"
-        [rowHover]="true" dataKey="id" [showCurrentPageReport]="true"
+    <p-table #dt [value]="containers()" 
+        [loading]="isLoading" 
+        [lazy]="true" 
+        (onLazyLoad)="onLazyLoad($event)"
+        [totalRecords]="totalRecords" 
+        [paginator]="true" 
+        [rows]="pageSize" 
+        [rowsPerPageOptions]="[10, 25, 50, 100]"
+        [rowHover]="true" 
+        dataKey="id" 
+        [showCurrentPageReport]="true"
         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} containers"
-        [tableStyle]="{ 'min-width': '60rem' }">
+        [tableStyle]="{ 'min-width': '55rem' }">
 
         <ng-template pTemplate="caption">
             <div class="table-caption">
-                <span class="table-title">container List:</span>
+                <span class="table-title">Container List:</span>
                 <span class="table-count">{{ totalRecords }} total</span>
             </div>
         </ng-template>
@@ -39,13 +47,20 @@
         <ng-template pTemplate="header">
             <tr>
                 <th pSortableColumn="containerNumber" style="min-width: 14rem">
-                    Container Number <p-sortIcon field="containerNumber" />
+                    Container No. <p-sortIcon field="containerNumber" />
                 </th>
-                <th pSortableColumn="Type" style="min-width: 16rem">
+                <th pSortableColumn="type" style="min-width: 16rem">
                     Type <p-sortIcon field="Type" />
                 </th>
-                <th style="min-width: 11rem">WeightCapacity</th>
-                <th style="min-width: 8rem">isAvailable</th>
+                <th pSortableColumn="weightCapacity" style="min-width: 11rem">
+                    Weight Capacity <p-sortIcon field="weightCapacity" />
+                </th>
+                <th pSortableColumn="isAvailable" style="min-width: 10rem">
+                    Availability <p-sortIcon field="isAvailable" />
+                </th>
+                <th pSortableColumn="createdAt" style="min-width: 11rem">
+                    Created <p-sortIcon field="createdAt" />
+                </th>
                 <th style="width: 8rem; text-align: center">Actions</th>
             </tr>
         </ng-template>
@@ -53,16 +68,28 @@
         <ng-template pTemplate="body" let-container>
             <tr>
                 <td><span class="row-name">{{ container.containerNumber }}</span></td>
-                <td>{{ container.type }}</td>
-                <td>{{ container.weightCapacity }}</td>
                 <td>
-                    <p-tag [value]="container.isAvailable ? 'Available' : 'Occupied'"
+                    <p-tag
+                        [value]="container.type"
+                        [severity]="getTypeSeverity(container.type)" />
+                </td>
+                <td>{{ container.weightCapacity }}</td>
+                <td>{{ container.createdAt }}</td>
+                <td>
+                    <p-tag 
+                        [value]="container.isAvailable ? 'Available' : 'Occupied'"
                         [severity]="getSeverity(container.isAvailable)" />
                 </td>
                 <td>
                     <div class="row-actions">
-                        <p-button icon="pi pi-pencil" [rounded]="true" [outlined]="true" size="small" pTooltip="Edit"
-                            tooltipPosition="top" (onClick)="navigateToEdit(container)" />
+                        <p-button 
+                            icon="pi pi-pencil" 
+                            [rounded]="true" 
+                            [outlined]="true" 
+                            size="small" 
+                            pTooltip="Edit"
+                            tooltipPosition="top" 
+                            (onClick)="navigateToEdit(container)" />
                     </div>
                 </td>
             </tr>
