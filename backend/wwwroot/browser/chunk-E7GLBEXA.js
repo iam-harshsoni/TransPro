@@ -1,6 +1,6 @@
 import {
   ContainerService
-} from "./chunk-52WEYACT.js";
+} from "./chunk-OGBRB4V3.js";
 import {
   ConfirmDialog,
   ConfirmDialogModule,
@@ -451,4 +451,4 @@ var ContainerListComponent = class _ContainerListComponent {
 export {
   ContainerListComponent
 };
-//# sourceMappingURL=chunk-OOF6AB4S.js.map
+//# sourceMappingURL=chunk-E7GLBEXA.js.map

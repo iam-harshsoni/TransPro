@@ -1,6 +1,6 @@
 import {
   environment
-} from "./chunk-4EYY5C3L.js";
+} from "./chunk-E3RJNTKN.js";
 import {
   HttpClient,
   HttpParams
@@ -48,4 +48,4 @@ var TruckService = class _TruckService {
 export {
   TruckService
 };
-//# sourceMappingURL=chunk-AQIU5GW5.js.map
+//# sourceMappingURL=chunk-BT4ENGXY.js.map

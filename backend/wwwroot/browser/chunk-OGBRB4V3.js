@@ -12,7 +12,8 @@ import {
 // src/environments/environment.development.ts
 var environment = {
   production: false,
-  apiUrl: "http://localhost:5070/api"
+  // apiUrl: 'http://localhost:5070/api'
+  apiUrl: "https://transpro-1.onrender.com/api"
 };
 
 // src/app/features/containers/services/container.service.ts
@@ -55,4 +56,4 @@ var ContainerService = class _ContainerService {
 export {
   ContainerService
 };
-//# sourceMappingURL=chunk-52WEYACT.js.map
+//# sourceMappingURL=chunk-OGBRB4V3.js.map

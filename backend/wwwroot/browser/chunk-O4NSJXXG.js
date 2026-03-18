@@ -1,6 +1,6 @@
 import {
   TruckService
-} from "./chunk-AQIU5GW5.js";
+} from "./chunk-BT4ENGXY.js";
 import {
   InputNumber,
   InputNumberModule
@@ -9,7 +9,7 @@ import {
   ToggleSwitch,
   ToggleSwitchModule
 } from "./chunk-MBGFM2UD.js";
-import "./chunk-4EYY5C3L.js";
+import "./chunk-E3RJNTKN.js";
 import {
   Button,
   ButtonModule,
@@ -468,4 +468,4 @@ var TruckFormComponent = class _TruckFormComponent {
 export {
   TruckFormComponent
 };
-//# sourceMappingURL=chunk-K7LXAJ7P.js.map
+//# sourceMappingURL=chunk-O4NSJXXG.js.map

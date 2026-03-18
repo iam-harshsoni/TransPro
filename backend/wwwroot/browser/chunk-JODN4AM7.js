@@ -1,6 +1,6 @@
 import {
   CustomerService
-} from "./chunk-MFJ4XGM3.js";
+} from "./chunk-KJGYZIBU.js";
 import {
   ConfirmDialog,
   ConfirmDialogModule,
@@ -21,7 +21,7 @@ import {
 } from "./chunk-YEOMDTB7.js";
 import "./chunk-QXZ2OK4J.js";
 import "./chunk-2ABF2E5E.js";
-import "./chunk-4EYY5C3L.js";
+import "./chunk-E3RJNTKN.js";
 import {
   Button,
   ButtonModule,
@@ -466,4 +466,4 @@ var CustomerListComponent = class _CustomerListComponent {
 export {
   CustomerListComponent
 };
-//# sourceMappingURL=chunk-N6ZJBZML.js.map
+//# sourceMappingURL=chunk-JODN4AM7.js.map

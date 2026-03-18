@@ -1,6 +1,6 @@
 import {
   TruckService
-} from "./chunk-AQIU5GW5.js";
+} from "./chunk-BT4ENGXY.js";
 import {
   ConfirmDialogModule,
   SortIcon,
@@ -20,7 +20,7 @@ import {
 } from "./chunk-YEOMDTB7.js";
 import "./chunk-QXZ2OK4J.js";
 import "./chunk-2ABF2E5E.js";
-import "./chunk-4EYY5C3L.js";
+import "./chunk-E3RJNTKN.js";
 import {
   Button,
   ButtonModule,
@@ -417,4 +417,4 @@ var TruckListComponent = class _TruckListComponent {
 export {
   TruckListComponent
 };
-//# sourceMappingURL=chunk-AZYK6CZN.js.map
+//# sourceMappingURL=chunk-WTTWVOU2.js.map
