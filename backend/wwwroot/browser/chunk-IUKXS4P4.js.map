@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/features/routes/routes.routes.ts"],
+  "sourcesContent": ["import { Routes } from \"@angular/router\";\r\n\r\nexport const routesRoutes: Routes = [\r\n    {\r\n        path: '',\r\n        loadComponent: () =>\r\n            import('./pages/route-list/route-list.component')\r\n                .then(m => m.RouteListComponent)\r\n    },\r\n    {\r\n        path: 'create',\r\n        loadComponent: () =>\r\n            import('./pages/route-form/route-form.component')\r\n                .then(m => m.RouteFormComponent)\r\n    },\r\n    {\r\n        path: 'edit/:id',\r\n        loadComponent: () =>\r\n            import('./pages/route-form/route-form.component')\r\n                .then(m => m.RouteFormComponent)\r\n    }\r\n];"],
+  "mappings": ";;;AAEO,IAAM,eAAuB;EAChC;IACI,MAAM;IACN,eAAe,MACX,OAAO,qBAAyC,EAC3C,KAAK,OAAK,EAAE,kBAAkB;;EAE3C;IACI,MAAM;IACN,eAAe,MACX,OAAO,qBAAyC,EAC3C,KAAK,OAAK,EAAE,kBAAkB;;EAE3C;IACI,MAAM;IACN,eAAe,MACX,OAAO,qBAAyC,EAC3C,KAAK,OAAK,EAAE,kBAAkB;;;",
+  "names": []
+}

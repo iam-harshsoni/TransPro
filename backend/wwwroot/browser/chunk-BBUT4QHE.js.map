@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/features/trucks/truck.routes.ts"],
+  "sourcesContent": ["import { Routes } from \"@angular/router\";\r\n\r\nexport const truckRoutes: Routes = [\r\n    {\r\n        path: '',\r\n        loadComponent: () =>\r\n            import('./pages/truck-list/truck-list.component')\r\n                .then(m => m.TruckListComponent)\r\n    },\r\n    {\r\n        path: 'create',\r\n        loadComponent: () =>\r\n            import('./pages/truck-form/truck-form.component')\r\n                .then(m => m.TruckFormComponent)\r\n    },\r\n    {\r\n        path: 'edit/:id',\r\n        loadComponent: () =>\r\n            import('./pages/truck-form/truck-form.component')\r\n                .then(m => m.TruckFormComponent)\r\n    }\r\n];"],
+  "mappings": ";;;AAEO,IAAM,cAAsB;EAC/B;IACI,MAAM;IACN,eAAe,MACX,OAAO,qBAAyC,EAC3C,KAAK,OAAK,EAAE,kBAAkB;;EAE3C;IACI,MAAM;IACN,eAAe,MACX,OAAO,qBAAyC,EAC3C,KAAK,OAAK,EAAE,kBAAkB;;EAE3C;IACI,MAAM;IACN,eAAe,MACX,OAAO,qBAAyC,EAC3C,KAAK,OAAK,EAAE,kBAAkB;;;",
+  "names": []
+}

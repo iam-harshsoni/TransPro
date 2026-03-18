@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/features/containers/containers.routes.ts"],
+  "sourcesContent": ["import { Routes } from \"@angular/router\";\r\n\r\nexport const containerRoutes: Routes = [\r\n    {\r\n        path: '',\r\n        loadComponent: () =>\r\n            import('./pages/container-list/container-list.component')\r\n                .then(m => m.ContainerListComponent)\r\n    },\r\n    {\r\n        path: 'create',\r\n        loadComponent: () =>\r\n            import('./pages/container-form/container-form.component')\r\n                .then(m => m.ContainerFormComponent)\r\n    },\r\n    {\r\n        path: 'edit/:id',\r\n        loadComponent: () =>\r\n            import('./pages/container-form/container-form.component')\r\n                .then(m => m.ContainerFormComponent)\r\n    }\r\n];"],
+  "mappings": ";;;AAEO,IAAM,kBAA0B;EACnC;IACI,MAAM;IACN,eAAe,MACX,OAAO,qBAAiD,EACnD,KAAK,OAAK,EAAE,sBAAsB;;EAE/C;IACI,MAAM;IACN,eAAe,MACX,OAAO,qBAAiD,EACnD,KAAK,OAAK,EAAE,sBAAsB;;EAE/C;IACI,MAAM;IACN,eAAe,MACX,OAAO,qBAAiD,EACnD,KAAK,OAAK,EAAE,sBAAsB;;;",
+  "names": []
+}

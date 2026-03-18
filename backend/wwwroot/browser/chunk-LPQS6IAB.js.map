@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/features/drivers/drivers.routes.ts"],
+  "sourcesContent": ["import { Routes } from \"@angular/router\";\r\n\r\nexport const driverRoutes: Routes = [\r\n    {\r\n        path: '',\r\n        loadComponent: () =>\r\n            import('./pages/driver-list/driver-list.component')\r\n                .then(m => m.DriverListComponent)\r\n    },\r\n    {\r\n        path: 'create',\r\n        loadComponent: () =>\r\n            import('./pages/driver-form/driver-form.component')\r\n                .then(m => m.DriverFormComponent)\r\n    },\r\n    {\r\n        path: 'edit/:id',\r\n        loadComponent: () =>\r\n            import('./pages/driver-form/driver-form.component')\r\n                .then(m => m.DriverFormComponent)\r\n    }\r\n];"],
+  "mappings": ";;;AAEO,IAAM,eAAuB;EAChC;IACI,MAAM;IACN,eAAe,MACX,OAAO,qBAA2C,EAC7C,KAAK,OAAK,EAAE,mBAAmB;;EAE5C;IACI,MAAM;IACN,eAAe,MACX,OAAO,qBAA2C,EAC7C,KAAK,OAAK,EAAE,mBAAmB;;EAE5C;IACI,MAAM;IACN,eAAe,MACX,OAAO,qBAA2C,EAC7C,KAAK,OAAK,EAAE,mBAAmB;;;",
+  "names": []
+}

@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/features/customers/customers.routes.ts"],
+  "sourcesContent": ["// Feature-level routes file.\r\n// This keeps customer routes isolated from the main app routes.\r\n// The main app.routes.ts will simply load this file lazily.\r\n// Same concept as area routing in ASP.NET Core MVC.\r\n\r\nimport { Routes } from '@angular/router';\r\n\r\nexport const customerRoutes: Routes = [\r\n    {\r\n        path: '',\r\n        loadComponent: () =>\r\n            import('./pages/customer-list/customer-list.component')\r\n                .then(m => m.CustomerListComponent)\r\n    },\r\n    {\r\n        path: 'create',\r\n        loadComponent: () =>\r\n            import('./pages/customer-form/customer-form.component')\r\n                .then(m => m.CustomerFormComponent)\r\n    },\r\n    {\r\n        path: 'edit/:id',   // :id is a route parameter — like [HttpGet(\"{id}\")] in C#\r\n        loadComponent: () =>\r\n            import('./pages/customer-form/customer-form.component')\r\n                .then(m => m.CustomerFormComponent)\r\n    }\r\n];"],
+  "mappings": ";;;AAOO,IAAM,iBAAyB;EAClC;IACI,MAAM;IACN,eAAe,MACX,OAAO,qBAA+C,EACjD,KAAK,OAAK,EAAE,qBAAqB;;EAE9C;IACI,MAAM;IACN,eAAe,MACX,OAAO,qBAA+C,EACjD,KAAK,OAAK,EAAE,qBAAqB;;EAE9C;IACI,MAAM;;IACN,eAAe,MACX,OAAO,qBAA+C,EACjD,KAAK,OAAK,EAAE,qBAAqB;;;",
+  "names": []
+}

@@ -45,7 +45,7 @@
   <Target Name="PublishAngular"
           AfterTargets="Build"
           Condition="'$(BuildAngular)' == 'true'">
-    <Exec Command="npm run build --configuration=development"
+    <Exec Command="ng build --configuration=development"
           WorkingDirectory="../frontend" />
   </Target>
 

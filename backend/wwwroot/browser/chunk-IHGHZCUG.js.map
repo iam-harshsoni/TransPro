@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/features/dashboard/dashboard.component.ts", "src/app/features/dashboard/dashboard.component.html"],
+  "sourcesContent": ["import { Component } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'app-dashboard',\r\n  standalone: true,\r\n  imports: [],\r\n  templateUrl: './dashboard.component.html',\r\n})\r\nexport class DashboardComponent { }", "<div class=\"page-header\">\r\n    <div class=\"breadcrumb-trail\">\r\n        Home <i class=\"pi pi-angle-right\"></i>\r\n        <span>Dashboard</span>\r\n    </div>\r\n    <div class=\"page-title\">Dashboard</div>\r\n</div>"],
+  "mappings": ";;;;;;;;;;;;;AAQM,IAAO,qBAAP,MAAO,oBAAkB;;qCAAlB,qBAAkB;EAAA;yEAAlB,qBAAkB,WAAA,CAAA,CAAA,eAAA,CAAA,GAAA,OAAA,GAAA,MAAA,GAAA,QAAA,CAAA,CAAA,GAAA,aAAA,GAAA,CAAA,GAAA,kBAAA,GAAA,CAAA,GAAA,MAAA,gBAAA,GAAA,CAAA,GAAA,YAAA,CAAA,GAAA,UAAA,SAAA,4BAAA,IAAA,KAAA;AAAA,QAAA,KAAA,GAAA;ACR/B,MAAA,4BAAA,GAAA,OAAA,CAAA,EAAyB,GAAA,OAAA,CAAA;AAEjB,MAAA,iBAAA,GAAA,QAAA;AAAK,MAAA,uBAAA,GAAA,KAAA,CAAA;AACL,MAAA,4BAAA,GAAA,MAAA;AAAM,MAAA,iBAAA,GAAA,WAAA;AAAS,MAAA,0BAAA,EAAO;AAE1B,MAAA,4BAAA,GAAA,OAAA,CAAA;AAAwB,MAAA,iBAAA,GAAA,WAAA;AAAS,MAAA,0BAAA,EAAM;;;;;sEDG9B,oBAAkB,CAAA;UAN9B;uBACW,iBAAe,YACb,MAAI,SACP,CAAA,GAAE,UAAA,6NAAA,CAAA;;;;6EAGA,oBAAkB,EAAA,WAAA,sBAAA,UAAA,qDAAA,YAAA,EAAA,CAAA;AAAA,GAAA;",
+  "names": []
+}
