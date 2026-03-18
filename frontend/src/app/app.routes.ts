@@ -28,6 +28,12 @@ export const routes: Routes = [{
 					.then(m => m.driverRoutes)
 		},
 		{
+			path: 'containers',
+			loadChildren: () =>
+				import('./features/containers/containers.routes')
+					.then(m => m.containerRoutes)
+		},
+		{
 			path: '',
 			redirectTo: 'dashboard',		// localhost:4200/ redirects to /dashboard
 			pathMatch: 'full'

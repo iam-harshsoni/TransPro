@@ -1,19 +1,13 @@
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.Eventing.Reader;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.RateLimiting;
-using TransProAPI.Common;
 using TransProAPI.Domain.Entities;
 
 namespace TransProAPI.Features.Containers
 {
     [ApiController]
     [Route("api/[controller]")]
-    [Authorize]
+    //[Authorize]
     [EnableRateLimiting("general")]
     public class ContainerController(
         ContainerHandler _handler

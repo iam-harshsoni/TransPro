@@ -1,24 +1,22 @@
-import { Component, OnInit, inject, signal } from '@angular/core';
-import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { Component, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-
-import { TableModule, Table, TableLazyLoadEvent } from 'primeng/table';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
-import { InputTextModule } from 'primeng/inputtext';
-import { TagModule } from 'primeng/tag';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
-import { ToastModule } from 'primeng/toast';
 import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
+import { InputTextModule } from 'primeng/inputtext';
+import { TableLazyLoadEvent, TableModule } from 'primeng/table';
+import { TagModule } from 'primeng/tag';
+import { ToastModule } from 'primeng/toast';
 import { ToolbarModule } from 'primeng/toolbar';
-import { ConfirmationService, MessageService } from 'primeng/api';
-
-import { Driver } from '../../models/driver.model';
-import { DriverService } from '../../services/driver.service';
+import { ContainerService } from '../../services/container.service';
+import { Router } from '@angular/router';
+import { Container } from '../../models/container.model';
 
 @Component({
-	selector: 'app-driver-list',
+	selector: 'app-container-list',
 	standalone: true,
 	imports: [
 		CommonModule,
@@ -33,18 +31,18 @@ import { DriverService } from '../../services/driver.service';
 		InputIconModule,
 		ToolbarModule,
 	],
-	providers: [ConfirmationService, MessageService],
-	templateUrl: './driver-list.component.html',
+	templateUrl: './container-list.component.html',
+	styleUrl: './container-list.component.scss',
+	providers: [MessageService, ConfirmationService]
 })
-export class DriverListComponent {
+export class ContainerListComponent {
 
-	private driverService = inject(DriverService);
+	private containerService = inject(ContainerService);
 	private router = inject(Router);
-	private confirmationService = inject(ConfirmationService);
 	private messageService = inject(MessageService);
 
-	drivers = signal<Driver[]>([]);
-	isLoading = true;
+	containers = signal<Container[]>([]);
+	isLoading = false;
 
 	totalRecords: number = 0;
 	pageSize: number = 10;
@@ -53,12 +51,12 @@ export class DriverListComponent {
 
 	private searchTimeout: any;
 
-	loadDriver(page: number, size: number, search: string): void {
+	loadContainers(page: number, size: number, search: string): void {
 		this.isLoading = true;
 
-		this.driverService.getPaginated(page, size, search).subscribe({
+		this.containerService.getPaginated(page, size, search).subscribe({
 			next: (response) => {
-				this.drivers.set(response.data.data);
+				this.containers.set(response.data.data);
 				this.totalRecords = response.data.totalCount;
 				this.isLoading = false;
 			},
@@ -66,11 +64,11 @@ export class DriverListComponent {
 				this.messageService.add({
 					severity: 'error',
 					summary: 'Error',
-					detail: 'Failed to load drivers'
+					detail: 'Failed to laod containers'
 				});
 				this.isLoading = false;
 			}
-		});
+		})
 	}
 
 	onLazyLoad(event: TableLazyLoadEvent): void {
@@ -79,26 +77,26 @@ export class DriverListComponent {
 
 		this.pageSize = size;
 		this.currentPage = page;
-		this.loadDriver(page, size, this.searchValue);
+		this.loadContainers(page, size, this.searchValue);
 	}
 
-	onSearch(event: Event): void {
-		const value = (event.target as HTMLInputElement).value;
+	onSearch(even: Event): void {
+		const value = (even.target as HTMLInputElement).value;
 		this.searchValue = value;
 
 		clearTimeout(this.searchTimeout);
 		this.searchTimeout = setTimeout(() => {
-			// Reset to page 1 when searching
-			this.loadDriver(1, this.pageSize, value);
+			this.loadContainers(1, this.pageSize, value);
 		}, 400);
 	}
 
 	navigateToCreate(): void {
-		this.router.navigate(['/drivers/create']);
+		this.router.navigate(['/containers/create']);
 	}
 
-	navigateToEdit(driver: Driver): void {
-		this.router.navigate(['/drivers/edit', driver.id]);
+	navigateToEdit(container: Container): void {
+		console.log('Container object:', container);
+		this.router.navigate(['/containers/edit', container.id]);
 	}
 
 	// getSeverity maps isAvailable boolean to PrimeNG tag color
