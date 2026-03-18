@@ -1,0 +1,1 @@
+import{Aa as t,Wa as n,Xa as r,qb as m}from"./chunk-OU4WXZAT.js";import"./chunk-7CGTOI24.js";var p=class o{static \u0275fac=function(e){return new(e||o)};static \u0275cmp=t({type:o,selectors:[["app-route-form"]],decls:2,vars:0,template:function(e,a){e&1&&(n(0,"p"),m(1,"route-form works!"),r())},encapsulation:2})};export{p as RouteFormComponent};

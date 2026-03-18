@@ -256,7 +256,7 @@ builder.Services.AddRateLimiter(options =>
 builder.Services.AddHealthChecks()
     .AddNpgSql(builder.Configuration.GetConnectionString("DefaultConnection")!);
 
-// builder.Services.AddMemoryCache();
+builder.Services.AddMemoryCache();
 var redisConnection = builder.Configuration["Redis:ConnectionString"];
 if (!string.IsNullOrEmpty(redisConnection))
 {
@@ -277,6 +277,11 @@ else
     builder.Services.AddDistributedMemoryCache();
     Log.Warning("Redis not configured, falling back to in-memory cache");
 }
+
+builder.Services.AddResponseCompression(options =>
+{
+    options.EnableForHttps = true;
+});
 
 try
 {
@@ -320,6 +325,7 @@ try
         Console.WriteLine("🏁 Seed check complete.\n");
     }
 
+    app.UseResponseCompression();
     app.UseRateLimiter();
     app.UseCors("AllowAll");
     app.UseHttpsRedirection();

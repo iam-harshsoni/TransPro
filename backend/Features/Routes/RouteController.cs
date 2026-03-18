@@ -14,7 +14,7 @@ namespace TransProAPI.Features.Routes
     [ApiController]
     [ApiVersion(1)]
     [Route("api/trans-route")]
-    [Authorize]
+    // [Authorize]
     [EnableRateLimiting("general")]
     public class RouteController(RouteHandler _handler) : ControllerBase
     {
