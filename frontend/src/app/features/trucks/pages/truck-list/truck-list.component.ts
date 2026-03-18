@@ -11,12 +11,12 @@ import { TableLazyLoadEvent, TableModule } from 'primeng/table';
 import { TagModule } from 'primeng/tag';
 import { ToastModule } from 'primeng/toast';
 import { ToolbarModule } from 'primeng/toolbar';
-import { ContainerService } from '../../services/container.service';
+import { TruckService } from '../../services/truck.service';
 import { Router } from '@angular/router';
-import { Container } from '../../models/container.model';
+import { Truck } from '../../models/truck.model';
 
 @Component({
-	selector: 'app-container-list',
+	selector: 'app-truck-list',
 	standalone: true,
 	imports: [
 		CommonModule,
@@ -31,33 +31,38 @@ import { Container } from '../../models/container.model';
 		InputIconModule,
 		ToolbarModule,
 	],
-	templateUrl: './container-list.component.html',
-	styleUrl: './container-list.component.scss',
-	providers: [MessageService, ConfirmationService]
+	providers: [ConfirmationService, MessageService],
+	templateUrl: './truck-list.component.html',
+	styleUrl: './truck-list.component.scss',
 })
-export class ContainerListComponent {
+export class TruckListComponent {
 
-	private containerService = inject(ContainerService);
-	private router = inject(Router);
+	private truckService = inject(TruckService);
 	private messageService = inject(MessageService);
+	private router = inject(Router);
+
 	private searchTimeout: any;
 
-	containers = signal<Container[]>([]);
-	isLoading = false;
+	trucks = signal<Truck[]>([]);
+	// isLoading = signal<boolean>(true);
 
 	totalRecords: number = 0;
 	pageSize: number = 10;
 	currentPage: number = 1;
 	searchValue: string = '';
 
-	loadContainers(page: number, size: number, search: string): void {
-		this.isLoading = true;
+	loadTrucks(
+		page: number,
+		size: number,
+		search: string
+	): void {
+		// this.isLoading.set(true);
 
-		this.containerService.getPaginated(page, size, search).subscribe({
+		this.truckService.getPaginated(page, size, search).subscribe({
 			next: (response) => {
-				this.containers.set(response.data.data);
+				this.trucks.set(response.data.data);
 				this.totalRecords = response.data.totalCount;
-				this.isLoading = false;
+				// this.isLoading.set(false);
 			},
 			error: () => {
 				this.messageService.add({
@@ -65,7 +70,7 @@ export class ContainerListComponent {
 					summary: 'Error',
 					detail: 'Failed to laod containers'
 				});
-				this.isLoading = false;
+				// this.isLoading.set(false);
 			}
 		})
 	}
@@ -76,7 +81,7 @@ export class ContainerListComponent {
 
 		this.pageSize = size;
 		this.currentPage = page;
-		this.loadContainers(page, size, this.searchValue);
+		this.loadTrucks(page, size, this.searchValue);
 	}
 
 	onSearch(even: Event): void {
@@ -85,29 +90,30 @@ export class ContainerListComponent {
 
 		clearTimeout(this.searchTimeout);
 		this.searchTimeout = setTimeout(() => {
-			this.loadContainers(1, this.pageSize, value);
+			this.loadTrucks(1, this.pageSize, value);
 		}, 400);
 	}
 
 	navigateToCreate(): void {
-		this.router.navigate(['/containers/create']);
+		this.router.navigate(['/trucks/create']);
 	}
 
-	navigateToEdit(container: Container): void {
-		this.router.navigate(['/containers/edit', container.id]);
+	navigateToEdit(truck: Truck): void {
+		this.router.navigate(['/trucks/edit', truck.id]);
 	}
 
-	// getSeverity maps isAvailable boolean to PrimeNG tag color
+	getCapacityLabel(capacity: number): string {
+		return `${capacity} T`;
+	}
+
+	getCapacitySeverity(capacity: number): 'info' | 'warn' | 'danger' {
+		if (capacity >= 20) return 'danger';
+		if (capacity <= 20) return 'warn';
+		return 'info';
+	}
+
 	getSeverity(isAvailable: boolean): 'success' | 'danger' {
 		return isAvailable ? 'success' : 'danger';
 	}
 
-	getTypeSeverity(type: string): 'info' | 'success' | 'warn' | 'secondary' {
-		switch (type.toLowerCase()) {
-			case 'dry'  : return 'info';
-			case 'refer': return 'success';
-			case 'flat' : return 'warn';
-			     default: return 'secondary';
-		}
-	}
 }

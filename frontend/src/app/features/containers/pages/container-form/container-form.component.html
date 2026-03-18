@@ -26,11 +26,7 @@
                     <label class="form-label">
                         Container Number <span class="required-star">*</span>
                     </label>
-                    <!--
-                        Container numbers follow a standard format: ABCD1234567
-                        4 letters + 7 numbers. We do not enforce this with a regex validator
-                        for now — just required and maxLength.
-                    -->
+
                     <input pInputText formControlName="containerNumber" placeholder="e.g. CMAU2906501"
                         [class.input-error]="isInvalid('containerNumber')" />
                     @if (isInvalid('containerNumber')) {
@@ -58,8 +54,7 @@
                         placeholder = shown when nothing is selected
                     -->
                     <p-select formControlName="type" [options]="containerTypes" optionLabel="label" optionValue="value"
-                        placeholder="Select container type" styleClass="w-full"
-                        [class.input-error]="isInvalid('type')" />
+                        placeholder="Select container type" [class.input-error]="isInvalid('type')" />
                     @if (isInvalid('type')) {
                     <small class="error-msg">Container type is required.</small>
                     }

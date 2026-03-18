@@ -1,0 +1,94 @@
+<p-toast />
+
+<div class="page-header">
+    <div class="breadcrumb-trail">
+        Home <i class="pi pi-angle-right"></i>
+        <span>Trucks</span>
+    </div>
+    <div class="page-title">Trucks</div>
+    <div class="page-subtitle">Manage your fleet of trucks</div>
+</div>
+
+<div class="card">
+
+    <p-toolbar class="table-toolbar">
+        <ng-template #start>
+            <p-button label="New Truck" icon="pi pi-plus" (onClick)="navigateToCreate()" />
+        </ng-template>
+        <ng-template #end>
+            <p-iconfield>
+                <p-inputicon class="pi pi-search" />
+                <input pInputText type="text" placeholder="Search trucks..." (input)="onSearch($event)" />
+            </p-iconfield>
+        </ng-template>
+    </p-toolbar>
+
+    <p-table #dt [value]="trucks()" [lazy]="true" (onLazyLoad)="onLazyLoad($event)" [totalRecords]="totalRecords"
+        [paginator]="true" [rows]="pageSize" [rowsPerPageOptions]="[10, 25, 50]" [rowHover]="true" dataKey="id"
+        [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} trucks"
+        [tableStyle]="{ 'min-width': '55rem' }">
+
+        <ng-template pTemplate="caption">
+            <div class="table-caption">
+                <span class="table-title">Fleet List</span>
+                <span class="table-count"> {{ totalRecords }} total</span>
+            </div>
+        </ng-template>
+
+        <ng-template pTemplate="header">
+            <tr>
+                <th pSortableColumn="plateNumber" style="min-width: 12rem">
+                    Plate Number <p-sortIcon field="plateNumber" />
+                </th>
+                <th pSortableColumn="model" style="min-width: 14rem">
+                    Model <p-sortIcon field="model" />
+                </th>
+                <th pSortableColumn="capacity" style="min-width: 10rem">
+                    Capacity <p-sortIcon field="capacity" />
+                </th>
+                <th style="min-width: 10rem">Availability</th>
+                <th style="width: 8rem; text-align: center">Actions</th>
+            </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-truck>
+            <tr>
+                <td>
+                    <span class="plate-number">{{ truck.plateNumber }}</span>
+                </td>
+                <td>
+                    <div class="truck-model-cell">
+                        <span class="row-name"> {{ truck.model }}</span>
+                    </div>
+                </td>
+                <td>
+                    <p-tag [value]="getCapacityLabel(truck.capacity)"
+                        [severity]="getCapacitySeverity(truck.capacity)" />
+                </td>
+                <td>
+                    <p-tag [value]="truck.isAvailable ? 'Available' : 'Unavailable'"
+                        [severity]="getSeverity(truck.isAvailable)" />
+                </td>
+                <td>
+                    <div class="row-actions">
+                        <p-button icon="pi pi-pencil" [rounded]="true" [outlined]="true" size="small" pTooltip="Edit"
+                            tooltipPosition="top" (onClick)="navigateToEdit(truck)" />
+                    </div>
+                </td>
+            </tr>
+        </ng-template>
+
+        <ng-template pTemplate="emptymessage">
+            <tr>
+                <td colspan="5">
+                    <div class="empty-state">
+                        <i class="pi pi-truck"></i>
+                        <span>No trucks found</span>
+                        <small>Add your first truck to get started</small>
+                    </div>
+                </td>
+            </tr>
+        </ng-template>
+
+    </p-table>
+</div>

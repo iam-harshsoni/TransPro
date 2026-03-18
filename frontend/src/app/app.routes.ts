@@ -34,6 +34,12 @@ export const routes: Routes = [{
 					.then(m => m.containerRoutes)
 		},
 		{
+			path: 'trucks',
+			loadChildren: () =>
+				import('./features/trucks/truck.routes')
+					.then(m => m.truckRoutes)
+		},
+		{
 			path: '',
 			redirectTo: 'dashboard',		// localhost:4200/ redirects to /dashboard
 			pathMatch: 'full'

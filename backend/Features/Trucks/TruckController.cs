@@ -16,7 +16,7 @@ namespace TransProAPI.Features.Trucks
     [ApiController]
     [ApiVersion(1)]
     [Route("api/[controller]")]
-    [Authorize(Roles = UserRoles.Admin)]
+    // [Authorize(Roles = UserRoles.Admin)]
     [EnableRateLimiting("general")]
     public class TruckController(TruckHandler _truckHandler) : ControllerBase
     {

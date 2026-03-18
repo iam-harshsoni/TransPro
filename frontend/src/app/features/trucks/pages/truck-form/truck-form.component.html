@@ -1,0 +1,108 @@
+<p-toast />
+
+<div class="page-header">
+	<div class="breadcrumb-trail">
+		Home <i class="pi pi-angle-right"></i>
+		Trucks <i class="pi pi-angle-right"></i>
+		<span>{{ isEditMode() ? 'Edit Truck' : 'New Truck' }}</span>
+	</div>
+	<div class="page-title">{{ isEditMode() ? 'Edit Truck' : 'New Truck' }}</div>
+</div>
+
+<div class="form-card">
+
+	<div class="card-header">
+		<span class="card-title">Truck Information</span>
+	</div>
+
+	<div class="card-body">
+		<form [formGroup]="form" (ngSubmit)="onSubmit()">
+			<div class="form-section-title">Vehicle Details</div>
+
+			<div class="form-grid-2">
+
+				<div class="form-field">
+					<label class="form-label">
+						Plate Number <span class="required-star">*</span>
+					</label>
+					<!--
+            Plate number input — we convert to uppercase automatically
+            using (input) event to keep it consistent.
+          -->
+					<input pInputText formControlName="plateNumber" placeholder="e.g. GJ-01-AB-1234"
+						[class.input-error]="isInvalid('plateNumber')" (input)="form.get('plateNumber')?.setValue(
+              $any($event.target).value.toUpperCase(),
+              { emitEvent: false }
+            )" />
+					@if (isInvalid('plateNumber')) {
+					<small class="error-msg">
+						@if (form.get('plateNumber')?.hasError('required')) {
+						Plate number is required.
+						}
+						@if (form.get('plateNumber')?.hasError('maxlength')) {
+						Max 20 characters.
+						}
+					</small>
+					}
+				</div>
+
+				<div class="form-field">
+					<label class="form-label">
+						Truck Model <span class="required-star">*</span>
+					</label>
+					<input pInputText formControlName="model" placeholder="e.g. Tata LPT 2518"
+						[class.input-error]="isInvalid('model')" />
+					@if (isInvalid('model')) {
+					<small class="error-msg">
+						@if (form.get('model')?.hasError('required')) {
+						Truck model is required.
+						}
+					</small>
+					}
+				</div>
+
+				<div class="form-field">
+					<label class="form-label">
+						Capacity (Tonnes) <span class="required-star">*</span>
+					</label>
+					<!--
+            p-inputnumber for capacity.
+            suffix=" T" shows "T" after the number — e.g. "15 T"
+            [min]="1" prevents 0 or negative values.
+          -->
+					<p-inputnumber formControlName="capacity" [min]="1" [max]="100" suffix=" T"
+						placeholder="Enter capacity in tonnes" [class.input-error]="isInvalid('capacity')"
+						styleClass="w-full" />
+					@if (isInvalid('capacity')) {
+					<small class="error-msg">
+						@if (form.get('capacity')?.hasError('required')) {
+						Capacity is required.
+						}
+						@if (form.get('capacity')?.hasError('min')) {
+						Capacity must be at least 1 tonne.
+						}
+					</small>
+					}
+				</div>
+
+				<div class="form-field">
+					<label class="form-label">Availability</label>
+					<div class="toggle-row">
+						<p-toggleswitch formControlName="isAvailable" />
+						<span class="toggle-label">
+							{{ form.get('isAvailable')?.value ? 'Available' : 'Unavailable' }}
+						</span>
+					</div>
+				</div>
+
+			</div>
+
+			<div class="form-actions">
+				<p-button label="Cancel" severity="secondary" [outlined]="true" (onClick)="onCancel()" />
+				<p-button [label]="isEditMode() ? 'Update Truck' : 'Add Truck'" icon="pi pi-check" type="submit"
+					[loading]="isSaving()" />
+			</div>
+		</form>
+	</div>
+
+</div>

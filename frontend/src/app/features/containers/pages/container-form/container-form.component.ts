@@ -115,7 +115,7 @@ export class ContainerFormComponent implements OnInit {
 				this.messageService.add({
 					severity: 'error',
 					summary: 'Error',
-					detail: 'Failed to update customer'
+					detail: `Failed to ${this.isEditMode() ? 'update' : 'create'} container`
 				});
 				this.isSaving.set(false);
 			}
