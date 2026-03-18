@@ -6,6 +6,9 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <NoWarn>$(NoWarn);1591</NoWarn>
+
+    <BuildAngular Condition="'$(BuildAngular)' == '' AND '$(Configuration)' != 'Release'">true</BuildAngular>
+    <BuildAngular Condition="'$(BuildAngular)' == ''">false</BuildAngular>
   </PropertyGroup>
 
   <ItemGroup>
@@ -34,9 +37,16 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="7.2.0" />
   </ItemGroup>
 
-  <Target Name="BuildAngular" BeforeTargets="Build">
+  <!-- <Target Name="BuildAngular" BeforeTargets="Build">
     <Exec WorkingDirectory="../frontend" Command="npm install" />
     <Exec WorkingDirectory="../frontend" Command="npm run build" />
+  </Target> -->
+
+  <Target Name="PublishAngular"
+          AfterTargets="Build"
+          Condition="'$(BuildAngular)' == 'true'">
+    <Exec Command="npm run build --configuration=development"
+          WorkingDirectory="../frontend" />
   </Target>
 
 </Project>
