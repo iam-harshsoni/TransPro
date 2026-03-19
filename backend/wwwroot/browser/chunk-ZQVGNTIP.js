@@ -4,7 +4,7 @@ import "./chunk-GOMI4DH3.js";
 var driverRoutes = [
   {
     path: "",
-    loadComponent: () => import("./chunk-A3IE66IW.js").then((m) => m.DriverListComponent)
+    loadComponent: () => import("./chunk-Y6CR2AJQ.js").then((m) => m.DriverListComponent)
   },
   {
     path: "create",
@@ -18,4 +18,4 @@ var driverRoutes = [
 export {
   driverRoutes
 };
-//# sourceMappingURL=chunk-ITBAJ7ME.js.map
+//# sourceMappingURL=chunk-ZQVGNTIP.js.map

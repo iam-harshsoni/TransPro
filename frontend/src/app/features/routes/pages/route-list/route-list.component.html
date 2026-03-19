@@ -23,10 +23,9 @@
         </ng-template>
     </p-toolbar>
 
-    <p-table #dt [value]="appRoutes()" [loading]="isLoading()" [lazy]="true" (onLazyLoad)="onLazyLoad($event)"
-        [totalRecords]="totalRecords" [paginator]="true" [rows]="pageSize" [rowsPerPageOptions]="[10, 25, 50]"
-        [rowHover]="true" dataKey="id" [showCurrentPageReport]="true"
-        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} routes"
+    <p-table #dt [value]="appRoutes()" [lazy]="true" (onLazyLoad)="onLazyLoad($event)" [totalRecords]="totalRecords"
+        [paginator]="true" [rows]="pageSize" [rowsPerPageOptions]="[10, 25, 50]" [rowHover]="true" dataKey="id"
+        [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} routes"
         [tableStyle]="{ 'min-width': '55rem' }">
 
         <ng-template pTemplate="caption">

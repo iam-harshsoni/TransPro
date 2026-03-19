@@ -299,7 +299,7 @@ var RouteListComponent = class _RouteListComponent {
   static \u0275fac = function RouteListComponent_Factory(__ngFactoryType__) {
     return new (__ngFactoryType__ || _RouteListComponent)();
   };
-  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _RouteListComponent, selectors: [["app-route-list"]], features: [\u0275\u0275ProvidersFeature([MessageService])], decls: 23, vars: 12, consts: [["start", ""], ["end", ""], ["dt", ""], [1, "page-header"], [1, "breadcrumb-trail"], [1, "pi", "pi-angle-right"], [1, "page-title"], [1, "page-subtitle"], [1, "card"], [1, "table-toolbar"], ["dataKey", "id", "currentPageReportTemplate", "Showing {first} to {last} of {totalRecords} routes", 3, "onLazyLoad", "value", "loading", "lazy", "totalRecords", "paginator", "rows", "rowsPerPageOptions", "rowHover", "showCurrentPageReport", "tableStyle"], ["pTemplate", "caption"], ["pTemplate", "header"], ["pTemplate", "body"], ["pTemplate", "emptymessage"], ["label", "New Route", "icon", "pi pi-plus", 3, "onClick"], [1, "pi", "pi-search"], ["pInputText", "", "type", "text", "placeholder", "Search routes...", 3, "input"], [1, "table-caption"], [1, "table-title"], [1, "table-count"], ["pSortableColumn", "origin", 2, "min-width", "14rem"], ["field", "origin"], ["pSortableColumn", "destination", 2, "min-width", "14rem"], ["field", "destination"], ["pSortableColumn", "distanceKm", 2, "min-width", "10rem"], ["field", "distanceKm"], ["pSortableColumn", "estimatedHours", 2, "min-width", "10rem"], ["field", "estimatedHours"], [2, "width", "8rem", "text-align", "center"], [1, "route-origin-cell"], [1, "pi", "pi-map-marker", "route-pin"], [1, "row-name"], [1, "pi", "pi-flag", "route-pin", "destination"], [3, "value", "severity"], [1, "duration-cell"], [1, "pi", "pi-clock"], [1, "row-actions"], ["icon", "pi pi-pencil", "size", "small", "pTooltip", "Edit", "tooltipPosition", "top", 3, "onClick", "rounded", "outlined"], ["colspan", "5"], [1, "empty-state"], [1, "pi", "pi-map"]], template: function RouteListComponent_Template(rf, ctx) {
+  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _RouteListComponent, selectors: [["app-route-list"]], features: [\u0275\u0275ProvidersFeature([MessageService])], decls: 23, vars: 11, consts: [["start", ""], ["end", ""], ["dt", ""], [1, "page-header"], [1, "breadcrumb-trail"], [1, "pi", "pi-angle-right"], [1, "page-title"], [1, "page-subtitle"], [1, "card"], [1, "table-toolbar"], ["dataKey", "id", "currentPageReportTemplate", "Showing {first} to {last} of {totalRecords} routes", 3, "onLazyLoad", "value", "lazy", "totalRecords", "paginator", "rows", "rowsPerPageOptions", "rowHover", "showCurrentPageReport", "tableStyle"], ["pTemplate", "caption"], ["pTemplate", "header"], ["pTemplate", "body"], ["pTemplate", "emptymessage"], ["label", "New Route", "icon", "pi pi-plus", 3, "onClick"], [1, "pi", "pi-search"], ["pInputText", "", "type", "text", "placeholder", "Search routes...", 3, "input"], [1, "table-caption"], [1, "table-title"], [1, "table-count"], ["pSortableColumn", "origin", 2, "min-width", "14rem"], ["field", "origin"], ["pSortableColumn", "destination", 2, "min-width", "14rem"], ["field", "destination"], ["pSortableColumn", "distanceKm", 2, "min-width", "10rem"], ["field", "distanceKm"], ["pSortableColumn", "estimatedHours", 2, "min-width", "10rem"], ["field", "estimatedHours"], [2, "width", "8rem", "text-align", "center"], [1, "route-origin-cell"], [1, "pi", "pi-map-marker", "route-pin"], [1, "row-name"], [1, "pi", "pi-flag", "route-pin", "destination"], [3, "value", "severity"], [1, "duration-cell"], [1, "pi", "pi-clock"], [1, "row-actions"], ["icon", "pi pi-pencil", "size", "small", "pTooltip", "Edit", "tooltipPosition", "top", 3, "onClick", "rounded", "outlined"], ["colspan", "5"], [1, "empty-state"], [1, "pi", "pi-map"]], template: function RouteListComponent_Template(rf, ctx) {
     if (rf & 1) {
       \u0275\u0275element(0, "p-toast");
       \u0275\u0275elementStart(1, "div", 3)(2, "div", 4);
@@ -326,7 +326,7 @@ var RouteListComponent = class _RouteListComponent {
     }
     if (rf & 2) {
       \u0275\u0275advance(17);
-      \u0275\u0275property("value", ctx.appRoutes())("loading", ctx.isLoading())("lazy", true)("totalRecords", ctx.totalRecords)("paginator", true)("rows", ctx.pageSize)("rowsPerPageOptions", \u0275\u0275pureFunction0(10, _c0))("rowHover", true)("showCurrentPageReport", true)("tableStyle", \u0275\u0275pureFunction0(11, _c1));
+      \u0275\u0275property("value", ctx.appRoutes())("lazy", true)("totalRecords", ctx.totalRecords)("paginator", true)("rows", ctx.pageSize)("rowsPerPageOptions", \u0275\u0275pureFunction0(9, _c0))("rowHover", true)("showCurrentPageReport", true)("tableStyle", \u0275\u0275pureFunction0(10, _c1));
     }
   }, dependencies: [
     CommonModule,
@@ -393,10 +393,9 @@ var RouteListComponent = class _RouteListComponent {
         </ng-template>
     </p-toolbar>
 
-    <p-table #dt [value]="appRoutes()" [loading]="isLoading()" [lazy]="true" (onLazyLoad)="onLazyLoad($event)"
-        [totalRecords]="totalRecords" [paginator]="true" [rows]="pageSize" [rowsPerPageOptions]="[10, 25, 50]"
-        [rowHover]="true" dataKey="id" [showCurrentPageReport]="true"
-        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} routes"
+    <p-table #dt [value]="appRoutes()" [lazy]="true" (onLazyLoad)="onLazyLoad($event)" [totalRecords]="totalRecords"
+        [paginator]="true" [rows]="pageSize" [rowsPerPageOptions]="[10, 25, 50]" [rowHover]="true" dataKey="id"
+        [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} routes"
         [tableStyle]="{ 'min-width': '55rem' }">
 
         <ng-template pTemplate="caption">
@@ -479,4 +478,4 @@ var RouteListComponent = class _RouteListComponent {
 export {
   RouteListComponent
 };
-//# sourceMappingURL=chunk-FGIHFTD3.js.map
+//# sourceMappingURL=chunk-HVZ2475I.js.map

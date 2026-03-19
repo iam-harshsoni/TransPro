@@ -25,10 +25,9 @@
 
     </p-toolbar>
 
-    <p-table #dt [value]="drivers()" [loading]="isLoading" [lazy]="true" (onLazyLoad)="onLazyLoad($event)"
-        [totalRecords]="totalRecords" [paginator]="true" [rows]="pageSize" [rowsPerPageOptions]="[10, 25, 50, 100]"
-        [rowHover]="true" dataKey="id" [showCurrentPageReport]="true"
-        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} drivers"
+    <p-table #dt [value]="drivers()" [lazy]="true" (onLazyLoad)="onLazyLoad($event)" [totalRecords]="totalRecords"
+        [paginator]="true" [rows]="pageSize" [rowsPerPageOptions]="[10, 25, 50, 100]" [rowHover]="true" dataKey="id"
+        [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} drivers"
         [tableStyle]="{ 'min-width': '60rem' }">
 
         <ng-template pTemplate="caption">

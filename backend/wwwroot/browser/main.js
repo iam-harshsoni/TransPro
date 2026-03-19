@@ -434,11 +434,11 @@ var routes = [{
     },
     {
       path: "customers",
-      loadChildren: () => import("./chunk-RSGMKSV2.js").then((m4) => m4.customerRoutes)
+      loadChildren: () => import("./chunk-RDIDCNNH.js").then((m4) => m4.customerRoutes)
     },
     {
       path: "drivers",
-      loadChildren: () => import("./chunk-ITBAJ7ME.js").then((m4) => m4.driverRoutes)
+      loadChildren: () => import("./chunk-ZQVGNTIP.js").then((m4) => m4.driverRoutes)
     },
     {
       path: "containers",
@@ -450,7 +450,7 @@ var routes = [{
     },
     {
       path: "routes",
-      loadChildren: () => import("./chunk-C76QNUSK.js").then((m4) => m4.routesRoutes)
+      loadChildren: () => import("./chunk-DFPDZBWA.js").then((m4) => m4.routesRoutes)
     },
     {
       path: "",
