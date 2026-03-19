@@ -24,7 +24,6 @@
     </p-toolbar>
 
     <p-table #dt [value]="containers()" 
-        [loading]="isLoading" 
         [lazy]="true" 
         (onLazyLoad)="onLazyLoad($event)"
         [totalRecords]="totalRecords" 
