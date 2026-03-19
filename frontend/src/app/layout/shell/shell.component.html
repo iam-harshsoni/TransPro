@@ -1,9 +1,28 @@
-<div class="layout-wrapper" [class.sidebar-collapsed]="layout.sidebarCollapsed()">
+<div
+  class="layout-wrapper"
+  [class.sidebar-collapsed]="layout.sidebarCollapsed()"
+  [class.sidebar-open]="layout.sidebarOpen()">
+
   <app-sidebar />
+
+  <!-- 
+    Real div overlay instead of CSS ::before pseudo-element.
+    Pseudo-elements cannot have click handlers.
+    This div covers the screen when sidebar is open on mobile.
+    Clicking it closes the sidebar.
+  -->
+  @if (layout.sidebarOpen()) {
+    <div
+      class="sidebar-overlay"
+      (click)="layout.closeMobileSidebar()">
+    </div>
+  }
+
   <div class="layout-main">
     <app-topbar />
     <div class="layout-content">
       <router-outlet />
     </div>
   </div>
+
 </div>

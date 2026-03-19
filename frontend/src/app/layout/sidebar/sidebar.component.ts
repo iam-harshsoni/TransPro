@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { TooltipModule } from 'primeng/tooltip';
 import { LayoutService } from '../../../core/services/layout';
@@ -35,6 +35,7 @@ export class SidebarComponent {
 		We only show it when sidebar is collapsed so user knows what the icon means. */
 
 	layout = inject(LayoutService);
+	router = inject(Router);
 
 	navGroups: NavGroup[] = [
 		{
@@ -60,4 +61,12 @@ export class SidebarComponent {
 			]
 		}
 	];
+
+	navigateTo(route: string): void {
+		this.router.navigate([route]);
+		// Close sidebar on mobile after navigation
+		if (window.innerWidth <= 768) {
+			this.layout.closeMobileSidebar();
+		}
+	}
 }

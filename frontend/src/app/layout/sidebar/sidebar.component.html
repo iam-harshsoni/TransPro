@@ -22,9 +22,9 @@
             @for (item of group.items; track item.route) {
 
             <a [routerLink]="item.route" routerLinkActive="active" class="nav-item"
-                [pTooltip]="layout.sidebarCollapsed() ? item.label : ''" tooltipPosition="right">
+                (click)="layout.closeMobileSidebar()" [pTooltip]="layout.sidebarCollapsed() ? item.label : ''"
+                tooltipPosition="right">
                 <i [class]="item.icon"></i>
-
                 @if (!layout.sidebarCollapsed()) {
                 <span>{{ item.label }}</span>
                 }

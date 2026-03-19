@@ -16,11 +16,22 @@ export class LayoutService {
       Think of it like a live variable that the UI watches.*/
 
   sidebarCollapsed = signal<boolean>(false);
+  sidebarOpen = signal<boolean>(false);
 
   toggle(): void {
     // update() takes current value and returns new value
     // v => !v means: if true return false, if false return true
-    this.sidebarCollapsed.update(v => !v);
+    // On mobile — toggle overlay open/close
+    if (window.innerWidth <= 768) {
+      this.sidebarOpen.update(v => !v);
+    } else {
+      // On desktop — collapse to icon-only
+      this.sidebarCollapsed.update(v => !v);
+    }
+  }
+
+  closeMobileSidebar(): void {
+    this.sidebarOpen.set(false);
   }
 
   /*  Why not just use a boolean variable in the component?

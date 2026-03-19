@@ -26,5 +26,10 @@ export class ShellComponent {
       const input = document.querySelector<HTMLInputElement>('.topbar-search input');
       input?.focus(); // programmatically focuses the search box
     }
+
+    // Escape — close mobile sidebar if open
+    if (event.key === 'Escape' && this.layout.sidebarOpen()) {
+      this.layout.closeMobileSidebar();
+    }
   }
 }

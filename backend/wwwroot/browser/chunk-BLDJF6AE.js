@@ -8,14 +8,14 @@ var routesRoutes = [
   },
   {
     path: "create",
-    loadComponent: () => import("./chunk-A57P63VF.js").then((m) => m.RouteFormComponent)
+    loadComponent: () => import("./chunk-RQ52K223.js").then((m) => m.RouteFormComponent)
   },
   {
     path: "edit/:id",
-    loadComponent: () => import("./chunk-A57P63VF.js").then((m) => m.RouteFormComponent)
+    loadComponent: () => import("./chunk-RQ52K223.js").then((m) => m.RouteFormComponent)
   }
 ];
 export {
   routesRoutes
 };
-//# sourceMappingURL=chunk-6YE2T2YS.js.map
+//# sourceMappingURL=chunk-BLDJF6AE.js.map

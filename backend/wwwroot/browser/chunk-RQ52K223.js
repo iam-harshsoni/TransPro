@@ -397,7 +397,6 @@ var RouteFormComponent = class _RouteFormComponent {
             <div class="form-section-title">Route Details</div>
 
             <div class="form-grid-2">
-
                 <div class="form-field">
                     <label class="form-label">
                         Origin <span class="required-star">*</span>
@@ -490,4 +489,4 @@ var RouteFormComponent = class _RouteFormComponent {
 export {
   RouteFormComponent
 };
-//# sourceMappingURL=chunk-A57P63VF.js.map
+//# sourceMappingURL=chunk-RQ52K223.js.map

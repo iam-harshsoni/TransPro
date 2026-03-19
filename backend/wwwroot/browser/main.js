@@ -4,6 +4,7 @@ import {
 } from "./chunk-2ABF2E5E.js";
 import {
   CommonModule,
+  Router,
   RouterLink,
   RouterLinkActive,
   RouterOutlet,
@@ -37,6 +38,7 @@ import {
   ɵɵelement,
   ɵɵelementEnd,
   ɵɵelementStart,
+  ɵɵgetCurrentView,
   ɵɵlistener,
   ɵɵloadQuery,
   ɵɵnextContext,
@@ -44,7 +46,9 @@ import {
   ɵɵqueryRefresh,
   ɵɵrepeater,
   ɵɵrepeaterCreate,
+  ɵɵresetView,
   ɵɵresolveWindow,
+  ɵɵrestoreView,
   ɵɵtext,
   ɵɵtextInterpolate,
   ɵɵviewQuery
@@ -63,8 +67,19 @@ var LayoutService = class _LayoutService {
     /* istanbul ignore next */
     []
   ));
+  sidebarOpen = signal(false, ...ngDevMode ? [{ debugName: "sidebarOpen" }] : (
+    /* istanbul ignore next */
+    []
+  ));
   toggle() {
-    this.sidebarCollapsed.update((v3) => !v3);
+    if (window.innerWidth <= 768) {
+      this.sidebarOpen.update((v3) => !v3);
+    } else {
+      this.sidebarCollapsed.update((v3) => !v3);
+    }
+  }
+  closeMobileSidebar() {
+    this.sidebarOpen.set(false);
   }
   static \u0275fac = function LayoutService_Factory(__ngFactoryType__) {
     return new (__ngFactoryType__ || _LayoutService)();
@@ -197,24 +212,30 @@ function SidebarComponent_For_6_For_4_Conditional_2_Template(rf, ctx) {
     \u0275\u0275elementEnd();
   }
   if (rf & 2) {
-    const item_r2 = \u0275\u0275nextContext().$implicit;
+    const item_r4 = \u0275\u0275nextContext().$implicit;
     \u0275\u0275advance();
-    \u0275\u0275textInterpolate(item_r2.label);
+    \u0275\u0275textInterpolate(item_r4.label);
   }
 }
 function SidebarComponent_For_6_For_4_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "a", 11);
+    const _r2 = \u0275\u0275getCurrentView();
+    \u0275\u0275elementStart(0, "a", 12);
+    \u0275\u0275listener("click", function SidebarComponent_For_6_For_4_Template_a_click_0_listener() {
+      \u0275\u0275restoreView(_r2);
+      const ctx_r2 = \u0275\u0275nextContext(2);
+      return \u0275\u0275resetView(ctx_r2.layout.closeMobileSidebar());
+    });
     \u0275\u0275element(1, "i");
     \u0275\u0275conditionalCreate(2, SidebarComponent_For_6_For_4_Conditional_2_Template, 2, 1, "span");
     \u0275\u0275elementEnd();
   }
   if (rf & 2) {
-    const item_r2 = ctx.$implicit;
+    const item_r4 = ctx.$implicit;
     const ctx_r2 = \u0275\u0275nextContext(2);
-    \u0275\u0275property("routerLink", item_r2.route)("pTooltip", ctx_r2.layout.sidebarCollapsed() ? item_r2.label : "");
+    \u0275\u0275property("routerLink", item_r4.route)("pTooltip", ctx_r2.layout.sidebarCollapsed() ? item_r4.label : "");
     \u0275\u0275advance();
-    \u0275\u0275classMap(item_r2.icon);
+    \u0275\u0275classMap(item_r4.icon);
     \u0275\u0275advance();
     \u0275\u0275conditional(!ctx_r2.layout.sidebarCollapsed() ? 2 : -1);
   }
@@ -237,13 +258,13 @@ function SidebarComponent_For_6_Template(rf, ctx) {
 }
 function SidebarComponent_Conditional_11_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "div", 12)(1, "div", 13);
+    \u0275\u0275elementStart(0, "div", 13)(1, "div", 14);
     \u0275\u0275text(2, "Admin");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(3, "div", 14);
+    \u0275\u0275elementStart(3, "div", 15);
     \u0275\u0275text(4, "Administrator");
     \u0275\u0275elementEnd()();
-    \u0275\u0275element(5, "i", 15);
+    \u0275\u0275element(5, "i", 16);
   }
 }
 var SidebarComponent = class _SidebarComponent {
@@ -258,6 +279,7 @@ var SidebarComponent = class _SidebarComponent {
           pTooltip is from PrimeNG — shows a tooltip on hover.
           We only show it when sidebar is collapsed so user knows what the icon means. */
   layout = inject(LayoutService);
+  router = inject(Router);
   navGroups = [
     {
       groupLabel: "MAIN",
@@ -282,10 +304,16 @@ var SidebarComponent = class _SidebarComponent {
       ]
     }
   ];
+  navigateTo(route) {
+    this.router.navigate([route]);
+    if (window.innerWidth <= 768) {
+      this.layout.closeMobileSidebar();
+    }
+  }
   static \u0275fac = function SidebarComponent_Factory(__ngFactoryType__) {
     return new (__ngFactoryType__ || _SidebarComponent)();
   };
-  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _SidebarComponent, selectors: [["app-sidebar"]], decls: 12, vars: 2, consts: [[1, "sidebar"], [1, "sidebar-logo"], [1, "pi", "pi-send", "logo-icon"], [1, "logo-text"], [1, "sidebar-nav"], [1, "nav-group"], [1, "sidebar-footer"], [1, "sidebar-user"], [1, "user-avatar-small"], [1, "nav-group-label"], [1, "nav-group-divider"], ["routerLinkActive", "active", "tooltipPosition", "right", 1, "nav-item", 3, "routerLink", "pTooltip"], [1, "user-info-small"], [1, "user-name-small"], [1, "user-role-small"], [1, "pi", "pi-sign-out", "logout-btn"]], template: function SidebarComponent_Template(rf, ctx) {
+  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _SidebarComponent, selectors: [["app-sidebar"]], decls: 12, vars: 2, consts: [[1, "sidebar"], [1, "sidebar-logo"], [1, "pi", "pi-send", "logo-icon"], [1, "logo-text"], [1, "sidebar-nav"], [1, "nav-group"], [1, "sidebar-footer"], [1, "sidebar-user"], [1, "user-avatar-small"], [1, "nav-group-label"], [1, "nav-group-divider"], ["routerLinkActive", "active", "tooltipPosition", "right", 1, "nav-item", 3, "routerLink", "pTooltip"], ["routerLinkActive", "active", "tooltipPosition", "right", 1, "nav-item", 3, "click", "routerLink", "pTooltip"], [1, "user-info-small"], [1, "user-name-small"], [1, "user-role-small"], [1, "pi", "pi-sign-out", "logout-btn"]], template: function SidebarComponent_Template(rf, ctx) {
     if (rf & 1) {
       \u0275\u0275elementStart(0, "div", 0)(1, "div", 1);
       \u0275\u0275element(2, "i", 2);
@@ -337,9 +365,9 @@ var SidebarComponent = class _SidebarComponent {
             @for (item of group.items; track item.route) {\r
 \r
             <a [routerLink]="item.route" routerLinkActive="active" class="nav-item"\r
-                [pTooltip]="layout.sidebarCollapsed() ? item.label : ''" tooltipPosition="right">\r
+                (click)="layout.closeMobileSidebar()" [pTooltip]="layout.sidebarCollapsed() ? item.label : ''"\r
+                tooltipPosition="right">\r
                 <i [class]="item.icon"></i>\r
-\r
                 @if (!layout.sidebarCollapsed()) {\r
                 <span>{{ item.label }}</span>\r
                 }\r
@@ -372,6 +400,18 @@ var SidebarComponent = class _SidebarComponent {
 })();
 
 // src/app/layout/shell/shell.component.ts
+function ShellComponent_Conditional_2_Template(rf, ctx) {
+  if (rf & 1) {
+    const _r1 = \u0275\u0275getCurrentView();
+    \u0275\u0275elementStart(0, "div", 4);
+    \u0275\u0275listener("click", function ShellComponent_Conditional_2_Template_div_click_0_listener() {
+      \u0275\u0275restoreView(_r1);
+      const ctx_r1 = \u0275\u0275nextContext();
+      return \u0275\u0275resetView(ctx_r1.layout.closeMobileSidebar());
+    });
+    \u0275\u0275elementEnd();
+  }
+}
 var ShellComponent = class _ShellComponent {
   layout = inject(LayoutService);
   // Ctrl+K global shortcut — focuses search from anywhere
@@ -380,6 +420,9 @@ var ShellComponent = class _ShellComponent {
       event.preventDefault();
       const input = document.querySelector(".topbar-search input");
       input?.focus();
+    }
+    if (event.key === "Escape" && this.layout.sidebarOpen()) {
+      this.layout.closeMobileSidebar();
     }
   }
   static \u0275fac = function ShellComponent_Factory(__ngFactoryType__) {
@@ -391,25 +434,28 @@ var ShellComponent = class _ShellComponent {
         return ctx.onKeydown($event);
       }, \u0275\u0275resolveWindow);
     }
-  }, decls: 6, vars: 2, consts: [[1, "layout-wrapper"], [1, "layout-main"], [1, "layout-content"]], template: function ShellComponent_Template(rf, ctx) {
+  }, decls: 7, vars: 5, consts: [[1, "layout-wrapper"], [1, "sidebar-overlay"], [1, "layout-main"], [1, "layout-content"], [1, "sidebar-overlay", 3, "click"]], template: function ShellComponent_Template(rf, ctx) {
     if (rf & 1) {
       \u0275\u0275elementStart(0, "div", 0);
       \u0275\u0275element(1, "app-sidebar");
-      \u0275\u0275elementStart(2, "div", 1);
-      \u0275\u0275element(3, "app-topbar");
-      \u0275\u0275elementStart(4, "div", 2);
-      \u0275\u0275element(5, "router-outlet");
+      \u0275\u0275conditionalCreate(2, ShellComponent_Conditional_2_Template, 1, 0, "div", 1);
+      \u0275\u0275elementStart(3, "div", 2);
+      \u0275\u0275element(4, "app-topbar");
+      \u0275\u0275elementStart(5, "div", 3);
+      \u0275\u0275element(6, "router-outlet");
       \u0275\u0275elementEnd()()();
     }
     if (rf & 2) {
-      \u0275\u0275classProp("sidebar-collapsed", ctx.layout.sidebarCollapsed());
+      \u0275\u0275classProp("sidebar-collapsed", ctx.layout.sidebarCollapsed())("sidebar-open", ctx.layout.sidebarOpen());
+      \u0275\u0275advance(2);
+      \u0275\u0275conditional(ctx.layout.sidebarOpen() ? 2 : -1);
     }
   }, dependencies: [RouterOutlet, SidebarComponent, TopbarComponent], encapsulation: 2 });
 };
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(ShellComponent, [{
     type: Component,
-    args: [{ selector: "app-shell", standalone: true, imports: [RouterOutlet, SidebarComponent, TopbarComponent], template: '<div class="layout-wrapper" [class.sidebar-collapsed]="layout.sidebarCollapsed()">\r\n  <app-sidebar />\r\n  <div class="layout-main">\r\n    <app-topbar />\r\n    <div class="layout-content">\r\n      <router-outlet />\r\n    </div>\r\n  </div>\r\n</div>' }]
+    args: [{ selector: "app-shell", standalone: true, imports: [RouterOutlet, SidebarComponent, TopbarComponent], template: '<div\r\n  class="layout-wrapper"\r\n  [class.sidebar-collapsed]="layout.sidebarCollapsed()"\r\n  [class.sidebar-open]="layout.sidebarOpen()">\r\n\r\n  <app-sidebar />\r\n\r\n  <!-- \r\n    Real div overlay instead of CSS ::before pseudo-element.\r\n    Pseudo-elements cannot have click handlers.\r\n    This div covers the screen when sidebar is open on mobile.\r\n    Clicking it closes the sidebar.\r\n  -->\r\n  @if (layout.sidebarOpen()) {\r\n    <div\r\n      class="sidebar-overlay"\r\n      (click)="layout.closeMobileSidebar()">\r\n    </div>\r\n  }\r\n\r\n  <div class="layout-main">\r\n    <app-topbar />\r\n    <div class="layout-content">\r\n      <router-outlet />\r\n    </div>\r\n  </div>\r\n\r\n</div>' }]
   }], null, { onKeydown: [{
     type: HostListener,
     args: ["window:keydown", ["$event"]]
@@ -450,7 +496,7 @@ var routes = [{
     },
     {
       path: "routes",
-      loadChildren: () => import("./chunk-6YE2T2YS.js").then((m4) => m4.routesRoutes)
+      loadChildren: () => import("./chunk-BLDJF6AE.js").then((m4) => m4.routesRoutes)
     },
     {
       path: "",
