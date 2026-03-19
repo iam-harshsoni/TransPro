@@ -1,1 +1,107 @@
-<p>route-form works!</p>
+<p-toast />
+
+<div class="page-header">
+    <div class="breadcrumb-trail">
+        Home <i class="pi pi-angle-right"></i>
+        Routes <i class="pi pi-angle-right"></i>
+        <span>{{ isEditMode() ? 'Edit Route' : 'New Route' }}</span>
+    </div>
+    <div class="page-title">{{ isEditMode() ? 'Edit Route' : 'New Route' }}</div>
+</div>
+
+<div class="form-card">
+    <div class="card-header">
+        <span class="card-title">Route Information</span>
+    </div>
+
+    <div class="card-body">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+            <div class="form-section-title">Route Details</div>
+
+            <div class="form-grid-2">
+
+                <div class="form-field">
+                    <label class="form-label">
+                        Origin <span class="required-star">*</span>
+                    </label>
+                    <input pInputText formControlName="origin" placeholder="e.g. Mumbai"
+                        [class.input-error]="isInvalid('origin')" />
+                    @if (isInvalid('origin')) {
+                    <small class="error-msg">
+                        @if (form.get('origin')?.hasError('required')) {
+                        Origin is required.
+                        }
+                    </small>
+                    }
+                </div>
+
+                <div class="form-field">
+                    <label class="form-label">
+                        Destination <span class="required-star">*</span>
+                    </label>
+                    <input pInputText formControlName="destination" placeholder="e.g. Delhi"
+                        [class.input-error]="isInvalid('destination')" />
+                    @if (isInvalid('destination')) {
+                    <small class="error-msg">
+                        @if (form.get('destination')?.hasError('required')) {
+                        Destination is required.
+                        }
+                    </small>
+                    }
+                </div>
+
+                <div class="form-field">
+                    <label class="form-label">
+                        Distance (km) <span class="required-star">*</span>
+                    </label>
+
+                    <p-inputnumber formControlName="distanceKm" [min]="0.1" [minFractionDigits]="1"
+                        [maxFractionDigits]="2" suffix=" km" placeholder="Enter distance"
+                        [class.input-error]="isInvalid('distanceKm')" styleClass="w-full" />
+                    @if (isInvalid('distanceKm')) {
+                    <small class="error-msg">
+                        @if (form.get('distanceKm')?.hasError('required')) {
+                        Distance is required.
+                        }
+                        @if (form.get('distanceKm')?.hasError('min')) {
+                        Distance must be at least 0.1 km.
+                        }
+                    </small>
+                    }
+                </div>
+
+                <div class="form-field">
+                    <label class="form-label">
+                        Estimated Duration (hours) <span class="required-star">*</span>
+                    </label>
+
+                    <p-inputnumber formControlName="estimatedHours" [min]="0.1" [minFractionDigits]="1"
+                        [maxFractionDigits]="2" suffix=" hrs" placeholder="e.g. 2.5 for 2h 30m"
+                        [class.input-error]="isInvalid('estimatedHours')" styleClass="w-full" />
+                    @if (isInvalid('estimatedHours')) {
+                    <small class="error-msg">
+                        @if (form.get('estimatedHours')?.hasError('required')) {
+                        Estimated hours is required.
+                        }
+                        @if (form.get('estimatedHours')?.hasError('min')) {
+                        Must be at least 0.1 hours.
+                        }
+                    </small>
+                    }
+                    <small class="form-hint">
+                        Enter decimal hours — e.g. 1.5 = 1 hour 30 minutes
+                    </small>
+                </div>
+
+            </div>
+
+            <div class="form-actions">
+                <p-button label="Cancel" severity="secondary" [outlined]="true" (onClick)="onCancel()" />
+                <p-button [label]="isEditMode() ? 'Update Route' : 'Create Route'" icon="pi pi-check" type="submit"
+                    [loading]="isSaving()" />
+            </div>
+
+        </form>
+    </div>
+</div>

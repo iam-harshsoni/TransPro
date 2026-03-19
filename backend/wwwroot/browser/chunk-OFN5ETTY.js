@@ -262,7 +262,7 @@ var ContainerListComponent = class _ContainerListComponent {
   static \u0275fac = function ContainerListComponent_Factory(__ngFactoryType__) {
     return new (__ngFactoryType__ || _ContainerListComponent)();
   };
-  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _ContainerListComponent, selectors: [["app-container-list"]], features: [\u0275\u0275ProvidersFeature([MessageService, ConfirmationService])], decls: 24, vars: 12, consts: [["start", ""], ["end", ""], ["dt", ""], [1, "page-header"], [1, "breadcrumb-trail"], [1, "pi", "pi-angle-right"], [1, "page-title"], [1, "page-subtitle"], [1, "card"], [1, "table-toolbar"], ["dataKey", "id", "currentPageReportTemplate", "Showing {first} to {last} of {totalRecords} containers", 3, "onLazyLoad", "value", "loading", "lazy", "totalRecords", "paginator", "rows", "rowsPerPageOptions", "rowHover", "showCurrentPageReport", "tableStyle"], ["pTemplate", "caption"], ["pTemplate", "header"], ["pTemplate", "body"], ["pTemplate", "emptymessage"], [1, "pi", "pi-search"], ["pInputText", "", "type", "text", "placeholder", "Search containers...", 3, "input"], ["label", "Add", "icon", "pi pi-plus", 3, "onClick"], [1, "table-caption"], [1, "table-title"], [1, "table-count"], ["pSortableColumn", "containerNumber", 2, "min-width", "14rem"], ["field", "containerNumber"], ["pSortableColumn", "type", 2, "min-width", "16rem"], ["field", "Type"], ["pSortableColumn", "weightCapacity", 2, "min-width", "11rem"], ["field", "weightCapacity"], ["pSortableColumn", "isAvailable", 2, "min-width", "10rem"], ["field", "isAvailable"], ["pSortableColumn", "createdAt", 2, "min-width", "11rem"], ["field", "createdAt"], [2, "width", "8rem", "text-align", "center"], [1, "row-name"], [3, "value", "severity"], [1, "row-actions"], ["icon", "pi pi-pencil", "size", "small", "pTooltip", "Edit", "tooltipPosition", "top", 3, "onClick", "rounded", "outlined"], ["colspan", "6"], [1, "empty-state"], [1, "pi", "pi-users"]], template: function ContainerListComponent_Template(rf, ctx) {
+  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _ContainerListComponent, selectors: [["app-container-list"]], features: [\u0275\u0275ProvidersFeature([MessageService, ConfirmationService])], decls: 24, vars: 11, consts: [["start", ""], ["end", ""], ["dt", ""], [1, "page-header"], [1, "breadcrumb-trail"], [1, "pi", "pi-angle-right"], [1, "page-title"], [1, "page-subtitle"], [1, "card"], [1, "table-toolbar"], ["dataKey", "id", "currentPageReportTemplate", "Showing {first} to {last} of {totalRecords} containers", 3, "onLazyLoad", "value", "lazy", "totalRecords", "paginator", "rows", "rowsPerPageOptions", "rowHover", "showCurrentPageReport", "tableStyle"], ["pTemplate", "caption"], ["pTemplate", "header"], ["pTemplate", "body"], ["pTemplate", "emptymessage"], [1, "pi", "pi-search"], ["pInputText", "", "type", "text", "placeholder", "Search containers...", 3, "input"], ["label", "Add", "icon", "pi pi-plus", 3, "onClick"], [1, "table-caption"], [1, "table-title"], [1, "table-count"], ["pSortableColumn", "containerNumber", 2, "min-width", "14rem"], ["field", "containerNumber"], ["pSortableColumn", "type", 2, "min-width", "16rem"], ["field", "Type"], ["pSortableColumn", "weightCapacity", 2, "min-width", "11rem"], ["field", "weightCapacity"], ["pSortableColumn", "isAvailable", 2, "min-width", "10rem"], ["field", "isAvailable"], ["pSortableColumn", "createdAt", 2, "min-width", "11rem"], ["field", "createdAt"], [2, "width", "8rem", "text-align", "center"], [1, "row-name"], [3, "value", "severity"], [1, "row-actions"], ["icon", "pi pi-pencil", "size", "small", "pTooltip", "Edit", "tooltipPosition", "top", 3, "onClick", "rounded", "outlined"], ["colspan", "6"], [1, "empty-state"], [1, "pi", "pi-users"]], template: function ContainerListComponent_Template(rf, ctx) {
     if (rf & 1) {
       \u0275\u0275element(0, "p-toast")(1, "p-confirmDialog");
       \u0275\u0275elementStart(2, "div", 3)(3, "div", 4);
@@ -289,7 +289,7 @@ var ContainerListComponent = class _ContainerListComponent {
     }
     if (rf & 2) {
       \u0275\u0275advance(18);
-      \u0275\u0275property("value", ctx.containers())("loading", ctx.isLoading)("lazy", true)("totalRecords", ctx.totalRecords)("paginator", true)("rows", ctx.pageSize)("rowsPerPageOptions", \u0275\u0275pureFunction0(10, _c0))("rowHover", true)("showCurrentPageReport", true)("tableStyle", \u0275\u0275pureFunction0(11, _c1));
+      \u0275\u0275property("value", ctx.containers())("lazy", true)("totalRecords", ctx.totalRecords)("paginator", true)("rows", ctx.pageSize)("rowsPerPageOptions", \u0275\u0275pureFunction0(9, _c0))("rowHover", true)("showCurrentPageReport", true)("tableStyle", \u0275\u0275pureFunction0(10, _c1));
     }
   }, dependencies: [
     CommonModule,
@@ -358,7 +358,6 @@ var ContainerListComponent = class _ContainerListComponent {
     </p-toolbar>
 
     <p-table #dt [value]="containers()" 
-        [loading]="isLoading" 
         [lazy]="true" 
         (onLazyLoad)="onLazyLoad($event)"
         [totalRecords]="totalRecords" 
@@ -451,4 +450,4 @@ var ContainerListComponent = class _ContainerListComponent {
 export {
   ContainerListComponent
 };
-//# sourceMappingURL=chunk-E7GLBEXA.js.map
+//# sourceMappingURL=chunk-OFN5ETTY.js.map

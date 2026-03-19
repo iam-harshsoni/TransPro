@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["src/app/features/routes/pages/route-form/route-form.component.ts", "src/app/features/routes/pages/route-form/route-form.component.html"],
-  "sourcesContent": ["import { Component } from '@angular/core';\n\n@Component({\n  selector: 'app-route-form',\n  imports: [],\n  templateUrl: './route-form.component.html',\n  styleUrl: './route-form.component.scss',\n})\nexport class RouteFormComponent {}\n", "<p>route-form works!</p>\n"],
-  "mappings": ";;;;;;;;;;;;AAQM,IAAO,qBAAP,MAAO,oBAAkB;;qCAAlB,qBAAkB;EAAA;yEAAlB,qBAAkB,WAAA,CAAA,CAAA,gBAAA,CAAA,GAAA,OAAA,GAAA,MAAA,GAAA,UAAA,SAAA,4BAAA,IAAA,KAAA;AAAA,QAAA,KAAA,GAAA;ACR/B,MAAA,4BAAA,GAAA,GAAA;AAAG,MAAA,iBAAA,GAAA,mBAAA;AAAiB,MAAA,0BAAA;;;;;sEDQP,oBAAkB,CAAA;UAN9B;uBACW,kBAAgB,SACjB,CAAA,GAAE,UAAA,6BAAA,CAAA;;;;6EAIA,oBAAkB,EAAA,WAAA,sBAAA,UAAA,oEAAA,YAAA,EAAA,CAAA;AAAA,GAAA;",
-  "names": []
-}

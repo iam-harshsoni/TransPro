@@ -1,4 +1,7 @@
 import {
+  RouteService
+} from "./chunk-GK25RDEA.js";
+import {
   ConfirmDialogModule,
   SortIcon,
   SortableColumn,
@@ -17,9 +20,7 @@ import {
 } from "./chunk-YEOMDTB7.js";
 import "./chunk-QXZ2OK4J.js";
 import "./chunk-2ABF2E5E.js";
-import {
-  environment
-} from "./chunk-E3RJNTKN.js";
+import "./chunk-E3RJNTKN.js";
 import {
   Button,
   ButtonModule,
@@ -31,15 +32,12 @@ import {
 } from "./chunk-X7K774KH.js";
 import {
   CommonModule,
-  HttpClient,
-  HttpParams,
   MessageService,
   PrimeTemplate,
   Router
 } from "./chunk-F6YHHGKC.js";
 import {
   Component,
-  Injectable,
   inject,
   setClassMetadata,
   signal,
@@ -47,7 +45,6 @@ import {
   ɵɵProvidersFeature,
   ɵɵadvance,
   ɵɵdefineComponent,
-  ɵɵdefineInjectable,
   ɵɵelement,
   ɵɵelementEnd,
   ɵɵelementStart,
@@ -65,40 +62,6 @@ import {
   ɵɵtextInterpolate1
 } from "./chunk-ZCRCH54Z.js";
 import "./chunk-GOMI4DH3.js";
-
-// src/app/features/routes/services/route.service.ts
-var RouteService = class _RouteService {
-  http = inject(HttpClient);
-  apiUrl = `${environment.apiUrl}/trans-route`;
-  getPaginated(pageNumber, pageSize, search = "") {
-    let params = new HttpParams().set("pageNumber", pageNumber).set("pageSize", pageSize);
-    if (search) {
-      params = params.set("search", search);
-    }
-    return this.http.get(this.apiUrl, { params });
-  }
-  getById(id) {
-    return this.http.get(`${this.apiUrl}/${id}`);
-  }
-  create(dto) {
-    return this.http.post(this.apiUrl, dto);
-  }
-  update(id, dto) {
-    return this.http.put(`${this.apiUrl}/${id}`, dto);
-  }
-  static \u0275fac = function RouteService_Factory(__ngFactoryType__) {
-    return new (__ngFactoryType__ || _RouteService)();
-  };
-  static \u0275prov = /* @__PURE__ */ \u0275\u0275defineInjectable({ token: _RouteService, factory: _RouteService.\u0275fac, providedIn: "root" });
-};
-(() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(RouteService, [{
-    type: Injectable,
-    args: [{
-      providedIn: "root"
-    }]
-  }], null, null);
-})();
 
 // src/app/features/routes/pages/route-list/route-list.component.ts
 var _c0 = () => [10, 25, 50];
@@ -175,21 +138,19 @@ function RouteListComponent_ng_template_21_Template(rf, ctx) {
     \u0275\u0275elementStart(4, "span", 32);
     \u0275\u0275text(5);
     \u0275\u0275elementEnd()()();
-    \u0275\u0275elementStart(6, "td")(7, "div", 30);
-    \u0275\u0275element(8, "i", 33);
-    \u0275\u0275elementStart(9, "span", 32);
-    \u0275\u0275text(10);
+    \u0275\u0275elementStart(6, "td")(7, "div", 30)(8, "span", 32);
+    \u0275\u0275text(9);
     \u0275\u0275elementEnd()()();
-    \u0275\u0275elementStart(11, "td");
-    \u0275\u0275element(12, "p-tag", 34);
+    \u0275\u0275elementStart(10, "td");
+    \u0275\u0275element(11, "p-tag", 33);
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(13, "td")(14, "div", 35);
-    \u0275\u0275element(15, "i", 36);
-    \u0275\u0275elementStart(16, "span");
-    \u0275\u0275text(17);
+    \u0275\u0275elementStart(12, "td")(13, "div", 34);
+    \u0275\u0275element(14, "i", 35);
+    \u0275\u0275elementStart(15, "span");
+    \u0275\u0275text(16);
     \u0275\u0275elementEnd()()();
-    \u0275\u0275elementStart(18, "td")(19, "div", 37)(20, "p-button", 38);
-    \u0275\u0275listener("onClick", function RouteListComponent_ng_template_21_Template_p_button_onClick_20_listener() {
+    \u0275\u0275elementStart(17, "td")(18, "div", 36)(19, "p-button", 37);
+    \u0275\u0275listener("onClick", function RouteListComponent_ng_template_21_Template_p_button_onClick_19_listener() {
       const route_r5 = \u0275\u0275restoreView(_r4).$implicit;
       const ctx_r1 = \u0275\u0275nextContext();
       return \u0275\u0275resetView(ctx_r1.navigateToEdit(route_r5));
@@ -201,7 +162,7 @@ function RouteListComponent_ng_template_21_Template(rf, ctx) {
     const ctx_r1 = \u0275\u0275nextContext();
     \u0275\u0275advance(5);
     \u0275\u0275textInterpolate(route_r5.origin);
-    \u0275\u0275advance(5);
+    \u0275\u0275advance(4);
     \u0275\u0275textInterpolate(route_r5.destination);
     \u0275\u0275advance(2);
     \u0275\u0275property("value", ctx_r1.formatDistance(route_r5.distanceKm))("severity", ctx_r1.getDistanceSeverity(route_r5.distanceKm));
@@ -213,8 +174,8 @@ function RouteListComponent_ng_template_21_Template(rf, ctx) {
 }
 function RouteListComponent_ng_template_22_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "tr")(1, "td", 39)(2, "div", 40);
-    \u0275\u0275element(3, "i", 41);
+    \u0275\u0275elementStart(0, "tr")(1, "td", 38)(2, "div", 39);
+    \u0275\u0275element(3, "i", 40);
     \u0275\u0275elementStart(4, "span");
     \u0275\u0275text(5, "No routes found");
     \u0275\u0275elementEnd();
@@ -299,7 +260,7 @@ var RouteListComponent = class _RouteListComponent {
   static \u0275fac = function RouteListComponent_Factory(__ngFactoryType__) {
     return new (__ngFactoryType__ || _RouteListComponent)();
   };
-  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _RouteListComponent, selectors: [["app-route-list"]], features: [\u0275\u0275ProvidersFeature([MessageService])], decls: 23, vars: 11, consts: [["start", ""], ["end", ""], ["dt", ""], [1, "page-header"], [1, "breadcrumb-trail"], [1, "pi", "pi-angle-right"], [1, "page-title"], [1, "page-subtitle"], [1, "card"], [1, "table-toolbar"], ["dataKey", "id", "currentPageReportTemplate", "Showing {first} to {last} of {totalRecords} routes", 3, "onLazyLoad", "value", "lazy", "totalRecords", "paginator", "rows", "rowsPerPageOptions", "rowHover", "showCurrentPageReport", "tableStyle"], ["pTemplate", "caption"], ["pTemplate", "header"], ["pTemplate", "body"], ["pTemplate", "emptymessage"], ["label", "New Route", "icon", "pi pi-plus", 3, "onClick"], [1, "pi", "pi-search"], ["pInputText", "", "type", "text", "placeholder", "Search routes...", 3, "input"], [1, "table-caption"], [1, "table-title"], [1, "table-count"], ["pSortableColumn", "origin", 2, "min-width", "14rem"], ["field", "origin"], ["pSortableColumn", "destination", 2, "min-width", "14rem"], ["field", "destination"], ["pSortableColumn", "distanceKm", 2, "min-width", "10rem"], ["field", "distanceKm"], ["pSortableColumn", "estimatedHours", 2, "min-width", "10rem"], ["field", "estimatedHours"], [2, "width", "8rem", "text-align", "center"], [1, "route-origin-cell"], [1, "pi", "pi-map-marker", "route-pin"], [1, "row-name"], [1, "pi", "pi-flag", "route-pin", "destination"], [3, "value", "severity"], [1, "duration-cell"], [1, "pi", "pi-clock"], [1, "row-actions"], ["icon", "pi pi-pencil", "size", "small", "pTooltip", "Edit", "tooltipPosition", "top", 3, "onClick", "rounded", "outlined"], ["colspan", "5"], [1, "empty-state"], [1, "pi", "pi-map"]], template: function RouteListComponent_Template(rf, ctx) {
+  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _RouteListComponent, selectors: [["app-route-list"]], features: [\u0275\u0275ProvidersFeature([MessageService])], decls: 23, vars: 11, consts: [["start", ""], ["end", ""], ["dt", ""], [1, "page-header"], [1, "breadcrumb-trail"], [1, "pi", "pi-angle-right"], [1, "page-title"], [1, "page-subtitle"], [1, "card"], [1, "table-toolbar"], ["dataKey", "id", "currentPageReportTemplate", "Showing {first} to {last} of {totalRecords} routes", 3, "onLazyLoad", "value", "lazy", "totalRecords", "paginator", "rows", "rowsPerPageOptions", "rowHover", "showCurrentPageReport", "tableStyle"], ["pTemplate", "caption"], ["pTemplate", "header"], ["pTemplate", "body"], ["pTemplate", "emptymessage"], ["label", "New Route", "icon", "pi pi-plus", 3, "onClick"], [1, "pi", "pi-search"], ["pInputText", "", "type", "text", "placeholder", "Search routes...", 3, "input"], [1, "table-caption"], [1, "table-title"], [1, "table-count"], ["pSortableColumn", "origin", 2, "min-width", "14rem"], ["field", "origin"], ["pSortableColumn", "destination", 2, "min-width", "14rem"], ["field", "destination"], ["pSortableColumn", "distanceKm", 2, "min-width", "10rem"], ["field", "distanceKm"], ["pSortableColumn", "estimatedHours", 2, "min-width", "10rem"], ["field", "estimatedHours"], [2, "width", "8rem", "text-align", "center"], [1, "route-origin-cell"], [1, "pi", "pi-map-marker", "route-pin"], [1, "row-name"], [3, "value", "severity"], [1, "duration-cell"], [1, "pi", "pi-clock"], [1, "row-actions"], ["icon", "pi pi-pencil", "size", "small", "pTooltip", "Edit", "tooltipPosition", "top", 3, "onClick", "rounded", "outlined"], ["colspan", "5"], [1, "empty-state"], [1, "pi", "pi-map"]], template: function RouteListComponent_Template(rf, ctx) {
     if (rf & 1) {
       \u0275\u0275element(0, "p-toast");
       \u0275\u0275elementStart(1, "div", 3)(2, "div", 4);
@@ -321,7 +282,7 @@ var RouteListComponent = class _RouteListComponent {
       \u0275\u0275listener("onLazyLoad", function RouteListComponent_Template_p_table_onLazyLoad_17_listener($event) {
         return ctx.onLazyLoad($event);
       });
-      \u0275\u0275template(19, RouteListComponent_ng_template_19_Template, 5, 1, "ng-template", 11)(20, RouteListComponent_ng_template_20_Template, 15, 0, "ng-template", 12)(21, RouteListComponent_ng_template_21_Template, 21, 7, "ng-template", 13)(22, RouteListComponent_ng_template_22_Template, 8, 0, "ng-template", 14);
+      \u0275\u0275template(19, RouteListComponent_ng_template_19_Template, 5, 1, "ng-template", 11)(20, RouteListComponent_ng_template_20_Template, 15, 0, "ng-template", 12)(21, RouteListComponent_ng_template_21_Template, 20, 7, "ng-template", 13)(22, RouteListComponent_ng_template_22_Template, 8, 0, "ng-template", 14);
       \u0275\u0275elementEnd()();
     }
     if (rf & 2) {
@@ -433,7 +394,6 @@ var RouteListComponent = class _RouteListComponent {
                 </td>
                 <td>
                     <div class="route-origin-cell">
-                        <i class="pi pi-flag route-pin destination"></i>
                         <span class="row-name">{{ route.destination }}</span>
                     </div>
                 </td>
@@ -478,4 +438,4 @@ var RouteListComponent = class _RouteListComponent {
 export {
   RouteListComponent
 };
-//# sourceMappingURL=chunk-HVZ2475I.js.map
+//# sourceMappingURL=chunk-ZYXLKZKY.js.map
