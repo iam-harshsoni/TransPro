@@ -43,6 +43,10 @@ export class DriverService {
         return this.http.put<Driver>(`${this.apiUrl}/${id}`, dto);
     }
 
+    toggleAvailability(id: number): Observable<ApiResponse<string>> {
+        return this.http.patch<ApiResponse<string>>(`${this.apiUrl}/${id}/toggle-availability`, {});
+    }
+
     delete(id: number): Observable<void> {
         return this.http.delete<void>(`${this.apiUrl}/${id}`);
     }

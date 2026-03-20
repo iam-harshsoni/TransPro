@@ -68,16 +68,33 @@
                 </div>
 
                 <!-- Available Toggle -->
-                <div class="form-field">
-                    <label class="form-label">Status</label>
-                    <div class="toggle-row">
-                        <p-toggleswitch formControlName="isAvailable" />
-                        <span class="toggle-label">
-                            {{ form.get('isAvailable')?.value ? 'Available' : 'Occupied' }}
-                        </span>
-                    </div>
+
+                @if(isEditMode()) {
+                <div class="form-section-title" style="margin-top: 1.5rem">
+                    Availability
                 </div>
 
+                <div class="availability-form-section">
+                    <div class="availability-toggle-row">
+                        <div class="availability-info">
+                            <span class="availability-title">Driver Availability</span>
+                            <span class="availability-desc">
+                                Toggle whether this driver is available for new trip assignments.
+                                Cannot be marked available if driver has an active trip in transit.
+                            </span>
+                        </div>
+
+                        <div class="availability-control">
+                            <p-toggleswitch formControlName="isAvailable" />
+                            <span class="availability-status-label"
+                                [class.status-available]="form.get('isAvailable')?.value"
+                                [class.status-unavailable]="!form.get('isAvailable')?.value">
+                                {{ form.get('isAvailable')?.value ? 'Available' : 'Unavailable' }}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                }
             </div>
 
             <!-- Form Actions -->

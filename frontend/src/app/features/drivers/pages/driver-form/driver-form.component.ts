@@ -9,6 +9,7 @@ import { ToastModule } from 'primeng/toast';
 import { ToggleSwitchModule } from 'primeng/toggleswitch';
 import { DriverService } from '../../services/driver.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Driver } from '../../models/driver.model';
 
 @Component({
 	selector: 'app-driver-form',
@@ -25,7 +26,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 	templateUrl: './driver-form.component.html',
 	styleUrl: './driver-form.component.scss',
 })
-export class DriverFormComponent implements OnInit{
+export class DriverFormComponent implements OnInit {
 
 	private fb = inject(FormBuilder);
 	private driverService = inject(DriverService);
@@ -33,6 +34,8 @@ export class DriverFormComponent implements OnInit{
 
 	private route = inject(ActivatedRoute);
 	private messageService = inject(MessageService);
+
+	private originalAvailability: boolean = true;
 
 	// signals
 	isEditMode = signal<boolean>(false);
@@ -68,6 +71,7 @@ export class DriverFormComponent implements OnInit{
 					phone: driver.data.phone,
 					isAvailable: driver.data.isAvailable
 				});
+				this.originalAvailability = driver.data.isAvailable;
 				this.isLoading.set(false);
 			},
 			error: () => {
@@ -88,16 +92,57 @@ export class DriverFormComponent implements OnInit{
 
 		this.isSaving.set(true);
 
+		const formValue = this.form.value;
+		const dto = {
+			fullName: formValue.fullName,
+			licenseNumber: formValue.licenseNumber,
+			phone: formValue.phone
+		}
+
+		const currentAvailability: boolean = formValue.isAvailable;
+
+		const availabilityChanged = this.isEditMode() && currentAvailability !== this.originalAvailability;
+
 		if (this.isEditMode()) {
-			this.driverService.update(this.driverId()!, this.form.value).subscribe({
+			this.driverService.update(this.driverId()!, formValue).subscribe({
 				next: () => {
-					this.messageService.add({
-						severity: 'success',
-						summary: 'Updated',
-						detail: 'Driver updated successfully'
-					});
-					this.isSaving.set(false);
-					setTimeout(() => this.router.navigate(['/drivers']), 1500)
+
+					if (availabilityChanged) {
+						this.driverService.toggleAvailability(this.driverId()!).subscribe({
+							next: (response) => {
+								this.messageService.add({
+									severity: 'success',
+									summary: 'Updated',
+									detail: 'Driver updated successfully'
+								});
+								this.isSaving.set(false);
+								setTimeout(() => this.router.navigate(['/drivers']), 1500);
+							},
+							error: (err) => {
+								const errorMsg = err.error?.message
+									?? 'Driver updated but availability could not be changed';
+
+								this.messageService.add({
+									severity: 'warn',
+									summary: 'Partially Saved',
+									detail: errorMsg,
+									life: 6000
+								});
+								this.isSaving.set(false);
+
+								setTimeout(() => this.router.navigate(['/drivers']), 2000)
+							}
+						});
+					}
+					else {
+						this.messageService.add({
+							severity: 'success',
+							summary: 'Updated',
+							detail: 'Driver updated successfully'
+						});
+						this.isSaving.set(false);
+						setTimeout(() => this.router.navigate(['/drivers']), 1500)
+					}
 				},
 				error: () => {
 					this.messageService.add({
