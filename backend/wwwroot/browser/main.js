@@ -484,7 +484,7 @@ var routes = [{
     },
     {
       path: "drivers",
-      loadChildren: () => import("./chunk-PWLKNXZN.js").then((m4) => m4.driverRoutes)
+      loadChildren: () => import("./chunk-Z5XVD6TS.js").then((m4) => m4.driverRoutes)
     },
     {
       path: "containers",

@@ -8,14 +8,14 @@ var driverRoutes = [
   },
   {
     path: "create",
-    loadComponent: () => import("./chunk-IDCUJZRJ.js").then((m) => m.DriverFormComponent)
+    loadComponent: () => import("./chunk-NUPLSQRG.js").then((m) => m.DriverFormComponent)
   },
   {
     path: "edit/:id",
-    loadComponent: () => import("./chunk-IDCUJZRJ.js").then((m) => m.DriverFormComponent)
+    loadComponent: () => import("./chunk-NUPLSQRG.js").then((m) => m.DriverFormComponent)
   }
 ];
 export {
   driverRoutes
 };
-//# sourceMappingURL=chunk-PWLKNXZN.js.map
+//# sourceMappingURL=chunk-Z5XVD6TS.js.map
