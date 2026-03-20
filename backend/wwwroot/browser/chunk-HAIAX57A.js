@@ -20,7 +20,7 @@ import "./chunk-QXZ2OK4J.js";
 import "./chunk-2ABF2E5E.js";
 import {
   DriverService
-} from "./chunk-APWD6BC4.js";
+} from "./chunk-74WYHLM6.js";
 import "./chunk-E3RJNTKN.js";
 import {
   Button,
@@ -123,7 +123,7 @@ function DriverListComponent_ng_template_21_Template(rf, ctx) {
     \u0275\u0275text(8, "Phone");
     \u0275\u0275elementEnd();
     \u0275\u0275elementStart(9, "th", 26);
-    \u0275\u0275text(10, "isAvailable");
+    \u0275\u0275text(10, "Availability");
     \u0275\u0275elementEnd();
     \u0275\u0275elementStart(11, "th", 27);
     \u0275\u0275text(12, "Actions");
@@ -359,7 +359,7 @@ var DriverListComponent = class _DriverListComponent {
                     License Number <p-sortIcon field="licenseNumber" />
                 </th>
                 <th style="min-width: 11rem">Phone</th>
-                <th style="min-width: 8rem">isAvailable</th>
+                <th style="min-width: 8rem">Availability</th>
                 <th style="width: 8rem; text-align: center">Actions</th>
             </tr>
         </ng-template>
@@ -404,4 +404,4 @@ var DriverListComponent = class _DriverListComponent {
 export {
   DriverListComponent
 };
-//# sourceMappingURL=chunk-Y6CR2AJQ.js.map
+//# sourceMappingURL=chunk-HAIAX57A.js.map

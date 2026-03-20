@@ -32,6 +32,9 @@ var DriverService = class _DriverService {
   update(id, dto) {
     return this.http.put(`${this.apiUrl}/${id}`, dto);
   }
+  toggleAvailability(id) {
+    return this.http.patch(`${this.apiUrl}/${id}/toggle-availability`, {});
+  }
   delete(id) {
     return this.http.delete(`${this.apiUrl}/${id}`);
   }
@@ -52,4 +55,4 @@ var DriverService = class _DriverService {
 export {
   DriverService
 };
-//# sourceMappingURL=chunk-APWD6BC4.js.map
+//# sourceMappingURL=chunk-74WYHLM6.js.map

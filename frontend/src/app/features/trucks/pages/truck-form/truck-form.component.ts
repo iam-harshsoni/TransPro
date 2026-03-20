@@ -35,6 +35,8 @@ export class TruckFormComponent implements OnInit {
     private route = inject(ActivatedRoute);
     private messageService = inject(MessageService);
 
+    private originalAvailability: boolean = true;
+
     isEditMode = signal<boolean>(false);
     isSaving = signal<boolean>(false);
     isLoading = signal<boolean>(false);
@@ -85,19 +87,63 @@ export class TruckFormComponent implements OnInit {
         this.form.markAsTouched();
         if (this.form.invalid) return;
 
+        this.isSaving.set(true);
+
+        const formValue = this.form.value;
+
+        const dto = {
+            plateNumber: formValue.plateNumber,
+            model: formValue.model,
+            capacity: formValue.capacity
+        }
+
+        const currentAvailability: boolean = formValue.isAvailable;
+
+        const availabilityChanged = this.isEditMode() && currentAvailability != this.originalAvailability;
+
         const request$ = this.isEditMode()
             ? this.truckService.update(this.truckId()!, this.form.value)
             : this.truckService.create(this.form.value);
 
         request$.subscribe({
             next: () => {
-                this.messageService.add({
-                    severity: 'success',
-                    summary: this.isEditMode() ? 'Updated' : 'Created',
-                    detail: `Truck ${this.isEditMode() ? 'Updated' : 'Created'}`
-                });
-                this.isSaving.set(false);
-                setTimeout(() => this.router.navigate(['/trucks']), (1500));
+
+                if (availabilityChanged) {
+                    this.truckService.toggleAvailability(this.truckId()!).subscribe({
+                        next: (response) => {
+                            this.messageService.add({
+                                severity: 'success',
+                                summary: 'Updated',
+                                detail: 'Truck updated successfully'
+                            });
+                            this.isSaving.set(false);
+                            setTimeout(() => this.router.navigate(['/trucks']), 1500);
+                        },
+                        error: (err) => {
+                            const errorMsg = err.error?.message
+                                ?? 'Truck updated but availability could not be changed';
+
+                            this.messageService.add({
+                                severity: 'warn',
+                                summary: 'Partially Saved',
+                                detail: errorMsg,
+                                life: 6000
+                            });
+                            this.isSaving.set(false);
+
+                            setTimeout(() => this.router.navigate(['/trucks']), 2000)
+                        }
+                    });
+                }
+                else {
+                    this.messageService.add({
+                        severity: 'success',
+                        summary: this.isEditMode() ? 'Updated' : 'Created',
+                        detail: `Truck ${this.isEditMode() ? 'Updated' : 'Created'}`
+                    });
+                    this.isSaving.set(false);
+                    setTimeout(() => this.router.navigate(['/trucks']), (1500));
+                }
             },
             error: () => {
                 this.messageService.add({

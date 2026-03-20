@@ -1,6 +1,6 @@
 import {
   TruckService
-} from "./chunk-BT4ENGXY.js";
+} from "./chunk-XSSCOOUZ.js";
 import {
   InputNumber,
   InputNumberModule
@@ -130,12 +130,15 @@ function TruckFormComponent_Conditional_40_Template(rf, ctx) {
     \u0275\u0275conditional(((tmp_2_0 = ctx_r0.form.get("capacity")) == null ? null : tmp_2_0.hasError("min")) ? 2 : -1);
   }
 }
+function TruckFormComponent_Conditional_41_Template(rf, ctx) {
+}
 var TruckFormComponent = class _TruckFormComponent {
   fb = inject(FormBuilder);
   truckService = inject(TruckService);
   router = inject(Router);
   route = inject(ActivatedRoute);
   messageService = inject(MessageService);
+  originalAvailability = true;
   isEditMode = signal(false, ...ngDevMode ? [{ debugName: "isEditMode" }] : (
     /* istanbul ignore next */
     []
@@ -192,16 +195,50 @@ var TruckFormComponent = class _TruckFormComponent {
     this.form.markAsTouched();
     if (this.form.invalid)
       return;
+    this.isSaving.set(true);
+    const formValue = this.form.value;
+    const dto = {
+      plateNumber: formValue.plateNumber,
+      model: formValue.model,
+      capacity: formValue.capacity
+    };
+    const currentAvailability = formValue.isAvailable;
+    const availabilityChanged = this.isEditMode() && currentAvailability != this.originalAvailability;
     const request$ = this.isEditMode() ? this.truckService.update(this.truckId(), this.form.value) : this.truckService.create(this.form.value);
     request$.subscribe({
       next: () => {
-        this.messageService.add({
-          severity: "success",
-          summary: this.isEditMode() ? "Updated" : "Created",
-          detail: `Truck ${this.isEditMode() ? "Updated" : "Created"}`
-        });
-        this.isSaving.set(false);
-        setTimeout(() => this.router.navigate(["/trucks"]), 1500);
+        if (availabilityChanged) {
+          this.truckService.toggleAvailability(this.truckId()).subscribe({
+            next: (response) => {
+              this.messageService.add({
+                severity: "success",
+                summary: "Updated",
+                detail: "Truck updated successfully"
+              });
+              this.isSaving.set(false);
+              setTimeout(() => this.router.navigate(["/trucks"]), 1500);
+            },
+            error: (err) => {
+              const errorMsg = err.error?.message ?? "Truck updated but availability could not be changed";
+              this.messageService.add({
+                severity: "warn",
+                summary: "Partially Saved",
+                detail: errorMsg,
+                life: 6e3
+              });
+              this.isSaving.set(false);
+              setTimeout(() => this.router.navigate(["/trucks"]), 2e3);
+            }
+          });
+        } else {
+          this.messageService.add({
+            severity: "success",
+            summary: this.isEditMode() ? "Updated" : "Created",
+            detail: `Truck ${this.isEditMode() ? "Updated" : "Created"}`
+          });
+          this.isSaving.set(false);
+          setTimeout(() => this.router.navigate(["/trucks"]), 1500);
+        }
       },
       error: () => {
         this.messageService.add({
@@ -223,7 +260,7 @@ var TruckFormComponent = class _TruckFormComponent {
   static \u0275fac = function TruckFormComponent_Factory(__ngFactoryType__) {
     return new (__ngFactoryType__ || _TruckFormComponent)();
   };
-  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _TruckFormComponent, selectors: [["app-truck-form"]], features: [\u0275\u0275ProvidersFeature([MessageService])], decls: 51, vars: 18, consts: [[1, "page-header"], [1, "breadcrumb-trail"], [1, "pi", "pi-angle-right"], [1, "page-title"], [1, "form-card"], [1, "card-header"], [1, "card-title"], [1, "card-body"], [3, "ngSubmit", "formGroup"], [1, "form-section-title"], [1, "form-grid-2"], [1, "form-field"], [1, "form-label"], [1, "required-star"], ["pInputText", "", "formControlName", "plateNumber", "placeholder", "e.g. GJ-01-AB-1234", 3, "input"], [1, "error-msg"], ["pInputText", "", "formControlName", "model", "placeholder", "e.g. Tata LPT 2518"], ["formControlName", "capacity", "suffix", " T", "placeholder", "Enter capacity in tonnes", "styleClass", "w-full", 3, "min", "max"], [1, "toggle-row"], ["formControlName", "isAvailable"], [1, "toggle-label"], [1, "form-actions"], ["label", "Cancel", "severity", "secondary", 3, "onClick", "outlined"], ["icon", "pi pi-check", "type", "submit", 3, "label", "loading"]], template: function TruckFormComponent_Template(rf, ctx) {
+  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _TruckFormComponent, selectors: [["app-truck-form"]], features: [\u0275\u0275ProvidersFeature([MessageService])], decls: 52, vars: 23, consts: [[1, "page-header"], [1, "breadcrumb-trail"], [1, "pi", "pi-angle-right"], [1, "page-title"], [1, "form-card"], [1, "card-header"], [1, "card-title"], [1, "card-body"], [3, "ngSubmit", "formGroup"], [1, "form-section-title"], [1, "form-grid-2"], [1, "form-field"], [1, "form-label"], [1, "required-star"], ["pInputText", "", "formControlName", "plateNumber", "placeholder", "e.g. GJ-01-AB-1234", 3, "input"], [1, "error-msg"], ["pInputText", "", "formControlName", "model", "placeholder", "e.g. Tata LPT 2518"], ["formControlName", "capacity", "suffix", " T", "placeholder", "Enter capacity in tonnes", "styleClass", "w-full", 3, "min", "max"], [1, "toggle-row"], ["formControlName", "isAvailable"], [1, "toggle-label"], [1, "form-actions"], ["label", "Cancel", "severity", "secondary", 3, "onClick", "outlined"], ["icon", "pi pi-check", "type", "submit", 3, "label", "loading"]], template: function TruckFormComponent_Template(rf, ctx) {
     if (rf & 1) {
       \u0275\u0275element(0, "p-toast");
       \u0275\u0275elementStart(1, "div", 0)(2, "div", 1);
@@ -276,24 +313,27 @@ var TruckFormComponent = class _TruckFormComponent {
       \u0275\u0275element(39, "p-inputnumber", 17);
       \u0275\u0275conditionalCreate(40, TruckFormComponent_Conditional_40_Template, 3, 2, "small", 15);
       \u0275\u0275elementEnd();
-      \u0275\u0275elementStart(41, "div", 11)(42, "label", 12);
-      \u0275\u0275text(43, "Availability");
+      \u0275\u0275conditionalCreate(41, TruckFormComponent_Conditional_41_Template, 0, 0);
+      \u0275\u0275elementStart(42, "div", 11)(43, "label", 12);
+      \u0275\u0275text(44, "Availability");
       \u0275\u0275elementEnd();
-      \u0275\u0275elementStart(44, "div", 18);
-      \u0275\u0275element(45, "p-toggleswitch", 19);
-      \u0275\u0275elementStart(46, "span", 20);
-      \u0275\u0275text(47);
+      \u0275\u0275elementStart(45, "div", 18);
+      \u0275\u0275element(46, "p-toggleswitch", 19);
+      \u0275\u0275elementStart(47, "span", 20);
+      \u0275\u0275text(48);
       \u0275\u0275elementEnd()()()();
-      \u0275\u0275elementStart(48, "div", 21)(49, "p-button", 22);
-      \u0275\u0275listener("onClick", function TruckFormComponent_Template_p_button_onClick_49_listener() {
+      \u0275\u0275elementStart(49, "div", 21)(50, "p-button", 22);
+      \u0275\u0275listener("onClick", function TruckFormComponent_Template_p_button_onClick_50_listener() {
         return ctx.onCancel();
       });
       \u0275\u0275elementEnd();
-      \u0275\u0275element(50, "p-button", 23);
+      \u0275\u0275element(51, "p-button", 23);
       \u0275\u0275elementEnd()()()();
     }
     if (rf & 2) {
-      let tmp_11_0;
+      let tmp_12_0;
+      let tmp_13_0;
+      let tmp_14_0;
       \u0275\u0275advance(8);
       \u0275\u0275textInterpolate(ctx.isEditMode() ? "Edit Truck" : "New Truck");
       \u0275\u0275advance(2);
@@ -313,8 +353,12 @@ var TruckFormComponent = class _TruckFormComponent {
       \u0275\u0275property("min", 1)("max", 100);
       \u0275\u0275advance();
       \u0275\u0275conditional(ctx.isInvalid("capacity") ? 40 : -1);
-      \u0275\u0275advance(7);
-      \u0275\u0275textInterpolate1(" ", ((tmp_11_0 = ctx.form.get("isAvailable")) == null ? null : tmp_11_0.value) ? "Available" : "Unavailable", " ");
+      \u0275\u0275advance();
+      \u0275\u0275conditional(ctx.isEditMode() ? 41 : -1);
+      \u0275\u0275advance(6);
+      \u0275\u0275classProp("status-available", (tmp_12_0 = ctx.form.get("isAvailable")) == null ? null : tmp_12_0.value)("status-unavailable", !((tmp_13_0 = ctx.form.get("isAvailable")) == null ? null : tmp_13_0.value));
+      \u0275\u0275advance();
+      \u0275\u0275textInterpolate1(" ", ((tmp_14_0 = ctx.form.get("isAvailable")) == null ? null : tmp_14_0.value) ? "Available" : "Unavailable", " ");
       \u0275\u0275advance(2);
       \u0275\u0275property("outlined", true);
       \u0275\u0275advance();
@@ -380,9 +424,9 @@ var TruckFormComponent = class _TruckFormComponent {
 						Plate Number <span class="required-star">*</span>
 					</label>
 					<!--
-            Plate number input \u2014 we convert to uppercase automatically
-            using (input) event to keep it consistent.
-          -->
+						Plate number input \u2014 we convert to uppercase automatically
+						using (input) event to keep it consistent.
+					-->
 					<input pInputText formControlName="plateNumber" placeholder="e.g. GJ-01-AB-1234"
 						[class.input-error]="isInvalid('plateNumber')" (input)="form.get('plateNumber')?.setValue(
               $any($event.target).value.toUpperCase(),
@@ -420,10 +464,10 @@ var TruckFormComponent = class _TruckFormComponent {
 						Capacity (Tonnes) <span class="required-star">*</span>
 					</label>
 					<!--
-            p-inputnumber for capacity.
-            suffix=" T" shows "T" after the number \u2014 e.g. "15 T"
-            [min]="1" prevents 0 or negative values.
-          -->
+						p-inputnumber for capacity.
+						suffix=" T" shows "T" after the number \u2014 e.g. "15 T"
+						[min]="1" prevents 0 or negative values.
+					-->
 					<p-inputnumber formControlName="capacity" [min]="1" [max]="100" suffix=" T"
 						placeholder="Enter capacity in tonnes" [class.input-error]="isInvalid('capacity')"
 						styleClass="w-full" />
@@ -439,11 +483,17 @@ var TruckFormComponent = class _TruckFormComponent {
 					}
 				</div>
 
+				@if(isEditMode()) {
+
+
+				}
+
 				<div class="form-field">
 					<label class="form-label">Availability</label>
 					<div class="toggle-row">
 						<p-toggleswitch formControlName="isAvailable" />
-						<span class="toggle-label">
+						<span class="toggle-label" [class.status-available]="form.get('isAvailable')?.value"
+							[class.status-unavailable]="!form.get('isAvailable')?.value">
 							{{ form.get('isAvailable')?.value ? 'Available' : 'Unavailable' }}
 						</span>
 					</div>
@@ -468,4 +518,4 @@ var TruckFormComponent = class _TruckFormComponent {
 export {
   TruckFormComponent
 };
-//# sourceMappingURL=chunk-O4NSJXXG.js.map
+//# sourceMappingURL=chunk-4JQK5MOJ.js.map

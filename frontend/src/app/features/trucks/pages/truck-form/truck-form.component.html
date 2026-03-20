@@ -26,9 +26,9 @@
 						Plate Number <span class="required-star">*</span>
 					</label>
 					<!--
-            Plate number input — we convert to uppercase automatically
-            using (input) event to keep it consistent.
-          -->
+						Plate number input — we convert to uppercase automatically
+						using (input) event to keep it consistent.
+					-->
 					<input pInputText formControlName="plateNumber" placeholder="e.g. GJ-01-AB-1234"
 						[class.input-error]="isInvalid('plateNumber')" (input)="form.get('plateNumber')?.setValue(
               $any($event.target).value.toUpperCase(),
@@ -66,10 +66,10 @@
 						Capacity (Tonnes) <span class="required-star">*</span>
 					</label>
 					<!--
-            p-inputnumber for capacity.
-            suffix=" T" shows "T" after the number — e.g. "15 T"
-            [min]="1" prevents 0 or negative values.
-          -->
+						p-inputnumber for capacity.
+						suffix=" T" shows "T" after the number — e.g. "15 T"
+						[min]="1" prevents 0 or negative values.
+					-->
 					<p-inputnumber formControlName="capacity" [min]="1" [max]="100" suffix=" T"
 						placeholder="Enter capacity in tonnes" [class.input-error]="isInvalid('capacity')"
 						styleClass="w-full" />
@@ -85,11 +85,17 @@
 					}
 				</div>
 
+				@if(isEditMode()) {
+
+
+				}
+
 				<div class="form-field">
 					<label class="form-label">Availability</label>
 					<div class="toggle-row">
 						<p-toggleswitch formControlName="isAvailable" />
-						<span class="toggle-label">
+						<span class="toggle-label" [class.status-available]="form.get('isAvailable')?.value"
+							[class.status-unavailable]="!form.get('isAvailable')?.value">
 							{{ form.get('isAvailable')?.value ? 'Available' : 'Unavailable' }}
 						</span>
 					</div>

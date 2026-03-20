@@ -31,6 +31,9 @@ var TruckService = class _TruckService {
   update(id, dto) {
     return this.http.put(`${this.apiUrl}/${id}`, dto);
   }
+  toggleAvailability(id) {
+    return this.http.patch(`${this.apiUrl}/${id}/toggle-availability`, {});
+  }
   static \u0275fac = function TruckService_Factory(__ngFactoryType__) {
     return new (__ngFactoryType__ || _TruckService)();
   };
@@ -48,4 +51,4 @@ var TruckService = class _TruckService {
 export {
   TruckService
 };
-//# sourceMappingURL=chunk-BT4ENGXY.js.map
+//# sourceMappingURL=chunk-XSSCOOUZ.js.map

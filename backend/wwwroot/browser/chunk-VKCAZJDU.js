@@ -1,6 +1,6 @@
 import {
   TruckService
-} from "./chunk-BT4ENGXY.js";
+} from "./chunk-XSSCOOUZ.js";
 import {
   ConfirmDialogModule,
   SortIcon,
@@ -417,4 +417,4 @@ var TruckListComponent = class _TruckListComponent {
 export {
   TruckListComponent
 };
-//# sourceMappingURL=chunk-WTTWVOU2.js.map
+//# sourceMappingURL=chunk-VKCAZJDU.js.map

@@ -42,4 +42,8 @@ export class TruckService {
     update(id: number, dto: UpdateContainerDto): Observable<Truck> {
         return this.http.put<Truck>(`${this.apiUrl}/${id}`, dto);
     }
+
+    toggleAvailability(id: number): Observable<ApiResponse<string>> {
+        return this.http.patch<ApiResponse<string>>(`${this.apiUrl}/${id}/toggle-availability`, {});
+    }
 }

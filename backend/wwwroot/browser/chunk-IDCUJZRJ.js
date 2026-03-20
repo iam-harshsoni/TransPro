@@ -4,7 +4,7 @@ import {
 } from "./chunk-MBGFM2UD.js";
 import {
   DriverService
-} from "./chunk-APWD6BC4.js";
+} from "./chunk-74WYHLM6.js";
 import "./chunk-E3RJNTKN.js";
 import {
   Button,
@@ -115,12 +115,41 @@ function DriverFormComponent_Conditional_38_Template(rf, ctx) {
     \u0275\u0275elementEnd();
   }
 }
+function DriverFormComponent_Conditional_39_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275elementStart(0, "div", 20);
+    \u0275\u0275text(1, " Availability ");
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(2, "div", 21)(3, "div", 22)(4, "div", 23)(5, "span", 24);
+    \u0275\u0275text(6, "Driver Availability");
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(7, "span", 25);
+    \u0275\u0275text(8, " Toggle whether this driver is available for new trip assignments. Cannot be marked available if driver has an active trip in transit. ");
+    \u0275\u0275elementEnd()();
+    \u0275\u0275elementStart(9, "div", 26);
+    \u0275\u0275element(10, "p-toggleswitch", 27);
+    \u0275\u0275elementStart(11, "span", 28);
+    \u0275\u0275text(12);
+    \u0275\u0275elementEnd()()()();
+  }
+  if (rf & 2) {
+    let tmp_1_0;
+    let tmp_2_0;
+    let tmp_3_0;
+    const ctx_r0 = \u0275\u0275nextContext();
+    \u0275\u0275advance(11);
+    \u0275\u0275classProp("status-available", (tmp_1_0 = ctx_r0.form.get("isAvailable")) == null ? null : tmp_1_0.value)("status-unavailable", !((tmp_2_0 = ctx_r0.form.get("isAvailable")) == null ? null : tmp_2_0.value));
+    \u0275\u0275advance();
+    \u0275\u0275textInterpolate1(" ", ((tmp_3_0 = ctx_r0.form.get("isAvailable")) == null ? null : tmp_3_0.value) ? "Available" : "Unavailable", " ");
+  }
+}
 var DriverFormComponent = class _DriverFormComponent {
   fb = inject(FormBuilder);
   driverService = inject(DriverService);
   router = inject(Router);
   route = inject(ActivatedRoute);
   messageService = inject(MessageService);
+  originalAvailability = true;
   // signals
   isEditMode = signal(false, ...ngDevMode ? [{ debugName: "isEditMode" }] : (
     /* istanbul ignore next */
@@ -162,6 +191,7 @@ var DriverFormComponent = class _DriverFormComponent {
           phone: driver.data.phone,
           isAvailable: driver.data.isAvailable
         });
+        this.originalAvailability = driver.data.isAvailable;
         this.isLoading.set(false);
       },
       error: () => {
@@ -179,16 +209,49 @@ var DriverFormComponent = class _DriverFormComponent {
     if (this.form.invalid)
       return;
     this.isSaving.set(true);
+    const formValue = this.form.value;
+    const dto = {
+      fullName: formValue.fullName,
+      licenseNumber: formValue.licenseNumber,
+      phone: formValue.phone
+    };
+    const currentAvailability = formValue.isAvailable;
+    const availabilityChanged = this.isEditMode() && currentAvailability !== this.originalAvailability;
     if (this.isEditMode()) {
-      this.driverService.update(this.driverId(), this.form.value).subscribe({
+      this.driverService.update(this.driverId(), formValue).subscribe({
         next: () => {
-          this.messageService.add({
-            severity: "success",
-            summary: "Updated",
-            detail: "Driver updated successfully"
-          });
-          this.isSaving.set(false);
-          setTimeout(() => this.router.navigate(["/drivers"]), 1500);
+          if (availabilityChanged) {
+            this.driverService.toggleAvailability(this.driverId()).subscribe({
+              next: (response) => {
+                this.messageService.add({
+                  severity: "success",
+                  summary: "Updated",
+                  detail: "Driver updated successfully"
+                });
+                this.isSaving.set(false);
+                setTimeout(() => this.router.navigate(["/drivers"]), 1500);
+              },
+              error: (err) => {
+                const errorMsg = err.error?.message ?? "Driver updated but availability could not be changed";
+                this.messageService.add({
+                  severity: "warn",
+                  summary: "Partially Saved",
+                  detail: errorMsg,
+                  life: 6e3
+                });
+                this.isSaving.set(false);
+                setTimeout(() => this.router.navigate(["/drivers"]), 2e3);
+              }
+            });
+          } else {
+            this.messageService.add({
+              severity: "success",
+              summary: "Updated",
+              detail: "Driver updated successfully"
+            });
+            this.isSaving.set(false);
+            setTimeout(() => this.router.navigate(["/drivers"]), 1500);
+          }
         },
         error: () => {
           this.messageService.add({
@@ -231,7 +294,7 @@ var DriverFormComponent = class _DriverFormComponent {
   static \u0275fac = function DriverFormComponent_Factory(__ngFactoryType__) {
     return new (__ngFactoryType__ || _DriverFormComponent)();
   };
-  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _DriverFormComponent, selectors: [["app-driver-form"]], features: [\u0275\u0275ProvidersFeature([MessageService])], decls: 49, vars: 16, consts: [[1, "page-header"], [1, "breadcrumb-trail"], [1, "pi", "pi-angle-right"], [1, "page-title"], [1, "form-card"], [1, "card-header"], [1, "card-title"], [1, "card-body"], [3, "ngSubmit", "formGroup"], [1, "form-grid-2"], [1, "form-field"], [1, "form-label"], [1, "required-star"], ["pInputText", "", "formControlName", "fullName", "placeholder", "Enter driver full name"], [1, "error-msg"], ["pInputText", "", "formControlName", "licenseNumber", "placeholder", "Enter driver full name"], ["pInputText", "", "formControlName", "phone", "placeholder", "Enter phone number"], [1, "toggle-row"], ["formControlName", "isAvailable"], [1, "toggle-label"], [1, "form-actions"], ["label", "Cancel", "severity", "secondary", 3, "onClick", "outlined"], ["icon", "pi pi-check", "type", "submit", 3, "label", "loading"]], template: function DriverFormComponent_Template(rf, ctx) {
+  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _DriverFormComponent, selectors: [["app-driver-form"]], features: [\u0275\u0275ProvidersFeature([MessageService])], decls: 43, vars: 16, consts: [[1, "page-header"], [1, "breadcrumb-trail"], [1, "pi", "pi-angle-right"], [1, "page-title"], [1, "form-card"], [1, "card-header"], [1, "card-title"], [1, "card-body"], [3, "ngSubmit", "formGroup"], [1, "form-grid-2"], [1, "form-field"], [1, "form-label"], [1, "required-star"], ["pInputText", "", "formControlName", "fullName", "placeholder", "Enter driver full name"], [1, "error-msg"], ["pInputText", "", "formControlName", "licenseNumber", "placeholder", "Enter driver full name"], ["pInputText", "", "formControlName", "phone", "placeholder", "Enter phone number"], [1, "form-actions"], ["label", "Cancel", "severity", "secondary", 3, "onClick", "outlined"], ["icon", "pi pi-check", "type", "submit", 3, "label", "loading"], [1, "form-section-title", 2, "margin-top", "1.5rem"], [1, "availability-form-section"], [1, "availability-toggle-row"], [1, "availability-info"], [1, "availability-title"], [1, "availability-desc"], [1, "availability-control"], ["formControlName", "isAvailable"], [1, "availability-status-label"]], template: function DriverFormComponent_Template(rf, ctx) {
     if (rf & 1) {
       \u0275\u0275element(0, "p-toast");
       \u0275\u0275elementStart(1, "div", 0)(2, "div", 1);
@@ -276,24 +339,17 @@ var DriverFormComponent = class _DriverFormComponent {
       \u0275\u0275element(37, "input", 16);
       \u0275\u0275conditionalCreate(38, DriverFormComponent_Conditional_38_Template, 2, 0, "small", 14);
       \u0275\u0275elementEnd();
-      \u0275\u0275elementStart(39, "div", 10)(40, "label", 11);
-      \u0275\u0275text(41, "Status");
+      \u0275\u0275conditionalCreate(39, DriverFormComponent_Conditional_39_Template, 13, 5);
       \u0275\u0275elementEnd();
-      \u0275\u0275elementStart(42, "div", 17);
-      \u0275\u0275element(43, "p-toggleswitch", 18);
-      \u0275\u0275elementStart(44, "span", 19);
-      \u0275\u0275text(45);
-      \u0275\u0275elementEnd()()()();
-      \u0275\u0275elementStart(46, "div", 20)(47, "p-button", 21);
-      \u0275\u0275listener("onClick", function DriverFormComponent_Template_p_button_onClick_47_listener() {
+      \u0275\u0275elementStart(40, "div", 17)(41, "p-button", 18);
+      \u0275\u0275listener("onClick", function DriverFormComponent_Template_p_button_onClick_41_listener() {
         return ctx.onCancel();
       });
       \u0275\u0275elementEnd();
-      \u0275\u0275element(48, "p-button", 22);
+      \u0275\u0275element(42, "p-button", 19);
       \u0275\u0275elementEnd()()()();
     }
     if (rf & 2) {
-      let tmp_9_0;
       \u0275\u0275advance(8);
       \u0275\u0275textInterpolate(ctx.isEditMode() ? "Edit Driver" : "New Driver");
       \u0275\u0275advance(2);
@@ -312,8 +368,8 @@ var DriverFormComponent = class _DriverFormComponent {
       \u0275\u0275classProp("input-error", ctx.isInvalid("phone"));
       \u0275\u0275advance();
       \u0275\u0275conditional(ctx.isInvalid("phone") ? 38 : -1);
-      \u0275\u0275advance(7);
-      \u0275\u0275textInterpolate1(" ", ((tmp_9_0 = ctx.form.get("isAvailable")) == null ? null : tmp_9_0.value) ? "Available" : "Occupied", " ");
+      \u0275\u0275advance();
+      \u0275\u0275conditional(ctx.isEditMode() ? 39 : -1);
       \u0275\u0275advance(2);
       \u0275\u0275property("outlined", true);
       \u0275\u0275advance();
@@ -418,16 +474,33 @@ var DriverFormComponent = class _DriverFormComponent {
                 </div>
 
                 <!-- Available Toggle -->
-                <div class="form-field">
-                    <label class="form-label">Status</label>
-                    <div class="toggle-row">
-                        <p-toggleswitch formControlName="isAvailable" />
-                        <span class="toggle-label">
-                            {{ form.get('isAvailable')?.value ? 'Available' : 'Occupied' }}
-                        </span>
-                    </div>
+
+                @if(isEditMode()) {
+                <div class="form-section-title" style="margin-top: 1.5rem">
+                    Availability
                 </div>
 
+                <div class="availability-form-section">
+                    <div class="availability-toggle-row">
+                        <div class="availability-info">
+                            <span class="availability-title">Driver Availability</span>
+                            <span class="availability-desc">
+                                Toggle whether this driver is available for new trip assignments.
+                                Cannot be marked available if driver has an active trip in transit.
+                            </span>
+                        </div>
+
+                        <div class="availability-control">
+                            <p-toggleswitch formControlName="isAvailable" />
+                            <span class="availability-status-label"
+                                [class.status-available]="form.get('isAvailable')?.value"
+                                [class.status-unavailable]="!form.get('isAvailable')?.value">
+                                {{ form.get('isAvailable')?.value ? 'Available' : 'Unavailable' }}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                }
             </div>
 
             <!-- Form Actions -->
@@ -442,9 +515,9 @@ var DriverFormComponent = class _DriverFormComponent {
   }], null, null);
 })();
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(DriverFormComponent, { className: "DriverFormComponent", filePath: "src/app/features/drivers/pages/driver-form/driver-form.component.ts", lineNumber: 28 });
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(DriverFormComponent, { className: "DriverFormComponent", filePath: "src/app/features/drivers/pages/driver-form/driver-form.component.ts", lineNumber: 29 });
 })();
 export {
   DriverFormComponent
 };
-//# sourceMappingURL=chunk-MFILJPRZ.js.map
+//# sourceMappingURL=chunk-IDCUJZRJ.js.map
