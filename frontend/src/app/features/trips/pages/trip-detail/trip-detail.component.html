@@ -1,0 +1,212 @@
+<p-toast />
+<p-confirmDialog />
+
+<div class="page-header">
+    <div class="breadcrumb-trail">
+        Home <i class="pi pi-angle-right"></i>
+        <a class="breadcrumb-link" (click)="goBack()">Trips</a>
+        <i class="pi pi-angle-right"></i>
+        <span>Trip #{{ trip()?.id }}</span>
+    </div>
+    <div class="trip-detail-header">
+        <div>
+            <div class="page-title">Trip #{{ trip()?.id }}</div>
+            <div class="page-subtitle">
+                {{ trip()?.route?.origin }} → {{ trip()?.route?.destination }}
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@if (isLoading()) {
+<div class="form-loading">
+    <i class="pi pi-spin pi-spinner"></i>
+    <span>Loading trip details...</span>
+</div>
+}
+
+@if (trip()) {
+<!-- Status Actions -->
+@if (getAvailableTransitions().length > 0) {
+<div class="trip-actions-bar">
+    <span class="actions-label">Update Status:</span>
+    @for (status of getAvailableTransitions(); track status) {
+    <p-button [label]="status === 'InTransit' ? 'Mark In Transit'
+                 : status === 'Completed' ? 'Mark Completed'
+                 : 'Cancel Trip'" [severity]="status === 'Cancelled' ? 'danger'
+                    : status === 'Completed' ? 'success' : 'warn'" [outlined]="true" [loading]="isUpdating()"
+        (onClick)="updateStatus(status)" />
+    }
+</div>
+}
+
+@if (trip()) {
+<div class="trip-actions-bar">
+    <span class="actions-label">Current Status:</span>
+    <p-tag [value]="getStatusLabel(trip()!.status)" [severity]="getStatusSeverity(trip()!.status)"
+        class="trip-status-tag" />
+</div>
+}
+
+<div class="trip-detail-grid">
+
+    <!-- Customer & Route -->
+    <div class="detail-card">
+        <div class="detail-card-header">
+            <i class="pi pi-users"></i>
+            <span>Customer</span>
+        </div>
+        <div class="detail-card-body">
+            <div class="detail-row">
+                <span class="detail-label">Name</span>
+                <span class="detail-value">{{ trip()!.customer.fullName }}</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Email</span>
+                <span class="detail-value">{{ trip()!.customer.email }}</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Phone</span>
+                <span class="detail-value">{{ trip()!.customer.phone }}</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Route Info -->
+    <div class="detail-card">
+        <div class="detail-card-header">
+            <i class="pi pi-map"></i>
+            <span>Route</span>
+        </div>
+        <div class="detail-card-body">
+            <div class="detail-row">
+                <span class="detail-label">Origin</span>
+                <span class="detail-value">{{ trip()!.route.origin }}</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Destination</span>
+                <span class="detail-value">{{ trip()!.route.destination }}</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Distance</span>
+                <span class="detail-value">{{ trip()!.route.distanceKm }} km</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Est. Duration</span>
+                <span class="detail-value">{{ trip()!.route.estimatedHours }} hrs</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Driver Info -->
+    <div class="detail-card">
+        <div class="detail-card-header">
+            <i class="pi pi-id-card"></i>
+            <span>Driver</span>
+        </div>
+        <div class="detail-card-body">
+            <div class="detail-row">
+                <span class="detail-label">Name</span>
+                <span class="detail-value">{{ trip()!.driver.fullName }}</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">License</span>
+                <span class="detail-value license-number">
+                    {{ trip()!.driver.licenseNumber }}
+                </span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Phone</span>
+                <span class="detail-value">{{ trip()!.driver.phone }}</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Truck Info -->
+    <div class="detail-card">
+        <div class="detail-card-header">
+            <i class="pi pi-truck"></i>
+            <span>Truck</span>
+        </div>
+        <div class="detail-card-body">
+            <div class="detail-row">
+                <span class="detail-label">Plate</span>
+                <span class="detail-value">
+                    <span class="plate-number">{{ trip()!.truck.plateNumber }}</span>
+                </span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Model</span>
+                <span class="detail-value">{{ trip()!.truck.model }}</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Capacity</span>
+                <span class="detail-value">{{ trip()!.truck.capacity }} T</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Trip Dates -->
+    <div class="detail-card">
+        <div class="detail-card-header">
+            <i class="pi pi-calendar"></i>
+            <span>Schedule</span>
+        </div>
+        <div class="detail-card-body">
+            <div class="detail-row">
+                <span class="detail-label">Departure</span>
+                <span class="detail-value">
+                    {{ trip()!.departureDate | date: 'dd MMM yyyy, HH:mm' }}
+                </span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Arrival</span>
+                <span class="detail-value">
+                    {{ trip()!.arrivalDate
+                    ? (trip()!.arrivalDate | date: 'dd MMM yyyy, HH:mm')
+                    : '—' }}
+                </span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Created</span>
+                <span class="detail-value">
+                    {{ trip()!.createdAt | date: 'dd MMM yyyy' }}
+                </span>
+            </div>
+            @if (trip()!.notes) {
+            <div class="detail-row">
+                <span class="detail-label">Notes</span>
+                <span class="detail-value">{{ trip()!.notes }}</span>
+            </div>
+            }
+        </div>
+    </div>
+
+    <!-- Containers -->
+    <div class="detail-card detail-card-full">
+        <div class="detail-card-header">
+            <i class="pi pi-box"></i>
+            <span>Containers ({{ trip()!.containers.length }})</span>
+        </div>
+        <div class="detail-card-body">
+            <div class="containers-grid">
+                @for (container of trip()!.containers; track container.id) {
+                <div class="container-chip">
+                    <span class="container-number">{{ container.containerNumber }}</span>
+                    <span class="container-meta">
+                        {{ container.type }} · {{ container.weightCapacity }}T
+                    </span>
+                </div>
+                }
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="detail-back-action">
+    <p-button label="Back to Trips" icon="pi pi-arrow-left" severity="secondary" [outlined]="true"
+        (onClick)="goBack()" />
+</div>
+}

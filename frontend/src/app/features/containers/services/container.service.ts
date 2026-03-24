@@ -30,6 +30,15 @@ export class ContainerService {
         return this.http.get<ApiResponse<PaginatedResponse<Container>>>(this.apiUrl, { params });
     }
 
+    search(query: string) : Observable<ApiResponse<PaginatedResponse<Container>>> {
+        const params = new HttpParams()
+            .set('search', query)
+            .set('pageNumber', '1')
+            .set('pageSize', '20');
+        
+        return this.http.get<ApiResponse<PaginatedResponse<Container>>>(this.apiUrl, { params });
+    }
+
     getById(id: number): Observable<ApiResponse<Container>> {
         return this.http.get<ApiResponse<Container>>(`${this.apiUrl}/${id}`);
     }

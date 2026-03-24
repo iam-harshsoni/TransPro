@@ -1,0 +1,127 @@
+<p-toast />
+<p-confirmDialog />
+
+<div class="page-header">
+    <div class="breadcrumb-trail">
+        Home <i class="pi pi-angle-right"></i>
+        <span>Trips</span>
+    </div>
+    <div class="page-title">Trips</div>
+    <div class="page-subtitle">Manage transport trips and track their status</div>
+</div>
+
+<div class="card">
+
+    <p-toolbar class="table-toolbar">
+        <ng-template #start>
+            <p-iconfield>
+                <p-inputicon class="pi pi-search" />
+                <input pInputText type="text" placeholder="Search containers..." (input)="onSearch($event)" />
+            </p-iconfield>
+
+            <!--
+                Status filter dropdown — filters trips by status.
+                p-select is PrimeNG's modern dropdown component.
+                [(ngModel)] binds to selectedStatus.
+                (onChange) reloads the table when selection changes.
+            -->
+            <p-select [(ngModel)]="selectedStatus" [options]="statusOptions" optionLabel="label" optionValue="value"
+                placeholder="Filter by Status" (onChange)="onStatusFilter()" class="ml-2" />
+
+        </ng-template>
+        <ng-template #end>
+            <p-button label="New Trip" icon="pi pi-plus" (onClick)="navigateToCreate()" />
+
+        </ng-template>
+    </p-toolbar>
+
+    <p-table #dt [value]="trips" [loading]="isLoading()" [lazy]="true" (onLazyLoad)="onLazyLoad($event)"
+        [totalRecords]="totalRecords" [paginator]="true" [rows]="pageSize" [rowsPerPageOptions]="[10, 25, 50]"
+        [rowHover]="true" dataKey="id" [showCurrentPageReport]="true"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} trips"
+        [tableStyle]="{ 'min-width': '70rem' }">
+
+        <ng-template pTemplate="caption">
+            <div class="table-caption">
+                <span class="table-title">Trip List</span>
+                <span class="table-count">{{ totalRecords }} total</span>
+            </div>
+        </ng-template>
+
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="min-width: 5rem">#</th>
+                <th style="min-width: 12rem">Customer</th>
+                <th style="min-width: 12rem">Driver</th>
+                <th style="min-width: 10rem">Truck</th>
+                <th style="min-width: 14rem">Route</th>
+                <th style="min-width: 11rem">Departure</th>
+                <th style="min-width: 9rem">Status</th>
+                <th style="width: 9rem; text-align: center">Actions</th>
+            </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-trip>
+            <tr>
+                <td>
+                    <span class="trip-id">#{{ trip.id }}</span>
+                </td>
+                <td>
+                    <span class="row-name">{{ trip.customerName }}</span>
+                </td>
+                <td>{{ trip.driverName }}</td>
+                <td>
+                    <span class="plate-number">{{ trip.truckPlate }}</span>
+                </td>
+                <td>
+                    <!--
+                        Route shown as Origin → Destination with arrow.
+                        Makes it visually scannable at a glance.
+                    -->
+                    <div class="trip-route-cell">
+                        <span>{{ trip.origin }} </span>
+                        ->
+                        <span> {{ trip.destination }}</span>
+                    </div>
+                </td>
+                <td>
+                    {{ trip.departureDate | date: 'dd MMM yyyy' }}
+                </td>
+                <td>
+                    <p-tag [value]="getStatusLabel(trip.status)" [severity]="getStatusSeverity(trip.status)" />
+                </td>
+                <td>
+                    <div class="row-actions">
+                        <!--
+                            View detail button — opens the trip detail page
+                            showing all nested info (customer, driver, truck, containers)
+                            -->
+                        <p-button icon="pi pi-eye" [rounded]="true" [outlined]="true" size="small"
+                            pTooltip="View Details" tooltipPosition="top" (onClick)="viewDetail(trip)" />
+                        <!--
+                            Cancel button — only shown for Planned and InTransit trips.
+                            Completed and Cancelled trips cannot be cancelled.
+                            -->
+                        @if (trip.status === 'Planned' || trip.status === 'InTransit') {
+                        <p-button icon="pi pi-times-circle" severity="danger" [rounded]="true" [outlined]="true"
+                            size="small" pTooltip="Cancel Trip" tooltipPosition="top" (onClick)="confirmCancel(trip)" />
+                        }
+                    </div>
+                </td>
+            </tr>
+        </ng-template>
+
+        <ng-template pTemplate="emptymessage">
+            <tr>
+                <td colspan="8">
+                    <div class="empty-state">
+                        <i class="pi pi-send"></i>
+                        <span>No trips found</span>
+                        <small>Create your first trip to get started</small>
+                    </div>
+                </td>
+            </tr>
+        </ng-template>
+
+    </p-table>
+</div>

@@ -3,6 +3,25 @@
   "WorkspaceRootPath": "D:\\Learnings\\Learn_Dotnet\\PracticeProjects\\WebApiProj\\TransProAPI\\backend\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|d:\\learnings\\learn_dotnet\\practiceprojects\\webapiproj\\transproapi\\backend\\features\\trips\\triphandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|solutionrelative:features\\trips\\triphandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|d:\\learnings\\learn_dotnet\\practiceprojects\\webapiproj\\transproapi\\backend\\features\\trips\\tripscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|solutionrelative:features\\trips\\tripscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|d:\\learnings\\learn_dotnet\\practiceprojects\\webapiproj\\transproapi\\backend\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|solutionrelative:properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|d:\\learnings\\learn_dotnet\\practiceprojects\\webapiproj\\transproapi\\backend\\infrastructure\\persistence\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|solutionrelative:infrastructure\\persistence\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Program Files\\Microsoft Visual Studio\\18\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|d:\\learnings\\learn_dotnet\\practiceprojects\\webapiproj\\transproapi\\backend\\features\\containers\\containercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|solutionrelative:features\\containers\\containercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -25,28 +44,87 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 4,
           "Children": [
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "TripsController.cs",
+              "DocumentMoniker": "D:\\Learnings\\Learn_Dotnet\\PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Features\\Trips\\TripsController.cs",
+              "RelativeDocumentMoniker": "Features\\Trips\\TripsController.cs",
+              "ToolTip": "D:\\Learnings\\Learn_Dotnet\\PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Features\\Trips\\TripsController.cs",
+              "RelativeToolTip": "Features\\Trips\\TripsController.cs",
+              "ViewState": "AgIAACAAAAAAAAAAAIAzwC0AAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-24T04:11:19.66Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "D:\\Learnings\\Learn_Dotnet\\PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "Properties\\launchSettings.json",
+              "ToolTip": "D:\\Learnings\\Learn_Dotnet\\PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Properties\\launchSettings.json",
+              "RelativeToolTip": "Properties\\launchSettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAADwvw4AAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-03-24T04:08:30.804Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "AppDbContext.cs",
+              "DocumentMoniker": "D:\\Learnings\\Learn_Dotnet\\PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Infrastructure\\Persistence\\AppDbContext.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Persistence\\AppDbContext.cs",
+              "ToolTip": "D:\\Learnings\\Learn_Dotnet\\PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Infrastructure\\Persistence\\AppDbContext.cs",
+              "RelativeToolTip": "Infrastructure\\Persistence\\AppDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-24T04:08:25.475Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Microsoft.Common.CurrentVersion.targets",
+              "DocumentMoniker": "C:\\Program Files\\Microsoft Visual Studio\\18\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
+              "ToolTip": "C:\\Program Files\\Microsoft Visual Studio\\18\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
+              "ViewState": "AgIAAA0VAAAAAAAAAAAEwBIVAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003801|",
+              "WhenOpened": "2026-03-24T04:06:00.731Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "TripHandler.cs",
+              "DocumentMoniker": "D:\\Learnings\\Learn_Dotnet\\PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Features\\Trips\\TripHandler.cs",
+              "RelativeDocumentMoniker": "Features\\Trips\\TripHandler.cs",
+              "ToolTip": "D:\\Learnings\\Learn_Dotnet\\PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Features\\Trips\\TripHandler.cs",
+              "RelativeToolTip": "Features\\Trips\\TripHandler.cs",
+              "ViewState": "AgIAANcAAAAAAAAAAAAcwOMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-24T04:05:17.284Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "ContainerController.cs",
               "DocumentMoniker": "D:\\Learnings\\Learn_Dotnet\\PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Features\\Containers\\ContainerController.cs",
               "RelativeDocumentMoniker": "Features\\Containers\\ContainerController.cs",
               "ToolTip": "D:\\Learnings\\Learn_Dotnet\\PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Features\\Containers\\ContainerController.cs",
               "RelativeToolTip": "Features\\Containers\\ContainerController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAADwvwkAAAARAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAADwvw4AAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-03-17T15:42:07.196Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 6,
               "Title": "Container.cs",
               "DocumentMoniker": "D:\\Learnings\\Learn_Dotnet\\PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Domain\\Entities\\Container.cs",
               "RelativeDocumentMoniker": "Domain\\Entities\\Container.cs",
@@ -54,12 +132,11 @@
               "RelativeToolTip": "Domain\\Entities\\Container.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-17T14:54:19.581Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-17T14:54:19.581Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 7,
               "Title": "customer-form.component.html",
               "DocumentMoniker": "D:\\Learnings\\Learn_Dotnet\\PracticeProjects\\WebApiProj\\TransProAPI\\frontend\\src\\app\\features\\customers\\pages\\customer-form\\customer-form.component.html",
               "RelativeDocumentMoniker": "..\\frontend\\src\\app\\features\\customers\\pages\\customer-form\\customer-form.component.html",
@@ -67,12 +144,11 @@
               "RelativeToolTip": "..\\frontend\\src\\app\\features\\customers\\pages\\customer-form\\customer-form.component.html",
               "ViewState": "AgIAACIAAAAAAAAAAAAgwC0AAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2026-03-17T14:32:11.685Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-17T14:32:11.685Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 8,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\Learnings\\Learn_Dotnet\\PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
@@ -80,8 +156,7 @@
               "RelativeToolTip": "Program.cs",
               "ViewState": "AgIAAMAAAAAAAAAAAAAuwM4AAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-13T14:48:00.997Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-13T14:48:00.997Z"
             }
           ]
         }

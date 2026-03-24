@@ -1,0 +1,217 @@
+<p-toast />
+
+<div class="page-header">
+    <div class="breadcrumb-trail">
+        Home <i class="pi pi-angle-right"></i>
+        <a class="breadcrumb-link" (click)="onCancel()">Trips</a>
+        <i class="pi pi-angle-right"></i>
+        <span>New Trip</span>
+    </div>
+    <div class="page-title">New Trip</div>
+</div>
+
+<div class="form-card">
+    <div class="card-header">
+        <span class="card-title">Trip Information</span>
+    </div>
+
+    <div class="card-body">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+            <div class="form-section-title">Assign Resources</div>
+
+            <div class="form-grid-2">
+
+                <!-- Customer -->
+                <div class="form-field">
+                    <label class="form-label">
+                        Customer <span class="required-star">*</span>
+                    </label>
+                    <div [class.ac-error]="isFieldInvalid('customer')">
+                        <p-autocomplete [(ngModel)]="selectedCustomer" [ngModelOptions]="{ standalone: true }"
+                            [suggestions]="customerSuggestions" (completeMethod)="searchCustomers($event)" field="label"
+                            [forceSelection]="true" [showClear]="true" placeholder="Type 3+ characters to search..."
+                            (onClear)="selectedCustomer = null; touched.customer = true"
+                            (onBlur)="touched.customer = true" fluid="true">
+                            <ng-template pTemplate="empty">
+                                @if (customerLoading()) {
+                                <div class="ac-empty">
+                                    <i class="pi pi-spin pi-spinner"></i> Searching...
+                                </div>
+                                } @else {
+                                <div class="ac-empty">No customers found</div>
+                                }
+                            </ng-template>
+                        </p-autocomplete>
+                    </div>
+                    <small class="form-hint">
+                        <i class="pi pi-info-circle"></i> Type at least 3 characters to search
+                    </small>
+                    @if (isFieldInvalid('customer')) {
+                    <small class="error-msg">Customer is required.</small>
+                    }
+                </div>
+
+                <!-- Route -->
+                <div class="form-field">
+                    <label class="form-label">
+                        Route <span class="required-star">*</span>
+                    </label>
+                    <div [class.ac-error]="isFieldInvalid('route')">
+                        <p-autocomplete [(ngModel)]="selectedRoute" [ngModelOptions]="{ standalone: true }"
+                            [suggestions]="routeSuggestions" (completeMethod)="searchRoutes($event)" field="label"
+                            [forceSelection]="true" [showClear]="true" placeholder="Type origin or destination city..."
+                            (onClear)="selectedRoute = null; touched.route = true" (onBlur)="touched.route = true"
+                            fluid="true">
+                            <ng-template pTemplate="empty">
+                                @if (routeLoading()) {
+                                <div class="ac-empty">
+                                    <i class="pi pi-spin pi-spinner"></i> Searching...
+                                </div>
+                                } @else {
+                                <div class="ac-empty">No routes found</div>
+                                }
+                            </ng-template>
+                        </p-autocomplete>
+                    </div>
+                    <small class="form-hint">
+                        <i class="pi pi-info-circle"></i> Type at least 3 characters to search
+                    </small>
+                    @if (isFieldInvalid('route')) {
+                    <small class="error-msg">Route is required.</small>
+                    }
+                </div>
+
+                <!-- Driver -->
+                <div class="form-field">
+                    <label class="form-label">
+                        Driver <span class="required-star">*</span>
+                    </label>
+                    <div [class.ac-error]="isFieldInvalid('driver')">
+                        <p-autocomplete [(ngModel)]="selectedDriver" [ngModelOptions]="{ standalone: true }"
+                            [suggestions]="driverSuggestions" (completeMethod)="searchDrivers($event)" field="label"
+                            [forceSelection]="true" [showClear]="true" placeholder="Type driver name or license..."
+                            (onClear)="selectedDriver = null; touched.driver = true" (onBlur)="touched.driver = true"
+                            fluid="true">
+                            <ng-template pTemplate="empty">
+                                @if (driverLoading()) {
+                                <div class="ac-empty">
+                                    <i class="pi pi-spin pi-spinner"></i> Searching...
+                                </div>
+                                } @else {
+                                <div class="ac-empty">No available drivers found</div>
+                                }
+                            </ng-template>
+                        </p-autocomplete>
+                    </div>
+                    <small class="form-hint">
+                        <i class="pi pi-info-circle"></i> Only available drivers are shown
+                    </small>
+                    @if (isFieldInvalid('driver')) {
+                    <small class="error-msg">Driver is required.</small>
+                    }
+                </div>
+
+                <!-- Truck -->
+                <div class="form-field">
+                    <label class="form-label">
+                        Truck <span class="required-star">*</span>
+                    </label>
+                    <div [class.ac-error]="isFieldInvalid('truck')">
+                        <p-autocomplete [(ngModel)]="selectedTruck" [ngModelOptions]="{ standalone: true }"
+                            [suggestions]="truckSuggestions" (completeMethod)="searchTrucks($event)" field="label"
+                            [forceSelection]="true" [showClear]="true" placeholder="Type plate number or model..."
+                            (onClear)="selectedTruck = null; touched.truck = true" (onBlur)="touched.truck = true"
+                            fluid="true">
+                            <ng-template pTemplate="empty">
+                                @if (truckLoading()) {
+                                <div class="ac-empty">
+                                    <i class="pi pi-spin pi-spinner"></i> Searching...
+                                </div>
+                                } @else {
+                                <div class="ac-empty">No available trucks found</div>
+                                }
+                            </ng-template>
+                        </p-autocomplete>
+                    </div>
+                    <small class="form-hint">
+                        <i class="pi pi-info-circle"></i> Only available trucks are shown
+                    </small>
+                    @if (isFieldInvalid('truck')) {
+                    <small class="error-msg">Truck is required.</small>
+                    }
+                </div>
+
+                <!-- Departure Date -->
+                <div class="form-field">
+                    <label class="form-label">
+                        Departure Date <span class="required-star">*</span>
+                    </label>
+                    <p-datepicker formControlName="departureDate" [minDate]="minDepartureDate" dateFormat="dd/mm/yy"
+                        [showIcon]="true" placeholder="Select departure date" styleClass="w-full" [class.input-error]="form.get('departureDate')?.invalid
+                               && form.get('departureDate')?.touched" />
+                    @if (form.get('departureDate')?.invalid && form.get('departureDate')?.touched) {
+                    <small class="error-msg">Departure date is required.</small>
+                    }
+                </div>
+
+                <div class="form-field">
+                    <label class="form-label">
+                        Notes <span class="form-optional">(optional)</span>
+                    </label>
+                    <textarea formControlName="notes" placeholder="Special instructions, handling notes..." rows="3"
+                        class="form-textarea">
+                    </textarea>
+                </div>
+
+            </div>
+
+            <!-- Containers -->
+            <div class="form-section-title" style="margin-top: 1.5rem">
+                Containers
+            </div>
+
+            <div class="form-field">
+                <label class="form-label">
+                    Assign Containers <span class="required-star">*</span>
+                </label>
+                <div [class.ac-error]="isFieldInvalid('containers')">
+                    <p-autocomplete [(ngModel)]="selectedContainers" [ngModelOptions]="{ standalone: true }"
+                        [suggestions]="containerSuggestions" (completeMethod)="searchContainers($event)" field="label"
+                        [multiple]="true" [forceSelection]="true" placeholder="Type container number or type..."
+                        (onBlur)="touched.containers = true">
+                        <ng-template pTemplate="empty">
+                            @if (containerLoading()) {
+                            <div class="ac-empty">
+                                <i class="pi pi-spin pi-spinner"></i> Searching...
+                            </div>
+                            } @else {
+                            <div class="ac-empty">No available containers found</div>
+                            }
+                        </ng-template>
+                    </p-autocomplete>
+                </div>
+                <small class="form-hint">
+                    <i class="pi pi-info-circle"></i>
+                    Type at least 3 characters — select multiple containers
+                </small>
+                @if (selectedContainers.length > 0) {
+                <small class="form-hint success-hint">
+                    <i class="pi pi-check-circle"></i>
+                    {{ selectedContainers.length }}
+                    container{{ selectedContainers.length > 1 ? 's' : '' }} selected
+                </small>
+                }
+                @if (isFieldInvalid('containers')) {
+                <small class="error-msg">At least one container is required.</small>
+                }
+            </div>
+
+            <div class="form-actions">
+                <p-button label="Cancel" severity="secondary" [outlined]="true" (onClick)="onCancel()" />
+                <p-button label="Create Trip" icon="pi pi-check" type="submit" [loading]="isSaving()" />
+            </div>
+
+        </form>
+    </div>
+</div>

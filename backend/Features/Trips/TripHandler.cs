@@ -156,6 +156,13 @@ namespace TransProAPI.Features.Trips
             var query = _db.Trips.AsNoTracking().AsQueryable();
 
             // Can simplify this If conditions Using WhereIf extension, will do it later
+            if (request.Search > 0)
+            {
+                var search = request.Search;
+                query = query.Where(c =>
+                    c.Id == request.Search);
+            }
+
             if (request.Status.HasValue)
                 query = query.Where(t => t.Status == request.Status.Value);
 
@@ -224,11 +231,11 @@ namespace TransProAPI.Features.Trips
 
             var isValidTransition = (trip.Status, request.NewStatus) switch
             {
-                (TripStatus.Planned, TripStatus.InTransit) => true,
-                (TripStatus.Planned, TripStatus.Cancelled) => true,
+                (TripStatus.Planned, TripStatus.InTransit)   => true,
+                (TripStatus.Planned, TripStatus.Cancelled)   => true,
                 (TripStatus.InTransit, TripStatus.Cancelled) => true,
                 (TripStatus.InTransit, TripStatus.Completed) => true,
-                _ => false
+                _                                            => false
             };
 
             if (!isValidTransition)

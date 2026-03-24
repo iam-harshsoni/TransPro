@@ -17,6 +17,7 @@ namespace TransProAPI.Infrastructure.Persistence
             await SeedTrucksAsync(db);
             await SeedContainersAsync(db);
             await SeedRoutesAsync(db);
+            await SeedTripsAsync(db);
         }
 
         private static async Task SeedCustomersAsync(AppDbContext db)
@@ -635,6 +636,298 @@ namespace TransProAPI.Infrastructure.Persistence
             }
 
             Console.WriteLine($"✅ Routes seeded. Total: {counter} records.\n");
+        }
+
+        private static async Task SeedTripsAsync(AppDbContext db)
+        {
+            if (await db.Trips.AnyAsync())
+            {
+                Console.WriteLine("⏭  Trips already seeded. Skipping.");
+                return;
+            }
+
+            Console.WriteLine("🌱 Seeding 10,000 Trips...");
+
+            var random = new Random(42);
+
+            // Load all available resource IDs into memory
+            var availableCustomerIds = await db.Customers
+                .Where(c => c.IsActive)
+                .Select(c => c.Id)
+                .ToListAsync();
+
+            var availableDriverIds = await db.Drivers
+                .Where(d => d.IsAvailable)
+                .Select(d => d.Id)
+                .ToListAsync();
+
+            var availableTruckIds = await db.Trucks
+                .Where(t => t.IsAvailable)
+                .Select(t => t.Id)
+                .ToListAsync();
+
+            var availableContainerIds = await db.Containers
+                .Where(c => c.IsAvailable)
+                .Select(c => c.Id)
+                .ToListAsync();
+
+            var routeIds = await db.Routes
+                .Select(r => r.Id)
+                .ToListAsync();
+
+            Console.WriteLine($"   📊 Available: {availableCustomerIds.Count} customers, " +
+                              $"{availableDriverIds.Count} drivers, " +
+                              $"{availableTruckIds.Count} trucks, " +
+                              $"{availableContainerIds.Count} containers, " +
+                              $"{routeIds.Count} routes");
+
+            // Shuffle for randomness
+            availableDriverIds = availableDriverIds.OrderBy(_ => random.Next()).ToList();
+            availableTruckIds = availableTruckIds.OrderBy(_ => random.Next()).ToList();
+            availableContainerIds = availableContainerIds.OrderBy(_ => random.Next()).ToList();
+
+            // Track locked resources for active trips
+            var usedDriverIds = new HashSet<int>();
+            var usedTruckIds = new HashSet<int>();
+            var usedContainerIds = new HashSet<int>();
+
+            var trips = new List<Trip>();
+            var tripContainers = new List<TripContainer>();
+
+            // Maps trip list index → container IDs for that trip
+            // Used to build TripContainer records after SaveChanges assigns Trip IDs
+            var tripContainerMap = new List<(int TripIndex, List<int> ContainerIds)>();
+
+            int totalSeeded = 0;
+            int skipped = 0;
+            int maxAttempts = 50_000;
+            int attempts = 0;
+
+            while (totalSeeded < 10_000 && attempts < maxAttempts)
+            {
+                attempts++;
+
+                // Determine status based on distribution
+                var statusRoll = random.Next(100);
+                TripStatus status = statusRoll switch
+                {
+                    < 60 => TripStatus.Completed,
+                    < 75 => TripStatus.Cancelled,
+                    < 90 => TripStatus.InTransit,
+                    _ => TripStatus.Planned
+                };
+
+                bool isActive = status == TripStatus.Planned || status == TripStatus.InTransit;
+
+                // Pick customer — reusable across trips
+                var customerId = availableCustomerIds[random.Next(availableCustomerIds.Count)];
+
+                // Pick route — reusable across trips
+                var routeId = routeIds[random.Next(routeIds.Count)];
+
+                // Pick driver
+                int driverId;
+                if (isActive)
+                {
+                    var free = availableDriverIds.FirstOrDefault(d => !usedDriverIds.Contains(d));
+                    if (free == 0) { skipped++; continue; }
+                    driverId = free;
+                    usedDriverIds.Add(driverId);
+                }
+                else
+                {
+                    driverId = availableDriverIds[random.Next(availableDriverIds.Count)];
+                }
+
+                // Pick truck
+                int truckId;
+                if (isActive)
+                {
+                    var free = availableTruckIds.FirstOrDefault(t => !usedTruckIds.Contains(t));
+                    if (free == 0)
+                    {
+                        if (isActive) usedDriverIds.Remove(driverId);
+                        skipped++;
+                        continue;
+                    }
+                    truckId = free;
+                    usedTruckIds.Add(truckId);
+                }
+                else
+                {
+                    truckId = availableTruckIds[random.Next(availableTruckIds.Count)];
+                }
+
+                // Pick 1-3 containers
+                var containerCount = random.Next(1, 4);
+                List<int> assignedContainerIds;
+
+                if (isActive)
+                {
+                    var free = availableContainerIds
+                        .Where(c => !usedContainerIds.Contains(c))
+                        .Take(containerCount)
+                        .ToList();
+
+                    if (free.Count < containerCount)
+                    {
+                        usedDriverIds.Remove(driverId);
+                        usedTruckIds.Remove(truckId);
+                        skipped++;
+                        continue;
+                    }
+
+                    assignedContainerIds = free;
+                    foreach (var cid in assignedContainerIds)
+                        usedContainerIds.Add(cid);
+                }
+                else
+                {
+                    assignedContainerIds = availableContainerIds
+                        .OrderBy(_ => random.Next())
+                        .Take(containerCount)
+                        .ToList();
+
+                    if (!assignedContainerIds.Any()) { skipped++; continue; }
+                }
+
+                // Build dates
+                DateTime departureDate;
+                DateTime? arrivalDate = null;
+                DateTime createdAt;
+
+                switch (status)
+                {
+                    case TripStatus.Completed:
+                        departureDate = DateTime.UtcNow.AddDays(-random.Next(2, 730))
+                                                       .AddHours(random.Next(0, 24));
+                        arrivalDate = departureDate.AddDays(random.Next(1, 6));
+                        createdAt = departureDate.AddDays(-random.Next(1, 7));
+                        break;
+
+                    case TripStatus.Cancelled:
+                        departureDate = DateTime.UtcNow.AddDays(-random.Next(1, 365))
+                                                       .AddHours(random.Next(0, 24));
+                        arrivalDate = null;
+                        createdAt = departureDate.AddDays(-random.Next(1, 5));
+                        break;
+
+                    case TripStatus.InTransit:
+                        departureDate = DateTime.UtcNow.AddDays(-random.Next(0, 4))
+                                                       .AddHours(-random.Next(1, 12));
+                        arrivalDate = null;
+                        createdAt = departureDate.AddHours(-random.Next(1, 48));
+                        break;
+
+                    default: // Planned
+                        departureDate = DateTime.UtcNow.AddDays(random.Next(1, 31))
+                                                       .AddHours(random.Next(0, 24));
+                        arrivalDate = null;
+                        createdAt = DateTime.UtcNow.AddHours(-random.Next(1, 72));
+                        break;
+                }
+
+                trips.Add(new Trip
+                {
+                    CustomerId = customerId,
+                    DriverId = driverId,
+                    TruckId = truckId,
+                    RouteId = routeId,
+                    Status = status,
+                    DepartureDate = departureDate,
+                    ArrivalDate = arrivalDate,
+                    Notes = GenerateTripNote(random),
+                    CreatedAt = createdAt
+                });
+
+                // Store container mapping by current trip index in the list
+                tripContainerMap.Add((trips.Count - 1, assignedContainerIds));
+                totalSeeded++;
+
+                // Batch insert every 500 trips
+                if (trips.Count == 500 || totalSeeded == 10_000)
+                {
+                    await db.Trips.AddRangeAsync(trips);
+                    await db.SaveChangesAsync();
+
+                    // Now trips have DB-assigned IDs — build TripContainers
+                    foreach (var (tripIndex, containerIds) in tripContainerMap)
+                    {
+                        var savedTrip = trips[tripIndex];
+                        foreach (var containerId in containerIds)
+                        {
+                            tripContainers.Add(new TripContainer
+                            {
+                                TripId = savedTrip.Id,
+                                ContainerId = containerId
+                            });
+                        }
+                    }
+
+                    await db.TripContainers.AddRangeAsync(tripContainers);
+                    await db.SaveChangesAsync();
+
+                    Console.WriteLine($"   ✅ {totalSeeded} trips inserted...");
+
+                    trips.Clear();
+                    tripContainers.Clear();
+                    tripContainerMap.Clear();
+                }
+            }
+
+            // Update availability flags for locked resources
+            Console.WriteLine("   🔒 Updating resource availability flags...");
+
+            if (usedDriverIds.Any())
+                await db.Drivers
+                    .Where(d => usedDriverIds.Contains(d.Id))
+                    .ExecuteUpdateAsync(s =>
+                        s.SetProperty(d => d.IsAvailable, false));
+
+            if (usedTruckIds.Any())
+                await db.Trucks
+                    .Where(t => usedTruckIds.Contains(t.Id))
+                    .ExecuteUpdateAsync(s =>
+                        s.SetProperty(t => t.IsAvailable, false));
+
+            if (usedContainerIds.Any())
+                await db.Containers
+                    .Where(c => usedContainerIds.Contains(c.Id))
+                    .ExecuteUpdateAsync(s =>
+                        s.SetProperty(c => c.IsAvailable, false));
+
+            Console.WriteLine($"   🔒 Locked: {usedDriverIds.Count} drivers, " +
+                              $"{usedTruckIds.Count} trucks, " +
+                              $"{usedContainerIds.Count} containers.");
+
+            Console.WriteLine($"✅ Trips seeded. Total: {totalSeeded} | Skipped: {skipped}\n");
+        }
+
+        // ── Helper — generates realistic trip notes ───────────────────────────────
+        private static string GenerateTripNote(Random random)
+        {
+            var notes = new[]
+            {
+                "Handle with care — fragile goods",
+                "Priority delivery — time sensitive",
+                "Customer requires advance notice before delivery",
+                "Refrigerated goods — maintain temperature",
+                "Oversized load — check clearance at destination",
+                "Hazardous materials — follow safety protocol",
+                "Express delivery — no delays permitted",
+                "Partial load — consolidate if possible",
+                "Return empty containers on completion",
+                "Night delivery only — per customer request",
+                "Fuel stop required at Nagpur",
+                "Toll receipts required for reimbursement",
+                "Insurance documentation in the glovebox",
+                "Contact dispatcher before entering restricted zone",
+                "",  // some trips have no notes — realistic
+                "",
+                "",
+            };
+
+            return notes[random.Next(notes.Length)];
         }
     }
 }

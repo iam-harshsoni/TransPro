@@ -1,7 +1,7 @@
 import {
   Tooltip,
   TooltipModule
-} from "./chunk-2ABF2E5E.js";
+} from "./chunk-TXYLWEHL.js";
 import {
   CommonModule,
   Router,
@@ -13,7 +13,7 @@ import {
   providePrimeNG,
   provideRouter,
   withInterceptorsFromDi
-} from "./chunk-F6YHHGKC.js";
+} from "./chunk-GBERHHLY.js";
 import {
   Component,
   HostListener,
@@ -52,7 +52,7 @@ import {
   ɵɵtext,
   ɵɵtextInterpolate,
   ɵɵviewQuery
-} from "./chunk-ZCRCH54Z.js";
+} from "./chunk-RB7DCYUT.js";
 import {
   __spreadProps,
   __spreadValues
@@ -473,30 +473,34 @@ var routes = [{
     {
       path: "dashboard",
       // matches localhost:4200/dashboard
-      loadComponent: () => import("./chunk-IHGHZCUG.js").then((m4) => m4.DashboardComponent)
+      loadComponent: () => import("./chunk-FBWBQUFQ.js").then((m4) => m4.DashboardComponent)
       /* loadComponent = lazy loading
           The dashboard code is only downloaded when user navigates there
           This keeps initial app load fast */
     },
     {
       path: "customers",
-      loadChildren: () => import("./chunk-RDIDCNNH.js").then((m4) => m4.customerRoutes)
+      loadChildren: () => import("./chunk-AK4NVAED.js").then((m4) => m4.customerRoutes)
     },
     {
       path: "drivers",
-      loadChildren: () => import("./chunk-Z5XVD6TS.js").then((m4) => m4.driverRoutes)
+      loadChildren: () => import("./chunk-CVHSWBGA.js").then((m4) => m4.driverRoutes)
     },
     {
       path: "containers",
-      loadChildren: () => import("./chunk-B6VNLJCA.js").then((m4) => m4.containerRoutes)
+      loadChildren: () => import("./chunk-DO5I4UCR.js").then((m4) => m4.containerRoutes)
     },
     {
       path: "trucks",
-      loadChildren: () => import("./chunk-IKQYQZNK.js").then((m4) => m4.truckRoutes)
+      loadChildren: () => import("./chunk-KNC2KSBF.js").then((m4) => m4.truckRoutes)
     },
     {
       path: "routes",
-      loadChildren: () => import("./chunk-BLDJF6AE.js").then((m4) => m4.routesRoutes)
+      loadChildren: () => import("./chunk-QFQCQA6I.js").then((m4) => m4.routesRoutes)
+    },
+    {
+      path: "trips",
+      loadChildren: () => import("./chunk-KCBFM3FB.js").then((m4) => m4.tripRoutes)
     },
     {
       path: "",

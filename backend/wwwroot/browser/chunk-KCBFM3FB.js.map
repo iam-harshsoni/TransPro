@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/features/trips/trip.routes.ts"],
+  "sourcesContent": ["import { Routes } from \"@angular/router\";\r\n\r\nexport const tripRoutes: Routes = [\r\n    {\r\n        path: '',\r\n        loadComponent: () =>\r\n            import('./pages/trip-list/trip-list.component')\r\n                .then(m => m.TripListComponent)\r\n    },\r\n    {\r\n        path: 'create',\r\n        loadComponent: () =>\r\n            import('./pages/trip-form/trip-form.component')\r\n                .then(m => m.TripFormComponent)\r\n    },\r\n    {\r\n        path: ':id',\r\n        loadComponent: () =>\r\n            import('./pages/trip-detail/trip-detail.component')\r\n                .then(m => m.TripDetailComponent)\r\n    }\r\n];"],
+  "mappings": ";;;AAEO,IAAM,aAAqB;EAC9B;IACI,MAAM;IACN,eAAe,MACX,OAAO,qBAAuC,EACzC,KAAK,OAAK,EAAE,iBAAiB;;EAE1C;IACI,MAAM;IACN,eAAe,MACX,OAAO,qBAAuC,EACzC,KAAK,OAAK,EAAE,iBAAiB;;EAE1C;IACI,MAAM;IACN,eAAe,MACX,OAAO,qBAA2C,EAC7C,KAAK,OAAK,EAAE,mBAAmB;;;",
+  "names": []
+}

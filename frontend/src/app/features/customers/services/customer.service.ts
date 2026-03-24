@@ -52,6 +52,15 @@ export class CustomerService {
         return this.http.get<ApiResponse<PaginatedResponse<Customer>>>(this.apiUrl, { params });
     }
 
+    search(query: string) : Observable<ApiResponse<PaginatedResponse<Customer>>> {
+        const params = new HttpParams()
+            .set('search', query)
+            .set('pageNumber', '1')
+            .set('pageSize', '20');
+        
+        return this.http.get<ApiResponse<PaginatedResponse<Customer>>>(this.apiUrl, { params });
+    }
+
 
     getById(id: number): Observable<ApiResponse<Customer>> {
         return this.http.get<ApiResponse<Customer>>(`${this.apiUrl}/${id}`);

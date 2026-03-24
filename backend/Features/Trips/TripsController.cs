@@ -13,7 +13,7 @@ namespace TransProAPI.Features.Trips
     [ApiController]
     [ApiVersion(1)]
     [Route("api/[controller]")]
-    [Authorize]
+    // [Authorize]
     [EnableRateLimiting("general")]
     public class TripsController(TripHandler _handler) : ControllerBase
     {

@@ -91,11 +91,11 @@ namespace TransProAPI.Features.Trips
          All Filters are multiple - null means 'Dont filter by this'
          Client can send any combination or none at all
          */
-
+        public int? Search { get; set; }
         public TripStatus? Status { get; set; }
-        public int? CustomerId{ get; set; }
+        public int? CustomerId { get; set; }
         public int? DriverId { get; set; }
-        public DateTime? FromDate{ get; set; }
-        public DateTime? ToDate{ get; set; }
+        public DateTime? FromDate { get; set; }
+        public DateTime? ToDate { get; set; }
     }
 }

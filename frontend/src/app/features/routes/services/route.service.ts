@@ -30,6 +30,15 @@ export class RouteService {
         return this.http.get<ApiResponse<PaginatedResponse<AppRoute>>>(this.apiUrl, { params });
     }
 
+    search(query: string) : Observable<ApiResponse<PaginatedResponse<AppRoute>>> {
+        const params = new HttpParams()
+            .set('search', query)
+            .set('pageNumber', '1')
+            .set('pageSize', '20');
+        
+        return this.http.get<ApiResponse<PaginatedResponse<AppRoute>>>(this.apiUrl, { params });
+    }
+
     getById(id: number): Observable<ApiResponse<AppRoute>> {
         return this.http.get<ApiResponse<AppRoute>>(`${this.apiUrl}/${id}`);
     }

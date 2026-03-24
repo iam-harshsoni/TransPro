@@ -3,7 +3,8 @@
 <div class="page-header">
     <div class="breadcrumb-trail">
         Home <i class="pi pi-angle-right"></i>
-        Routes <i class="pi pi-angle-right"></i>
+        <a class="breadcrumb-link" (click)="onCancel()">Routes</a>
+        <i class="pi pi-angle-right"></i>
         <span>{{ isEditMode() ? 'Edit Route' : 'New Route' }}</span>
     </div>
     <div class="page-title">{{ isEditMode() ? 'Edit Route' : 'New Route' }}</div>

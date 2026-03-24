@@ -46,6 +46,12 @@ export const routes: Routes = [{
 					.then(m => m.routesRoutes)
 		},
 		{
+			path: 'trips',
+			loadChildren: () =>
+				import('./features/trips/trip.routes')
+					.then(m => m.tripRoutes)
+		},
+		{
 			path: '',
 			redirectTo: 'dashboard',		// localhost:4200/ redirects to /dashboard
 			pathMatch: 'full'

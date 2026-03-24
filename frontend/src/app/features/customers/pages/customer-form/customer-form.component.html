@@ -3,7 +3,8 @@
 <div class="page-header">
     <div class="breadcrumb-trail">
         Home <i class="pi pi-angle-right"></i>
-        Customers <i class="pi pi-angle-right"></i>
+        <a class="breadcrumb-link" (click)="onCancel()">Customers</a>
+        <i class="pi pi-angle-right"></i>
         <span>{{ isEditMode() ? 'Edit Customer' : 'New Customer' }}</span>
     </div>
     <!-- Ternary operator in template: condition ? valueIfTrue : valueIfFalse -->
