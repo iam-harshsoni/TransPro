@@ -1,3 +1,5 @@
+<p-confirmDialog />
+
 <div class="topbar">
 
     <div class="topbar-left">
@@ -11,17 +13,71 @@
 
     <div class="topbar-right">
 
-        <div class="topbar-search" (click)="focusSearch()">
+        <div class="topbar-search">
             <i class="pi pi-search"></i>
-            <input #searchInput type="text" placeholder="Search... (Ctrl+K)" (keydown)="onSearchKeydown($event)" />
+            <input type="text" placeholder="Search... (Ctrl+K)" />
         </div>
 
         <button class="topbar-icon-btn">
             <i class="pi pi-bell"></i>
         </button>
 
-        <div class="topbar-avatar">AD</div>
+        <!-- User section — avatar + name + dropdown -->
+        <div class="topbar-user-section">
+
+            <!-- Display user full name -->
+            <span class="topbar-username">
+                {{ auth.currentUser()?.fullName ?? 'Admin' }}
+            </span>
+
+            <!-- Avatar circle — click opens dropdown -->
+            <div class="topbar-avatar-btn" (click)="toggleMenu()">
+                {{ getInitials() }}
+            </div>
+
+            <!-- Dropdown menu -->
+            @if (menuOpen()) {
+
+            <!-- Invisible backdrop — clicking outside closes menu -->
+            <div class="menu-backdrop" (click)="closeMenu()"></div>
+
+            <div class="user-dropdown">
+
+                <!-- User info header inside dropdown -->
+                <div class="dropdown-header">
+                    <div class="dropdown-avatar">{{ getInitials() }}</div>
+                    <div class="dropdown-user-info">
+                        <span class="dropdown-name">
+                            {{ auth.currentUser()?.fullName ?? 'Admin' }}
+                        </span>
+                        <span class="dropdown-role">
+                            {{ auth.currentUser()?.role ?? 'Administrator' }}
+                        </span>
+                    </div>
+                </div>
+
+                <div class="dropdown-divider"></div>
+
+                <!-- Menu Items -->
+                <div class="dropdown-menu">
+
+                    <button class="dropdown-item" (click)="navigateToSettings()">
+                        <i class="pi pi-cog"></i>
+                        <span>Settings</span>
+                    </button>
+
+                    <div class="dropdown-divider"></div>
+
+                    <!-- Logout — styled differently to signal danger -->
+                    <button class="dropdown-item dropdown-item-danger" (click)="confirmLogout()">
+                        <i class="pi pi-sign-out"></i>
+                        <span>Logout</span>
+                    </button>
+
+                </div>
+            </div>
+            }
+        </div>
 
     </div>
-
 </div>

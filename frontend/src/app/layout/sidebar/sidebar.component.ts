@@ -3,6 +3,7 @@ import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { TooltipModule } from 'primeng/tooltip';
 import { LayoutService } from '../../../core/services/layout';
+import { AuthService } from '../../core/services/auth.service';
 
 interface NavItem {
 	label: string;
@@ -35,6 +36,7 @@ export class SidebarComponent {
 		We only show it when sidebar is collapsed so user knows what the icon means. */
 
 	layout = inject(LayoutService);
+  	auth   = inject(AuthService);
 	router = inject(Router);
 
 	navGroups: NavGroup[] = [

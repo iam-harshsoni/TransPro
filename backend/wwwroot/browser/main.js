@@ -1,9 +1,20 @@
 import {
+  AuthService
+} from "./chunk-E2OLTRND.js";
+import {
+  ConfirmDialog,
+  ConfirmDialogModule
+} from "./chunk-KXKR4XI4.js";
+import {
   Tooltip,
   TooltipModule
-} from "./chunk-TXYLWEHL.js";
+} from "./chunk-3PKWPBB4.js";
+import "./chunk-U7IY62MS.js";
 import {
+  ButtonModule,
   CommonModule,
+  ConfirmationService,
+  HttpErrorResponse,
   Router,
   RouterLink,
   RouterLinkActive,
@@ -12,18 +23,19 @@ import {
   provideHttpClient,
   providePrimeNG,
   provideRouter,
-  withInterceptorsFromDi
-} from "./chunk-GBERHHLY.js";
+  withInterceptors
+} from "./chunk-MM7SKLVI.js";
 import {
   Component,
   HostListener,
   Injectable,
-  ViewChild,
+  Observable,
   inject,
   provideZoneChangeDetection,
   setClassMetadata,
   signal,
   ɵsetClassDebugInfo,
+  ɵɵProvidersFeature,
   ɵɵadvance,
   ɵɵclassMap,
   ɵɵclassProp,
@@ -31,19 +43,13 @@ import {
   ɵɵconditionalCreate,
   ɵɵdefineComponent,
   ɵɵdefineInjectable,
-  ɵɵdomElement,
-  ɵɵdomElementEnd,
-  ɵɵdomElementStart,
-  ɵɵdomListener,
   ɵɵelement,
   ɵɵelementEnd,
   ɵɵelementStart,
   ɵɵgetCurrentView,
   ɵɵlistener,
-  ɵɵloadQuery,
   ɵɵnextContext,
   ɵɵproperty,
-  ɵɵqueryRefresh,
   ɵɵrepeater,
   ɵɵrepeaterCreate,
   ɵɵresetView,
@@ -51,8 +57,8 @@ import {
   ɵɵrestoreView,
   ɵɵtext,
   ɵɵtextInterpolate,
-  ɵɵviewQuery
-} from "./chunk-RB7DCYUT.js";
+  ɵɵtextInterpolate1
+} from "./chunk-FOYF73X5.js";
 import {
   __spreadProps,
   __spreadValues
@@ -102,80 +108,251 @@ var LayoutService = class _LayoutService {
 })();
 
 // src/app/layout/topbar/topbar.component.ts
-var _c0 = ["searchInput"];
+function TopbarComponent_Conditional_22_Template(rf, ctx) {
+  if (rf & 1) {
+    const _r1 = \u0275\u0275getCurrentView();
+    \u0275\u0275elementStart(0, "div", 15);
+    \u0275\u0275listener("click", function TopbarComponent_Conditional_22_Template_div_click_0_listener() {
+      \u0275\u0275restoreView(_r1);
+      const ctx_r1 = \u0275\u0275nextContext();
+      return \u0275\u0275resetView(ctx_r1.closeMenu());
+    });
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(1, "div", 16)(2, "div", 17)(3, "div", 18);
+    \u0275\u0275text(4);
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(5, "div", 19)(6, "span", 20);
+    \u0275\u0275text(7);
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(8, "span", 21);
+    \u0275\u0275text(9);
+    \u0275\u0275elementEnd()()();
+    \u0275\u0275element(10, "div", 22);
+    \u0275\u0275elementStart(11, "div", 23)(12, "button", 24);
+    \u0275\u0275listener("click", function TopbarComponent_Conditional_22_Template_button_click_12_listener() {
+      \u0275\u0275restoreView(_r1);
+      const ctx_r1 = \u0275\u0275nextContext();
+      return \u0275\u0275resetView(ctx_r1.navigateToSettings());
+    });
+    \u0275\u0275element(13, "i", 25);
+    \u0275\u0275elementStart(14, "span");
+    \u0275\u0275text(15, "Settings");
+    \u0275\u0275elementEnd()();
+    \u0275\u0275element(16, "div", 22);
+    \u0275\u0275elementStart(17, "button", 26);
+    \u0275\u0275listener("click", function TopbarComponent_Conditional_22_Template_button_click_17_listener() {
+      \u0275\u0275restoreView(_r1);
+      const ctx_r1 = \u0275\u0275nextContext();
+      return \u0275\u0275resetView(ctx_r1.confirmLogout());
+    });
+    \u0275\u0275element(18, "i", 27);
+    \u0275\u0275elementStart(19, "span");
+    \u0275\u0275text(20, "Logout");
+    \u0275\u0275elementEnd()()()();
+  }
+  if (rf & 2) {
+    let tmp_2_0;
+    let tmp_3_0;
+    const ctx_r1 = \u0275\u0275nextContext();
+    \u0275\u0275advance(4);
+    \u0275\u0275textInterpolate(ctx_r1.getInitials());
+    \u0275\u0275advance(3);
+    \u0275\u0275textInterpolate1(" ", ((tmp_2_0 = ctx_r1.auth.currentUser()) == null ? null : tmp_2_0.fullName) ?? "Admin", " ");
+    \u0275\u0275advance(2);
+    \u0275\u0275textInterpolate1(" ", ((tmp_3_0 = ctx_r1.auth.currentUser()) == null ? null : tmp_3_0.role) ?? "Administrator", " ");
+  }
+}
 var TopbarComponent = class _TopbarComponent {
   layout = inject(LayoutService);
-  /* @ViewChild gives us a direct reference to a DOM element.
-      #searchInput in the HTML is a template reference variable.
-      This is like finding an element by ID in JavaScript,
-      but the Angular way — type-safe and clean. */
-  searchInput;
-  onSearchKeydown(event) {
-    if (event.key === "Escape") {
-      this.searchInput.nativeElement.blur();
-    }
+  auth = inject(AuthService);
+  router = inject(Router);
+  confirmationService = inject(ConfirmationService);
+  menuOpen = signal(false, ...ngDevMode ? [{ debugName: "menuOpen" }] : (
+    /* istanbul ignore next */
+    []
+  ));
+  getInitials() {
+    const name = this.auth.currentUser()?.fullName ?? "A";
+    return name.split(" ").map((word) => word.charAt(0).toUpperCase()).slice(0, 2).join("");
   }
-  focusSearch() {
-    this.searchInput.nativeElement.focus();
+  toggleMenu() {
+    this.menuOpen.update((v3) => !v3);
+  }
+  closeMenu() {
+    this.menuOpen.set(false);
+  }
+  navigateToSettings() {
+    this.closeMenu();
+  }
+  confirmLogout() {
+    this.closeMenu();
+    this.confirmationService.confirm({
+      message: "Are you sure you want to log out of TransPro?",
+      header: "Confirm Logout",
+      icon: "pi pi-sign-out",
+      rejectButtonProps: {
+        label: "Cancel",
+        severity: "secondary",
+        variant: "text"
+      },
+      acceptButtonProps: {
+        label: "Yes, Logout",
+        severity: "danger"
+      },
+      accept: () => {
+        this.auth.logout();
+      }
+    });
   }
   static \u0275fac = function TopbarComponent_Factory(__ngFactoryType__) {
     return new (__ngFactoryType__ || _TopbarComponent)();
   };
-  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _TopbarComponent, selectors: [["app-topbar"]], viewQuery: function TopbarComponent_Query(rf, ctx) {
+  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _TopbarComponent, selectors: [["app-topbar"]], features: [\u0275\u0275ProvidersFeature([ConfirmationService])], decls: 23, vars: 3, consts: [[1, "topbar"], [1, "topbar-left"], [1, "topbar-menu-btn", 3, "click"], [1, "pi", "pi-bars"], [1, "breadcrumb-sep"], [1, "breadcrumb-current"], [1, "topbar-right"], [1, "topbar-search"], [1, "pi", "pi-search"], ["type", "text", "placeholder", "Search... (Ctrl+K)"], [1, "topbar-icon-btn"], [1, "pi", "pi-bell"], [1, "topbar-user-section"], [1, "topbar-username"], [1, "topbar-avatar-btn", 3, "click"], [1, "menu-backdrop", 3, "click"], [1, "user-dropdown"], [1, "dropdown-header"], [1, "dropdown-avatar"], [1, "dropdown-user-info"], [1, "dropdown-name"], [1, "dropdown-role"], [1, "dropdown-divider"], [1, "dropdown-menu"], [1, "dropdown-item", 3, "click"], [1, "pi", "pi-cog"], [1, "dropdown-item", "dropdown-item-danger", 3, "click"], [1, "pi", "pi-sign-out"]], template: function TopbarComponent_Template(rf, ctx) {
     if (rf & 1) {
-      \u0275\u0275viewQuery(_c0, 5);
-    }
-    if (rf & 2) {
-      let _t;
-      \u0275\u0275queryRefresh(_t = \u0275\u0275loadQuery()) && (ctx.searchInput = _t.first);
-    }
-  }, decls: 19, vars: 0, consts: [["searchInput", ""], [1, "topbar"], [1, "topbar-left"], [1, "topbar-menu-btn", 3, "click"], [1, "pi", "pi-bars"], [1, "breadcrumb-sep"], [1, "breadcrumb-current"], [1, "topbar-right"], [1, "topbar-search", 3, "click"], [1, "pi", "pi-search"], ["type", "text", "placeholder", "Search... (Ctrl+K)", 3, "keydown"], [1, "topbar-icon-btn"], [1, "pi", "pi-bell"], [1, "topbar-avatar"]], template: function TopbarComponent_Template(rf, ctx) {
-    if (rf & 1) {
-      \u0275\u0275domElementStart(0, "div", 1)(1, "div", 2)(2, "button", 3);
-      \u0275\u0275domListener("click", function TopbarComponent_Template_button_click_2_listener() {
+      \u0275\u0275element(0, "p-confirmDialog");
+      \u0275\u0275elementStart(1, "div", 0)(2, "div", 1)(3, "button", 2);
+      \u0275\u0275listener("click", function TopbarComponent_Template_button_click_3_listener() {
         return ctx.layout.toggle();
       });
-      \u0275\u0275domElement(3, "i", 4);
-      \u0275\u0275domElementEnd();
-      \u0275\u0275domElementStart(4, "span");
-      \u0275\u0275text(5, "TransPro");
-      \u0275\u0275domElementEnd();
-      \u0275\u0275domElementStart(6, "span", 5);
-      \u0275\u0275text(7, "/");
-      \u0275\u0275domElementEnd();
-      \u0275\u0275domElementStart(8, "span", 6);
-      \u0275\u0275text(9, "Dashboard");
-      \u0275\u0275domElementEnd()();
-      \u0275\u0275domElementStart(10, "div", 7)(11, "div", 8);
-      \u0275\u0275domListener("click", function TopbarComponent_Template_div_click_11_listener() {
-        return ctx.focusSearch();
+      \u0275\u0275element(4, "i", 3);
+      \u0275\u0275elementEnd();
+      \u0275\u0275elementStart(5, "span");
+      \u0275\u0275text(6, "TransPro");
+      \u0275\u0275elementEnd();
+      \u0275\u0275elementStart(7, "span", 4);
+      \u0275\u0275text(8, "/");
+      \u0275\u0275elementEnd();
+      \u0275\u0275elementStart(9, "span", 5);
+      \u0275\u0275text(10, "Dashboard");
+      \u0275\u0275elementEnd()();
+      \u0275\u0275elementStart(11, "div", 6)(12, "div", 7);
+      \u0275\u0275element(13, "i", 8)(14, "input", 9);
+      \u0275\u0275elementEnd();
+      \u0275\u0275elementStart(15, "button", 10);
+      \u0275\u0275element(16, "i", 11);
+      \u0275\u0275elementEnd();
+      \u0275\u0275elementStart(17, "div", 12)(18, "span", 13);
+      \u0275\u0275text(19);
+      \u0275\u0275elementEnd();
+      \u0275\u0275elementStart(20, "div", 14);
+      \u0275\u0275listener("click", function TopbarComponent_Template_div_click_20_listener() {
+        return ctx.toggleMenu();
       });
-      \u0275\u0275domElement(12, "i", 9);
-      \u0275\u0275domElementStart(13, "input", 10, 0);
-      \u0275\u0275domListener("keydown", function TopbarComponent_Template_input_keydown_13_listener($event) {
-        return ctx.onSearchKeydown($event);
-      });
-      \u0275\u0275domElementEnd()();
-      \u0275\u0275domElementStart(15, "button", 11);
-      \u0275\u0275domElement(16, "i", 12);
-      \u0275\u0275domElementEnd();
-      \u0275\u0275domElementStart(17, "div", 13);
-      \u0275\u0275text(18, "AD");
-      \u0275\u0275domElementEnd()()();
+      \u0275\u0275text(21);
+      \u0275\u0275elementEnd();
+      \u0275\u0275conditionalCreate(22, TopbarComponent_Conditional_22_Template, 21, 3);
+      \u0275\u0275elementEnd()()();
     }
-  }, encapsulation: 2 });
+    if (rf & 2) {
+      let tmp_0_0;
+      \u0275\u0275advance(19);
+      \u0275\u0275textInterpolate1(" ", ((tmp_0_0 = ctx.auth.currentUser()) == null ? null : tmp_0_0.fullName) ?? "Admin", " ");
+      \u0275\u0275advance(2);
+      \u0275\u0275textInterpolate1(" ", ctx.getInitials(), " ");
+      \u0275\u0275advance();
+      \u0275\u0275conditional(ctx.menuOpen() ? 22 : -1);
+    }
+  }, dependencies: [
+    CommonModule,
+    ConfirmDialogModule,
+    ConfirmDialog,
+    ButtonModule
+  ], encapsulation: 2 });
 };
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(TopbarComponent, [{
     type: Component,
-    args: [{ selector: "app-topbar", standalone: true, imports: [], template: '<div class="topbar">\r\n\r\n    <div class="topbar-left">\r\n        <button class="topbar-menu-btn" (click)="layout.toggle()">\r\n            <i class="pi pi-bars"></i>\r\n        </button>\r\n        <span>TransPro</span>\r\n        <span class="breadcrumb-sep">/</span>\r\n        <span class="breadcrumb-current">Dashboard</span>\r\n    </div>\r\n\r\n    <div class="topbar-right">\r\n\r\n        <div class="topbar-search" (click)="focusSearch()">\r\n            <i class="pi pi-search"></i>\r\n            <input #searchInput type="text" placeholder="Search... (Ctrl+K)" (keydown)="onSearchKeydown($event)" />\r\n        </div>\r\n\r\n        <button class="topbar-icon-btn">\r\n            <i class="pi pi-bell"></i>\r\n        </button>\r\n\r\n        <div class="topbar-avatar">AD</div>\r\n\r\n    </div>\r\n\r\n</div>' }]
-  }], null, { searchInput: [{
-    type: ViewChild,
-    args: ["searchInput"]
-  }] });
+    args: [{ selector: "app-topbar", standalone: true, imports: [
+      CommonModule,
+      ConfirmDialogModule,
+      ButtonModule
+    ], providers: [ConfirmationService], template: `<p-confirmDialog />\r
+\r
+<div class="topbar">\r
+\r
+    <div class="topbar-left">\r
+        <button class="topbar-menu-btn" (click)="layout.toggle()">\r
+            <i class="pi pi-bars"></i>\r
+        </button>\r
+        <span>TransPro</span>\r
+        <span class="breadcrumb-sep">/</span>\r
+        <span class="breadcrumb-current">Dashboard</span>\r
+    </div>\r
+\r
+    <div class="topbar-right">\r
+\r
+        <div class="topbar-search">\r
+            <i class="pi pi-search"></i>\r
+            <input type="text" placeholder="Search... (Ctrl+K)" />\r
+        </div>\r
+\r
+        <button class="topbar-icon-btn">\r
+            <i class="pi pi-bell"></i>\r
+        </button>\r
+\r
+        <!-- User section \u2014 avatar + name + dropdown -->\r
+        <div class="topbar-user-section">\r
+\r
+            <!-- Display user full name -->\r
+            <span class="topbar-username">\r
+                {{ auth.currentUser()?.fullName ?? 'Admin' }}\r
+            </span>\r
+\r
+            <!-- Avatar circle \u2014 click opens dropdown -->\r
+            <div class="topbar-avatar-btn" (click)="toggleMenu()">\r
+                {{ getInitials() }}\r
+            </div>\r
+\r
+            <!-- Dropdown menu -->\r
+            @if (menuOpen()) {\r
+\r
+            <!-- Invisible backdrop \u2014 clicking outside closes menu -->\r
+            <div class="menu-backdrop" (click)="closeMenu()"></div>\r
+\r
+            <div class="user-dropdown">\r
+\r
+                <!-- User info header inside dropdown -->\r
+                <div class="dropdown-header">\r
+                    <div class="dropdown-avatar">{{ getInitials() }}</div>\r
+                    <div class="dropdown-user-info">\r
+                        <span class="dropdown-name">\r
+                            {{ auth.currentUser()?.fullName ?? 'Admin' }}\r
+                        </span>\r
+                        <span class="dropdown-role">\r
+                            {{ auth.currentUser()?.role ?? 'Administrator' }}\r
+                        </span>\r
+                    </div>\r
+                </div>\r
+\r
+                <div class="dropdown-divider"></div>\r
+\r
+                <!-- Menu Items -->\r
+                <div class="dropdown-menu">\r
+\r
+                    <button class="dropdown-item" (click)="navigateToSettings()">\r
+                        <i class="pi pi-cog"></i>\r
+                        <span>Settings</span>\r
+                    </button>\r
+\r
+                    <div class="dropdown-divider"></div>\r
+\r
+                    <!-- Logout \u2014 styled differently to signal danger -->\r
+                    <button class="dropdown-item dropdown-item-danger" (click)="confirmLogout()">\r
+                        <i class="pi pi-sign-out"></i>\r
+                        <span>Logout</span>\r
+                    </button>\r
+\r
+                </div>\r
+            </div>\r
+            }\r
+        </div>\r
+\r
+    </div>\r
+</div>` }]
+  }], null, null);
 })();
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(TopbarComponent, { className: "TopbarComponent", filePath: "src/app/layout/topbar/topbar.component.ts", lineNumber: 10 });
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(TopbarComponent, { className: "TopbarComponent", filePath: "src/app/layout/topbar/topbar.component.ts", lineNumber: 24 });
 })();
 
 // src/app/layout/sidebar/sidebar.component.ts
@@ -259,12 +436,21 @@ function SidebarComponent_For_6_Template(rf, ctx) {
 function SidebarComponent_Conditional_11_Template(rf, ctx) {
   if (rf & 1) {
     \u0275\u0275elementStart(0, "div", 13)(1, "div", 14);
-    \u0275\u0275text(2, "Admin");
+    \u0275\u0275text(2);
     \u0275\u0275elementEnd();
     \u0275\u0275elementStart(3, "div", 15);
-    \u0275\u0275text(4, "Administrator");
+    \u0275\u0275text(4);
     \u0275\u0275elementEnd()();
     \u0275\u0275element(5, "i", 16);
+  }
+  if (rf & 2) {
+    let tmp_1_0;
+    let tmp_2_0;
+    const ctx_r2 = \u0275\u0275nextContext();
+    \u0275\u0275advance(2);
+    \u0275\u0275textInterpolate1(" ", ((tmp_1_0 = ctx_r2.auth.currentUser()) == null ? null : tmp_1_0.fullName) ?? "Admin", " ");
+    \u0275\u0275advance(2);
+    \u0275\u0275textInterpolate1(" ", ((tmp_2_0 = ctx_r2.auth.currentUser()) == null ? null : tmp_2_0.role) ?? "Administrator", " ");
   }
 }
 var SidebarComponent = class _SidebarComponent {
@@ -279,6 +465,7 @@ var SidebarComponent = class _SidebarComponent {
           pTooltip is from PrimeNG — shows a tooltip on hover.
           We only show it when sidebar is collapsed so user knows what the icon means. */
   layout = inject(LayoutService);
+  auth = inject(AuthService);
   router = inject(Router);
   navGroups = [
     {
@@ -313,7 +500,7 @@ var SidebarComponent = class _SidebarComponent {
   static \u0275fac = function SidebarComponent_Factory(__ngFactoryType__) {
     return new (__ngFactoryType__ || _SidebarComponent)();
   };
-  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _SidebarComponent, selectors: [["app-sidebar"]], decls: 12, vars: 2, consts: [[1, "sidebar"], [1, "sidebar-logo"], [1, "pi", "pi-send", "logo-icon"], [1, "logo-text"], [1, "sidebar-nav"], [1, "nav-group"], [1, "sidebar-footer"], [1, "sidebar-user"], [1, "user-avatar-small"], [1, "nav-group-label"], [1, "nav-group-divider"], ["routerLinkActive", "active", "tooltipPosition", "right", 1, "nav-item", 3, "routerLink", "pTooltip"], ["routerLinkActive", "active", "tooltipPosition", "right", 1, "nav-item", 3, "click", "routerLink", "pTooltip"], [1, "user-info-small"], [1, "user-name-small"], [1, "user-role-small"], [1, "pi", "pi-sign-out", "logout-btn"]], template: function SidebarComponent_Template(rf, ctx) {
+  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _SidebarComponent, selectors: [["app-sidebar"]], decls: 12, vars: 3, consts: [[1, "sidebar"], [1, "sidebar-logo"], [1, "pi", "pi-send", "logo-icon"], [1, "logo-text"], [1, "sidebar-nav"], [1, "nav-group"], [1, "sidebar-footer"], [1, "sidebar-user", 3, "click"], [1, "user-avatar-small"], [1, "nav-group-label"], [1, "nav-group-divider"], ["routerLinkActive", "active", "tooltipPosition", "right", 1, "nav-item", 3, "routerLink", "pTooltip"], ["routerLinkActive", "active", "tooltipPosition", "right", 1, "nav-item", 3, "click", "routerLink", "pTooltip"], [1, "user-info-small"], [1, "user-name-small"], [1, "user-role-small"], [1, "pi", "pi-sign-out", "logout-btn"]], template: function SidebarComponent_Template(rf, ctx) {
     if (rf & 1) {
       \u0275\u0275elementStart(0, "div", 0)(1, "div", 1);
       \u0275\u0275element(2, "i", 2);
@@ -322,18 +509,25 @@ var SidebarComponent = class _SidebarComponent {
       \u0275\u0275elementStart(4, "nav", 4);
       \u0275\u0275repeaterCreate(5, SidebarComponent_For_6_Template, 5, 1, "div", 5, _forTrack0);
       \u0275\u0275elementEnd();
-      \u0275\u0275elementStart(7, "div", 6)(8, "div", 7)(9, "div", 8);
-      \u0275\u0275text(10, "AD");
+      \u0275\u0275elementStart(7, "div", 6)(8, "div", 7);
+      \u0275\u0275listener("click", function SidebarComponent_Template_div_click_8_listener() {
+        return ctx.auth.logout();
+      });
+      \u0275\u0275elementStart(9, "div", 8);
+      \u0275\u0275text(10);
       \u0275\u0275elementEnd();
-      \u0275\u0275conditionalCreate(11, SidebarComponent_Conditional_11_Template, 6, 0);
+      \u0275\u0275conditionalCreate(11, SidebarComponent_Conditional_11_Template, 6, 2);
       \u0275\u0275elementEnd()()();
     }
     if (rf & 2) {
+      let tmp_2_0;
       \u0275\u0275advance(3);
       \u0275\u0275conditional(!ctx.layout.sidebarCollapsed() ? 3 : -1);
       \u0275\u0275advance(2);
       \u0275\u0275repeater(ctx.navGroups);
-      \u0275\u0275advance(6);
+      \u0275\u0275advance(5);
+      \u0275\u0275textInterpolate1(" ", ((tmp_2_0 = ctx.auth.currentUser()) == null ? null : tmp_2_0.fullName == null ? null : (tmp_2_0 = tmp_2_0.fullName.charAt(0)) == null ? null : tmp_2_0.toUpperCase()) ?? "A", " ");
+      \u0275\u0275advance();
       \u0275\u0275conditional(!ctx.layout.sidebarCollapsed() ? 11 : -1);
     }
   }, dependencies: [RouterLink, RouterLinkActive, CommonModule, TooltipModule, Tooltip], encapsulation: 2 });
@@ -380,12 +574,18 @@ var SidebarComponent = class _SidebarComponent {
 \r
     <!-- Footer -->\r
     <div class="sidebar-footer">\r
-        <div class="sidebar-user">\r
-            <div class="user-avatar-small">AD</div>\r
+        <div class="sidebar-user" (click)="auth.logout()">\r
+            <div class="user-avatar-small">\r
+                {{ auth.currentUser()?.fullName?.charAt(0)?.toUpperCase() ?? 'A' }}\r
+            </div>\r
             @if (!layout.sidebarCollapsed()) {\r
             <div class="user-info-small">\r
-                <div class="user-name-small">Admin</div>\r
-                <div class="user-role-small">Administrator</div>\r
+                <div class="user-name-small">\r
+                    {{ auth.currentUser()?.fullName ?? 'Admin' }}\r
+                </div>\r
+                <div class="user-role-small">\r
+                    {{ auth.currentUser()?.role ?? 'Administrator' }}\r
+                </div>\r
             </div>\r
             <i class="pi pi-sign-out logout-btn"></i>\r
             }\r
@@ -396,7 +596,7 @@ var SidebarComponent = class _SidebarComponent {
   }], null, null);
 })();
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(SidebarComponent, { className: "SidebarComponent", filePath: "src/app/layout/sidebar/sidebar.component.ts", lineNumber: 24 });
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(SidebarComponent, { className: "SidebarComponent", filePath: "src/app/layout/sidebar/sidebar.component.ts", lineNumber: 25 });
 })();
 
 // src/app/layout/shell/shell.component.ts
@@ -465,51 +665,76 @@ var ShellComponent = class _ShellComponent {
   (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(ShellComponent, { className: "ShellComponent", filePath: "src/app/layout/shell/shell.component.ts", lineNumber: 13 });
 })();
 
+// src/app/core/guard/auth-guard.ts
+var authGuard = (route, state) => {
+  const authService = inject(AuthService);
+  const router = inject(Router);
+  if (authService.hasValidToken()) {
+    return true;
+  }
+  router.navigate(["/login"], {
+    queryParams: { returnUrl: state.url }
+  });
+  return false;
+};
+
 // src/app/app.routes.ts
-var routes = [{
-  path: "",
-  component: ShellComponent,
-  children: [
-    {
-      path: "dashboard",
-      // matches localhost:4200/dashboard
-      loadComponent: () => import("./chunk-FBWBQUFQ.js").then((m4) => m4.DashboardComponent)
-      /* loadComponent = lazy loading
-          The dashboard code is only downloaded when user navigates there
-          This keeps initial app load fast */
-    },
-    {
-      path: "customers",
-      loadChildren: () => import("./chunk-AK4NVAED.js").then((m4) => m4.customerRoutes)
-    },
-    {
-      path: "drivers",
-      loadChildren: () => import("./chunk-CVHSWBGA.js").then((m4) => m4.driverRoutes)
-    },
-    {
-      path: "containers",
-      loadChildren: () => import("./chunk-DO5I4UCR.js").then((m4) => m4.containerRoutes)
-    },
-    {
-      path: "trucks",
-      loadChildren: () => import("./chunk-KNC2KSBF.js").then((m4) => m4.truckRoutes)
-    },
-    {
-      path: "routes",
-      loadChildren: () => import("./chunk-QFQCQA6I.js").then((m4) => m4.routesRoutes)
-    },
-    {
-      path: "trips",
-      loadChildren: () => import("./chunk-KCBFM3FB.js").then((m4) => m4.tripRoutes)
-    },
-    {
-      path: "",
-      redirectTo: "dashboard",
-      // localhost:4200/ redirects to /dashboard
-      pathMatch: "full"
-    }
-  ]
-}];
+var routes = [
+  {
+    path: "login",
+    loadComponent: () => import("./chunk-6DK7ENC6.js").then((m4) => m4.LoginComponent)
+  },
+  {
+    path: "",
+    component: ShellComponent,
+    canActivate: [authGuard],
+    children: [
+      {
+        path: "dashboard",
+        // matches localhost:4200/dashboard
+        loadComponent: () => import("./chunk-G5F2NPNU.js").then((m4) => m4.DashboardComponent)
+        /* loadComponent = lazy loading
+            The dashboard code is only downloaded when user navigates there
+            This keeps initial app load fast */
+      },
+      {
+        path: "customers",
+        loadChildren: () => import("./chunk-RNLWLRP2.js").then((m4) => m4.customerRoutes)
+      },
+      {
+        path: "drivers",
+        loadChildren: () => import("./chunk-TZ6KLBT2.js").then((m4) => m4.driverRoutes)
+      },
+      {
+        path: "containers",
+        loadChildren: () => import("./chunk-6FFV6TRW.js").then((m4) => m4.containerRoutes)
+      },
+      {
+        path: "trucks",
+        loadChildren: () => import("./chunk-JJ6RX54C.js").then((m4) => m4.truckRoutes)
+      },
+      {
+        path: "routes",
+        loadChildren: () => import("./chunk-ZL66XE54.js").then((m4) => m4.routesRoutes)
+      },
+      {
+        path: "trips",
+        loadChildren: () => import("./chunk-K7O4YCPM.js").then((m4) => m4.tripRoutes)
+      },
+      {
+        path: "",
+        redirectTo: "dashboard",
+        // localhost:4200/ redirects to /dashboard
+        pathMatch: "full"
+      }
+    ]
+  },
+  // Catch-all — redirect unknown routes to dashboard
+  {
+    path: "**",
+    redirectTo: "/dashboard"
+  }
+];
 
 // node_modules/@primeuix/themes/dist/aura/accordion/index.mjs
 var o = { transitionDuration: "{transition.duration}" };
@@ -1193,12 +1418,81 @@ var e57 = { loader: o86 };
 // node_modules/@primeng/themes/aura/index.mjs
 var km = __spreadProps(__spreadValues({}, e5), { components: { accordion: c, autocomplete: a, avatar: n, badge: d2, blockui: o6, breadcrumb: t3, button: e6, datepicker: k2, card: d3, carousel: t5, cascadeselect: f2, checkbox: e9, chip: s2, colorpicker: s3, confirmdialog: r15, confirmpopup: a6, contextmenu: c6, dataview: c8, datatable: v, dialog: e17, divider: t10, dock: d9, drawer: e19, editor: l7, fieldset: e21, fileupload: i10, iftalabel: i13, floatlabel: d13, galleria: l8, iconfield: r30, image: e24, imagecompare: r32, inlinemessage: a16, inplace: n12, inputchips: f6, inputgroup: o37, inputnumber: a17, inputotp: e27, inputtext: d16, knob: c11, listbox: n14, megamenu: g4, menu: r42, menubar: e30, message: u4, metergroup: b3, multiselect: n19, orderlist: o48, organizationchart: n20, overlaybadge: t23, popover: e38, paginator: n21, password: n24, panel: a25, panelmenu: a26, picklist: o55, progressbar: t27, progressspinner: r56, radiobutton: e40, rating: i21, ripple: o61, scrollpanel: a29, select: n25, selectbutton: d24, skeleton: o65, slider: a32, speeddial: a33, splitter: t30, splitbutton: d25, stepper: i23, steps: c17, tabmenu: n30, tabs: i24, tabview: e47, textarea: d28, tieredmenu: c21, tag: n33, terminal: e48, timeline: d29, togglebutton: c23, toggleswitch: c24, tree: d31, treeselect: a40, treetable: k3, toast: u5, toolbar: r79, tooltip: e53, virtualscroller: e57 } });
 
+// src/app/core/interceptors/auth.interceptors.ts
+var isRefreshing = false;
+var refreshQueue = [];
+function resolveQueue(token) {
+  refreshQueue.forEach((cb) => cb.resolve(token));
+  refreshQueue = [];
+}
+function rejectQueue(err) {
+  refreshQueue.forEach((cb) => cb.reject(err));
+  refreshQueue = [];
+}
+var authInterceptor = (req, next) => {
+  const authService = inject(AuthService);
+  const token = authService.getAccessToken();
+  const authReq = attachToken(req, token);
+  return new Observable((observer) => {
+    next(authReq).subscribe({
+      next: (event) => observer.next(event),
+      complete: () => observer.complete(),
+      error: (error) => {
+        if (!(error instanceof HttpErrorResponse) || error.status !== 401) {
+          observer.error(error);
+          return;
+        }
+        if (req.url.includes("/auth/refresh") || req.url.includes("/auth/login")) {
+          authService.logout();
+          observer.error(error);
+          return;
+        }
+        if (isRefreshing) {
+          const waitForRefresh = new Promise((resolve, reject) => {
+            refreshQueue.push({ resolve, reject });
+          });
+          waitForRefresh.then((newToken) => {
+            next(attachToken(req, newToken)).subscribe({
+              next: (event) => observer.next(event),
+              complete: () => observer.complete(),
+              error: (err) => observer.error(err)
+            });
+          }).catch((err) => observer.error(err));
+          return;
+        }
+        isRefreshing = true;
+        authService.refresh((newToken) => {
+          isRefreshing = false;
+          resolveQueue(newToken);
+          next(attachToken(req, newToken)).subscribe({
+            next: (event) => observer.next(event),
+            complete: () => observer.complete(),
+            error: (err) => observer.error(err)
+          });
+        }, () => {
+          isRefreshing = false;
+          rejectQueue(new Error("Refresh failed"));
+          authService.logout();
+          observer.error(error);
+        });
+      }
+    });
+  });
+};
+function attachToken(req, token) {
+  if (!token)
+    return req;
+  return req.clone({
+    setHeaders: { Authorization: `Bearer ${token}` }
+  });
+}
+
 // src/app/app.config.ts
 var appConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
-    provideHttpClient(withInterceptorsFromDi()),
+    provideHttpClient(withInterceptors([authInterceptor])),
     providePrimeNG({
       theme: {
         preset: km,

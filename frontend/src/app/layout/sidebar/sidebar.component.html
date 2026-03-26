@@ -37,12 +37,18 @@
 
     <!-- Footer -->
     <div class="sidebar-footer">
-        <div class="sidebar-user">
-            <div class="user-avatar-small">AD</div>
+        <div class="sidebar-user" (click)="auth.logout()">
+            <div class="user-avatar-small">
+                {{ auth.currentUser()?.fullName?.charAt(0)?.toUpperCase() ?? 'A' }}
+            </div>
             @if (!layout.sidebarCollapsed()) {
             <div class="user-info-small">
-                <div class="user-name-small">Admin</div>
-                <div class="user-role-small">Administrator</div>
+                <div class="user-name-small">
+                    {{ auth.currentUser()?.fullName ?? 'Admin' }}
+                </div>
+                <div class="user-role-small">
+                    {{ auth.currentUser()?.role ?? 'Administrator' }}
+                </div>
             </div>
             <i class="pi pi-sign-out logout-btn"></i>
             }
