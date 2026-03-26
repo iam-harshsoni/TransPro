@@ -23,16 +23,9 @@
         </ng-template>
     </p-toolbar>
 
-    <p-table #dt [value]="containers()" 
-        [lazy]="true" 
-        (onLazyLoad)="onLazyLoad($event)"
-        [totalRecords]="totalRecords" 
-        [paginator]="true" 
-        [rows]="pageSize" 
-        [rowsPerPageOptions]="[10, 25, 50, 100]"
-        [rowHover]="true" 
-        dataKey="id" 
-        [showCurrentPageReport]="true"
+    <p-table #dt [value]="containers()" [loading]="isLoading" [lazy]="true" (onLazyLoad)="onLazyLoad($event)"
+        [totalRecords]="totalRecords" [paginator]="true" [rows]="pageSize" [rowsPerPageOptions]="[10, 25, 50, 100]"
+        [rowHover]="true" dataKey="id" [showCurrentPageReport]="true"
         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} containers"
         [tableStyle]="{ 'min-width': '55rem' }">
 
@@ -60,36 +53,21 @@
                 <th pSortableColumn="createdAt" style="min-width: 11rem">
                     Created <p-sortIcon field="createdAt" />
                 </th>
-                <th style="width: 8rem; text-align: center">Actions</th>
             </tr>
         </ng-template>
 
         <ng-template pTemplate="body" let-container>
             <tr>
-                <td><span class="row-name">{{ container.containerNumber }}</span></td>
+                <td><span class="breadcrumb-link cursor-pointer" pTooltip="Edit" tooltipPosition="top"
+                        (click)="navigateToEdit(container)">{{ container.containerNumber }}</span></td>
                 <td>
-                    <p-tag
-                        [value]="container.type"
-                        [severity]="getTypeSeverity(container.type)" />
+                    <p-tag [value]="container.type" [severity]="getTypeSeverity(container.type)" />
                 </td>
                 <td>{{ container.weightCapacity }}</td>
                 <td>{{ container.createdAt }}</td>
                 <td>
-                    <p-tag 
-                        [value]="container.isAvailable ? 'Available' : 'Occupied'"
+                    <p-tag [value]="container.isAvailable ? 'Available' : 'Occupied'"
                         [severity]="getSeverity(container.isAvailable)" />
-                </td>
-                <td>
-                    <div class="row-actions">
-                        <p-button 
-                            icon="pi pi-pencil" 
-                            [rounded]="true" 
-                            [outlined]="true" 
-                            size="small" 
-                            pTooltip="Edit"
-                            tooltipPosition="top" 
-                            (onClick)="navigateToEdit(container)" />
-                    </div>
                 </td>
             </tr>
         </ng-template>

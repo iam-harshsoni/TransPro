@@ -4,7 +4,7 @@ import "./chunk-GOMI4DH3.js";
 var customerRoutes = [
   {
     path: "",
-    loadComponent: () => import("./chunk-AEJL45NA.js").then((m) => m.CustomerListComponent)
+    loadComponent: () => import("./chunk-4KFW7P2V.js").then((m) => m.CustomerListComponent)
   },
   {
     path: "create",
@@ -19,4 +19,4 @@ var customerRoutes = [
 export {
   customerRoutes
 };
-//# sourceMappingURL=chunk-RNLWLRP2.js.map
+//# sourceMappingURL=chunk-UMPHPCOR.js.map

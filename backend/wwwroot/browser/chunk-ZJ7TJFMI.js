@@ -79,27 +79,27 @@ var _c1 = () => ({ "min-width": "55rem" });
 function RouteListComponent_ng_template_13_Template(rf, ctx) {
   if (rf & 1) {
     const _r1 = \u0275\u0275getCurrentView();
-    \u0275\u0275elementStart(0, "p-button", 15);
-    \u0275\u0275listener("onClick", function RouteListComponent_ng_template_13_Template_p_button_onClick_0_listener() {
+    \u0275\u0275elementStart(0, "p-iconfield");
+    \u0275\u0275element(1, "p-inputicon", 15);
+    \u0275\u0275elementStart(2, "input", 16);
+    \u0275\u0275listener("input", function RouteListComponent_ng_template_13_Template_input_input_2_listener($event) {
       \u0275\u0275restoreView(_r1);
       const ctx_r1 = \u0275\u0275nextContext();
-      return \u0275\u0275resetView(ctx_r1.navigateToCreate());
+      return \u0275\u0275resetView(ctx_r1.onSearch($event));
     });
-    \u0275\u0275elementEnd();
+    \u0275\u0275elementEnd()();
   }
 }
 function RouteListComponent_ng_template_15_Template(rf, ctx) {
   if (rf & 1) {
     const _r3 = \u0275\u0275getCurrentView();
-    \u0275\u0275elementStart(0, "p-iconfield");
-    \u0275\u0275element(1, "p-inputicon", 16);
-    \u0275\u0275elementStart(2, "input", 17);
-    \u0275\u0275listener("input", function RouteListComponent_ng_template_15_Template_input_input_2_listener($event) {
+    \u0275\u0275elementStart(0, "p-button", 17);
+    \u0275\u0275listener("onClick", function RouteListComponent_ng_template_15_Template_p_button_onClick_0_listener() {
       \u0275\u0275restoreView(_r3);
       const ctx_r1 = \u0275\u0275nextContext();
-      return \u0275\u0275resetView(ctx_r1.onSearch($event));
+      return \u0275\u0275resetView(ctx_r1.navigateToCreate());
     });
-    \u0275\u0275elementEnd()();
+    \u0275\u0275elementEnd();
   }
 }
 function RouteListComponent_ng_template_19_Template(rf, ctx) {
@@ -120,56 +120,58 @@ function RouteListComponent_ng_template_19_Template(rf, ctx) {
 function RouteListComponent_ng_template_20_Template(rf, ctx) {
   if (rf & 1) {
     \u0275\u0275elementStart(0, "tr")(1, "th", 21);
-    \u0275\u0275text(2, " Origin ");
-    \u0275\u0275element(3, "p-sortIcon", 22);
+    \u0275\u0275text(2, "Actions");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(4, "th", 23);
-    \u0275\u0275text(5, " Destination ");
-    \u0275\u0275element(6, "p-sortIcon", 24);
+    \u0275\u0275elementStart(3, "th", 22);
+    \u0275\u0275text(4, " Origin ");
+    \u0275\u0275element(5, "p-sortIcon", 23);
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(7, "th", 25);
-    \u0275\u0275text(8, " Distance ");
-    \u0275\u0275element(9, "p-sortIcon", 26);
+    \u0275\u0275elementStart(6, "th", 24);
+    \u0275\u0275text(7, " Destination ");
+    \u0275\u0275element(8, "p-sortIcon", 25);
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(10, "th", 27);
-    \u0275\u0275text(11, " Est. Duration ");
-    \u0275\u0275element(12, "p-sortIcon", 28);
+    \u0275\u0275elementStart(9, "th", 26);
+    \u0275\u0275text(10, " Distance ");
+    \u0275\u0275element(11, "p-sortIcon", 27);
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(13, "th", 29);
-    \u0275\u0275text(14, "Actions");
+    \u0275\u0275elementStart(12, "th", 28);
+    \u0275\u0275text(13, " Est. Duration ");
+    \u0275\u0275element(14, "p-sortIcon", 29);
     \u0275\u0275elementEnd()();
   }
 }
 function RouteListComponent_ng_template_21_Template(rf, ctx) {
   if (rf & 1) {
     const _r4 = \u0275\u0275getCurrentView();
-    \u0275\u0275elementStart(0, "tr")(1, "td")(2, "div", 30);
-    \u0275\u0275element(3, "i", 31);
-    \u0275\u0275elementStart(4, "span", 32);
-    \u0275\u0275text(5);
-    \u0275\u0275elementEnd()()();
-    \u0275\u0275elementStart(6, "td")(7, "div", 30)(8, "span", 32);
-    \u0275\u0275text(9);
-    \u0275\u0275elementEnd()()();
-    \u0275\u0275elementStart(10, "td");
-    \u0275\u0275element(11, "p-tag", 33);
-    \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(12, "td")(13, "div", 34);
-    \u0275\u0275element(14, "i", 35);
-    \u0275\u0275elementStart(15, "span");
-    \u0275\u0275text(16);
-    \u0275\u0275elementEnd()()();
-    \u0275\u0275elementStart(17, "td")(18, "div", 36)(19, "p-button", 37);
-    \u0275\u0275listener("onClick", function RouteListComponent_ng_template_21_Template_p_button_onClick_19_listener() {
+    \u0275\u0275elementStart(0, "tr")(1, "td")(2, "div", 30)(3, "p-button", 31);
+    \u0275\u0275listener("onClick", function RouteListComponent_ng_template_21_Template_p_button_onClick_3_listener() {
       const route_r5 = \u0275\u0275restoreView(_r4).$implicit;
       const ctx_r1 = \u0275\u0275nextContext();
       return \u0275\u0275resetView(ctx_r1.navigateToEdit(route_r5));
     });
+    \u0275\u0275elementEnd()()();
+    \u0275\u0275elementStart(4, "td")(5, "div", 32);
+    \u0275\u0275element(6, "i", 33);
+    \u0275\u0275elementStart(7, "span", 34);
+    \u0275\u0275text(8);
+    \u0275\u0275elementEnd()()();
+    \u0275\u0275elementStart(9, "td")(10, "div", 32)(11, "span", 34);
+    \u0275\u0275text(12);
+    \u0275\u0275elementEnd()()();
+    \u0275\u0275elementStart(13, "td");
+    \u0275\u0275element(14, "p-tag", 35);
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(15, "td")(16, "div", 36);
+    \u0275\u0275element(17, "i", 37);
+    \u0275\u0275elementStart(18, "span");
+    \u0275\u0275text(19);
     \u0275\u0275elementEnd()()()();
   }
   if (rf & 2) {
     const route_r5 = ctx.$implicit;
     const ctx_r1 = \u0275\u0275nextContext();
+    \u0275\u0275advance(3);
+    \u0275\u0275property("rounded", true)("outlined", true);
     \u0275\u0275advance(5);
     \u0275\u0275textInterpolate(route_r5.origin);
     \u0275\u0275advance(4);
@@ -178,8 +180,6 @@ function RouteListComponent_ng_template_21_Template(rf, ctx) {
     \u0275\u0275property("value", ctx_r1.formatDistance(route_r5.distanceKm))("severity", ctx_r1.getDistanceSeverity(route_r5.distanceKm));
     \u0275\u0275advance(5);
     \u0275\u0275textInterpolate(ctx_r1.formatHours(route_r5.estimatedHours));
-    \u0275\u0275advance(3);
-    \u0275\u0275property("rounded", true)("outlined", true);
   }
 }
 function RouteListComponent_ng_template_22_Template(rf, ctx) {
@@ -270,7 +270,7 @@ var RouteListComponent = class _RouteListComponent {
   static \u0275fac = function RouteListComponent_Factory(__ngFactoryType__) {
     return new (__ngFactoryType__ || _RouteListComponent)();
   };
-  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _RouteListComponent, selectors: [["app-route-list"]], features: [\u0275\u0275ProvidersFeature([MessageService])], decls: 23, vars: 11, consts: [["start", ""], ["end", ""], ["dt", ""], [1, "page-header"], [1, "breadcrumb-trail"], [1, "pi", "pi-angle-right"], [1, "page-title"], [1, "page-subtitle"], [1, "card"], [1, "table-toolbar"], ["dataKey", "id", "currentPageReportTemplate", "Showing {first} to {last} of {totalRecords} routes", 3, "onLazyLoad", "value", "lazy", "totalRecords", "paginator", "rows", "rowsPerPageOptions", "rowHover", "showCurrentPageReport", "tableStyle"], ["pTemplate", "caption"], ["pTemplate", "header"], ["pTemplate", "body"], ["pTemplate", "emptymessage"], ["label", "New Route", "icon", "pi pi-plus", 3, "onClick"], [1, "pi", "pi-search"], ["pInputText", "", "type", "text", "placeholder", "Search routes...", 3, "input"], [1, "table-caption"], [1, "table-title"], [1, "table-count"], ["pSortableColumn", "origin", 2, "min-width", "14rem"], ["field", "origin"], ["pSortableColumn", "destination", 2, "min-width", "14rem"], ["field", "destination"], ["pSortableColumn", "distanceKm", 2, "min-width", "10rem"], ["field", "distanceKm"], ["pSortableColumn", "estimatedHours", 2, "min-width", "10rem"], ["field", "estimatedHours"], [2, "width", "8rem", "text-align", "center"], [1, "route-origin-cell"], [1, "pi", "pi-map-marker", "route-pin"], [1, "row-name"], [3, "value", "severity"], [1, "duration-cell"], [1, "pi", "pi-clock"], [1, "row-actions"], ["icon", "pi pi-pencil", "size", "small", "pTooltip", "Edit", "tooltipPosition", "top", 3, "onClick", "rounded", "outlined"], ["colspan", "5"], [1, "empty-state"], [1, "pi", "pi-map"]], template: function RouteListComponent_Template(rf, ctx) {
+  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _RouteListComponent, selectors: [["app-route-list"]], features: [\u0275\u0275ProvidersFeature([MessageService])], decls: 23, vars: 12, consts: [["start", ""], ["end", ""], ["dt", ""], [1, "page-header"], [1, "breadcrumb-trail"], [1, "pi", "pi-angle-right"], [1, "page-title"], [1, "page-subtitle"], [1, "card"], [1, "table-toolbar"], ["dataKey", "id", "currentPageReportTemplate", "Showing {first} to {last} of {totalRecords} routes", 3, "onLazyLoad", "value", "loading", "lazy", "totalRecords", "paginator", "rows", "rowsPerPageOptions", "rowHover", "showCurrentPageReport", "tableStyle"], ["pTemplate", "caption"], ["pTemplate", "header"], ["pTemplate", "body"], ["pTemplate", "emptymessage"], [1, "pi", "pi-search"], ["pInputText", "", "type", "text", "placeholder", "Search routes...", 3, "input"], ["label", "New Route", "icon", "pi pi-plus", 3, "onClick"], [1, "table-caption"], [1, "table-title"], [1, "table-count"], [2, "width", "8rem", "text-align", "center"], ["pSortableColumn", "origin", 2, "min-width", "14rem"], ["field", "origin"], ["pSortableColumn", "destination", 2, "min-width", "14rem"], ["field", "destination"], ["pSortableColumn", "distanceKm", 2, "min-width", "10rem"], ["field", "distanceKm"], ["pSortableColumn", "estimatedHours", 2, "min-width", "10rem"], ["field", "estimatedHours"], [1, "row-actions"], ["icon", "pi pi-pencil", "size", "small", "pTooltip", "Edit", "tooltipPosition", "top", 3, "onClick", "rounded", "outlined"], [1, "route-origin-cell"], [1, "pi", "pi-map-marker", "route-pin"], [1, "row-name"], [3, "value", "severity"], [1, "duration-cell"], [1, "pi", "pi-clock"], ["colspan", "5"], [1, "empty-state"], [1, "pi", "pi-map"]], template: function RouteListComponent_Template(rf, ctx) {
     if (rf & 1) {
       \u0275\u0275element(0, "p-toast");
       \u0275\u0275elementStart(1, "div", 3)(2, "div", 4);
@@ -286,7 +286,7 @@ var RouteListComponent = class _RouteListComponent {
       \u0275\u0275text(10, "Manage transport routes and distances");
       \u0275\u0275elementEnd()();
       \u0275\u0275elementStart(11, "div", 8)(12, "p-toolbar", 9);
-      \u0275\u0275template(13, RouteListComponent_ng_template_13_Template, 1, 0, "ng-template", null, 0, \u0275\u0275templateRefExtractor)(15, RouteListComponent_ng_template_15_Template, 3, 0, "ng-template", null, 1, \u0275\u0275templateRefExtractor);
+      \u0275\u0275template(13, RouteListComponent_ng_template_13_Template, 3, 0, "ng-template", null, 0, \u0275\u0275templateRefExtractor)(15, RouteListComponent_ng_template_15_Template, 1, 0, "ng-template", null, 1, \u0275\u0275templateRefExtractor);
       \u0275\u0275elementEnd();
       \u0275\u0275elementStart(17, "p-table", 10, 2);
       \u0275\u0275listener("onLazyLoad", function RouteListComponent_Template_p_table_onLazyLoad_17_listener($event) {
@@ -297,7 +297,7 @@ var RouteListComponent = class _RouteListComponent {
     }
     if (rf & 2) {
       \u0275\u0275advance(17);
-      \u0275\u0275property("value", ctx.appRoutes())("lazy", true)("totalRecords", ctx.totalRecords)("paginator", true)("rows", ctx.pageSize)("rowsPerPageOptions", \u0275\u0275pureFunction0(9, _c0))("rowHover", true)("showCurrentPageReport", true)("tableStyle", \u0275\u0275pureFunction0(10, _c1));
+      \u0275\u0275property("value", ctx.appRoutes())("loading", ctx.isLoading())("lazy", true)("totalRecords", ctx.totalRecords)("paginator", true)("rows", ctx.pageSize)("rowsPerPageOptions", \u0275\u0275pureFunction0(10, _c0))("rowHover", true)("showCurrentPageReport", true)("tableStyle", \u0275\u0275pureFunction0(11, _c1));
     }
   }, dependencies: [
     CommonModule,
@@ -354,19 +354,20 @@ var RouteListComponent = class _RouteListComponent {
 
     <p-toolbar class="table-toolbar">
         <ng-template #start>
-            <p-button label="New Route" icon="pi pi-plus" (onClick)="navigateToCreate()" />
-        </ng-template>
-        <ng-template #end>
             <p-iconfield>
                 <p-inputicon class="pi pi-search" />
                 <input pInputText type="text" placeholder="Search routes..." (input)="onSearch($event)" />
             </p-iconfield>
         </ng-template>
+        <ng-template #end>
+            <p-button label="New Route" icon="pi pi-plus" (onClick)="navigateToCreate()" />
+        </ng-template>
     </p-toolbar>
 
-    <p-table #dt [value]="appRoutes()" [lazy]="true" (onLazyLoad)="onLazyLoad($event)" [totalRecords]="totalRecords"
-        [paginator]="true" [rows]="pageSize" [rowsPerPageOptions]="[10, 25, 50]" [rowHover]="true" dataKey="id"
-        [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} routes"
+    <p-table #dt [value]="appRoutes()" [loading]="isLoading()" [lazy]="true" (onLazyLoad)="onLazyLoad($event)"
+        [totalRecords]="totalRecords" [paginator]="true" [rows]="pageSize" [rowsPerPageOptions]="[10, 25, 50]"
+        [rowHover]="true" dataKey="id" [showCurrentPageReport]="true"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} routes"
         [tableStyle]="{ 'min-width': '55rem' }">
 
         <ng-template pTemplate="caption">
@@ -378,6 +379,7 @@ var RouteListComponent = class _RouteListComponent {
 
         <ng-template pTemplate="header">
             <tr>
+                <th style="width: 8rem; text-align: center">Actions</th>
                 <th pSortableColumn="origin" style="min-width: 14rem">
                     Origin <p-sortIcon field="origin" />
                 </th>
@@ -390,12 +392,18 @@ var RouteListComponent = class _RouteListComponent {
                 <th pSortableColumn="estimatedHours" style="min-width: 10rem">
                     Est. Duration <p-sortIcon field="estimatedHours" />
                 </th>
-                <th style="width: 8rem; text-align: center">Actions</th>
+
             </tr>
         </ng-template>
 
         <ng-template pTemplate="body" let-route>
             <tr>
+                <td>
+                    <div class="row-actions">
+                        <p-button icon="pi pi-pencil" [rounded]="true" [outlined]="true" size="small" pTooltip="Edit"
+                            tooltipPosition="top" (onClick)="navigateToEdit(route)" />
+                    </div>
+                </td>
                 <td>
                     <div class="route-origin-cell">
                         <i class="pi pi-map-marker route-pin"></i>
@@ -415,12 +423,6 @@ var RouteListComponent = class _RouteListComponent {
                     <div class="duration-cell">
                         <i class="pi pi-clock"></i>
                         <span>{{ formatHours(route.estimatedHours) }}</span>
-                    </div>
-                </td>
-                <td>
-                    <div class="row-actions">
-                        <p-button icon="pi pi-pencil" [rounded]="true" [outlined]="true" size="small" pTooltip="Edit"
-                            tooltipPosition="top" (onClick)="navigateToEdit(route)" />
                     </div>
                 </td>
             </tr>
@@ -448,4 +450,4 @@ var RouteListComponent = class _RouteListComponent {
 export {
   RouteListComponent
 };
-//# sourceMappingURL=chunk-4LKDDMM7.js.map
+//# sourceMappingURL=chunk-ZJ7TJFMI.js.map

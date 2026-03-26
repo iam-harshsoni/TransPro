@@ -13,19 +13,21 @@
 
     <p-toolbar class="table-toolbar">
         <ng-template #start>
-            <p-button label="New Truck" icon="pi pi-plus" (onClick)="navigateToCreate()" />
-        </ng-template>
-        <ng-template #end>
             <p-iconfield>
                 <p-inputicon class="pi pi-search" />
                 <input pInputText type="text" placeholder="Search trucks..." (input)="onSearch($event)" />
             </p-iconfield>
         </ng-template>
+        <ng-template #end>
+            <p-button label="New Truck" icon="pi pi-plus" (onClick)="navigateToCreate()" />
+
+        </ng-template>
     </p-toolbar>
 
-    <p-table #dt [value]="trucks()" [lazy]="true" (onLazyLoad)="onLazyLoad($event)" [totalRecords]="totalRecords"
-        [paginator]="true" [rows]="pageSize" [rowsPerPageOptions]="[10, 25, 50]" [rowHover]="true" dataKey="id"
-        [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} trucks"
+    <p-table #dt [value]="trucks()" [loading]="isLoading()" [lazy]="true" (onLazyLoad)="onLazyLoad($event)"
+        [totalRecords]="totalRecords" [paginator]="true" [rows]="pageSize" [rowsPerPageOptions]="[10, 25, 50]"
+        [rowHover]="true" dataKey="id" [showCurrentPageReport]="true"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} trucks"
         [tableStyle]="{ 'min-width': '55rem' }">
 
         <ng-template pTemplate="caption">
@@ -47,14 +49,15 @@
                     Capacity <p-sortIcon field="capacity" />
                 </th>
                 <th style="min-width: 10rem">Availability</th>
-                <th style="width: 8rem; text-align: center">Actions</th>
             </tr>
         </ng-template>
 
         <ng-template pTemplate="body" let-truck>
             <tr>
                 <td>
-                    <span class="plate-number">{{ truck.plateNumber }}</span>
+                    <span class="plate-number breadcrumb-link cursor-pointer" pTooltip="Edit" tooltipPosition="top"
+                        (click)="navigateToEdit(truck)">{{
+                        truck.plateNumber }}</span>
                 </td>
                 <td>
                     <div class="truck-model-cell">
@@ -68,12 +71,6 @@
                 <td>
                     <p-tag [value]="truck.isAvailable ? 'Available' : 'Unavailable'"
                         [severity]="getSeverity(truck.isAvailable)" />
-                </td>
-                <td>
-                    <div class="row-actions">
-                        <p-button icon="pi pi-pencil" [rounded]="true" [outlined]="true" size="small" pTooltip="Edit"
-                            tooltipPosition="top" (onClick)="navigateToEdit(truck)" />
-                    </div>
                 </td>
             </tr>
         </ng-template>

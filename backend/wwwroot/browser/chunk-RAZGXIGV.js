@@ -4,11 +4,11 @@ import "./chunk-GOMI4DH3.js";
 var tripRoutes = [
   {
     path: "",
-    loadComponent: () => import("./chunk-MISTW3KH.js").then((m) => m.TripListComponent)
+    loadComponent: () => import("./chunk-WCZHUQDC.js").then((m) => m.TripListComponent)
   },
   {
     path: "create",
-    loadComponent: () => import("./chunk-CAOBEPR3.js").then((m) => m.TripFormComponent)
+    loadComponent: () => import("./chunk-DIWJVIZI.js").then((m) => m.TripFormComponent)
   },
   {
     path: ":id",
@@ -18,4 +18,4 @@ var tripRoutes = [
 export {
   tripRoutes
 };
-//# sourceMappingURL=chunk-K7O4YCPM.js.map
+//# sourceMappingURL=chunk-RAZGXIGV.js.map

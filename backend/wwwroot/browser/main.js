@@ -699,27 +699,27 @@ var routes = [
       },
       {
         path: "customers",
-        loadChildren: () => import("./chunk-RNLWLRP2.js").then((m4) => m4.customerRoutes)
+        loadChildren: () => import("./chunk-UMPHPCOR.js").then((m4) => m4.customerRoutes)
       },
       {
         path: "drivers",
-        loadChildren: () => import("./chunk-TZ6KLBT2.js").then((m4) => m4.driverRoutes)
+        loadChildren: () => import("./chunk-OQYGAKRO.js").then((m4) => m4.driverRoutes)
       },
       {
         path: "containers",
-        loadChildren: () => import("./chunk-6FFV6TRW.js").then((m4) => m4.containerRoutes)
+        loadChildren: () => import("./chunk-2Q3HZJNW.js").then((m4) => m4.containerRoutes)
       },
       {
         path: "trucks",
-        loadChildren: () => import("./chunk-JJ6RX54C.js").then((m4) => m4.truckRoutes)
+        loadChildren: () => import("./chunk-BBORBAAE.js").then((m4) => m4.truckRoutes)
       },
       {
         path: "routes",
-        loadChildren: () => import("./chunk-ZL66XE54.js").then((m4) => m4.routesRoutes)
+        loadChildren: () => import("./chunk-SUJNLFGS.js").then((m4) => m4.routesRoutes)
       },
       {
         path: "trips",
-        loadChildren: () => import("./chunk-K7O4YCPM.js").then((m4) => m4.tripRoutes)
+        loadChildren: () => import("./chunk-RAZGXIGV.js").then((m4) => m4.tripRoutes)
       },
       {
         path: "",

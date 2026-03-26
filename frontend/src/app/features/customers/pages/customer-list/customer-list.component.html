@@ -33,9 +33,10 @@
     so it can calculate how many pages to show.
     This value comes from the API response (response.totalCount).
   -->
-    <p-table #dt [value]="customers()" [lazy]="true" (onLazyLoad)="onLazyLoad($event)" [totalRecords]="totalRecords"
-        [paginator]="true" [rows]="pageSize" [rowsPerPageOptions]="[10, 25, 50, 100]" [rowHover]="true" dataKey="id"
-        [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} customers"
+    <p-table #dt [value]="customers()" [loading]="isLoading" [lazy]="true" (onLazyLoad)="onLazyLoad($event)"
+        [totalRecords]="totalRecords" [paginator]="true" [rows]="pageSize" [rowsPerPageOptions]="[10, 25, 50, 100]"
+        [rowHover]="true" dataKey="id" [showCurrentPageReport]="true"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} customers"
         [tableStyle]="{ 'min-width': '60rem' }">
 
         <ng-template pTemplate="caption">
@@ -61,7 +62,9 @@
 
         <ng-template pTemplate="body" let-customer>
             <tr>
-                <td><span class="row-name">{{ customer.fullName }}</span></td>
+                <td><span class="row-name breadcrumb-link cursor-pointer" (click)="navigateToEdit(customer)"
+                        pTooltip="Edit" tooltipPosition="top">{{
+                        customer.fullName }}</span></td>
                 <td>{{ customer.email }}</td>
                 <td>{{ customer.phone }}</td>
                 <td>

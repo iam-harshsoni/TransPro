@@ -14,6 +14,7 @@ import { ToolbarModule } from 'primeng/toolbar';
 import { TruckService } from '../../services/truck.service';
 import { Router } from '@angular/router';
 import { Truck } from '../../models/truck.model';
+import { TooltipModule } from 'primeng/tooltip';
 
 @Component({
 	selector: 'app-truck-list',
@@ -30,6 +31,7 @@ import { Truck } from '../../models/truck.model';
 		IconFieldModule,
 		InputIconModule,
 		ToolbarModule,
+		TooltipModule
 	],
 	providers: [ConfirmationService, MessageService],
 	templateUrl: './truck-list.component.html',
@@ -44,7 +46,7 @@ export class TruckListComponent {
 	private searchTimeout: any;
 
 	trucks = signal<Truck[]>([]);
-	// isLoading = signal<boolean>(true);
+	isLoading = signal<boolean>(true);
 
 	totalRecords: number = 0;
 	pageSize: number = 10;
@@ -56,13 +58,13 @@ export class TruckListComponent {
 		size: number,
 		search: string
 	): void {
-		// this.isLoading.set(true);
+		this.isLoading.set(true);
 
 		this.truckService.getPaginated(page, size, search).subscribe({
 			next: (response) => {
 				this.trucks.set(response.data.data);
 				this.totalRecords = response.data.totalCount;
-				// this.isLoading.set(false);
+				this.isLoading.set(false);
 			},
 			error: () => {
 				this.messageService.add({
@@ -70,7 +72,7 @@ export class TruckListComponent {
 					summary: 'Error',
 					detail: 'Failed to laod containers'
 				});
-				// this.isLoading.set(false);
+				this.isLoading.set(false);
 			}
 		})
 	}

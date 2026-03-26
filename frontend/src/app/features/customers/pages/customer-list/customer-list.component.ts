@@ -16,6 +16,7 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 
 import { Customer } from '../../models/customer.model';
 import { CustomerService } from '../../services/customer.service';
+import { TooltipModule } from 'primeng/tooltip';
 
 @Component({
 	selector: 'app-customer-list',
@@ -32,6 +33,7 @@ import { CustomerService } from '../../services/customer.service';
 		IconFieldModule,
 		InputIconModule,
 		ToolbarModule,
+		TooltipModule
 	],
 	providers: [ConfirmationService, MessageService],
 	templateUrl: './customer-list.component.html',

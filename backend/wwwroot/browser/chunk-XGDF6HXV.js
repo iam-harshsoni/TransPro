@@ -26,7 +26,10 @@ import {
   ConfirmDialog,
   ConfirmDialogModule
 } from "./chunk-KXKR4XI4.js";
-import "./chunk-3PKWPBB4.js";
+import {
+  Tooltip,
+  TooltipModule
+} from "./chunk-3PKWPBB4.js";
 import "./chunk-FN7QHWDI.js";
 import "./chunk-5LDHMQOW.js";
 import {
@@ -139,20 +142,22 @@ function ContainerListComponent_ng_template_21_Template(rf, ctx) {
     \u0275\u0275elementStart(13, "th", 29);
     \u0275\u0275text(14, " Created ");
     \u0275\u0275element(15, "p-sortIcon", 30);
-    \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(16, "th", 31);
-    \u0275\u0275text(17, "Actions");
     \u0275\u0275elementEnd()();
   }
 }
 function ContainerListComponent_ng_template_22_Template(rf, ctx) {
   if (rf & 1) {
     const _r4 = \u0275\u0275getCurrentView();
-    \u0275\u0275elementStart(0, "tr")(1, "td")(2, "span", 32);
+    \u0275\u0275elementStart(0, "tr")(1, "td")(2, "span", 31);
+    \u0275\u0275listener("click", function ContainerListComponent_ng_template_22_Template_span_click_2_listener() {
+      const container_r5 = \u0275\u0275restoreView(_r4).$implicit;
+      const ctx_r1 = \u0275\u0275nextContext();
+      return \u0275\u0275resetView(ctx_r1.navigateToEdit(container_r5));
+    });
     \u0275\u0275text(3);
     \u0275\u0275elementEnd()();
     \u0275\u0275elementStart(4, "td");
-    \u0275\u0275element(5, "p-tag", 33);
+    \u0275\u0275element(5, "p-tag", 32);
     \u0275\u0275elementEnd();
     \u0275\u0275elementStart(6, "td");
     \u0275\u0275text(7);
@@ -161,15 +166,8 @@ function ContainerListComponent_ng_template_22_Template(rf, ctx) {
     \u0275\u0275text(9);
     \u0275\u0275elementEnd();
     \u0275\u0275elementStart(10, "td");
-    \u0275\u0275element(11, "p-tag", 33);
-    \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(12, "td")(13, "div", 34)(14, "p-button", 35);
-    \u0275\u0275listener("onClick", function ContainerListComponent_ng_template_22_Template_p_button_onClick_14_listener() {
-      const container_r5 = \u0275\u0275restoreView(_r4).$implicit;
-      const ctx_r1 = \u0275\u0275nextContext();
-      return \u0275\u0275resetView(ctx_r1.navigateToEdit(container_r5));
-    });
-    \u0275\u0275elementEnd()()()();
+    \u0275\u0275element(11, "p-tag", 32);
+    \u0275\u0275elementEnd()();
   }
   if (rf & 2) {
     const container_r5 = ctx.$implicit;
@@ -184,14 +182,12 @@ function ContainerListComponent_ng_template_22_Template(rf, ctx) {
     \u0275\u0275textInterpolate(container_r5.createdAt);
     \u0275\u0275advance(2);
     \u0275\u0275property("value", container_r5.isAvailable ? "Available" : "Occupied")("severity", ctx_r1.getSeverity(container_r5.isAvailable));
-    \u0275\u0275advance(3);
-    \u0275\u0275property("rounded", true)("outlined", true);
   }
 }
 function ContainerListComponent_ng_template_23_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "tr")(1, "td", 36)(2, "div", 37);
-    \u0275\u0275element(3, "i", 38);
+    \u0275\u0275elementStart(0, "tr")(1, "td", 33)(2, "div", 34);
+    \u0275\u0275element(3, "i", 35);
     \u0275\u0275elementStart(4, "span");
     \u0275\u0275text(5, "No container found");
     \u0275\u0275elementEnd();
@@ -272,7 +268,7 @@ var ContainerListComponent = class _ContainerListComponent {
   static \u0275fac = function ContainerListComponent_Factory(__ngFactoryType__) {
     return new (__ngFactoryType__ || _ContainerListComponent)();
   };
-  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _ContainerListComponent, selectors: [["app-container-list"]], features: [\u0275\u0275ProvidersFeature([MessageService, ConfirmationService])], decls: 24, vars: 11, consts: [["start", ""], ["end", ""], ["dt", ""], [1, "page-header"], [1, "breadcrumb-trail"], [1, "pi", "pi-angle-right"], [1, "page-title"], [1, "page-subtitle"], [1, "card"], [1, "table-toolbar"], ["dataKey", "id", "currentPageReportTemplate", "Showing {first} to {last} of {totalRecords} containers", 3, "onLazyLoad", "value", "lazy", "totalRecords", "paginator", "rows", "rowsPerPageOptions", "rowHover", "showCurrentPageReport", "tableStyle"], ["pTemplate", "caption"], ["pTemplate", "header"], ["pTemplate", "body"], ["pTemplate", "emptymessage"], [1, "pi", "pi-search"], ["pInputText", "", "type", "text", "placeholder", "Search containers...", 3, "input"], ["label", "Add", "icon", "pi pi-plus", 3, "onClick"], [1, "table-caption"], [1, "table-title"], [1, "table-count"], ["pSortableColumn", "containerNumber", 2, "min-width", "14rem"], ["field", "containerNumber"], ["pSortableColumn", "type", 2, "min-width", "16rem"], ["field", "Type"], ["pSortableColumn", "weightCapacity", 2, "min-width", "11rem"], ["field", "weightCapacity"], ["pSortableColumn", "isAvailable", 2, "min-width", "10rem"], ["field", "isAvailable"], ["pSortableColumn", "createdAt", 2, "min-width", "11rem"], ["field", "createdAt"], [2, "width", "8rem", "text-align", "center"], [1, "row-name"], [3, "value", "severity"], [1, "row-actions"], ["icon", "pi pi-pencil", "size", "small", "pTooltip", "Edit", "tooltipPosition", "top", 3, "onClick", "rounded", "outlined"], ["colspan", "6"], [1, "empty-state"], [1, "pi", "pi-users"]], template: function ContainerListComponent_Template(rf, ctx) {
+  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _ContainerListComponent, selectors: [["app-container-list"]], features: [\u0275\u0275ProvidersFeature([MessageService, ConfirmationService])], decls: 24, vars: 12, consts: [["start", ""], ["end", ""], ["dt", ""], [1, "page-header"], [1, "breadcrumb-trail"], [1, "pi", "pi-angle-right"], [1, "page-title"], [1, "page-subtitle"], [1, "card"], [1, "table-toolbar"], ["dataKey", "id", "currentPageReportTemplate", "Showing {first} to {last} of {totalRecords} containers", 3, "onLazyLoad", "value", "loading", "lazy", "totalRecords", "paginator", "rows", "rowsPerPageOptions", "rowHover", "showCurrentPageReport", "tableStyle"], ["pTemplate", "caption"], ["pTemplate", "header"], ["pTemplate", "body"], ["pTemplate", "emptymessage"], [1, "pi", "pi-search"], ["pInputText", "", "type", "text", "placeholder", "Search containers...", 3, "input"], ["label", "Add", "icon", "pi pi-plus", 3, "onClick"], [1, "table-caption"], [1, "table-title"], [1, "table-count"], ["pSortableColumn", "containerNumber", 2, "min-width", "14rem"], ["field", "containerNumber"], ["pSortableColumn", "type", 2, "min-width", "16rem"], ["field", "Type"], ["pSortableColumn", "weightCapacity", 2, "min-width", "11rem"], ["field", "weightCapacity"], ["pSortableColumn", "isAvailable", 2, "min-width", "10rem"], ["field", "isAvailable"], ["pSortableColumn", "createdAt", 2, "min-width", "11rem"], ["field", "createdAt"], ["pTooltip", "Edit", "tooltipPosition", "top", 1, "breadcrumb-link", "cursor-pointer", 3, "click"], [3, "value", "severity"], ["colspan", "6"], [1, "empty-state"], [1, "pi", "pi-users"]], template: function ContainerListComponent_Template(rf, ctx) {
     if (rf & 1) {
       \u0275\u0275element(0, "p-toast")(1, "p-confirmDialog");
       \u0275\u0275elementStart(2, "div", 3)(3, "div", 4);
@@ -294,12 +290,12 @@ var ContainerListComponent = class _ContainerListComponent {
       \u0275\u0275listener("onLazyLoad", function ContainerListComponent_Template_p_table_onLazyLoad_18_listener($event) {
         return ctx.onLazyLoad($event);
       });
-      \u0275\u0275template(20, ContainerListComponent_ng_template_20_Template, 5, 1, "ng-template", 11)(21, ContainerListComponent_ng_template_21_Template, 18, 0, "ng-template", 12)(22, ContainerListComponent_ng_template_22_Template, 15, 9, "ng-template", 13)(23, ContainerListComponent_ng_template_23_Template, 8, 0, "ng-template", 14);
+      \u0275\u0275template(20, ContainerListComponent_ng_template_20_Template, 5, 1, "ng-template", 11)(21, ContainerListComponent_ng_template_21_Template, 16, 0, "ng-template", 12)(22, ContainerListComponent_ng_template_22_Template, 12, 7, "ng-template", 13)(23, ContainerListComponent_ng_template_23_Template, 8, 0, "ng-template", 14);
       \u0275\u0275elementEnd()();
     }
     if (rf & 2) {
       \u0275\u0275advance(18);
-      \u0275\u0275property("value", ctx.containers())("lazy", true)("totalRecords", ctx.totalRecords)("paginator", true)("rows", ctx.pageSize)("rowsPerPageOptions", \u0275\u0275pureFunction0(9, _c0))("rowHover", true)("showCurrentPageReport", true)("tableStyle", \u0275\u0275pureFunction0(10, _c1));
+      \u0275\u0275property("value", ctx.containers())("loading", ctx.isLoading)("lazy", true)("totalRecords", ctx.totalRecords)("paginator", true)("rows", ctx.pageSize)("rowsPerPageOptions", \u0275\u0275pureFunction0(10, _c0))("rowHover", true)("showCurrentPageReport", true)("tableStyle", \u0275\u0275pureFunction0(11, _c1));
     }
   }, dependencies: [
     CommonModule,
@@ -324,7 +320,9 @@ var ContainerListComponent = class _ContainerListComponent {
     InputIconModule,
     InputIcon,
     ToolbarModule,
-    Toolbar
+    Toolbar,
+    TooltipModule,
+    Tooltip
   ], encapsulation: 2 });
 };
 (() => {
@@ -341,7 +339,8 @@ var ContainerListComponent = class _ContainerListComponent {
       ToastModule,
       IconFieldModule,
       InputIconModule,
-      ToolbarModule
+      ToolbarModule,
+      TooltipModule
     ], providers: [MessageService, ConfirmationService], template: `<p-toast />
 <p-confirmDialog />
 
@@ -367,16 +366,9 @@ var ContainerListComponent = class _ContainerListComponent {
         </ng-template>
     </p-toolbar>
 
-    <p-table #dt [value]="containers()" 
-        [lazy]="true" 
-        (onLazyLoad)="onLazyLoad($event)"
-        [totalRecords]="totalRecords" 
-        [paginator]="true" 
-        [rows]="pageSize" 
-        [rowsPerPageOptions]="[10, 25, 50, 100]"
-        [rowHover]="true" 
-        dataKey="id" 
-        [showCurrentPageReport]="true"
+    <p-table #dt [value]="containers()" [loading]="isLoading" [lazy]="true" (onLazyLoad)="onLazyLoad($event)"
+        [totalRecords]="totalRecords" [paginator]="true" [rows]="pageSize" [rowsPerPageOptions]="[10, 25, 50, 100]"
+        [rowHover]="true" dataKey="id" [showCurrentPageReport]="true"
         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} containers"
         [tableStyle]="{ 'min-width': '55rem' }">
 
@@ -404,36 +396,21 @@ var ContainerListComponent = class _ContainerListComponent {
                 <th pSortableColumn="createdAt" style="min-width: 11rem">
                     Created <p-sortIcon field="createdAt" />
                 </th>
-                <th style="width: 8rem; text-align: center">Actions</th>
             </tr>
         </ng-template>
 
         <ng-template pTemplate="body" let-container>
             <tr>
-                <td><span class="row-name">{{ container.containerNumber }}</span></td>
+                <td><span class="breadcrumb-link cursor-pointer" pTooltip="Edit" tooltipPosition="top"
+                        (click)="navigateToEdit(container)">{{ container.containerNumber }}</span></td>
                 <td>
-                    <p-tag
-                        [value]="container.type"
-                        [severity]="getTypeSeverity(container.type)" />
+                    <p-tag [value]="container.type" [severity]="getTypeSeverity(container.type)" />
                 </td>
                 <td>{{ container.weightCapacity }}</td>
                 <td>{{ container.createdAt }}</td>
                 <td>
-                    <p-tag 
-                        [value]="container.isAvailable ? 'Available' : 'Occupied'"
+                    <p-tag [value]="container.isAvailable ? 'Available' : 'Occupied'"
                         [severity]="getSeverity(container.isAvailable)" />
-                </td>
-                <td>
-                    <div class="row-actions">
-                        <p-button 
-                            icon="pi pi-pencil" 
-                            [rounded]="true" 
-                            [outlined]="true" 
-                            size="small" 
-                            pTooltip="Edit"
-                            tooltipPosition="top" 
-                            (onClick)="navigateToEdit(container)" />
-                    </div>
                 </td>
             </tr>
         </ng-template>
@@ -455,9 +432,9 @@ var ContainerListComponent = class _ContainerListComponent {
   }], null, null);
 })();
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(ContainerListComponent, { className: "ContainerListComponent", filePath: "src/app/features/containers/pages/container-list/container-list.component.ts", lineNumber: 38 });
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(ContainerListComponent, { className: "ContainerListComponent", filePath: "src/app/features/containers/pages/container-list/container-list.component.ts", lineNumber: 40 });
 })();
 export {
   ContainerListComponent
 };
-//# sourceMappingURL=chunk-LAFVF347.js.map
+//# sourceMappingURL=chunk-XGDF6HXV.js.map

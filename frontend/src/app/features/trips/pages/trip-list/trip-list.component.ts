@@ -135,6 +135,7 @@ export class TripListComponent {
 	}
 
 	viewDetail(trip: TripSummary): void {
+		console.log("sdasd")
 		this.router.navigate(['/trips', trip.id]);
 	}
 

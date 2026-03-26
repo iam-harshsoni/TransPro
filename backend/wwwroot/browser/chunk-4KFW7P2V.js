@@ -26,7 +26,10 @@ import {
   ConfirmDialog,
   ConfirmDialogModule
 } from "./chunk-KXKR4XI4.js";
-import "./chunk-3PKWPBB4.js";
+import {
+  Tooltip,
+  TooltipModule
+} from "./chunk-3PKWPBB4.js";
 import "./chunk-FN7QHWDI.js";
 import "./chunk-5LDHMQOW.js";
 import {
@@ -144,6 +147,11 @@ function CustomerListComponent_ng_template_22_Template(rf, ctx) {
   if (rf & 1) {
     const _r4 = \u0275\u0275getCurrentView();
     \u0275\u0275elementStart(0, "tr")(1, "td")(2, "span", 28);
+    \u0275\u0275listener("click", function CustomerListComponent_ng_template_22_Template_span_click_2_listener() {
+      const customer_r5 = \u0275\u0275restoreView(_r4).$implicit;
+      const ctx_r1 = \u0275\u0275nextContext();
+      return \u0275\u0275resetView(ctx_r1.navigateToEdit(customer_r5));
+    });
     \u0275\u0275text(3);
     \u0275\u0275elementEnd()();
     \u0275\u0275elementStart(4, "td");
@@ -302,7 +310,7 @@ var CustomerListComponent = class _CustomerListComponent {
   static \u0275fac = function CustomerListComponent_Factory(__ngFactoryType__) {
     return new (__ngFactoryType__ || _CustomerListComponent)();
   };
-  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _CustomerListComponent, selectors: [["app-customer-list"]], features: [\u0275\u0275ProvidersFeature([ConfirmationService, MessageService])], decls: 24, vars: 11, consts: [["start", ""], ["end", ""], ["dt", ""], [1, "page-header"], [1, "breadcrumb-trail"], [1, "pi", "pi-angle-right"], [1, "page-title"], [1, "page-subtitle"], [1, "card"], [1, "table-toolbar"], ["dataKey", "id", "currentPageReportTemplate", "Showing {first} to {last} of {totalRecords} customers", 3, "onLazyLoad", "value", "lazy", "totalRecords", "paginator", "rows", "rowsPerPageOptions", "rowHover", "showCurrentPageReport", "tableStyle"], ["pTemplate", "caption"], ["pTemplate", "header"], ["pTemplate", "body"], ["pTemplate", "emptymessage"], [1, "pi", "pi-search"], ["pInputText", "", "type", "text", "placeholder", "Search customers...", 3, "input"], ["label", "New Customer", "icon", "pi pi-plus", 3, "onClick"], [1, "table-caption"], [1, "table-title"], [1, "table-count"], ["pSortableColumn", "fullName", 2, "min-width", "14rem"], ["field", "fullName"], ["pSortableColumn", "email", 2, "min-width", "16rem"], ["field", "email"], [2, "min-width", "11rem"], [2, "min-width", "8rem"], [2, "width", "8rem", "text-align", "center"], [1, "row-name"], [3, "value", "severity"], [1, "row-actions"], ["icon", "pi pi-pencil", "size", "small", "pTooltip", "Edit", "tooltipPosition", "top", 3, "onClick", "rounded", "outlined"], ["colspan", "6"], [1, "empty-state"], [1, "pi", "pi-users"]], template: function CustomerListComponent_Template(rf, ctx) {
+  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _CustomerListComponent, selectors: [["app-customer-list"]], features: [\u0275\u0275ProvidersFeature([ConfirmationService, MessageService])], decls: 24, vars: 12, consts: [["start", ""], ["end", ""], ["dt", ""], [1, "page-header"], [1, "breadcrumb-trail"], [1, "pi", "pi-angle-right"], [1, "page-title"], [1, "page-subtitle"], [1, "card"], [1, "table-toolbar"], ["dataKey", "id", "currentPageReportTemplate", "Showing {first} to {last} of {totalRecords} customers", 3, "onLazyLoad", "value", "loading", "lazy", "totalRecords", "paginator", "rows", "rowsPerPageOptions", "rowHover", "showCurrentPageReport", "tableStyle"], ["pTemplate", "caption"], ["pTemplate", "header"], ["pTemplate", "body"], ["pTemplate", "emptymessage"], [1, "pi", "pi-search"], ["pInputText", "", "type", "text", "placeholder", "Search customers...", 3, "input"], ["label", "New Customer", "icon", "pi pi-plus", 3, "onClick"], [1, "table-caption"], [1, "table-title"], [1, "table-count"], ["pSortableColumn", "fullName", 2, "min-width", "14rem"], ["field", "fullName"], ["pSortableColumn", "email", 2, "min-width", "16rem"], ["field", "email"], [2, "min-width", "11rem"], [2, "min-width", "8rem"], [2, "width", "8rem", "text-align", "center"], ["pTooltip", "Edit", "tooltipPosition", "top", 1, "row-name", "breadcrumb-link", "cursor-pointer", 3, "click"], [3, "value", "severity"], [1, "row-actions"], ["icon", "pi pi-pencil", "size", "small", "pTooltip", "Edit", "tooltipPosition", "top", 3, "onClick", "rounded", "outlined"], ["colspan", "6"], [1, "empty-state"], [1, "pi", "pi-users"]], template: function CustomerListComponent_Template(rf, ctx) {
     if (rf & 1) {
       \u0275\u0275element(0, "p-toast")(1, "p-confirmDialog");
       \u0275\u0275elementStart(2, "div", 3)(3, "div", 4);
@@ -329,7 +337,7 @@ var CustomerListComponent = class _CustomerListComponent {
     }
     if (rf & 2) {
       \u0275\u0275advance(18);
-      \u0275\u0275property("value", ctx.customers())("lazy", true)("totalRecords", ctx.totalRecords)("paginator", true)("rows", ctx.pageSize)("rowsPerPageOptions", \u0275\u0275pureFunction0(9, _c0))("rowHover", true)("showCurrentPageReport", true)("tableStyle", \u0275\u0275pureFunction0(10, _c1));
+      \u0275\u0275property("value", ctx.customers())("loading", ctx.isLoading)("lazy", true)("totalRecords", ctx.totalRecords)("paginator", true)("rows", ctx.pageSize)("rowsPerPageOptions", \u0275\u0275pureFunction0(10, _c0))("rowHover", true)("showCurrentPageReport", true)("tableStyle", \u0275\u0275pureFunction0(11, _c1));
     }
   }, dependencies: [
     CommonModule,
@@ -354,7 +362,9 @@ var CustomerListComponent = class _CustomerListComponent {
     InputIconModule,
     InputIcon,
     ToolbarModule,
-    Toolbar
+    Toolbar,
+    TooltipModule,
+    Tooltip
   ], encapsulation: 2 });
 };
 (() => {
@@ -371,7 +381,8 @@ var CustomerListComponent = class _CustomerListComponent {
       ToastModule,
       IconFieldModule,
       InputIconModule,
-      ToolbarModule
+      ToolbarModule,
+      TooltipModule
     ], providers: [ConfirmationService, MessageService], template: `<p-toast />
 <p-confirmDialog />
 
@@ -407,9 +418,10 @@ var CustomerListComponent = class _CustomerListComponent {
     so it can calculate how many pages to show.
     This value comes from the API response (response.totalCount).
   -->
-    <p-table #dt [value]="customers()" [lazy]="true" (onLazyLoad)="onLazyLoad($event)" [totalRecords]="totalRecords"
-        [paginator]="true" [rows]="pageSize" [rowsPerPageOptions]="[10, 25, 50, 100]" [rowHover]="true" dataKey="id"
-        [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} customers"
+    <p-table #dt [value]="customers()" [loading]="isLoading" [lazy]="true" (onLazyLoad)="onLazyLoad($event)"
+        [totalRecords]="totalRecords" [paginator]="true" [rows]="pageSize" [rowsPerPageOptions]="[10, 25, 50, 100]"
+        [rowHover]="true" dataKey="id" [showCurrentPageReport]="true"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} customers"
         [tableStyle]="{ 'min-width': '60rem' }">
 
         <ng-template pTemplate="caption">
@@ -435,7 +447,9 @@ var CustomerListComponent = class _CustomerListComponent {
 
         <ng-template pTemplate="body" let-customer>
             <tr>
-                <td><span class="row-name">{{ customer.fullName }}</span></td>
+                <td><span class="row-name breadcrumb-link cursor-pointer" (click)="navigateToEdit(customer)"
+                        pTooltip="Edit" tooltipPosition="top">{{
+                        customer.fullName }}</span></td>
                 <td>{{ customer.email }}</td>
                 <td>{{ customer.phone }}</td>
                 <td>
@@ -470,9 +484,9 @@ var CustomerListComponent = class _CustomerListComponent {
   }], null, null);
 })();
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(CustomerListComponent, { className: "CustomerListComponent", filePath: "src/app/features/customers/pages/customer-list/customer-list.component.ts", lineNumber: 39 });
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(CustomerListComponent, { className: "CustomerListComponent", filePath: "src/app/features/customers/pages/customer-list/customer-list.component.ts", lineNumber: 41 });
 })();
 export {
   CustomerListComponent
 };
-//# sourceMappingURL=chunk-AEJL45NA.js.map
+//# sourceMappingURL=chunk-4KFW7P2V.js.map

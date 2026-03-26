@@ -4005,7 +4005,7 @@ var TripFormComponent = class _TripFormComponent {
   containerService = inject(ContainerService);
   messageService = inject(MessageService);
   MIN_CHARS = 3;
-  DEBOUNCE_MS = 500;
+  DEBOUNCE_MS = 50;
   customerTimer = null;
   driverTimer = null;
   truckTimer = null;
@@ -4751,4 +4751,4 @@ var TripFormComponent = class _TripFormComponent {
 export {
   TripFormComponent
 };
-//# sourceMappingURL=chunk-CAOBEPR3.js.map
+//# sourceMappingURL=chunk-DIWJVIZI.js.map

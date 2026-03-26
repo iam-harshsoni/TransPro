@@ -51,7 +51,7 @@ export class TripFormComponent {
 	private messageService = inject(MessageService);
 
 	private readonly MIN_CHARS = 3;
-	private readonly DEBOUNCE_MS = 500;
+	private readonly DEBOUNCE_MS = 50;
 
 	private customerTimer: any = null;
 	private driverTimer: any = null;

@@ -13,19 +13,20 @@
 
     <p-toolbar class="table-toolbar">
         <ng-template #start>
-            <p-button label="New Route" icon="pi pi-plus" (onClick)="navigateToCreate()" />
-        </ng-template>
-        <ng-template #end>
             <p-iconfield>
                 <p-inputicon class="pi pi-search" />
                 <input pInputText type="text" placeholder="Search routes..." (input)="onSearch($event)" />
             </p-iconfield>
         </ng-template>
+        <ng-template #end>
+            <p-button label="New Route" icon="pi pi-plus" (onClick)="navigateToCreate()" />
+        </ng-template>
     </p-toolbar>
 
-    <p-table #dt [value]="appRoutes()" [lazy]="true" (onLazyLoad)="onLazyLoad($event)" [totalRecords]="totalRecords"
-        [paginator]="true" [rows]="pageSize" [rowsPerPageOptions]="[10, 25, 50]" [rowHover]="true" dataKey="id"
-        [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} routes"
+    <p-table #dt [value]="appRoutes()" [loading]="isLoading()" [lazy]="true" (onLazyLoad)="onLazyLoad($event)"
+        [totalRecords]="totalRecords" [paginator]="true" [rows]="pageSize" [rowsPerPageOptions]="[10, 25, 50]"
+        [rowHover]="true" dataKey="id" [showCurrentPageReport]="true"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} routes"
         [tableStyle]="{ 'min-width': '55rem' }">
 
         <ng-template pTemplate="caption">
@@ -37,6 +38,7 @@
 
         <ng-template pTemplate="header">
             <tr>
+                <th style="width: 8rem; text-align: center">Actions</th>
                 <th pSortableColumn="origin" style="min-width: 14rem">
                     Origin <p-sortIcon field="origin" />
                 </th>
@@ -49,12 +51,18 @@
                 <th pSortableColumn="estimatedHours" style="min-width: 10rem">
                     Est. Duration <p-sortIcon field="estimatedHours" />
                 </th>
-                <th style="width: 8rem; text-align: center">Actions</th>
+
             </tr>
         </ng-template>
 
         <ng-template pTemplate="body" let-route>
             <tr>
+                <td>
+                    <div class="row-actions">
+                        <p-button icon="pi pi-pencil" [rounded]="true" [outlined]="true" size="small" pTooltip="Edit"
+                            tooltipPosition="top" (onClick)="navigateToEdit(route)" />
+                    </div>
+                </td>
                 <td>
                     <div class="route-origin-cell">
                         <i class="pi pi-map-marker route-pin"></i>
@@ -74,12 +82,6 @@
                     <div class="duration-cell">
                         <i class="pi pi-clock"></i>
                         <span>{{ formatHours(route.estimatedHours) }}</span>
-                    </div>
-                </td>
-                <td>
-                    <div class="row-actions">
-                        <p-button icon="pi pi-pencil" [rounded]="true" [outlined]="true" size="small" pTooltip="Edit"
-                            tooltipPosition="top" (onClick)="navigateToEdit(route)" />
                     </div>
                 </td>
             </tr>

@@ -4,7 +4,7 @@ import "./chunk-GOMI4DH3.js";
 var containerRoutes = [
   {
     path: "",
-    loadComponent: () => import("./chunk-LAFVF347.js").then((m) => m.ContainerListComponent)
+    loadComponent: () => import("./chunk-XGDF6HXV.js").then((m) => m.ContainerListComponent)
   },
   {
     path: "create",
@@ -18,4 +18,4 @@ var containerRoutes = [
 export {
   containerRoutes
 };
-//# sourceMappingURL=chunk-6FFV6TRW.js.map
+//# sourceMappingURL=chunk-2Q3HZJNW.js.map

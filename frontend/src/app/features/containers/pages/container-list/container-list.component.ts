@@ -14,6 +14,7 @@ import { ToolbarModule } from 'primeng/toolbar';
 import { ContainerService } from '../../services/container.service';
 import { Router } from '@angular/router';
 import { Container } from '../../models/container.model';
+import { TooltipModule } from 'primeng/tooltip';
 
 @Component({
 	selector: 'app-container-list',
@@ -30,6 +31,7 @@ import { Container } from '../../models/container.model';
 		IconFieldModule,
 		InputIconModule,
 		ToolbarModule,
+		TooltipModule
 	],
 	templateUrl: './container-list.component.html',
 	styleUrl: './container-list.component.scss',
