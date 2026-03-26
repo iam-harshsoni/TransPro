@@ -8,7 +8,7 @@ var tripRoutes = [
   },
   {
     path: "create",
-    loadComponent: () => import("./chunk-M66BX2C6.js").then((m) => m.TripFormComponent)
+    loadComponent: () => import("./chunk-VS3I4JZS.js").then((m) => m.TripFormComponent)
   },
   {
     path: ":id",
@@ -18,4 +18,4 @@ var tripRoutes = [
 export {
   tripRoutes
 };
-//# sourceMappingURL=chunk-F3PYWA5A.js.map
+//# sourceMappingURL=chunk-6ZZ6ZJ5Y.js.map

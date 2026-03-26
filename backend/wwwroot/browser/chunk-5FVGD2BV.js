@@ -1,6 +1,6 @@
 import {
   CustomerService
-} from "./chunk-XZIPILSO.js";
+} from "./chunk-Z6GFCSWP.js";
 import {
   SortIcon,
   SortableColumn,
@@ -489,4 +489,4 @@ var CustomerListComponent = class _CustomerListComponent {
 export {
   CustomerListComponent
 };
-//# sourceMappingURL=chunk-RHHFRWGA.js.map
+//# sourceMappingURL=chunk-5FVGD2BV.js.map

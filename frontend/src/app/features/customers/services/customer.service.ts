@@ -56,7 +56,7 @@ export class CustomerService {
         const params = new HttpParams()
             .set('search', query)
             .set('pageNumber', '1')
-            .set('pageSize', '20');
+            .set('pageSize', '10');
         
         return this.http.get<ApiResponse<PaginatedResponse<Customer>>>(this.apiUrl, { params });
     }

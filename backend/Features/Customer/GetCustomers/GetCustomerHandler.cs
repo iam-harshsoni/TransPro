@@ -28,7 +28,8 @@ namespace TransProAPI.Features.Customer.GetCustomers
                     c.Email.ToLower().Contains(search));
             }
 
-            var totalCount = await query.CountAsync();
+            var totalCount = 0;
+            // var totalCount = await query.CountAsync();
 
             var customers = await query
                 .OrderByDescending(c => c.CreatedAt)

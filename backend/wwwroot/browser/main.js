@@ -699,7 +699,7 @@ var routes = [
       },
       {
         path: "customers",
-        loadChildren: () => import("./chunk-D2SBGN3N.js").then((m4) => m4.customerRoutes)
+        loadChildren: () => import("./chunk-IWXQAAA4.js").then((m4) => m4.customerRoutes)
       },
       {
         path: "drivers",
@@ -719,7 +719,7 @@ var routes = [
       },
       {
         path: "trips",
-        loadChildren: () => import("./chunk-F3PYWA5A.js").then((m4) => m4.tripRoutes)
+        loadChildren: () => import("./chunk-6ZZ6ZJ5Y.js").then((m4) => m4.tripRoutes)
       },
       {
         path: "",

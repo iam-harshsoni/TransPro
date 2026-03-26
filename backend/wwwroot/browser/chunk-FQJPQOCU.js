@@ -1,6 +1,6 @@
 import {
   CustomerService
-} from "./chunk-XZIPILSO.js";
+} from "./chunk-Z6GFCSWP.js";
 import {
   ToggleSwitch,
   ToggleSwitchModule
@@ -500,4 +500,4 @@ var CustomerFormComponent = class _CustomerFormComponent {
 export {
   CustomerFormComponent
 };
-//# sourceMappingURL=chunk-Z6E2UBYG.js.map
+//# sourceMappingURL=chunk-FQJPQOCU.js.map

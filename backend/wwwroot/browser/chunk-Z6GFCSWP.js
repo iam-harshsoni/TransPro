@@ -30,7 +30,7 @@ var CustomerService = class _CustomerService {
     return this.http.get(this.apiUrl, { params });
   }
   search(query) {
-    const params = new HttpParams().set("search", query).set("pageNumber", "1").set("pageSize", "20");
+    const params = new HttpParams().set("search", query).set("pageNumber", "1").set("pageSize", "10");
     return this.http.get(this.apiUrl, { params });
   }
   getById(id) {
@@ -62,4 +62,4 @@ var CustomerService = class _CustomerService {
 export {
   CustomerService
 };
-//# sourceMappingURL=chunk-XZIPILSO.js.map
+//# sourceMappingURL=chunk-Z6GFCSWP.js.map

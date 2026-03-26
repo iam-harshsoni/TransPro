@@ -39,54 +39,54 @@ interface AutocompleteOption {
 })
 export class TripFormComponent {
 
-	private tripService = inject(TripService);
-	private router = inject(Router);
-	private route = inject(ActivatedRoute);
-	private fb = inject(FormBuilder);
-	private customerService = inject(CustomerService);
-	private driverService = inject(DriverService);
-	private truckService = inject(TruckService);
-	private routeService = inject(RouteService);
+	private tripService      = inject(TripService);
+	private router           = inject(Router);
+	private route            = inject(ActivatedRoute);
+	private fb               = inject(FormBuilder);
+	private customerService  = inject(CustomerService);
+	private driverService    = inject(DriverService);
+	private truckService     = inject(TruckService);
+	private routeService     = inject(RouteService);
 	private containerService = inject(ContainerService);
-	private messageService = inject(MessageService);
+	private messageService   = inject(MessageService);
 
-	private readonly MIN_CHARS = 3;
-	private readonly DEBOUNCE_MS = 50;
+	private readonly MIN_CHARS   = 1;
+	private readonly DEBOUNCE_MS = 300;
 
-	private customerTimer: any = null;
-	private driverTimer: any = null;
-	private truckTimer: any = null;
-	private routeTimer: any = null;
+	private customerTimer: any  = null;
+	private driverTimer: any    = null;
+	private truckTimer: any     = null;
+	private routeTimer: any     = null;
 	private containerTimer: any = null;
 
 	isSaving = signal<boolean>(false);
 
-	customerLoading = signal<boolean>(false);
-	driverLoading = signal<boolean>(false);
-	truckLoading = signal<boolean>(false);
-	routeLoading = signal<boolean>(false);
+	customerLoading  = signal<boolean>(false);
+	driverLoading    = signal<boolean>(false);
+	truckLoading     = signal<boolean>(false);
+	routeLoading     = signal<boolean>(false);
 	containerLoading = signal<boolean>(false);
 
 	/* ── Filtered suggestion lists
 			These are what PrimeNG p-autocomplete renders as the dropdown.
 			Updated on every keystroke by the search methods below. */
-	customerSuggestions: AutocompleteOption[] = [];
-	driverSuggestions: AutocompleteOption[] = [];
-	truckSuggestions: AutocompleteOption[] = [];
-	routeSuggestions: AutocompleteOption[] = [];
+	customerSuggestions : AutocompleteOption[] = [];
+	driverSuggestions   : AutocompleteOption[] = [];
+	truckSuggestions    : AutocompleteOption[] = [];
+	routeSuggestions    : AutocompleteOption[] = [];
 	containerSuggestions: AutocompleteOption[] = [];
 
-	selectedCustomer: number | null = null;
-	selectedDriver: number | null = null;
-	selectedTruck: number | null = null;
-	selectedRoute: number | null = null;
+	selectedCustomer  : number | null = null;
+	selectedDriver    : number | null = null;
+	selectedTruck     : number | null = null;
+	selectedRoute     : number | null = null;
 	selectedContainers: number[] = [];
 
 	touched = {
-		customer: false,
-		driver: false,
-		truck: false,
-		route: false,
+		customer  : false,
+		driver    : false,
+		truck     : false,
+		route     : false,
 		containers: false,
 	};
 
@@ -260,12 +260,12 @@ export class TripFormComponent {
 	//Validation
 	isFieldInvalid(field: keyof typeof this.touched): boolean {
 		switch (field) {
-			case 'customer': return this.touched.customer && !this.selectedCustomer;
-			case 'driver': return this.touched.driver && !this.selectedDriver;
-			case 'truck': return this.touched.truck && !this.selectedTruck;
-			case 'route': return this.touched.route && !this.selectedRoute;
+			case 'customer'  : return this.touched.customer && !this.selectedCustomer;
+			case 'driver'    : return this.touched.driver && !this.selectedDriver;
+			case 'truck'     : return this.touched.truck && !this.selectedTruck;
+			case 'route'     : return this.touched.route && !this.selectedRoute;
 			case 'containers': return this.touched.containers && this.selectedContainers.length === 0;
-			default: return false;
+			     default     : return false;
 		}
 	}
 
@@ -295,13 +295,13 @@ export class TripFormComponent {
 		this.isSaving.set(true);
 
 		const dto = {
-			customerId: this.selectedCustomer!,
-			driverId: this.selectedDriver!,
-			truckId: this.selectedTruck!,
-			routeId: this.selectedRoute!,
-			containerIds: this.selectedContainers,
+			customerId   : this.selectedCustomer!,
+			driverId     : this.selectedDriver!,
+			truckId      : this.selectedTruck!,
+			routeId      : this.selectedRoute!,
+			containerIds : this.selectedContainers,
 			departureDate: (this.form.value.departureDate as Date).toISOString(),
-			notes: this.form.value.notes ?? '',
+			notes        : this.form.value.notes ?? '',
 		};
 
 		console.log(dto);
@@ -310,8 +310,8 @@ export class TripFormComponent {
 			next: (response) => {
 				this.messageService.add({
 					severity: 'success',
-					summary: 'Created',
-					detail: response.message ?? 'Trip created successfully'
+					summary : 'Created',
+					detail  : response.message ?? 'Trip created successfully'
 				});
 				this.isSaving.set(false);
 				setTimeout(() => this.router.navigate(['/trips', response.data.id]), 1500);
@@ -319,9 +319,9 @@ export class TripFormComponent {
 			error: (err) => {
 				this.messageService.add({
 					severity: 'error',
-					summary: 'Error',
-					detail: err.error?.message ?? 'Failed to create trip',
-					life: 6000
+					summary : 'Error',
+					detail  : err.error?.message ?? 'Failed to create trip',
+					life    : 6000
 				});
 				this.isSaving.set(false);
 			}

@@ -12,7 +12,7 @@ import {
 } from "./chunk-PQVHB6CP.js";
 import {
   CustomerService
-} from "./chunk-XZIPILSO.js";
+} from "./chunk-Z6GFCSWP.js";
 import {
   DatePicker,
   DatePickerModule
@@ -4004,8 +4004,8 @@ var TripFormComponent = class _TripFormComponent {
   routeService = inject(RouteService);
   containerService = inject(ContainerService);
   messageService = inject(MessageService);
-  MIN_CHARS = 3;
-  DEBOUNCE_MS = 50;
+  MIN_CHARS = 1;
+  DEBOUNCE_MS = 300;
   customerTimer = null;
   driverTimer = null;
   truckTimer = null;
@@ -4751,4 +4751,4 @@ var TripFormComponent = class _TripFormComponent {
 export {
   TripFormComponent
 };
-//# sourceMappingURL=chunk-M66BX2C6.js.map
+//# sourceMappingURL=chunk-VS3I4JZS.js.map
