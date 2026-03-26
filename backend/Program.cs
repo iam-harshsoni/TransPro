@@ -74,17 +74,7 @@ builder.Services.AddApiVersioning(options =>
 });
 
 builder.Services.AddDbContext<AppDbContext>(option =>
-    option.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"), npgsqlOptions =>
-    {
-        // 1. Enable automatic retries for transient failures (like the 10054 error)
-        npgsqlOptions.EnableRetryOnFailure(
-            maxRetryCount: 5,
-            maxRetryDelay: TimeSpan.FromSeconds(10),
-            errorCodesToAdd: null);
-        
-        // 2. Optional: Set a command timeout if you have long-running queries
-        npgsqlOptions.CommandTimeout(30); 
-    })
+    option.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"))
 );
 
 var jwtSettings = builder.Configuration.GetSection("JwtSettings");
