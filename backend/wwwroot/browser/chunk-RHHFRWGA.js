@@ -1,6 +1,6 @@
 import {
   CustomerService
-} from "./chunk-NXWNSJDN.js";
+} from "./chunk-XZIPILSO.js";
 import {
   SortIcon,
   SortableColumn,
@@ -41,7 +41,7 @@ import {
   Toast,
   ToastModule
 } from "./chunk-RJSKT7PE.js";
-import "./chunk-U7IY62MS.js";
+import "./chunk-VXGQDH4M.js";
 import {
   Button,
   ButtonModule,
@@ -489,4 +489,4 @@ var CustomerListComponent = class _CustomerListComponent {
 export {
   CustomerListComponent
 };
-//# sourceMappingURL=chunk-4KFW7P2V.js.map
+//# sourceMappingURL=chunk-RHHFRWGA.js.map

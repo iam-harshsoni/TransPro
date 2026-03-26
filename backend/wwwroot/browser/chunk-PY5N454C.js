@@ -1,6 +1,6 @@
 import {
   TripService
-} from "./chunk-P4GJG2W5.js";
+} from "./chunk-7ZMXD7WZ.js";
 import {
   Tag,
   TagModule
@@ -16,7 +16,7 @@ import {
   Toast,
   ToastModule
 } from "./chunk-RJSKT7PE.js";
-import "./chunk-U7IY62MS.js";
+import "./chunk-VXGQDH4M.js";
 import {
   ActivatedRoute,
   Button,
@@ -740,4 +740,4 @@ var TripDetailComponent = class _TripDetailComponent {
 export {
   TripDetailComponent
 };
-//# sourceMappingURL=chunk-QJG6AXVK.js.map
+//# sourceMappingURL=chunk-PY5N454C.js.map

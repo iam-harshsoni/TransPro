@@ -1,6 +1,6 @@
 import {
   TruckService
-} from "./chunk-XA2KLOUQ.js";
+} from "./chunk-EAFXPPUM.js";
 import {
   InputNumber,
   InputNumberModule
@@ -27,7 +27,7 @@ import {
   Toast,
   ToastModule
 } from "./chunk-RJSKT7PE.js";
-import "./chunk-U7IY62MS.js";
+import "./chunk-VXGQDH4M.js";
 import {
   ActivatedRoute,
   Button,
@@ -527,4 +527,4 @@ var TruckFormComponent = class _TruckFormComponent {
 export {
   TruckFormComponent
 };
-//# sourceMappingURL=chunk-E5WJFIT5.js.map
+//# sourceMappingURL=chunk-7XA6LS73.js.map

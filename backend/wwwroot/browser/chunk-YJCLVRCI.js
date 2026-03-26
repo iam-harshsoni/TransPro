@@ -1,4 +1,7 @@
 import {
+  environment
+} from "./chunk-VXGQDH4M.js";
+import {
   HttpClient,
   HttpParams
 } from "./chunk-MM7SKLVI.js";
@@ -9,20 +12,10 @@ import {
   ɵɵdefineInjectable
 } from "./chunk-FOYF73X5.js";
 
-// src/environments/environment.development.ts
-var environment = {
-  production: false,
-  /* DEVELOPMENT*/
-  apiUrl: "http://localhost:5070/api"
-  // apiUrl: 'https://localhost:7247/api'
-  /* PROD */
-  // apiUrl: 'https://transpro-1.onrender.com/api'
-};
-
-// src/app/features/containers/services/container.service.ts
-var ContainerService = class _ContainerService {
+// src/app/features/drivers/services/driver.service.ts
+var DriverService = class _DriverService {
   http = inject(HttpClient);
-  apiUrl = `${environment.apiUrl}/container`;
+  apiUrl = `${environment.apiUrl}/driver`;
   getPaginated(pageNumber, pageSize, search = "") {
     let params = new HttpParams().set("pageNumber", pageNumber.toString()).set("pageSize", pageSize.toString());
     if (search) {
@@ -43,16 +36,19 @@ var ContainerService = class _ContainerService {
   update(id, dto) {
     return this.http.put(`${this.apiUrl}/${id}`, dto);
   }
+  toggleAvailability(id) {
+    return this.http.patch(`${this.apiUrl}/${id}/toggle-availability`, {});
+  }
   delete(id) {
     return this.http.delete(`${this.apiUrl}/${id}`);
   }
-  static \u0275fac = function ContainerService_Factory(__ngFactoryType__) {
-    return new (__ngFactoryType__ || _ContainerService)();
+  static \u0275fac = function DriverService_Factory(__ngFactoryType__) {
+    return new (__ngFactoryType__ || _DriverService)();
   };
-  static \u0275prov = /* @__PURE__ */ \u0275\u0275defineInjectable({ token: _ContainerService, factory: _ContainerService.\u0275fac, providedIn: "root" });
+  static \u0275prov = /* @__PURE__ */ \u0275\u0275defineInjectable({ token: _DriverService, factory: _DriverService.\u0275fac, providedIn: "root" });
 };
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(ContainerService, [{
+  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(DriverService, [{
     type: Injectable,
     args: [{
       providedIn: "root"
@@ -61,6 +57,6 @@ var ContainerService = class _ContainerService {
 })();
 
 export {
-  ContainerService
+  DriverService
 };
-//# sourceMappingURL=chunk-UUIVDIWU.js.map
+//# sourceMappingURL=chunk-YJCLVRCI.js.map
