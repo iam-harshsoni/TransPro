@@ -3,38 +3,76 @@
   "WorkspaceRootPath": "D:\\Learnings\\Learn_Dotnet\\PracticeProjects\\WebApiProj\\TransProAPI\\backend\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|d:\\learnings\\learn_dotnet\\practiceprojects\\webapiproj\\transproapi\\backend\\features\\trips\\tripscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|solutionrelative:features\\trips\\tripscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|d:\\learnings\\learn_dotnet\\practiceprojects\\webapiproj\\transproapi\\backend\\features\\trips\\triphandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|solutionrelative:features\\trips\\triphandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|d:\\learnings\\learn_dotnet\\practiceprojects\\webapiproj\\transproapi\\backend\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|solutionrelative:properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|d:\\learnings\\learn_dotnet\\practiceprojects\\webapiproj\\transproapi\\backend\\infrastructure\\persistence\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|solutionrelative:infrastructure\\persistence\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Program Files\\Microsoft Visual Studio\\18\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|d:\\learnings\\learn_dotnet\\practiceprojects\\webapiproj\\transproapi\\backend\\features\\containers\\containercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|solutionrelative:features\\containers\\containercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|d:\\learnings\\learn_dotnet\\practiceprojects\\webapiproj\\transproapi\\backend\\domain\\entities\\container.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|solutionrelative:domain\\entities\\container.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Learnings\\Learn_Dotnet\\PracticeProjects\\WebApiProj\\TransProAPI\\frontend\\src\\app\\features\\customers\\pages\\customer-form\\customer-form.component.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|d:\\learnings\\learn_dotnet\\practiceprojects\\webapiproj\\transproapi\\backend\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|d:\\learnings\\learn_dotnet\\practiceprojects\\webapiproj\\transproapi\\backend\\infrastructure\\configuration\\middleware\\startupextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|solutionrelative:infrastructure\\configuration\\middleware\\startupextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|d:\\learnings\\learn_dotnet\\practiceprojects\\webapiproj\\transproapi\\backend\\infrastructure\\configuration\\middleware\\endpointextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|solutionrelative:infrastructure\\configuration\\middleware\\endpointextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|d:\\learnings\\learn_dotnet\\practiceprojects\\webapiproj\\transproapi\\backend\\infrastructure\\configuration\\middleware\\infrastructuremiddlewareextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|solutionrelative:infrastructure\\configuration\\middleware\\infrastructuremiddlewareextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|d:\\learnings\\learn_dotnet\\practiceprojects\\webapiproj\\transproapi\\backend\\infrastructure\\configuration\\services\\databaseextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|solutionrelative:infrastructure\\configuration\\services\\databaseextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|d:\\learnings\\learn_dotnet\\practiceprojects\\webapiproj\\transproapi\\backend\\infrastructure\\configuration\\middleware\\appinitializationextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|solutionrelative:infrastructure\\configuration\\middleware\\appinitializationextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|d:\\learnings\\learn_dotnet\\practiceprojects\\webapiproj\\transproapi\\backend\\infrastructure\\configuration\\middleware\\swaggermiddlewareextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|solutionrelative:infrastructure\\configuration\\middleware\\swaggermiddlewareextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|d:\\learnings\\learn_dotnet\\practiceprojects\\webapiproj\\transproapi\\backend\\infrastructure\\configuration\\middleware\\observabilityextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|solutionrelative:infrastructure\\configuration\\middleware\\observabilityextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|d:\\learnings\\learn_dotnet\\practiceprojects\\webapiproj\\transproapi\\backend\\infrastructure\\configuration\\services\\apiversioningextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|solutionrelative:infrastructure\\configuration\\services\\apiversioningextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|d:\\learnings\\learn_dotnet\\practiceprojects\\webapiproj\\transproapi\\backend\\infrastructure\\configuration\\middleware\\coremiddlewareextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|solutionrelative:infrastructure\\configuration\\middleware\\coremiddlewareextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|d:\\learnings\\learn_dotnet\\practiceprojects\\webapiproj\\transproapi\\backend\\infrastructure\\configuration\\services\\controllerextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|solutionrelative:infrastructure\\configuration\\services\\controllerextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|d:\\learnings\\learn_dotnet\\practiceprojects\\webapiproj\\transproapi\\backend\\infrastructure\\configuration\\services\\ratelimittingextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|solutionrelative:infrastructure\\configuration\\services\\ratelimittingextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|d:\\learnings\\learn_dotnet\\practiceprojects\\webapiproj\\transproapi\\backend\\infrastructure\\configuration\\services\\cacheextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|solutionrelative:infrastructure\\configuration\\services\\cacheextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|d:\\learnings\\learn_dotnet\\practiceprojects\\webapiproj\\transproapi\\backend\\infrastructure\\configuration\\services\\featureextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|solutionrelative:infrastructure\\configuration\\services\\featureextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|d:\\learnings\\learn_dotnet\\practiceprojects\\webapiproj\\transproapi\\backend\\infrastructure\\configuration\\services\\corsextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|solutionrelative:infrastructure\\configuration\\services\\corsextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|d:\\learnings\\learn_dotnet\\practiceprojects\\webapiproj\\transproapi\\backend\\infrastructure\\configuration\\services\\swaggerextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|solutionrelative:infrastructure\\configuration\\services\\swaggerextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|d:\\learnings\\learn_dotnet\\practiceprojects\\webapiproj\\transproapi\\backend\\infrastructure\\configuration\\services\\authextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|solutionrelative:infrastructure\\configuration\\services\\authextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|d:\\learnings\\learn_dotnet\\practiceprojects\\webapiproj\\transproapi\\backend\\infrastructure\\configuration\\services\\loggingextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|solutionrelative:infrastructure\\configuration\\services\\loggingextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -44,119 +82,241 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 17,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "TripsController.cs",
-              "DocumentMoniker": "D:\\Learnings\\Learn_Dotnet\\PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Features\\Trips\\TripsController.cs",
-              "RelativeDocumentMoniker": "Features\\Trips\\TripsController.cs",
-              "ToolTip": "D:\\Learnings\\Learn_Dotnet\\PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Features\\Trips\\TripsController.cs",
-              "RelativeToolTip": "Features\\Trips\\TripsController.cs",
-              "ViewState": "AgIAACAAAAAAAAAAAIAzwCwAAABRAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "StartupExtensions.cs",
+              "DocumentMoniker": "D:\\Learnings\\Learn_Dotnet\\PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Infrastructure\\Configuration\\Middleware\\StartupExtensions.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Configuration\\Middleware\\StartupExtensions.cs",
+              "ToolTip": "D:\\Learnings\\Learn_Dotnet\\PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Infrastructure\\Configuration\\Middleware\\StartupExtensions.cs",
+              "RelativeToolTip": "Infrastructure\\Configuration\\Middleware\\StartupExtensions.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAADwvxgAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-24T04:11:19.66Z",
+              "WhenOpened": "2026-03-26T12:00:08.97Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "launchSettings.json",
-              "DocumentMoniker": "D:\\Learnings\\Learn_Dotnet\\PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Properties\\launchSettings.json",
-              "RelativeDocumentMoniker": "Properties\\launchSettings.json",
-              "ToolTip": "D:\\Learnings\\Learn_Dotnet\\PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Properties\\launchSettings.json",
-              "RelativeToolTip": "Properties\\launchSettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAADwvw4AAAAjAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2026-03-24T04:08:30.804Z",
+              "Title": "EndpointExtensions.cs",
+              "DocumentMoniker": "D:\\Learnings\\Learn_Dotnet\\PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Infrastructure\\Configuration\\Middleware\\EndpointExtensions.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Configuration\\Middleware\\EndpointExtensions.cs",
+              "ToolTip": "D:\\Learnings\\Learn_Dotnet\\PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Infrastructure\\Configuration\\Middleware\\EndpointExtensions.cs",
+              "RelativeToolTip": "Infrastructure\\Configuration\\Middleware\\EndpointExtensions.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAA3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-26T11:57:31.475Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "AppDbContext.cs",
-              "DocumentMoniker": "D:\\Learnings\\Learn_Dotnet\\PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Infrastructure\\Persistence\\AppDbContext.cs",
-              "RelativeDocumentMoniker": "Infrastructure\\Persistence\\AppDbContext.cs",
-              "ToolTip": "D:\\Learnings\\Learn_Dotnet\\PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Infrastructure\\Persistence\\AppDbContext.cs",
-              "RelativeToolTip": "Infrastructure\\Persistence\\AppDbContext.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAARAAAAAAAAAA==",
+              "Title": "InfrastructureMiddlewareExtensions.cs",
+              "DocumentMoniker": "D:\\Learnings\\Learn_Dotnet\\PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Infrastructure\\Configuration\\Middleware\\InfrastructureMiddlewareExtensions.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Configuration\\Middleware\\InfrastructureMiddlewareExtensions.cs",
+              "ToolTip": "D:\\Learnings\\Learn_Dotnet\\PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Infrastructure\\Configuration\\Middleware\\InfrastructureMiddlewareExtensions.cs",
+              "RelativeToolTip": "Infrastructure\\Configuration\\Middleware\\InfrastructureMiddlewareExtensions.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAADwvwQAAAA2AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-24T04:08:25.475Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Microsoft.Common.CurrentVersion.targets",
-              "DocumentMoniker": "C:\\Program Files\\Microsoft Visual Studio\\18\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
-              "ToolTip": "C:\\Program Files\\Microsoft Visual Studio\\18\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
-              "ViewState": "AgIAAA0VAAAAAAAAAAAEwBIVAAAEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003801|",
-              "WhenOpened": "2026-03-24T04:06:00.731Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "TripHandler.cs",
-              "DocumentMoniker": "D:\\Learnings\\Learn_Dotnet\\PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Features\\Trips\\TripHandler.cs",
-              "RelativeDocumentMoniker": "Features\\Trips\\TripHandler.cs",
-              "ToolTip": "D:\\Learnings\\Learn_Dotnet\\PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Features\\Trips\\TripHandler.cs",
-              "RelativeToolTip": "Features\\Trips\\TripHandler.cs",
-              "ViewState": "AgIAANcAAAAAAAAAAAAcwNwAAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-24T04:05:17.284Z",
+              "WhenOpened": "2026-03-26T11:56:07.289Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "ContainerController.cs",
-              "DocumentMoniker": "D:\\Learnings\\Learn_Dotnet\\PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Features\\Containers\\ContainerController.cs",
-              "RelativeDocumentMoniker": "Features\\Containers\\ContainerController.cs",
-              "ToolTip": "D:\\Learnings\\Learn_Dotnet\\PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Features\\Containers\\ContainerController.cs",
-              "RelativeToolTip": "Features\\Containers\\ContainerController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAADwvw4AAAAFAAAAAAAAAA==",
+              "Title": "AppInitializationExtensions.cs",
+              "DocumentMoniker": "D:\\Learnings\\Learn_Dotnet\\PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Infrastructure\\Configuration\\Middleware\\AppInitializationExtensions.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Configuration\\Middleware\\AppInitializationExtensions.cs",
+              "ToolTip": "D:\\Learnings\\Learn_Dotnet\\PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Infrastructure\\Configuration\\Middleware\\AppInitializationExtensions.cs",
+              "RelativeToolTip": "Infrastructure\\Configuration\\Middleware\\AppInitializationExtensions.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAADwvwYAAAA4AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-17T15:42:07.196Z",
+              "WhenOpened": "2026-03-26T11:54:38.552Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 6,
-              "Title": "Container.cs",
-              "DocumentMoniker": "D:\\Learnings\\Learn_Dotnet\\PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Domain\\Entities\\Container.cs",
-              "RelativeDocumentMoniker": "Domain\\Entities\\Container.cs",
-              "ToolTip": "D:\\Learnings\\Learn_Dotnet\\PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Domain\\Entities\\Container.cs",
-              "RelativeToolTip": "Domain\\Entities\\Container.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAhAAAAAAAAAA==",
+              "Title": "SwaggerMiddlewareExtensions.cs",
+              "DocumentMoniker": "D:\\Learnings\\Learn_Dotnet\\PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Infrastructure\\Configuration\\Middleware\\SwaggerMiddlewareExtensions.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Configuration\\Middleware\\SwaggerMiddlewareExtensions.cs",
+              "ToolTip": "D:\\Learnings\\Learn_Dotnet\\PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Infrastructure\\Configuration\\Middleware\\SwaggerMiddlewareExtensions.cs",
+              "RelativeToolTip": "Infrastructure\\Configuration\\Middleware\\SwaggerMiddlewareExtensions.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAADwvwQAAAAzAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-17T14:54:19.581Z"
+              "WhenOpened": "2026-03-26T11:53:22.783Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 7,
-              "Title": "customer-form.component.html",
-              "DocumentMoniker": "D:\\Learnings\\Learn_Dotnet\\PracticeProjects\\WebApiProj\\TransProAPI\\frontend\\src\\app\\features\\customers\\pages\\customer-form\\customer-form.component.html",
-              "RelativeDocumentMoniker": "..\\frontend\\src\\app\\features\\customers\\pages\\customer-form\\customer-form.component.html",
-              "ToolTip": "D:\\Learnings\\Learn_Dotnet\\PracticeProjects\\WebApiProj\\TransProAPI\\frontend\\src\\app\\features\\customers\\pages\\customer-form\\customer-form.component.html",
-              "RelativeToolTip": "..\\frontend\\src\\app\\features\\customers\\pages\\customer-form\\customer-form.component.html",
-              "ViewState": "AgIAACIAAAAAAAAAAAAgwC0AAAAcAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2026-03-17T14:32:11.685Z"
+              "Title": "ObservabilityExtensions.cs",
+              "DocumentMoniker": "D:\\Learnings\\Learn_Dotnet\\PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Infrastructure\\Configuration\\Middleware\\ObservabilityExtensions.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Configuration\\Middleware\\ObservabilityExtensions.cs",
+              "ToolTip": "D:\\Learnings\\Learn_Dotnet\\PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Infrastructure\\Configuration\\Middleware\\ObservabilityExtensions.cs",
+              "RelativeToolTip": "Infrastructure\\Configuration\\Middleware\\ObservabilityExtensions.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAADwvwYAAAA1AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-26T11:51:51.732Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "CoreMiddlewareExtensions.cs",
+              "DocumentMoniker": "D:\\Learnings\\Learn_Dotnet\\PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Infrastructure\\Configuration\\Middleware\\CoreMiddlewareExtensions.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Configuration\\Middleware\\CoreMiddlewareExtensions.cs",
+              "ToolTip": "D:\\Learnings\\Learn_Dotnet\\PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Infrastructure\\Configuration\\Middleware\\CoreMiddlewareExtensions.cs",
+              "RelativeToolTip": "Infrastructure\\Configuration\\Middleware\\CoreMiddlewareExtensions.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAADwvwkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-26T11:47:24.069Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "ControllerExtensions.cs",
+              "DocumentMoniker": "D:\\Learnings\\Learn_Dotnet\\PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Infrastructure\\Configuration\\Services\\ControllerExtensions.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Configuration\\Services\\ControllerExtensions.cs",
+              "ToolTip": "D:\\Learnings\\Learn_Dotnet\\PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Infrastructure\\Configuration\\Services\\ControllerExtensions.cs",
+              "RelativeToolTip": "Infrastructure\\Configuration\\Services\\ControllerExtensions.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAADwvwYAAABIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-26T11:41:37.265Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 8,
+              "Title": "ApiVersioningExtensions.cs",
+              "DocumentMoniker": "D:\\Learnings\\Learn_Dotnet\\PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Infrastructure\\Configuration\\Services\\ApiVersioningExtensions.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Configuration\\Services\\ApiVersioningExtensions.cs",
+              "ToolTip": "D:\\Learnings\\Learn_Dotnet\\PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Infrastructure\\Configuration\\Services\\ApiVersioningExtensions.cs",
+              "RelativeToolTip": "Infrastructure\\Configuration\\Services\\ApiVersioningExtensions.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAADwvwkAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-26T11:40:04.629Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "CacheExtensions.cs",
+              "DocumentMoniker": "D:\\Learnings\\Learn_Dotnet\\PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Infrastructure\\Configuration\\Services\\CacheExtensions.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Configuration\\Services\\CacheExtensions.cs",
+              "ToolTip": "D:\\Learnings\\Learn_Dotnet\\PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Infrastructure\\Configuration\\Services\\CacheExtensions.cs",
+              "RelativeToolTip": "Infrastructure\\Configuration\\Services\\CacheExtensions.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAQwBIAAABrAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-26T11:34:35.426Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "RateLimittingExtensions.cs",
+              "DocumentMoniker": "D:\\Learnings\\Learn_Dotnet\\PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Infrastructure\\Configuration\\Services\\RateLimittingExtensions.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Configuration\\Services\\RateLimittingExtensions.cs",
+              "ToolTip": "D:\\Learnings\\Learn_Dotnet\\PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Infrastructure\\Configuration\\Services\\RateLimittingExtensions.cs",
+              "RelativeToolTip": "Infrastructure\\Configuration\\Services\\RateLimittingExtensions.cs",
+              "ViewState": "AgIAADIAAAAAAAAAAAAgwEYAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-26T11:01:05.466Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "CorsExtensions.cs",
+              "DocumentMoniker": "D:\\Learnings\\Learn_Dotnet\\PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Infrastructure\\Configuration\\Services\\CorsExtensions.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Configuration\\Services\\CorsExtensions.cs",
+              "ToolTip": "D:\\Learnings\\Learn_Dotnet\\PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Infrastructure\\Configuration\\Services\\CorsExtensions.cs",
+              "RelativeToolTip": "Infrastructure\\Configuration\\Services\\CorsExtensions.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAADwvw0AAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-26T11:00:03.306Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "FeatureExtensions.cs",
+              "DocumentMoniker": "D:\\Learnings\\Learn_Dotnet\\PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Infrastructure\\Configuration\\Services\\FeatureExtensions.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Configuration\\Services\\FeatureExtensions.cs",
+              "ToolTip": "D:\\Learnings\\Learn_Dotnet\\PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Infrastructure\\Configuration\\Services\\FeatureExtensions.cs",
+              "RelativeToolTip": "Infrastructure\\Configuration\\Services\\FeatureExtensions.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAADwvwYAAAA+AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-26T10:54:24.688Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "SwaggerExtensions.cs",
+              "DocumentMoniker": "D:\\Learnings\\Learn_Dotnet\\PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Infrastructure\\Configuration\\Services\\SwaggerExtensions.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Configuration\\Services\\SwaggerExtensions.cs",
+              "ToolTip": "D:\\Learnings\\Learn_Dotnet\\PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Infrastructure\\Configuration\\Services\\SwaggerExtensions.cs",
+              "RelativeToolTip": "Infrastructure\\Configuration\\Services\\SwaggerExtensions.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADMAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-26T10:52:03.419Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "AuthExtensions.cs",
+              "DocumentMoniker": "D:\\Learnings\\Learn_Dotnet\\PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Infrastructure\\Configuration\\Services\\AuthExtensions.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Configuration\\Services\\AuthExtensions.cs",
+              "ToolTip": "D:\\Learnings\\Learn_Dotnet\\PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Infrastructure\\Configuration\\Services\\AuthExtensions.cs",
+              "RelativeToolTip": "Infrastructure\\Configuration\\Services\\AuthExtensions.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAxwCIAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-26T10:50:50.492Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "LoggingExtensions.cs",
+              "DocumentMoniker": "D:\\Learnings\\Learn_Dotnet\\PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Infrastructure\\Configuration\\Services\\LoggingExtensions.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Configuration\\Services\\LoggingExtensions.cs",
+              "ToolTip": "D:\\Learnings\\Learn_Dotnet\\PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Infrastructure\\Configuration\\Services\\LoggingExtensions.cs",
+              "RelativeToolTip": "Infrastructure\\Configuration\\Services\\LoggingExtensions.cs",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAswAgAAAA9AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-26T10:47:19.024Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "DatabaseExtensions.cs",
+              "DocumentMoniker": "D:\\Learnings\\Learn_Dotnet\\PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Infrastructure\\Configuration\\Services\\DatabaseExtensions.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Configuration\\Services\\DatabaseExtensions.cs",
+              "ToolTip": "D:\\Learnings\\Learn_Dotnet\\PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Infrastructure\\Configuration\\Services\\DatabaseExtensions.cs",
+              "RelativeToolTip": "Infrastructure\\Configuration\\Services\\DatabaseExtensions.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-26T10:44:38.758Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\Learnings\\Learn_Dotnet\\PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
               "ToolTip": "D:\\Learnings\\Learn_Dotnet\\PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAMAAAAAAAAAAAAAuwM4AAAAbAAAAAAAAAA==",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAqwCgAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-13T14:48:00.997Z"
+              "WhenOpened": "2026-03-13T14:48:00.997Z",
+              "EditorCaption": ""
             }
           ]
         }
