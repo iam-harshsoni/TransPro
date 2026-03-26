@@ -1,6 +1,6 @@
 import {
   TruckService
-} from "./chunk-XA2KLOUQ.js";
+} from "./chunk-EAFXPPUM.js";
 import {
   SortIcon,
   SortableColumn,
@@ -40,7 +40,7 @@ import {
   Toast,
   ToastModule
 } from "./chunk-RJSKT7PE.js";
-import "./chunk-U7IY62MS.js";
+import "./chunk-VXGQDH4M.js";
 import {
   Button,
   ButtonModule,
@@ -429,4 +429,4 @@ var TruckListComponent = class _TruckListComponent {
 export {
   TruckListComponent
 };
-//# sourceMappingURL=chunk-EKOVJGAT.js.map
+//# sourceMappingURL=chunk-EMUUYGSD.js.map
