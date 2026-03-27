@@ -47,15 +47,21 @@ namespace TransProAPI.Features.Auth
 
         public async Task<ApiResponses<AuthResponse>> LoginAsync(LoginRequest request)
         {
+            var sw = System.Diagnostics.Stopwatch.StartNew();
+
             var validation = await _loginValidator.ValidateAsync(request);
             if (!validation.IsValid)
                 return ApiResponses<AuthResponse>.Fail(
                     "Validation Error",
                     validation.Errors.Select(x => x.ErrorMessage).ToList());
 
+            _logger.LogInformation("Validation: {MS}ms", sw.ElapsedMilliseconds);
+
             var user = await _db.Users
                 .FirstOrDefaultAsync(u => u.Email == request.Email.ToLower().Trim()
                                         && u.IsActive);
+
+            _logger.LogInformation("DB Lookup: {MS}ms", sw.ElapsedMilliseconds);
 
             // Timing-safe: always run BCrypt even if user not found
             // Prevents timing attacks that reveal whether an email exists
@@ -64,6 +70,8 @@ namespace TransProAPI.Features.Auth
 
             if (!BCrypt.Net.BCrypt.Verify(request.Password, passwordToVerify) || user is null)
                 return ApiResponses<AuthResponse>.Fail("Invalid email or password.");
+
+            _logger.LogInformation("BCrypt.Verify: {MS}ms", sw.ElapsedMilliseconds);
 
             await RevokeAllUserTokenAsync(user.Id, "New Login");
 
