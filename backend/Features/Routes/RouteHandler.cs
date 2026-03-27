@@ -16,14 +16,14 @@ public class RouteHandler(
     IDistributedCache _l2Cache,       // Redis — shared across instances
     IMemoryCache _l1Cache)            // Local memory — sub-millisecond
 {
-    // ── Cache Configuration ───────────────────────────────────────────────────
+    // ── Cache Configuration
 
     // L1 — local memory, 5 minutes
     // Short because it's per-instance — stale data window is small
     private static readonly MemoryCacheEntryOptions L1Options = new()
     {
         AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(5),
-        SlidingExpiration = TimeSpan.FromMinutes(2)  // reset timer on access
+        SlidingExpiration               = TimeSpan.FromMinutes(2)   // reset timer on access
     };
 
     // L2 — Redis, 1 hour
@@ -36,8 +36,7 @@ public class RouteHandler(
     // Version key — increment this to invalidate ALL route cache keys at once
     private const string VersionKey = "routes_version";
 
-    // ── Public Methods ────────────────────────────────────────────────────────
-
+    // ── Public Methods
     public async Task<ApiResponses<RouteResponse>> CreateAsync(CreateRouteRequest request)
     {
         var validation = await _createValidator.ValidateAsync(request);
@@ -53,9 +52,9 @@ public class RouteHandler(
 
         var route = new Domain.Entities.Route
         {
-            Origin = request.Origin.Trim().ToUpper(),
-            Destination = request.Destination.Trim().ToUpper(),
-            DistanceKm = request.DistanceKm,
+            Origin         = request.Origin.Trim().ToUpper(),
+            Destination    = request.Destination.Trim().ToUpper(),
+            DistanceKm     = request.DistanceKm,
             EstimatedHours = request.EstimatedHours
         };
 
@@ -127,10 +126,10 @@ public class RouteHandler(
 
         var result = new PagedResponse<RouteResponse>
         {
-            Data = items,
+            Data       = items,
             TotalCount = totalCount,
             PageNumber = query.PageNumber,
-            PageSize = query.PageSize
+            PageSize   = query.PageSize
         };
 
         // Store in both caches
@@ -191,7 +190,7 @@ public class RouteHandler(
         return ApiResponses<string>.Ok("Route deleted.");
     }
 
-    // ── Private Helpers ───────────────────────────────────────────────────────
+    // ── Private Helpers
 
     // Build a versioned cache key
     // When version bumps — all old keys become stale automatically

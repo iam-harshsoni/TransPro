@@ -1,8 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http.Headers;
-using System.Threading.Tasks;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using TransProAPI.Common;
@@ -54,21 +49,30 @@ namespace TransProAPI.Features.Auth
         {
             var validation = await _loginValidator.ValidateAsync(request);
             if (!validation.IsValid)
-                return ApiResponses<AuthResponse>.Fail("Validation Error", validation.Errors.Select(x => x.ErrorMessage).ToList());
+                return ApiResponses<AuthResponse>.Fail(
+                    "Validation Error",
+                    validation.Errors.Select(x => x.ErrorMessage).ToList());
 
-            var user = await _db.Users.FirstOrDefaultAsync(u => u.Email == request.Email.ToLower().Trim() && u.IsActive);
+            var user = await _db.Users
+                .FirstOrDefaultAsync(u => u.Email == request.Email.ToLower().Trim()
+                                        && u.IsActive);
 
+            // Timing-safe: always run BCrypt even if user not found
+            // Prevents timing attacks that reveal whether an email exists
             var dummyHash = "$2a$11$dummy.hash.to.prevent.timing.attack.abcdefghijk";
-            var passwordToVerigy = user?.PasswordHash ?? dummyHash;
+            var passwordToVerify = user?.PasswordHash ?? dummyHash;
 
-            if (user is null || !BCrypt.Net.BCrypt.Verify(request.Password, user.PasswordHash))
-                return ApiResponses<AuthResponse>.Fail("Invalid email or password");
+            if (!BCrypt.Net.BCrypt.Verify(request.Password, passwordToVerify) || user is null)
+                return ApiResponses<AuthResponse>.Fail("Invalid email or password.");
 
             await RevokeAllUserTokenAsync(user.Id, "New Login");
 
             var (authResponse, refreshToken) = await IssueTokenPairAsync(user);
 
-            _logger.LogInformation("User logged in. UserId: {UserId} Email: {Email}", user.Id, user.Email);
+            _logger.LogInformation(
+                "User logged in. UserId: {UserId} Email: {Email}",
+                user.Id, user.Email);
+
             return ApiResponses<AuthResponse>.Ok(authResponse, "Login successful.");
         }
 
