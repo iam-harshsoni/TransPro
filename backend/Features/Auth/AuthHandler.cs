@@ -57,9 +57,23 @@ namespace TransProAPI.Features.Auth
 
             _logger.LogInformation("Validation: {MS}ms", sw.ElapsedMilliseconds);
 
+            // Normalize email once
+            var normalizedEmail = request.Email?.ToLower().Trim();
+
+            // Query only required fields and avoid tracking to reduce DB overhead
             var user = await _db.Users
-                .FirstOrDefaultAsync(u => u.Email == request.Email.ToLower().Trim()
-                                        && u.IsActive);
+                .AsNoTracking()
+                .Where(u => u.Email == normalizedEmail && u.IsActive)
+                .Select(u => new User
+                {
+                    Id = u.Id,
+                    Email = u.Email,
+                    PasswordHash = u.PasswordHash,
+                    FullName = u.FullName,
+                    Role = u.Role,
+                    IsActive = u.IsActive
+                })
+                .FirstOrDefaultAsync();
 
             _logger.LogInformation("DB Lookup: {MS}ms", sw.ElapsedMilliseconds);
 
@@ -133,17 +147,17 @@ namespace TransProAPI.Features.Auth
 
         public async Task<ApiResponses<string>> LogoutAsync(RefreshTokenRequest request)
         {
-            var token = await _db.RefreshTokens.FirstOrDefaultAsync(rt => rt.Token == request.RefreshToken);
+            // Use a single, efficient database update to revoke the token without loading the entity into memory
+            var affected = await _db.RefreshTokens
+                .Where(rt => rt.Token == request.RefreshToken && !rt.IsRevoked)
+                .ExecuteUpdateAsync(s => s
+                    .SetProperty(rt => rt.IsRevoked, rt => true)
+                    .SetProperty(rt => rt.RevokedAt, rt => DateTime.UtcNow));
 
-            if (token is null || token.IsRevoked)
+            if (affected == 0)
                 return ApiResponses<string>.Ok("Logged out successfully.");
 
-            token.IsRevoked = true;
-            token.RevokedAt = DateTime.UtcNow;
-
-            await _db.SaveChangesAsync();
-
-            _logger.LogInformation("User logged out. UserId: {UserId}", token.UserId);
+            _logger.LogInformation("User logged out. Token: {Token}", request.RefreshToken);
             return ApiResponses<string>.Ok("Logged out successfully.");
         }
 
@@ -176,19 +190,17 @@ namespace TransProAPI.Features.Auth
         // Called on: new login, suspicious activity, admin action
         private async Task RevokeAllUserTokenAsync(int userId, string reason)
         {
-            var activeToken = await _db.RefreshTokens.Where(rt => rt.UserId == userId && !rt.IsRevoked).ToListAsync();
+            // Perform a single, set-based database update to avoid loading many entities into memory
+            var now = DateTime.UtcNow;
+            var affected = await _db.RefreshTokens
+                .Where(rt => rt.UserId == userId && !rt.IsRevoked)
+                .ExecuteUpdateAsync(s => s
+                    .SetProperty(rt => rt.IsRevoked, rt => true)
+                    .SetProperty(rt => rt.RevokedAt, rt => now));
 
-            foreach (var token in activeToken)
+            if (affected > 0)
             {
-                token.IsRevoked = true;
-                token.RevokedAt = DateTime.UtcNow;
-            }
-
-            if (activeToken.Count > 0)
-            {
-                await _db.SaveChangesAsync();
-
-                _logger.LogInformation("Revoked {Count} tokens for UserId: {UserId}. Reason {Reason}", activeToken.Count, userId, reason);
+                _logger.LogInformation("Revoked {Count} tokens for UserId: {UserId}. Reason {Reason}", affected, userId, reason);
             }
         }
     }
