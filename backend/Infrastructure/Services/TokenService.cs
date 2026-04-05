@@ -23,7 +23,7 @@ namespace TransProAPI.Infrastructure.Services
             var issuer = jwtSettings["Issuer"];
             var audience = jwtSettings["Audience"];
 
-            var expiry = DateTime.UtcNow.AddMinutes(1);
+            var expiry = DateTime.UtcNow.AddDays(7);
 
             var claims = new[]
             {
