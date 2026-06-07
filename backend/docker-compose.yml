@@ -13,6 +13,7 @@ services:
       - JwtSettings__Issuer=${JwtSettings__Issuer}
       - JwtSettings__Audience=${JwtSettings__Audience}
       - JwtSettings__ExpiryMinutes=${JwtSettings__ExpiryMinutes}
+      - Redis__ConnectionString=${Redis__ConnectionString} 
     volumes:
       - transpro_logs:/app/logs
     depends_on:
@@ -42,11 +43,29 @@ services:
     restart: unless-stopped
     networks:
       - transpro_network
+  
+  redis:
+    image: redis:7-alpine
+    container_name: transpro_redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - transpro_redisdata:/data
+    command: redis-server --appendonly yes
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 5s
+    restart: unless-stopped
+    networks:
+      - transpro_network
 
 volumes:
   transpro_pgdata:
   transpro_logs:
-
+  transpro_redisdata:
 
 networks:
   transpro_network:

@@ -15,7 +15,7 @@ namespace TransProAPI.Infrastructure.Configuration.Services
                 builder.Services.AddStackExchangeRedisCache(options =>
                 {
                     options.ConfigurationOptions = ConfigurationOptions.Parse(redisConnection);
-                    options.ConfigurationOptions.Ssl = true;                                         // ← force TLS
+                    //options.ConfigurationOptions.Ssl = true;                                         // ← force TLS
                     options.ConfigurationOptions.AbortOnConnectFail = false;                         // ← don't crash if Redis is temporarily down
                     options.InstanceName = "TransPro_";
                 });
