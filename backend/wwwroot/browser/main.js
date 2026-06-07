@@ -1,6 +1,6 @@
 import {
   AuthService
-} from "./chunk-F4FV36O6.js";
+} from "./chunk-EAQBDAJD.js";
 import {
   ConfirmDialog,
   ConfirmDialogModule
@@ -9,7 +9,7 @@ import {
   Tooltip,
   TooltipModule
 } from "./chunk-3PKWPBB4.js";
-import "./chunk-7GXKRRJE.js";
+import "./chunk-MTGD2NDP.js";
 import {
   ButtonModule,
   CommonModule,
@@ -682,7 +682,7 @@ var authGuard = (route, state) => {
 var routes = [
   {
     path: "login",
-    loadComponent: () => import("./chunk-T5AJMBZC.js").then((m4) => m4.LoginComponent)
+    loadComponent: () => import("./chunk-DZE7ILOZ.js").then((m4) => m4.LoginComponent)
   },
   {
     path: "",
@@ -699,27 +699,27 @@ var routes = [
       },
       {
         path: "customers",
-        loadChildren: () => import("./chunk-GUPTY62D.js").then((m4) => m4.customerRoutes)
+        loadChildren: () => import("./chunk-3YYTOIZQ.js").then((m4) => m4.customerRoutes)
       },
       {
         path: "drivers",
-        loadChildren: () => import("./chunk-ORQPZ3NG.js").then((m4) => m4.driverRoutes)
+        loadChildren: () => import("./chunk-KLJBWJP3.js").then((m4) => m4.driverRoutes)
       },
       {
         path: "containers",
-        loadChildren: () => import("./chunk-AWAMTSRA.js").then((m4) => m4.containerRoutes)
+        loadChildren: () => import("./chunk-PBHAFGSG.js").then((m4) => m4.containerRoutes)
       },
       {
         path: "trucks",
-        loadChildren: () => import("./chunk-AR47SOKL.js").then((m4) => m4.truckRoutes)
+        loadChildren: () => import("./chunk-RB4DJPTT.js").then((m4) => m4.truckRoutes)
       },
       {
         path: "routes",
-        loadChildren: () => import("./chunk-QA7QOLHL.js").then((m4) => m4.routesRoutes)
+        loadChildren: () => import("./chunk-R654ML6Z.js").then((m4) => m4.routesRoutes)
       },
       {
         path: "trips",
-        loadChildren: () => import("./chunk-PMOPQP6U.js").then((m4) => m4.tripRoutes)
+        loadChildren: () => import("./chunk-6GYQZUGU.js").then((m4) => m4.tripRoutes)
       },
       {
         path: "",

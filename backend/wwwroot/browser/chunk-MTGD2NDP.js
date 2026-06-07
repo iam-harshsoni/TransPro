@@ -1,10 +1,10 @@
 // src/environments/environment.ts
 var environment = {
   production: false,
-  apiUrl: "http://localhost:8080/api"
+  apiUrl: "http://20.55.84.94:8080/api"
 };
 
 export {
   environment
 };
-//# sourceMappingURL=chunk-7GXKRRJE.js.map
+//# sourceMappingURL=chunk-MTGD2NDP.js.map

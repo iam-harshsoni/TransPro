@@ -1,6 +1,6 @@
 import {
   TripService
-} from "./chunk-FFQZEOSP.js";
+} from "./chunk-MGBDJJ4Y.js";
 import {
   Table,
   TableModule,
@@ -40,7 +40,7 @@ import {
   Toast,
   ToastModule
 } from "./chunk-RJSKT7PE.js";
-import "./chunk-7GXKRRJE.js";
+import "./chunk-MTGD2NDP.js";
 import {
   Button,
   ButtonModule,
@@ -580,4 +580,4 @@ var TripListComponent = class _TripListComponent {
 export {
   TripListComponent
 };
-//# sourceMappingURL=chunk-BUPDGQ5Q.js.map
+//# sourceMappingURL=chunk-3JVX6OFW.js.map

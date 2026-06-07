@@ -12,7 +12,7 @@ import {
 // src/environments/environment.development.ts
 var environment = {
   production: false,
-  apiUrl: "http://localhost:8080/api"
+  apiUrl: "http://20.55.84.94:8080/api"
 };
 
 // src/app/features/containers/services/container.service.ts
@@ -59,4 +59,4 @@ var ContainerService = class _ContainerService {
 export {
   ContainerService
 };
-//# sourceMappingURL=chunk-LHI4Q4CK.js.map
+//# sourceMappingURL=chunk-6ZYAKE4R.js.map

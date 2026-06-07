@@ -1,6 +1,6 @@
 import {
   environment
-} from "./chunk-7GXKRRJE.js";
+} from "./chunk-MTGD2NDP.js";
 import {
   HttpClient,
   HttpParams
@@ -12,14 +12,15 @@ import {
   ɵɵdefineInjectable
 } from "./chunk-FOYF73X5.js";
 
-// src/app/features/trucks/services/truck.service.ts
-var TruckService = class _TruckService {
+// src/app/features/drivers/services/driver.service.ts
+var DriverService = class _DriverService {
   http = inject(HttpClient);
-  apiUrl = `${environment.apiUrl}/truck`;
+  apiUrl = `${environment.apiUrl}/driver`;
   getPaginated(pageNumber, pageSize, search = "") {
-    let params = new HttpParams().set("pageNumber", pageNumber).set("pageSize", pageSize);
-    if (search)
+    let params = new HttpParams().set("pageNumber", pageNumber.toString()).set("pageSize", pageSize.toString());
+    if (search) {
       params = params.set("search", search);
+    }
     return this.http.get(this.apiUrl, { params });
   }
   search(query) {
@@ -38,13 +39,16 @@ var TruckService = class _TruckService {
   toggleAvailability(id) {
     return this.http.patch(`${this.apiUrl}/${id}/toggle-availability`, {});
   }
-  static \u0275fac = function TruckService_Factory(__ngFactoryType__) {
-    return new (__ngFactoryType__ || _TruckService)();
+  delete(id) {
+    return this.http.delete(`${this.apiUrl}/${id}`);
+  }
+  static \u0275fac = function DriverService_Factory(__ngFactoryType__) {
+    return new (__ngFactoryType__ || _DriverService)();
   };
-  static \u0275prov = /* @__PURE__ */ \u0275\u0275defineInjectable({ token: _TruckService, factory: _TruckService.\u0275fac, providedIn: "root" });
+  static \u0275prov = /* @__PURE__ */ \u0275\u0275defineInjectable({ token: _DriverService, factory: _DriverService.\u0275fac, providedIn: "root" });
 };
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(TruckService, [{
+  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(DriverService, [{
     type: Injectable,
     args: [{
       providedIn: "root"
@@ -53,6 +57,6 @@ var TruckService = class _TruckService {
 })();
 
 export {
-  TruckService
+  DriverService
 };
-//# sourceMappingURL=chunk-MTGRZXZ4.js.map
+//# sourceMappingURL=chunk-WFLXAO2A.js.map

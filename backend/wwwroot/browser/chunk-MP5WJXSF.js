@@ -1,6 +1,6 @@
 import {
   environment
-} from "./chunk-7GXKRRJE.js";
+} from "./chunk-MTGD2NDP.js";
 import {
   HttpClient,
   HttpParams
@@ -12,12 +12,12 @@ import {
   ɵɵdefineInjectable
 } from "./chunk-FOYF73X5.js";
 
-// src/app/features/drivers/services/driver.service.ts
-var DriverService = class _DriverService {
+// src/app/features/routes/services/route.service.ts
+var RouteService = class _RouteService {
   http = inject(HttpClient);
-  apiUrl = `${environment.apiUrl}/driver`;
+  apiUrl = `${environment.apiUrl}/trans-route`;
   getPaginated(pageNumber, pageSize, search = "") {
-    let params = new HttpParams().set("pageNumber", pageNumber.toString()).set("pageSize", pageSize.toString());
+    let params = new HttpParams().set("pageNumber", pageNumber).set("pageSize", pageSize);
     if (search) {
       params = params.set("search", search);
     }
@@ -36,19 +36,13 @@ var DriverService = class _DriverService {
   update(id, dto) {
     return this.http.put(`${this.apiUrl}/${id}`, dto);
   }
-  toggleAvailability(id) {
-    return this.http.patch(`${this.apiUrl}/${id}/toggle-availability`, {});
-  }
-  delete(id) {
-    return this.http.delete(`${this.apiUrl}/${id}`);
-  }
-  static \u0275fac = function DriverService_Factory(__ngFactoryType__) {
-    return new (__ngFactoryType__ || _DriverService)();
+  static \u0275fac = function RouteService_Factory(__ngFactoryType__) {
+    return new (__ngFactoryType__ || _RouteService)();
   };
-  static \u0275prov = /* @__PURE__ */ \u0275\u0275defineInjectable({ token: _DriverService, factory: _DriverService.\u0275fac, providedIn: "root" });
+  static \u0275prov = /* @__PURE__ */ \u0275\u0275defineInjectable({ token: _RouteService, factory: _RouteService.\u0275fac, providedIn: "root" });
 };
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(DriverService, [{
+  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(RouteService, [{
     type: Injectable,
     args: [{
       providedIn: "root"
@@ -57,6 +51,6 @@ var DriverService = class _DriverService {
 })();
 
 export {
-  DriverService
+  RouteService
 };
-//# sourceMappingURL=chunk-E5KKEPIQ.js.map
+//# sourceMappingURL=chunk-MP5WJXSF.js.map
