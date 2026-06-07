@@ -1,6 +1,6 @@
 import {
   AuthService
-} from "./chunk-EQGW4OY7.js";
+} from "./chunk-F4FV36O6.js";
 import {
   ConfirmDialog,
   ConfirmDialogModule
@@ -9,7 +9,7 @@ import {
   Tooltip,
   TooltipModule
 } from "./chunk-3PKWPBB4.js";
-import "./chunk-VXGQDH4M.js";
+import "./chunk-7GXKRRJE.js";
 import {
   ButtonModule,
   CommonModule,
@@ -352,7 +352,7 @@ var TopbarComponent = class _TopbarComponent {
   }], null, null);
 })();
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(TopbarComponent, { className: "TopbarComponent", filePath: "src/app/layout/topbar/topbar.component.ts", lineNumber: 24 });
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(TopbarComponent, { className: "TopbarComponent", filePath: "app/layout/topbar/topbar.component.ts", lineNumber: 24 });
 })();
 
 // src/app/layout/sidebar/sidebar.component.ts
@@ -596,7 +596,7 @@ var SidebarComponent = class _SidebarComponent {
   }], null, null);
 })();
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(SidebarComponent, { className: "SidebarComponent", filePath: "src/app/layout/sidebar/sidebar.component.ts", lineNumber: 25 });
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(SidebarComponent, { className: "SidebarComponent", filePath: "app/layout/sidebar/sidebar.component.ts", lineNumber: 25 });
 })();
 
 // src/app/layout/shell/shell.component.ts
@@ -662,7 +662,7 @@ var ShellComponent = class _ShellComponent {
   }] });
 })();
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(ShellComponent, { className: "ShellComponent", filePath: "src/app/layout/shell/shell.component.ts", lineNumber: 13 });
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(ShellComponent, { className: "ShellComponent", filePath: "app/layout/shell/shell.component.ts", lineNumber: 13 });
 })();
 
 // src/app/core/guard/auth-guard.ts
@@ -682,7 +682,7 @@ var authGuard = (route, state) => {
 var routes = [
   {
     path: "login",
-    loadComponent: () => import("./chunk-PPA3GDUJ.js").then((m4) => m4.LoginComponent)
+    loadComponent: () => import("./chunk-T5AJMBZC.js").then((m4) => m4.LoginComponent)
   },
   {
     path: "",
@@ -692,34 +692,34 @@ var routes = [
       {
         path: "dashboard",
         // matches localhost:4200/dashboard
-        loadComponent: () => import("./chunk-G5F2NPNU.js").then((m4) => m4.DashboardComponent)
+        loadComponent: () => import("./chunk-PWKTVOF2.js").then((m4) => m4.DashboardComponent)
         /* loadComponent = lazy loading
             The dashboard code is only downloaded when user navigates there
             This keeps initial app load fast */
       },
       {
         path: "customers",
-        loadChildren: () => import("./chunk-IWXQAAA4.js").then((m4) => m4.customerRoutes)
+        loadChildren: () => import("./chunk-GUPTY62D.js").then((m4) => m4.customerRoutes)
       },
       {
         path: "drivers",
-        loadChildren: () => import("./chunk-44XTDDPU.js").then((m4) => m4.driverRoutes)
+        loadChildren: () => import("./chunk-ORQPZ3NG.js").then((m4) => m4.driverRoutes)
       },
       {
         path: "containers",
-        loadChildren: () => import("./chunk-4RPYS6J7.js").then((m4) => m4.containerRoutes)
+        loadChildren: () => import("./chunk-AWAMTSRA.js").then((m4) => m4.containerRoutes)
       },
       {
         path: "trucks",
-        loadChildren: () => import("./chunk-SHLQ7GGF.js").then((m4) => m4.truckRoutes)
+        loadChildren: () => import("./chunk-AR47SOKL.js").then((m4) => m4.truckRoutes)
       },
       {
         path: "routes",
-        loadChildren: () => import("./chunk-HSFGLLLD.js").then((m4) => m4.routesRoutes)
+        loadChildren: () => import("./chunk-QA7QOLHL.js").then((m4) => m4.routesRoutes)
       },
       {
         path: "trips",
-        loadChildren: () => import("./chunk-6ZZ6ZJ5Y.js").then((m4) => m4.tripRoutes)
+        loadChildren: () => import("./chunk-PMOPQP6U.js").then((m4) => m4.tripRoutes)
       },
       {
         path: "",
@@ -1522,7 +1522,7 @@ var App = class _App {
   }], null, null);
 })();
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(App, { className: "App", filePath: "src/app/app.ts", lineNumber: 10 });
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(App, { className: "App", filePath: "app/app.ts", lineNumber: 10 });
 })();
 
 // node_modules/zone.js/fesm2015/zone.js
