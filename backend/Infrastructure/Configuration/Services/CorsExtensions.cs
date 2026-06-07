@@ -8,10 +8,10 @@
             {
                 options.AddPolicy("AllowAll", policy =>
                 {
-                    policy.WithOrigins("http://localhost:4200", "https://localhost:8080")
+                    policy.WithOrigins("http://localhost:4200", "https://localhost:8080", "http://20.55.84.94:8080")
                           .AllowAnyHeader()
-                          .AllowAnyMethod()
-                          .AllowAnyOrigin();
+                          .AllowAnyMethod();
+                    //.AllowAnyOrigin();
                 });
             });
 
