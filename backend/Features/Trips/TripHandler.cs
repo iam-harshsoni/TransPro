@@ -1,12 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http.Headers;
-using System.Net.Quic;
-using System.Threading.Tasks;
 using FluentValidation;
-using FluentValidation.TestHelper;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using TransProAPI.Common;
 using TransProAPI.Domain.Entities;
@@ -231,11 +223,11 @@ namespace TransProAPI.Features.Trips
 
             var isValidTransition = (trip.Status, request.NewStatus) switch
             {
-                (TripStatus.Planned, TripStatus.InTransit)   => true,
-                (TripStatus.Planned, TripStatus.Cancelled)   => true,
+                (TripStatus.Planned, TripStatus.InTransit) => true,
+                (TripStatus.Planned, TripStatus.Cancelled) => true,
                 (TripStatus.InTransit, TripStatus.Cancelled) => true,
                 (TripStatus.InTransit, TripStatus.Completed) => true,
-                _                                            => false
+                _ => false
             };
 
             if (!isValidTransition)

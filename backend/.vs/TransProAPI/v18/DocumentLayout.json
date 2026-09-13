@@ -1,10 +1,10 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\Learnings\\Learn_Dotnet\\PracticeProjects\\WebApiProj\\TransProAPI\\backend\\",
+  "WorkspaceRootPath": "D:\\Learnings\\Learn_Dotnet\\1.PracticeProjects\\WebApiProj\\TransProAPI\\backend\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|d:\\learnings\\learn_dotnet\\practiceprojects\\webapiproj\\transproapi\\backend\\features\\auth\\authhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|solutionrelative:features\\auth\\authhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|d:\\learnings\\learn_dotnet\\1.practiceprojects\\webapiproj\\transproapi\\backend\\features\\drivers\\drivercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|solutionrelative:features\\drivers\\drivercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -19,14 +19,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "AuthHandler.cs",
-              "DocumentMoniker": "D:\\Learnings\\Learn_Dotnet\\PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Features\\Auth\\AuthHandler.cs",
-              "RelativeDocumentMoniker": "Features\\Auth\\AuthHandler.cs",
-              "ToolTip": "D:\\Learnings\\Learn_Dotnet\\PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Features\\Auth\\AuthHandler.cs",
-              "RelativeToolTip": "Features\\Auth\\AuthHandler.cs",
-              "ViewState": "AgIAAC4AAAAAAAAAAAAzwDsAAAAjAAAAAAAAAA==",
+              "Title": "DriverController.cs",
+              "DocumentMoniker": "D:\\Learnings\\Learn_Dotnet\\1.PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Features\\Drivers\\DriverController.cs",
+              "RelativeDocumentMoniker": "Features\\Drivers\\DriverController.cs",
+              "ToolTip": "D:\\Learnings\\Learn_Dotnet\\1.PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Features\\Drivers\\DriverController.cs*",
+              "RelativeToolTip": "Features\\Drivers\\DriverController.cs*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAALAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-27T03:42:59.597Z",
+              "WhenOpened": "2026-09-13T06:17:54.028Z",
               "EditorCaption": ""
             }
           ]

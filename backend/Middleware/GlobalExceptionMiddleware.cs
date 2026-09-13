@@ -8,9 +8,7 @@ using TransProAPI.Common;
 
 namespace TransProAPI.Middleware
 {
-    public class GlobalExceptionMiddleware(
-            RequestDelegate next,
-            ILogger<GlobalExceptionMiddleware> logger)
+    public class GlobalExceptionMiddleware(RequestDelegate next, ILogger<GlobalExceptionMiddleware> logger)
     {
         public async Task InvokeAsync(HttpContext context)
         {

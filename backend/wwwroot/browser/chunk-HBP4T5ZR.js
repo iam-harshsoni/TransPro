@@ -1,6 +1,6 @@
 import {
   environment
-} from "./chunk-MTGD2NDP.js";
+} from "./chunk-FYAGYUGR.js";
 import {
   HttpClient,
   HttpParams
@@ -72,4 +72,4 @@ var TripService = class _TripService {
 export {
   TripService
 };
-//# sourceMappingURL=chunk-MGBDJJ4Y.js.map
+//# sourceMappingURL=chunk-HBP4T5ZR.js.map

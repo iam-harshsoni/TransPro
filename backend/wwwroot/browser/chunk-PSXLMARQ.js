@@ -1,6 +1,6 @@
 import {
   environment
-} from "./chunk-MTGD2NDP.js";
+} from "./chunk-FYAGYUGR.js";
 import {
   HttpClient,
   HttpParams
@@ -12,14 +12,15 @@ import {
   ɵɵdefineInjectable
 } from "./chunk-FOYF73X5.js";
 
-// src/app/features/trucks/services/truck.service.ts
-var TruckService = class _TruckService {
+// src/app/features/routes/services/route.service.ts
+var RouteService = class _RouteService {
   http = inject(HttpClient);
-  apiUrl = `${environment.apiUrl}/truck`;
+  apiUrl = `${environment.apiUrl}/trans-route`;
   getPaginated(pageNumber, pageSize, search = "") {
     let params = new HttpParams().set("pageNumber", pageNumber).set("pageSize", pageSize);
-    if (search)
+    if (search) {
       params = params.set("search", search);
+    }
     return this.http.get(this.apiUrl, { params });
   }
   search(query) {
@@ -35,16 +36,13 @@ var TruckService = class _TruckService {
   update(id, dto) {
     return this.http.put(`${this.apiUrl}/${id}`, dto);
   }
-  toggleAvailability(id) {
-    return this.http.patch(`${this.apiUrl}/${id}/toggle-availability`, {});
-  }
-  static \u0275fac = function TruckService_Factory(__ngFactoryType__) {
-    return new (__ngFactoryType__ || _TruckService)();
+  static \u0275fac = function RouteService_Factory(__ngFactoryType__) {
+    return new (__ngFactoryType__ || _RouteService)();
   };
-  static \u0275prov = /* @__PURE__ */ \u0275\u0275defineInjectable({ token: _TruckService, factory: _TruckService.\u0275fac, providedIn: "root" });
+  static \u0275prov = /* @__PURE__ */ \u0275\u0275defineInjectable({ token: _RouteService, factory: _RouteService.\u0275fac, providedIn: "root" });
 };
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(TruckService, [{
+  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(RouteService, [{
     type: Injectable,
     args: [{
       providedIn: "root"
@@ -53,6 +51,6 @@ var TruckService = class _TruckService {
 })();
 
 export {
-  TruckService
+  RouteService
 };
-//# sourceMappingURL=chunk-ZMLHCFKH.js.map
+//# sourceMappingURL=chunk-PSXLMARQ.js.map

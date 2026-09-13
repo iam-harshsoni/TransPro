@@ -44,8 +44,7 @@ namespace TransProAPI.Features.Drivers
             return ApiResponses<DriverResponse>.Ok(driver.ToResponse(), "Driver created successfully.");
         }
 
-        public async Task<ApiResponses<PagedResponse<DriverResponse>>> GetAllAsync(
-               DriverQueryParams query)
+        public async Task<ApiResponses<PagedResponse<DriverResponse>>> GetAllAsync(DriverQueryParams query)
         {
             query.Validate();
 

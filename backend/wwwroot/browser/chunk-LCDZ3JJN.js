@@ -1,6 +1,6 @@
 import {
   environment
-} from "./chunk-MTGD2NDP.js";
+} from "./chunk-FYAGYUGR.js";
 import {
   HttpClient,
   HttpParams
@@ -62,4 +62,4 @@ var CustomerService = class _CustomerService {
 export {
   CustomerService
 };
-//# sourceMappingURL=chunk-6P5MAXI6.js.map
+//# sourceMappingURL=chunk-LCDZ3JJN.js.map

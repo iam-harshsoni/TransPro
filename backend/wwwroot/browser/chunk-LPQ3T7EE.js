@@ -1,6 +1,6 @@
 import {
   CustomerService
-} from "./chunk-6P5MAXI6.js";
+} from "./chunk-LCDZ3JJN.js";
 import {
   ToggleSwitch,
   ToggleSwitchModule
@@ -22,7 +22,7 @@ import {
   Toast,
   ToastModule
 } from "./chunk-RJSKT7PE.js";
-import "./chunk-MTGD2NDP.js";
+import "./chunk-FYAGYUGR.js";
 import {
   ActivatedRoute,
   Button,
@@ -500,4 +500,4 @@ var CustomerFormComponent = class _CustomerFormComponent {
 export {
   CustomerFormComponent
 };
-//# sourceMappingURL=chunk-6KMO5MTD.js.map
+//# sourceMappingURL=chunk-LPQ3T7EE.js.map
