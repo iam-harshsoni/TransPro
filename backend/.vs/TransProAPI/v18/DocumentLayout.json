@@ -3,8 +3,20 @@
   "WorkspaceRootPath": "D:\\Learnings\\Learn_Dotnet\\1.PracticeProjects\\WebApiProj\\TransProAPI\\backend\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|d:\\learnings\\learn_dotnet\\1.practiceprojects\\webapiproj\\transproapi\\backend\\features\\drivers\\drivercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|solutionrelative:features\\drivers\\drivercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|d:\\learnings\\learn_dotnet\\1.practiceprojects\\webapiproj\\transproapi\\backend\\domain\\entities\\job.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|solutionrelative:domain\\entities\\job.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|d:\\learnings\\learn_dotnet\\1.practiceprojects\\webapiproj\\transproapi\\backend\\features\\reports\\stevedoring\\vesselwisesummaryhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|solutionrelative:features\\reports\\stevedoring\\vesselwisesummaryhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|d:\\learnings\\learn_dotnet\\1.practiceprojects\\webapiproj\\transproapi\\backend\\features\\reports\\stevedoring\\vesselwisesummarycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|solutionrelative:features\\reports\\stevedoring\\vesselwisesummarycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|d:\\learnings\\learn_dotnet\\1.practiceprojects\\webapiproj\\transproapi\\backend\\features\\trips\\tripscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|solutionrelative:features\\trips\\tripscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,19 +26,62 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{0174dea2-fdbe-4ef1-8f99-c0beae78880f}"
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "DriverController.cs",
-              "DocumentMoniker": "D:\\Learnings\\Learn_Dotnet\\1.PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Features\\Drivers\\DriverController.cs",
-              "RelativeDocumentMoniker": "Features\\Drivers\\DriverController.cs",
-              "ToolTip": "D:\\Learnings\\Learn_Dotnet\\1.PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Features\\Drivers\\DriverController.cs*",
-              "RelativeToolTip": "Features\\Drivers\\DriverController.cs*",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAALAAAAAAAAAA==",
+              "Title": "Job.cs",
+              "DocumentMoniker": "D:\\Learnings\\Learn_Dotnet\\1.PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Domain\\Entities\\Job.cs",
+              "RelativeDocumentMoniker": "Domain\\Entities\\Job.cs",
+              "ToolTip": "D:\\Learnings\\Learn_Dotnet\\1.PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Domain\\Entities\\Job.cs",
+              "RelativeToolTip": "Domain\\Entities\\Job.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAIAxwBYAAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-13T06:17:54.028Z",
+              "WhenOpened": "2026-09-23T17:53:03.295Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "TripsController.cs",
+              "DocumentMoniker": "D:\\Learnings\\Learn_Dotnet\\1.PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Features\\Trips\\TripsController.cs",
+              "RelativeDocumentMoniker": "Features\\Trips\\TripsController.cs",
+              "ToolTip": "D:\\Learnings\\Learn_Dotnet\\1.PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Features\\Trips\\TripsController.cs",
+              "RelativeToolTip": "Features\\Trips\\TripsController.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAqwBoAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-23T17:44:47.013Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "VesselwiseSummaryController.cs",
+              "DocumentMoniker": "D:\\Learnings\\Learn_Dotnet\\1.PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Features\\Reports\\Stevedoring\\VesselwiseSummaryController.cs",
+              "RelativeDocumentMoniker": "Features\\Reports\\Stevedoring\\VesselwiseSummaryController.cs",
+              "ToolTip": "D:\\Learnings\\Learn_Dotnet\\1.PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Features\\Reports\\Stevedoring\\VesselwiseSummaryController.cs",
+              "RelativeToolTip": "Features\\Reports\\Stevedoring\\VesselwiseSummaryController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-23T17:44:34.308Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "VesselwiseSummaryHandler.cs",
+              "DocumentMoniker": "D:\\Learnings\\Learn_Dotnet\\1.PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Features\\Reports\\Stevedoring\\VesselwiseSummaryHandler.cs",
+              "RelativeDocumentMoniker": "Features\\Reports\\Stevedoring\\VesselwiseSummaryHandler.cs",
+              "ToolTip": "D:\\Learnings\\Learn_Dotnet\\1.PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Features\\Reports\\Stevedoring\\VesselwiseSummaryHandler.cs",
+              "RelativeToolTip": "Features\\Reports\\Stevedoring\\VesselwiseSummaryHandler.cs",
+              "ViewState": "AgIAABcAAAAAAAAAAAAzwCIAAAA9AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-23T16:53:18.107Z",
               "EditorCaption": ""
             }
           ]
