@@ -61,6 +61,17 @@ export const routes: Routes = [
 						.then(m => m.tripRoutes)
 			},
 			{
+				path: 'reports',
+				children: [
+					{
+						path: 'vesselwisesummary',
+						loadChildren: () =>
+							import('./features/Reports/vesselwisesummary/vesselwisesummary.routes')
+								.then(m => m.vesselwiseSummaryRoutes)
+					}
+				]
+			},
+			{
 				path: '',
 				redirectTo: 'dashboard',		// localhost:4200/ redirects to /dashboard
 				pathMatch: 'full'

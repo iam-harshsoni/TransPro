@@ -61,6 +61,12 @@ export class SidebarComponent {
 			items: [
 				{ label: 'Trips', icon: 'pi pi-send', route: '/trips' },
 			]
+		},
+		{
+			groupLabel: 'REPORTS',
+			items: [
+				{ label: 'Vessewise Summary', icon: 'pi pi-table', route: '/reports/vesselwisesummary' },
+			]
 		}
 	];
 

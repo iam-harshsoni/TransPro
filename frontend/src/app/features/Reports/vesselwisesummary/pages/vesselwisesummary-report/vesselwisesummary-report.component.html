@@ -1,0 +1,101 @@
+<div class="page-header">
+    <div class="breadcrumb-trail">
+        <i class="pi pi-home"></i>
+        <span>Home</span><i class="pi pi-angle-right"></i>
+        <span>Report</span><i class="pi pi-angle-right"></i>
+        <span>Stevedoring</span><i class="pi pi-angle-right"></i>
+        <span class="current">Vesselwise Summary Report</span>
+    </div>
+    <h1 class="page-title">Vesselwise Summary Report</h1>
+    <p class="page-subtitle">Invoice-wise summary of vessels handled in the selected period</p>
+</div>
+
+<div class="card">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <p-toolbar class="mb-4 !flex-nowrap gap-3">
+            <ng-template #start>
+                <div class="flex flex-nowrap items-end gap-3">
+                    <div class="flex flex-col gap-1">
+                        <p-datepicker inputId="fromDate" formControlName="fromDate" dateFormat="dd/mm/yy"
+                            placeholder="dd/mm/yyyy" [showIcon]="true" [maxDate]="form.value.toDate" class="w-44" />
+                    </div>
+
+                    <div class="flex flex-col gap-1">
+                        <p-datepicker inputId="toDate" formControlName="toDate" dateFormat="dd/mm/yy"
+                            placeholder="dd/mm/yyyy" [showIcon]="true" [minDate]="form.value.fromDate" class="w-44" />
+                    </div>
+
+                    <div class="flex gap-2">
+                        <p-button label="Search" icon="pi pi-search" type="submit" [loading]="isLoading" />
+                        <p-button label="Reset" icon="pi pi-refresh" severity="secondary" [outlined]="true"
+                            type="button" (onClick)="onReset()" />
+                    </div>
+                </div>
+            </ng-template>
+
+            <ng-template #end>
+                <p-iconfield>
+                    <p-inputicon class="pi pi-search" />
+                    <input pInputText type="text" class="w-64" placeholder="Search invoice or party..."
+                        (input)="onSearch($event)" />
+                </p-iconfield>
+            </ng-template>
+        </p-toolbar>
+    </form>
+
+    <p-table #dt [value]="vesselwiseSummary()" [lazy]="true" [loading]="isLoading" (onLazyLoad)="onLazyLoad($event)"
+        [totalRecords]="totalRecords" [paginator]="true" [rows]="pageSize" [first]="first"
+        [rowsPerPageOptions]="[10, 25, 50, 100]" [rowHover]="true" dataKey="id" [showCurrentPageReport]="true"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} invoices"
+        [tableStyle]="{ 'min-width': '60rem' }" class="p-datatable-sm p-datatable-gridlines-none">
+
+        <ng-template #caption>
+            <div class="table-caption">
+                <span class="table-title">Vesselwise Summary List</span>
+                <p-tag [value]="totalRecords + ' total'" severity="secondary" [rounded]="true" />
+            </div>
+        </ng-template>
+
+        <ng-template #header>
+            <tr>
+                <th class="col-sr">Sr No.</th>
+                <th pSortableColumn="invoiceNo" style="min-width: 12rem">
+                    Invoice No <p-sortIcon field="invoiceNo" />
+                </th>
+                <th pSortableColumn="invoiceDate" style="min-width: 12rem">
+                    Invoice Date <p-sortIcon field="invoiceDate" />
+                </th>
+                <th pSortableColumn="party" style="min-width: 16rem">
+                    Party <p-sortIcon field="party" />
+                </th>
+                <th class="col-center" style="min-width: 8rem">Line Vessels</th>
+            </tr>
+        </ng-template>
+
+        <ng-template #body let-row let-rowIndex="rowIndex">
+            <tr>
+                <td class="col-sr">{{ rowIndex + 1 }}</td>
+                <td><span class="row-primary">{{ row.invoiceNo }}</span></td>
+                <td>{{ row.invoiceDate | date: 'dd/MM/yyyy' }}</td>
+                <td>{{ row.party }}</td>
+                <td class="col-center">
+                    @for (job of row.jobs; track job.vesselName) {
+                    <p-tag [value]="job.vesselName" severity="success" [rounded]="true" class="ml-2" />
+                    }
+                </td>
+            </tr>
+        </ng-template>
+
+        <ng-template #emptymessage>
+            <tr>
+                <td colspan="5">
+                    <div class="empty-state">
+                        <i class="pi pi-inbox"></i>
+                        <span class="empty-title">No summary found</span>
+                        <span class="empty-hint">Try a different date range or clear the search.</span>
+                    </div>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
