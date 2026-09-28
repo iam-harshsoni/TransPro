@@ -3,16 +3,48 @@
   "WorkspaceRootPath": "D:\\Learnings\\Learn_Dotnet\\1.PracticeProjects\\WebApiProj\\TransProAPI\\backend\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|d:\\learnings\\learn_dotnet\\1.practiceprojects\\webapiproj\\transproapi\\backend\\domain\\entities\\job.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|solutionrelative:domain\\entities\\job.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|d:\\learnings\\learn_dotnet\\1.practiceprojects\\webapiproj\\transproapi\\backend\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|d:\\learnings\\learn_dotnet\\1.practiceprojects\\webapiproj\\transproapi\\backend\\infrastructure\\configuration\\middleware\\infrastructuremiddlewareextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|solutionrelative:infrastructure\\configuration\\middleware\\infrastructuremiddlewareextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|d:\\learnings\\learn_dotnet\\1.practiceprojects\\webapiproj\\transproapi\\backend\\infrastructure\\configuration\\services\\ratelimittingextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|solutionrelative:infrastructure\\configuration\\services\\ratelimittingextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|d:\\learnings\\learn_dotnet\\1.practiceprojects\\webapiproj\\transproapi\\backend\\features\\reports\\stevedoring\\vesselwisesummaryhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|solutionrelative:features\\reports\\stevedoring\\vesselwisesummaryhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|d:\\learnings\\learn_dotnet\\1.practiceprojects\\webapiproj\\transproapi\\backend\\features\\reports\\stevedoring\\vesselwisesummarydtos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|solutionrelative:features\\reports\\stevedoring\\vesselwisesummarydtos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|d:\\learnings\\learn_dotnet\\1.practiceprojects\\webapiproj\\transproapi\\backend\\.env||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|solutionrelative:.env||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|d:\\learnings\\learn_dotnet\\1.practiceprojects\\webapiproj\\transproapi\\backend\\features\\reports\\stevedoring\\vesselwisesummarycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|solutionrelative:features\\reports\\stevedoring\\vesselwisesummarycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|d:\\learnings\\learn_dotnet\\1.practiceprojects\\webapiproj\\transproapi\\backend\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|d:\\learnings\\learn_dotnet\\1.practiceprojects\\webapiproj\\transproapi\\backend\\infrastructure\\configuration\\services\\corsextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|solutionrelative:infrastructure\\configuration\\services\\corsextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|d:\\learnings\\learn_dotnet\\1.practiceprojects\\webapiproj\\transproapi\\backend\\features\\auth\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|solutionrelative:features\\auth\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|d:\\learnings\\learn_dotnet\\1.practiceprojects\\webapiproj\\transproapi\\backend\\domain\\entities\\job.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|solutionrelative:domain\\entities\\job.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|d:\\learnings\\learn_dotnet\\1.practiceprojects\\webapiproj\\transproapi\\backend\\features\\trips\\tripscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -26,7 +58,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Bookmark",
@@ -34,20 +66,117 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "InfrastructureMiddlewareExtensions.cs",
+              "DocumentMoniker": "D:\\Learnings\\Learn_Dotnet\\1.PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Infrastructure\\Configuration\\Middleware\\InfrastructureMiddlewareExtensions.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Configuration\\Middleware\\InfrastructureMiddlewareExtensions.cs",
+              "ToolTip": "D:\\Learnings\\Learn_Dotnet\\1.PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Infrastructure\\Configuration\\Middleware\\InfrastructureMiddlewareExtensions.cs",
+              "RelativeToolTip": "Infrastructure\\Configuration\\Middleware\\InfrastructureMiddlewareExtensions.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAywAcAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-26T16:43:25.401Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "RateLimittingExtensions.cs",
+              "DocumentMoniker": "D:\\Learnings\\Learn_Dotnet\\1.PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Infrastructure\\Configuration\\Services\\RateLimittingExtensions.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Configuration\\Services\\RateLimittingExtensions.cs",
+              "ToolTip": "D:\\Learnings\\Learn_Dotnet\\1.PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Infrastructure\\Configuration\\Services\\RateLimittingExtensions.cs",
+              "RelativeToolTip": "Infrastructure\\Configuration\\Services\\RateLimittingExtensions.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAywA4AAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-26T16:41:13.732Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": ".env",
+              "DocumentMoniker": "D:\\Learnings\\Learn_Dotnet\\1.PracticeProjects\\WebApiProj\\TransProAPI\\backend\\.env",
+              "RelativeDocumentMoniker": ".env",
+              "ToolTip": "D:\\Learnings\\Learn_Dotnet\\1.PracticeProjects\\WebApiProj\\TransProAPI\\backend\\.env",
+              "RelativeToolTip": ".env",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAowBEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-09-26T14:33:57.584Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\Learnings\\Learn_Dotnet\\1.PracticeProjects\\WebApiProj\\TransProAPI\\backend\\appsettings.json",
+              "RelativeDocumentMoniker": "appsettings.json",
+              "ToolTip": "D:\\Learnings\\Learn_Dotnet\\1.PracticeProjects\\WebApiProj\\TransProAPI\\backend\\appsettings.json",
+              "RelativeToolTip": "appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-09-26T14:33:48.647Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "VesselwiseSummaryDtos.cs",
+              "DocumentMoniker": "D:\\Learnings\\Learn_Dotnet\\1.PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Features\\Reports\\Stevedoring\\VesselwiseSummaryDtos.cs",
+              "RelativeDocumentMoniker": "Features\\Reports\\Stevedoring\\VesselwiseSummaryDtos.cs",
+              "ToolTip": "D:\\Learnings\\Learn_Dotnet\\1.PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Features\\Reports\\Stevedoring\\VesselwiseSummaryDtos.cs",
+              "RelativeToolTip": "Features\\Reports\\Stevedoring\\VesselwiseSummaryDtos.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-24T14:47:59.918Z"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\Learnings\\Learn_Dotnet\\1.PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "D:\\Learnings\\Learn_Dotnet\\1.PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-24T04:19:14.335Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "D:\\Learnings\\Learn_Dotnet\\1.PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Features\\Auth\\AuthController.cs",
+              "RelativeDocumentMoniker": "Features\\Auth\\AuthController.cs",
+              "ToolTip": "D:\\Learnings\\Learn_Dotnet\\1.PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Features\\Auth\\AuthController.cs",
+              "RelativeToolTip": "Features\\Auth\\AuthController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAA8AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-24T04:17:24.824Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "CorsExtensions.cs",
+              "DocumentMoniker": "D:\\Learnings\\Learn_Dotnet\\1.PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Infrastructure\\Configuration\\Services\\CorsExtensions.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Configuration\\Services\\CorsExtensions.cs",
+              "ToolTip": "D:\\Learnings\\Learn_Dotnet\\1.PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Infrastructure\\Configuration\\Services\\CorsExtensions.cs",
+              "RelativeToolTip": "Infrastructure\\Configuration\\Services\\CorsExtensions.cs",
+              "ViewState": "AgIAAA8AAADQUvn6xcczwBUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-24T04:16:30.303Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
               "Title": "Job.cs",
               "DocumentMoniker": "D:\\Learnings\\Learn_Dotnet\\1.PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Domain\\Entities\\Job.cs",
               "RelativeDocumentMoniker": "Domain\\Entities\\Job.cs",
               "ToolTip": "D:\\Learnings\\Learn_Dotnet\\1.PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Domain\\Entities\\Job.cs",
               "RelativeToolTip": "Domain\\Entities\\Job.cs",
-              "ViewState": "AgIAAAUAAAAAAAAAAIAxwBYAAAAfAAAAAAAAAA==",
+              "ViewState": "AgIAAAUAAAAAAAAAAIAxwA8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-23T17:53:03.295Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-09-23T17:53:03.295Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 11,
               "Title": "TripsController.cs",
               "DocumentMoniker": "D:\\Learnings\\Learn_Dotnet\\1.PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Features\\Trips\\TripsController.cs",
               "RelativeDocumentMoniker": "Features\\Trips\\TripsController.cs",
@@ -55,34 +184,31 @@
               "RelativeToolTip": "Features\\Trips\\TripsController.cs",
               "ViewState": "AgIAAAgAAAAAAAAAAAAqwBoAAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-23T17:44:47.013Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-09-23T17:44:47.013Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 6,
               "Title": "VesselwiseSummaryController.cs",
               "DocumentMoniker": "D:\\Learnings\\Learn_Dotnet\\1.PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Features\\Reports\\Stevedoring\\VesselwiseSummaryController.cs",
               "RelativeDocumentMoniker": "Features\\Reports\\Stevedoring\\VesselwiseSummaryController.cs",
               "ToolTip": "D:\\Learnings\\Learn_Dotnet\\1.PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Features\\Reports\\Stevedoring\\VesselwiseSummaryController.cs",
               "RelativeToolTip": "Features\\Reports\\Stevedoring\\VesselwiseSummaryController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAA4AAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-23T17:44:34.308Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-09-23T17:44:34.308Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "VesselwiseSummaryHandler.cs",
               "DocumentMoniker": "D:\\Learnings\\Learn_Dotnet\\1.PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Features\\Reports\\Stevedoring\\VesselwiseSummaryHandler.cs",
               "RelativeDocumentMoniker": "Features\\Reports\\Stevedoring\\VesselwiseSummaryHandler.cs",
               "ToolTip": "D:\\Learnings\\Learn_Dotnet\\1.PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Features\\Reports\\Stevedoring\\VesselwiseSummaryHandler.cs",
               "RelativeToolTip": "Features\\Reports\\Stevedoring\\VesselwiseSummaryHandler.cs",
-              "ViewState": "AgIAABcAAAAAAAAAAAAzwCIAAAA9AAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-23T16:53:18.107Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-09-23T16:53:18.107Z"
             }
           ]
         }

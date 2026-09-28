@@ -5,29 +5,32 @@ import { ButtonModule } from 'primeng/button';
 import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
 import { InputTextModule } from 'primeng/inputtext';
-import { TableLazyLoadEvent, TableModule } from 'primeng/table';
+import { Table, TableLazyLoadEvent, TableModule } from 'primeng/table';
 import { ToolbarModule } from 'primeng/toolbar';
-import { VesselwiseSummaries } from '../../models/vesselwisesummary.model';
+import { InvoiceNoFilter, PartyFilter, VesselwiseSummary, VesselwiseSummaryReport } from '../../models/vesselwisesummary.model';
 import { VesselwisesummaryService } from '../../services/vesselwisesummary.service';
 import { DatePickerModule } from 'primeng/datepicker';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators, FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { TagModule } from 'primeng/tag';
+import { MultiSelectModule } from 'primeng/multiselect';
 
 @Component({
 	selector: 'app-vesselwisesummary-report',
 	imports: [
-		CommonModule,
-		ReactiveFormsModule,
-		TableModule,
-		ButtonModule,
-		InputTextModule,
-		IconFieldModule,
-		InputIconModule,
-		ToolbarModule,
-		DatePickerModule,
-		TagModule
-	],
+    CommonModule,
+    ReactiveFormsModule,
+    TableModule,
+    ButtonModule,
+    InputTextModule,
+    IconFieldModule,
+    InputIconModule,
+    ToolbarModule,
+    DatePickerModule,
+    TagModule,
+    MultiSelectModule,
+    FormsModule
+],
 	providers: [MessageService],
 	templateUrl: './vesselwisesummary-report.component.html',
 	styleUrl: './vesselwisesummary-report.component.scss',
@@ -39,8 +42,11 @@ export class VesselwisesummaryReportComponent {
 	private messageService = inject(MessageService);
 	private fb = inject(FormBuilder);
 
-	vesselwiseSummary = signal<VesselwiseSummaries[]>([]);
+	vesselwiseSummary = signal<VesselwiseSummary[]>([]);
 	isLoading = true;
+	
+	parties    = signal<PartyFilter[]>([]);
+	invoiceNos = signal<InvoiceNoFilter[]>([]);
 
 	form: FormGroup = this.fb.group({
 		fromDate: 
@@ -51,6 +57,8 @@ export class VesselwisesummaryReportComponent {
 			),
 
 		toDate: new Date(),
+		selectedPartyIds: this.fb.control<number[]>([]),
+		selectedInvoiceNos: this.fb.control<number[]>([])
 	});
 
 	totalRecords: number  = 0;
@@ -61,13 +69,14 @@ export class VesselwisesummaryReportComponent {
 
 	private searchTimeout: any;
 
-	loadVesselwiseSummary(page: number, size: number, fromDate : Date, toDate: Date, search : string) : void {
-		this.isLoading = false;
-
-		this.vesselwiseSummaryService.getPaginated(page, size, fromDate, toDate, search).subscribe({
+	loadVesselwiseSummary(page: number, size: number, fromDate : Date, toDate: Date, search : string, partyIds: number[], invoiceNos: number[]) : void {
+		this.vesselwiseSummaryService.getPaginated(page, size, fromDate, toDate, search, partyIds, invoiceNos).subscribe({
 			next: (res) => {
-				this.vesselwiseSummary.set(res.data.data);
-				this.totalRecords = res.data.totalCount;
+				this.vesselwiseSummary.set(res.data.summary.data);
+				this.totalRecords = res.data.summary.totalCount;
+				this.parties.set(res.data.filters.partyFilterResponses);
+				this.invoiceNos.set(res.data.filters.invoiceNoFilterResponses);
+				
 				this.isLoading = false;
 			},
 			error: (err) => {
@@ -92,44 +101,42 @@ export class VesselwisesummaryReportComponent {
 		this.first = first;
 		this.currentPage = page;
 
-		const { fromDate, toDate } = this.form.getRawValue();
-		this.loadVesselwiseSummary(page, size, fromDate, toDate, this.searchValue);
+		const { fromDate, toDate, selectedPartyIds, selectedInvoiceNos } = this.form.getRawValue();
+		this.loadVesselwiseSummary(page, size, fromDate, toDate, this.searchValue, selectedPartyIds, selectedInvoiceNos);
 	}
 
 	onSearch(event: Event) : void {
-		
+		const { fromDate, toDate, selectedPartyIds, selectedInvoiceNos } = this.form.getRawValue();
+
+		const value = (event.target as HTMLInputElement).value;
+		this.searchValue = value;
+
+		clearTimeout(this.searchTimeout);
+		this.searchTimeout = setTimeout(() => {
+			this.loadVesselwiseSummary(1, this.pageSize, fromDate, toDate, this.searchValue, selectedPartyIds, selectedInvoiceNos);
+		}, 400);
 	}
 
 	onSubmit() : void {
-		const { fromDate, toDate } = this.form.getRawValue();
+		const { fromDate, toDate, selectedPartyIds, selectedInvoiceNos } = this.form.getRawValue();
 
 		this.currentPage = 1;
-
-		this.loadVesselwiseSummary(1, this.pageSize, fromDate, toDate, this.searchValue);
+		
+		this.loadVesselwiseSummary(1, this.pageSize, fromDate, toDate, this.searchValue, selectedPartyIds, selectedInvoiceNos);
 	}
 
 	onReset() : void {
-		this.form.patchValue({
-			fromDate: new Date(
-				new Date().getFullYear(),
-				new Date().getMonth(),
-				1
-			),
-			toDate: new Date()
+		this.form.reset({
+			fromDate: new Date(new Date().getFullYear(), new Date().getMonth(), 1),  // 2026, Sept, 1
+			toDate: new Date(), // current date.
+			selectedPartyIds: [],
+			selectedInvoiceNos: []
 		});
 
 		this.searchValue = '';
 		this.currentPage = 1;
 
-		const { fromDate, toDate } = this.form.getRawValue();
-
-		this.loadVesselwiseSummary(
-			1,
-			this.pageSize,
-			fromDate,
-			toDate,
-			''
-		);
+		const { fromDate, toDate, selectedPartyIds, selectedInvoiceNo } = this.form.getRawValue();
+		this.loadVesselwiseSummary(1, this.pageSize, fromDate, toDate,'', selectedPartyIds, selectedInvoiceNo);
 	}
-
 }

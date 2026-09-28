@@ -12,7 +12,7 @@
 
 <div class="card">
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
-        <p-toolbar class="mb-4 !flex-nowrap gap-3">
+        <p-toolbar class="!flex-nowrap gap-3">
             <ng-template #start>
                 <div class="flex flex-nowrap items-end gap-3">
                     <div class="flex flex-col gap-1">
@@ -41,11 +41,25 @@
                 </p-iconfield>
             </ng-template>
         </p-toolbar>
+
+        <p-toolbar>
+            <ng-template #start>
+                <div class="toolbar-filters">
+                    <p-multiselect [options]="parties()" optionLabel="name" optionValue="id"
+                        formControlName="selectedPartyIds" placeholder="Select Party" display="chip"
+                        class="filter-multiselect" />
+
+                    <p-multiselect [options]="invoiceNos()" optionLabel="name" optionValue="id"
+                        formControlName="selectedInvoiceNos" placeholder="Select Invoice No" display="chip"
+                        class="filter-multiselect" />
+                </div>
+            </ng-template>
+        </p-toolbar>
     </form>
 
     <p-table #dt [value]="vesselwiseSummary()" [lazy]="true" [loading]="isLoading" (onLazyLoad)="onLazyLoad($event)"
         [totalRecords]="totalRecords" [paginator]="true" [rows]="pageSize" [first]="first"
-        [rowsPerPageOptions]="[10, 25, 50, 100]" [rowHover]="true" dataKey="id" [showCurrentPageReport]="true"
+        [rowsPerPageOptions]="[10, 25, 50, 100, 500]" [rowHover]="true" dataKey="id" [showCurrentPageReport]="true"
         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} invoices"
         [tableStyle]="{ 'min-width': '60rem' }" class="p-datatable-sm p-datatable-gridlines-none">
 

@@ -1,15 +1,18 @@
 import {
+  FormatDatePipe
+} from "./chunk-HLBOBYPE.js";
+import {
   AuthService
-} from "./chunk-EAQBDAJD.js";
+} from "./chunk-RWHEMVXK.js";
 import {
   ConfirmDialog,
   ConfirmDialogModule
-} from "./chunk-KXKR4XI4.js";
+} from "./chunk-FNESTV2D.js";
 import {
   Tooltip,
   TooltipModule
-} from "./chunk-3PKWPBB4.js";
-import "./chunk-MTGD2NDP.js";
+} from "./chunk-4CNSFZEX.js";
+import "./chunk-DVLPYM5S.js";
 import {
   ButtonModule,
   CommonModule,
@@ -24,7 +27,7 @@ import {
   providePrimeNG,
   provideRouter,
   withInterceptors
-} from "./chunk-MM7SKLVI.js";
+} from "./chunk-W2QCZGFP.js";
 import {
   Component,
   HostListener,
@@ -489,6 +492,12 @@ var SidebarComponent = class _SidebarComponent {
       items: [
         { label: "Trips", icon: "pi pi-send", route: "/trips" }
       ]
+    },
+    {
+      groupLabel: "REPORTS",
+      items: [
+        { label: "Vessewise Summary", icon: "pi pi-table", route: "/reports/vesselwisesummary" }
+      ]
     }
   ];
   navigateTo(route) {
@@ -682,7 +691,7 @@ var authGuard = (route, state) => {
 var routes = [
   {
     path: "login",
-    loadComponent: () => import("./chunk-DZE7ILOZ.js").then((m4) => m4.LoginComponent)
+    loadComponent: () => import("./chunk-UOIEJV3U.js").then((m4) => m4.LoginComponent)
   },
   {
     path: "",
@@ -699,27 +708,36 @@ var routes = [
       },
       {
         path: "customers",
-        loadChildren: () => import("./chunk-3YYTOIZQ.js").then((m4) => m4.customerRoutes)
+        loadChildren: () => import("./chunk-V73H4PL2.js").then((m4) => m4.customerRoutes)
       },
       {
         path: "drivers",
-        loadChildren: () => import("./chunk-KLJBWJP3.js").then((m4) => m4.driverRoutes)
+        loadChildren: () => import("./chunk-5LPZ6WOF.js").then((m4) => m4.driverRoutes)
       },
       {
         path: "containers",
-        loadChildren: () => import("./chunk-PBHAFGSG.js").then((m4) => m4.containerRoutes)
+        loadChildren: () => import("./chunk-OZBE6RGN.js").then((m4) => m4.containerRoutes)
       },
       {
         path: "trucks",
-        loadChildren: () => import("./chunk-RB4DJPTT.js").then((m4) => m4.truckRoutes)
+        loadChildren: () => import("./chunk-RHXDABOT.js").then((m4) => m4.truckRoutes)
       },
       {
         path: "routes",
-        loadChildren: () => import("./chunk-R654ML6Z.js").then((m4) => m4.routesRoutes)
+        loadChildren: () => import("./chunk-FKCLJSUC.js").then((m4) => m4.routesRoutes)
       },
       {
         path: "trips",
-        loadChildren: () => import("./chunk-6GYQZUGU.js").then((m4) => m4.tripRoutes)
+        loadChildren: () => import("./chunk-4FBIKIAH.js").then((m4) => m4.tripRoutes)
+      },
+      {
+        path: "reports",
+        children: [
+          {
+            path: "vesselwisesummary",
+            loadChildren: () => import("./chunk-DPZYIILM.js").then((m4) => m4.vesselwiseSummaryRoutes)
+          }
+        ]
       },
       {
         path: "",
@@ -1500,7 +1518,8 @@ var appConfig = {
           darkModeSelector: true
         }
       }
-    })
+    }),
+    FormatDatePipe
   ]
 };
 

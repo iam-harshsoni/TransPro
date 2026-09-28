@@ -2174,3 +2174,197 @@ html, body {
     width: 100% !important;
   }
 }
+
+// ===== MULTISELECT GLOBAL OVERRIDES =====
+
+.p-multiselect {
+  font-family: 'Inter', sans-serif !important;
+  font-size: 0.835rem !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 6px !important;
+  background: #ffffff !important;
+  // min-height: 40px !important;
+
+  &:hover {
+    border-color: #cbd5e1 !important;
+  }
+
+  &.p-focus {
+    border-color: #6366f1 !important;
+    box-shadow: 0 0 0 3px rgba(99,102,241,0.1) !important;
+    outline: none !important;
+  }
+}
+
+// Label area — shows selected chips or placeholder
+.p-multiselect-label {
+  font-size: 0.835rem !important;
+  font-family: 'Inter', sans-serif !important;
+  color: #1e293b !important;
+  padding: 0.45rem 0.85rem !important;
+}
+
+// Placeholder text
+.p-multiselect-label.p-placeholder {
+  color: #94a3b8 !important;
+}
+
+// Dropdown arrow icon
+.p-multiselect-dropdown {
+  background: transparent !important;
+  border: none !important;
+  color: #64748b !important;
+  width: 2.5rem !important;
+
+  &:hover {
+    background: transparent !important;
+    color: #374151 !important;
+  }
+}
+
+// ===== OVERLAY PANEL (the dropdown popup) =====
+.p-multiselect-overlay {
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 8px !important;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.10) !important;
+  font-family: 'Inter', sans-serif !important;
+  margin-top: 4px !important;
+}
+
+// Header row — contains Select All checkbox + search box
+.p-multiselect-header {
+  background: #f8fafc !important;
+  border-bottom: 1px solid #f1f5f9 !important;
+  padding: 0.6rem 0.85rem !important;
+  border-radius: 8px 8px 0 0 !important;
+}
+
+// Search input inside the dropdown
+.p-multiselect-filter-container {
+  .p-inputtext {
+    font-size: 0.8rem !important;
+    font-family: 'Inter', sans-serif !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 6px !important;
+    background: #ffffff !important;
+    color: #1e293b !important;
+    padding: 0.4rem 0.75rem !important;
+
+    &::placeholder { color: #94a3b8 !important; }
+
+    &:focus {
+      border-color: #6366f1 !important;
+      box-shadow: 0 0 0 3px rgba(99,102,241,0.1) !important;
+    }
+  }
+}
+
+// Options list
+.p-multiselect-list {
+  background: #ffffff !important;
+  padding: 0.25rem 0 !important;
+}
+
+// Each option item
+.p-multiselect-option {
+  font-size: 0.835rem !important;
+  font-family: 'Inter', sans-serif !important;
+  color: #374151 !important;
+  background: #ffffff !important;
+  padding: 0.6rem 0.85rem !important;
+  transition: background 0.13s !important;
+
+  &:hover {
+    background: #f8fafc !important;
+    color: #1e293b !important;
+  }
+
+  // When option is selected — highlighted
+  &.p-selected,
+  &.p-multiselect-option-selected {
+    background: #eef2ff !important;
+    color: #6366f1 !important;
+    font-weight: 500 !important;
+  }
+
+  // Focused via keyboard
+  &.p-focus {
+    background: #f1f5f9 !important;
+  }
+}
+
+// Checkbox inside each option
+.p-multiselect-option .p-checkbox {
+  margin-right: 0.5rem !important;
+}
+
+// ===== CHECKBOX OVERRIDES =====
+.p-checkbox {
+  .p-checkbox-box {
+    border: 1.5px solid #cbd5e1 !important;
+    border-radius: 4px !important;
+    background: #ffffff !important;
+    width: 16px !important;
+    height: 16px !important;
+    transition: all 0.15s !important;
+
+    &:hover {
+      border-color: #6366f1 !important;
+    }
+  }
+
+  &.p-checkbox-checked .p-checkbox-box {
+    background: #6366f1 !important;
+    border-color: #6366f1 !important;
+
+    .p-checkbox-icon {
+      color: #ffffff !important;
+      font-size: 0.65rem !important;
+    }
+  }
+}
+
+// ===== CHIP TOKENS (selected items shown in the field) =====
+.p-multiselect-token {
+  background: #eef2ff !important;
+  color: #4338ca !important;
+  border-radius: 4px !important;
+  padding: 0.18rem 0.5rem !important;
+  font-size: 0.775rem !important;
+  font-weight: 500 !important;
+  font-family: 'Inter', sans-serif !important;
+  margin: 0.15rem !important;
+}
+
+.p-multiselect-token-icon {
+  color: #6366f1 !important;
+  font-size: 0.65rem !important;
+  margin-left: 0.3rem !important;
+  cursor: pointer !important;
+
+  &:hover { color: #ef4444 !important; }
+}
+
+// Empty message when no options match search
+.p-multiselect-empty-message {
+  padding: 0.75rem 0.85rem !important;
+  font-size: 0.8rem !important;
+  color: #94a3b8 !important;
+  font-family: 'Inter', sans-serif !important;
+  text-align: center !important;
+  background: #ffffff !important;
+}
+
+// ===== FILTER MULTISELECT WIDTH =====
+.filter-multiselect {
+  min-width: 220px !important;
+  max-width: 380px !important;
+}
+
+.toolbar-filters {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}

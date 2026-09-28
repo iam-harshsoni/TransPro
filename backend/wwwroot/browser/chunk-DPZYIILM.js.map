@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/features/Reports/vesselwisesummary/vesselwisesummary.routes.ts"],
+  "sourcesContent": ["import { Routes } from \"@angular/router\";\r\n\r\nexport const vesselwiseSummaryRoutes : Routes = [\r\n    {\r\n        path: '',\r\n        loadComponent: () => \r\n            import('./pages/vesselwisesummary-report/vesselwisesummary-report.component')\r\n                .then(v => v.VesselwisesummaryReportComponent)\r\n    }\r\n];\r\n"],
+  "mappings": ";;;AAEO,IAAM,0BAAmC;EAC5C;IACI,MAAM;IACN,eAAe,MACX,OAAO,qBAAqE,EACvE,KAAK,OAAK,EAAE,gCAAgC;;;",
+  "names": []
+}

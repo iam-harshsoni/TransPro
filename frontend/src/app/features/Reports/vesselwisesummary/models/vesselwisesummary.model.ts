@@ -1,17 +1,24 @@
-export interface VesselwiseSummaries {
-    id         : number;
+import { PaginatedResponse } from "../../../../shared/models/paginated-response.model";
+
+export interface VesselwiseSummaryReport {
+    summary: PaginatedResponse<VesselwiseSummary>,
+    filters: Filters
+}
+
+export interface VesselwiseSummary {
+    invoiceId  : number;
     invoiceNo  : string;
     invoiceDate: Date;
     party      : string;
-    jobs       : Jobs[];
+    jobs       : Job[];
 }
 
-export interface Jobs {
+export interface Job {
     vesselName  : string;
     shipmentType: number;
     arrivalDate : Date;
     sailingDate : Date;
-    cargo       : Cargo [];
+    cargos      : Cargo [];
 }
 
 export interface Cargo {
@@ -21,6 +28,22 @@ export interface Cargo {
     frt        : number;
     length     : number;
     isCBM      : number;
+}
+
+// Filters
+export interface Filters {
+    partyFilterResponses   : PartyFilter[],
+    invoiceNoFilterResponses: InvoiceNoFilter[]
+}
+
+export interface PartyFilter {
+    id: number,
+    name: string,
+}
+
+export interface InvoiceNoFilter {
+    id: number,
+    name: string,
 }
 
 export enum ShipmentType {

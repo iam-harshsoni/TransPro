@@ -4,7 +4,7 @@ import { environment } from '../../../../../environments/environment';
 import { Observable } from 'rxjs';
 import { ApiResponse } from '../../../../shared/models/apiResponse.model';
 import { PaginatedResponse } from '../../../../shared/models/paginated-response.model';
-import { VesselwiseSummaries } from '../models/vesselwisesummary.model';
+import { VesselwiseSummaryReport } from '../models/vesselwisesummary.model';
 import { FormatDatePipe } from '../../../../pipes/format-date-pipe';
 
 @Injectable({
@@ -16,20 +16,24 @@ export class VesselwisesummaryService {
 	private apiUrl = `${environment.apiUrl}/VesselwiseSummary`;
 
 	getPaginated(
-		pageNumber: number,
-		pageSize: number,
-		fromDate: Date,
-		toDate: Date,
-		search: string = ''): Observable<ApiResponse<PaginatedResponse<VesselwiseSummaries>>> {
+		pageNumber  : number,
+		pageSize    : number,
+		fromDate    : Date,
+		toDate      : Date,
+		search      : string = '',
+		partyIds   ?: number[],
+		invoiceNos? : number[]) : Observable<ApiResponse<VesselwiseSummaryReport>> {
 		
 		const body = {
 			pageNumber,
 			pageSize,
 			search,
 			fromDate: fromDate ? this.formatDate.transform(fromDate) : null,
-			toDate: toDate ? this.formatDate.transform(toDate) : null
+			toDate: toDate ? this.formatDate.transform(toDate) : null,
+			partyIds: partyIds,
+			invoiceNos: invoiceNos
 		}
 
-		return this.http.post<ApiResponse<PaginatedResponse<VesselwiseSummaries>>>(this.apiUrl, body);
+		return this.http.post<ApiResponse<VesselwiseSummaryReport>>(this.apiUrl, body);
 	}
 }
