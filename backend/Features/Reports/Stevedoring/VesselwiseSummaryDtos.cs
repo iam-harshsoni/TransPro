@@ -12,9 +12,8 @@ namespace TransProAPI.Features.Reports.Stevedoring
         public int[] InvoiceNos { get; init; } = [];
     }
 
-    public record VesselwiseSummaryResponse(
-        PagedResponse<VesselwiseSummary> Summary,
-        FiltersReponse Filters);
+    public record VesselwiseSummaryResponse(PagedResponse<VesselwiseSummary> Summary);
+
 
     public record VesselwiseSummary(
         int InvoiceId,
@@ -39,8 +38,8 @@ namespace TransProAPI.Features.Reports.Stevedoring
         bool IsCBM);
 
     // Filters
-    public record FiltersReponse(List<PartyFilterResponse> PartyFilterResponses, List<InvoiceNoFilterResponse> InvoiceNoFilterResponses);
-
     public record PartyFilterResponse(int Id, string Name);
+    public record InvoiceNofilterRequest(string? Search, int PageSize = 50);
     public record InvoiceNoFilterResponse(int Id, string Name);
+
 }

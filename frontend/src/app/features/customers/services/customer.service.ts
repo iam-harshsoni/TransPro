@@ -12,7 +12,7 @@ import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable, inject } from "@angular/core";
 import { environment } from "../../../../environments/environment";
 import { Observable } from "rxjs";
-import { CreateCustomerDto, Customer, UpdateCustomerDto } from "../models/customer.model";
+import { CreateCustomerDto, Customer, CustomerOption, UpdateCustomerDto } from "../models/customer.model";
 import { ApiResponse } from "../../../shared/models/apiResponse.model";
 import { PaginatedResponse } from "../../../shared/models/paginated-response.model";
 
@@ -36,11 +36,7 @@ export class CustomerService {
     //     return this.http.get<ApiResponse<{ data: Customer[] }>>(this.apiUrl);
     // }
 
-    getPaginated(
-        pageNumber: number,
-        pageSize: number,
-        search: string = ''): Observable<ApiResponse<PaginatedResponse<Customer>>> {
-
+    getPaginated(pageNumber: number, pageSize: number, search: string = ''): Observable<ApiResponse<PaginatedResponse<Customer>>> {
         let params = new HttpParams()
             .set('pageNumber', pageNumber.toString())
             .set('pageSize', pageSize.toString());
@@ -52,15 +48,22 @@ export class CustomerService {
         return this.http.get<ApiResponse<PaginatedResponse<Customer>>>(this.apiUrl, { params });
     }
 
-    search(query: string) : Observable<ApiResponse<PaginatedResponse<Customer>>> {
+    search(query: string): Observable<ApiResponse<PaginatedResponse<Customer>>> {
         const params = new HttpParams()
             .set('search', query)
             .set('pageNumber', '1')
             .set('pageSize', '10');
-        
+
         return this.http.get<ApiResponse<PaginatedResponse<Customer>>>(this.apiUrl, { params });
     }
 
+    searchOptions(query: string): Observable<CustomerOption[]> {
+        const params = new HttpParams()
+            .set('search', query)
+            .set('pageSize', '50');
+
+        return this.http.get<CustomerOption[]>(`${this.apiUrl}/search-customer-options`, { params });
+    }
 
     getById(id: number): Observable<ApiResponse<Customer>> {
         return this.http.get<ApiResponse<Customer>>(`${this.apiUrl}/${id}`);

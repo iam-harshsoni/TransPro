@@ -7,10 +7,11 @@ using TransProAPI.Domain.Entities;
 namespace TransProAPI.Features.Drivers
 {
     [ApiController]
-    [ApiVersion(1)]
-    [Route("api/[controller]")]
+    [ApiVersion(1.0)]
+    [Route("api/v{version:apiVersion}/[controller]")]
     [Authorize(Roles = UserRoles.Admin)]
     [EnableRateLimiting("general")]
+
     public class DriverController(DriverHandler _driverHandler) : ControllerBase
     {
         [HttpPost]

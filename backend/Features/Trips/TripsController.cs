@@ -1,8 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Metadata.Ecma335;
-using System.Threading.Tasks;
 using Asp.Versioning;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -11,8 +6,8 @@ using Microsoft.AspNetCore.RateLimiting;
 namespace TransProAPI.Features.Trips
 {
     [ApiController]
-    [ApiVersion(1)]
-    [Route("api/[controller]")]
+    [ApiVersion(1.0)]
+    [Route("api/v{version:apiVersion}/[controller]")]
     [Authorize]
     [EnableRateLimiting("general")]
     public class TripsController(TripHandler _handler) : ControllerBase

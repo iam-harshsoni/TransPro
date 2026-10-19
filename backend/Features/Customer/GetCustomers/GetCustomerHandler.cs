@@ -1,8 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using TransProAPI.Common;
 using TransProAPI.Infrastructure.Persistence;
@@ -28,8 +23,8 @@ namespace TransProAPI.Features.Customer.GetCustomers
                     c.Email.ToLower().Contains(search));
             }
 
-            var totalCount = 0;
-            // var totalCount = await query.CountAsync();
+            //var totalCount = 0;
+            var totalCount = await query.CountAsync();
 
             var customers = await query
                 .OrderByDescending(c => c.CreatedAt)

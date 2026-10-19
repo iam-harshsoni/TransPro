@@ -1,33 +1,35 @@
 import {
   FormatDatePipe
-} from "./chunk-HLBOBYPE.js";
+} from "./chunk-XDYFINZB.js";
 import {
   AuthService
-} from "./chunk-RWHEMVXK.js";
+} from "./chunk-ISI3QN75.js";
 import {
   ConfirmDialog,
   ConfirmDialogModule
-} from "./chunk-FNESTV2D.js";
+} from "./chunk-QNOQLJJ5.js";
 import {
   Tooltip,
   TooltipModule
-} from "./chunk-4CNSFZEX.js";
-import "./chunk-DVLPYM5S.js";
+} from "./chunk-KECFNUQS.js";
+import "./chunk-V2KWKKRV.js";
 import {
-  ButtonModule,
-  CommonModule,
-  ConfirmationService,
-  HttpErrorResponse,
   Router,
   RouterLink,
   RouterLinkActive,
   RouterOutlet,
   bootstrapApplication,
+  provideRouter
+} from "./chunk-JZTILZ36.js";
+import {
+  ButtonModule,
+  CommonModule,
+  ConfirmationService,
+  HttpErrorResponse,
   provideHttpClient,
   providePrimeNG,
-  provideRouter,
   withInterceptors
-} from "./chunk-W2QCZGFP.js";
+} from "./chunk-MYRKKO5O.js";
 import {
   Component,
   HostListener,
@@ -61,7 +63,7 @@ import {
   ɵɵtext,
   ɵɵtextInterpolate,
   ɵɵtextInterpolate1
-} from "./chunk-FOYF73X5.js";
+} from "./chunk-XQFXHV7K.js";
 import {
   __spreadProps,
   __spreadValues
@@ -691,7 +693,7 @@ var authGuard = (route, state) => {
 var routes = [
   {
     path: "login",
-    loadComponent: () => import("./chunk-UOIEJV3U.js").then((m4) => m4.LoginComponent)
+    loadComponent: () => import("./chunk-CH3UEFWC.js").then((m4) => m4.LoginComponent)
   },
   {
     path: "",
@@ -701,41 +703,41 @@ var routes = [
       {
         path: "dashboard",
         // matches localhost:4200/dashboard
-        loadComponent: () => import("./chunk-PWKTVOF2.js").then((m4) => m4.DashboardComponent)
+        loadComponent: () => import("./chunk-F43WKEG6.js").then((m4) => m4.DashboardComponent)
         /* loadComponent = lazy loading
             The dashboard code is only downloaded when user navigates there
             This keeps initial app load fast */
       },
       {
         path: "customers",
-        loadChildren: () => import("./chunk-V73H4PL2.js").then((m4) => m4.customerRoutes)
+        loadChildren: () => import("./chunk-YQVLFZTD.js").then((m4) => m4.customerRoutes)
       },
       {
         path: "drivers",
-        loadChildren: () => import("./chunk-5LPZ6WOF.js").then((m4) => m4.driverRoutes)
+        loadChildren: () => import("./chunk-G4O4NIRH.js").then((m4) => m4.driverRoutes)
       },
       {
         path: "containers",
-        loadChildren: () => import("./chunk-OZBE6RGN.js").then((m4) => m4.containerRoutes)
+        loadChildren: () => import("./chunk-3QN7KFEX.js").then((m4) => m4.containerRoutes)
       },
       {
         path: "trucks",
-        loadChildren: () => import("./chunk-RHXDABOT.js").then((m4) => m4.truckRoutes)
+        loadChildren: () => import("./chunk-MTFSUTWD.js").then((m4) => m4.truckRoutes)
       },
       {
         path: "routes",
-        loadChildren: () => import("./chunk-FKCLJSUC.js").then((m4) => m4.routesRoutes)
+        loadChildren: () => import("./chunk-7ZVLLTTX.js").then((m4) => m4.routesRoutes)
       },
       {
         path: "trips",
-        loadChildren: () => import("./chunk-4FBIKIAH.js").then((m4) => m4.tripRoutes)
+        loadChildren: () => import("./chunk-4OBBXA26.js").then((m4) => m4.tripRoutes)
       },
       {
         path: "reports",
         children: [
           {
             path: "vesselwisesummary",
-            loadChildren: () => import("./chunk-DPZYIILM.js").then((m4) => m4.vesselwiseSummaryRoutes)
+            loadChildren: () => import("./chunk-TG7KNIKT.js").then((m4) => m4.vesselwiseSummaryRoutes)
           }
         ]
       },

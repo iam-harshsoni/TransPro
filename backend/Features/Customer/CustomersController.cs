@@ -1,32 +1,29 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Asp.Versioning;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.RateLimiting;
-using TransProAPI.Common;
 using TransProAPI.Domain.Entities;
 using TransProAPI.Features.Customer.CreateCustomer;
 using TransProAPI.Features.Customer.DeleteCustomer;
 using TransProAPI.Features.Customer.GetCustomerById;
 using TransProAPI.Features.Customer.GetCustomers;
+using TransProAPI.Features.Customer.SearhCustomerOptions;
 using TransProAPI.Features.Customer.UpdateCustomer;
 
 namespace TransProAPI.Features.Customer
 {
     [ApiController]
-    [ApiVersion(1)]
-    [Route("api/[controller]")]
+    [ApiVersion(1.0)]
+    [Route("api/v{version:apiVersion}/[controller]")]
     // [Authorize(Roles = UserRoles.Admin)]
     [EnableRateLimiting("general")]
+
     public class CustomersController(
         CreateCustomerHandler _createCustomerHandler,
         GetCustomerHandler _getCustomerHandler,
         GetCustomerByIdHandler _getCustomerByIdHandler,
         UpdateCustomerHandler _updateCustomerHandler,
-        DeleteCustomerHandler _deleteCustomerHandler
+        DeleteCustomerHandler _deleteCustomerHandler,
+        SearchCustomerOptionsHandler _searchCustomerOptions
     ) : ControllerBase
     {
         [HttpPost]
@@ -41,6 +38,15 @@ namespace TransProAPI.Features.Customer
         public async Task<IActionResult> GetAll([FromQuery] CustomerQueryParams request)
         {
             var result = await _getCustomerHandler.Handle(request);
+            return Ok(result);
+        }
+
+        [HttpGet("search-customer-options")]
+        public async Task<IActionResult> GetSearchCustomerOptions([FromQuery] SearchCustomerOptionsRequest request)
+        {
+            if (request is null) return BadRequest(new { message = "Request could not be parsed - request is null" });
+
+            var result = await _searchCustomerOptions.Handle(request);
             return Ok(result);
         }
 

@@ -1,21 +1,14 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.NetworkInformation;
-using System.Security.Cryptography.X509Certificates;
-using System.Threading.Tasks;
 using Asp.Versioning;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.RateLimiting;
-using TransProAPI.Common;
 using TransProAPI.Domain.Entities;
 
 namespace TransProAPI.Features.Trucks
 {
     [ApiController]
-    [ApiVersion(1)]
-    [Route("api/[controller]")]
+    [ApiVersion(1.0)]
+    [Route("api/v{version:apiVersion}/[controller]")]
     [Authorize(Roles = UserRoles.Admin)]
     [EnableRateLimiting("general")]
     public class TruckController(TruckHandler _truckHandler) : ControllerBase

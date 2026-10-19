@@ -2,7 +2,6 @@ import { PaginatedResponse } from "../../../../shared/models/paginated-response.
 
 export interface VesselwiseSummaryReport {
     summary: PaginatedResponse<VesselwiseSummary>,
-    filters: Filters
 }
 
 export interface VesselwiseSummary {
@@ -28,12 +27,6 @@ export interface Cargo {
     frt        : number;
     length     : number;
     isCBM      : number;
-}
-
-// Filters
-export interface Filters {
-    partyFilterResponses   : PartyFilter[],
-    invoiceNoFilterResponses: InvoiceNoFilter[]
 }
 
 export interface PartyFilter {

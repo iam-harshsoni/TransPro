@@ -11,6 +11,13 @@ namespace TransProAPI.Infrastructure.Configuration.Services
                 options.DefaultApiVersion = new ApiVersion(1);
                 options.AssumeDefaultVersionWhenUnspecified = true;
                 options.ReportApiVersions = true; // adds api-supported-versions header to responses
+                options.ApiVersionReader = new UrlSegmentApiVersionReader();
+            })
+            .AddMvc()
+            .AddApiExplorer(options =>
+            {
+                options.GroupNameFormat = "'v'VVV";
+                options.SubstituteApiVersionInUrl = true;
             });
 
             return builder;

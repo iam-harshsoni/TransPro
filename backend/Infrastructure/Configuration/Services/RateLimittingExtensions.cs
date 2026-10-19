@@ -50,7 +50,8 @@ namespace TransProAPI.Infrastructure.Configuration.Services
                         MetadataName.RetryAfter, out var retryAfterValue)
                         ? (int)retryAfterValue.TotalSeconds
                         : 60;
-                    context.HttpContext.Response.Headers["Retry-After"] = retryAfterValue.ToString();
+
+                    context.HttpContext.Response.Headers.RetryAfter = retryAfterValue.ToString();
 
                     var response = new
                     {

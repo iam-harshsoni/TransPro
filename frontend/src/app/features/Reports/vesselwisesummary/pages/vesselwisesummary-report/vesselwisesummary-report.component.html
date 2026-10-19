@@ -29,6 +29,9 @@
                         <p-button label="Search" icon="pi pi-search" type="submit" [loading]="isLoading" />
                         <p-button label="Reset" icon="pi pi-refresh" severity="secondary" [outlined]="true"
                             type="button" (onClick)="onReset()" />
+                        <p-button pTooltip="Excel" tooltipPosition="top" icon="pi pi-file-excel" [loading]="exporting"
+                            severity="contrast" [outlined]="true" (onClick)="exportExcel()">
+                        </p-button>
                     </div>
                 </div>
             </ng-template>
@@ -45,13 +48,15 @@
         <p-toolbar>
             <ng-template #start>
                 <div class="toolbar-filters">
-                    <p-multiselect [options]="parties()" optionLabel="name" optionValue="id"
-                        formControlName="selectedPartyIds" placeholder="Select Party" display="chip"
-                        class="filter-multiselect" />
+                    <p-multiSelect [options]="customers()" optionLabel="fullName" optionValue="id"
+                        formControlName="selectedCustomerIds" [filter]="true" (onFilter)="onCustomerSearch($event)"
+                        display="chip" placeholder="Search customers">
+                    </p-multiSelect>
 
-                    <p-multiselect [options]="invoiceNos()" optionLabel="name" optionValue="id"
-                        formControlName="selectedInvoiceNos" placeholder="Select Invoice No" display="chip"
-                        class="filter-multiselect" />
+                    <p-multiSelect [options]="invoiceNos()" optionLabel="name" optionValue="id"
+                        formControlName="selectedInvoiceNos" [filter]="true" (onFilter)="onInvoiceNoSearch($event)"
+                        display="chip" placeholder="Search Invoice No">
+                    </p-multiSelect>
                 </div>
             </ng-template>
         </p-toolbar>

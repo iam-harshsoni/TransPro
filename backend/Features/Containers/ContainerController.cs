@@ -1,3 +1,4 @@
+using Asp.Versioning;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.RateLimiting;
@@ -6,8 +7,9 @@ using TransProAPI.Domain.Entities;
 namespace TransProAPI.Features.Containers
 {
     [ApiController]
-    [Route("api/[controller]")]
     //[Authorize]
+    [ApiVersion(1.0)]
+    [Route("api/v{version:apiVersion}/[controller]")]
     [EnableRateLimiting("general")]
     public class ContainerController(
         ContainerHandler _handler
