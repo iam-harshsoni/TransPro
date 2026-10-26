@@ -1,1 +1,0 @@
-import"./chunk-7CGTOI24.js";var t=[{path:"",loadComponent:()=>import("./chunk-YZGPP7KB.js").then(o=>o.TripListComponent)},{path:"create",loadComponent:()=>import("./chunk-QCSYU76I.js").then(o=>o.TripFormComponent)},{path:":id",loadComponent:()=>import("./chunk-WVP7VUQT.js").then(o=>o.TripDetailComponent)}];export{t as tripRoutes};

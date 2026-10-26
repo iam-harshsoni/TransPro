@@ -1,0 +1,1 @@
+import"./chunk-7CGTOI24.js";var t=[{path:"",loadComponent:()=>import("./chunk-QXRTBTCS.js").then(o=>o.DriverListComponent)},{path:"create",loadComponent:()=>import("./chunk-AZJN27IX.js").then(o=>o.DriverFormComponent)},{path:"edit/:id",loadComponent:()=>import("./chunk-AZJN27IX.js").then(o=>o.DriverFormComponent)}];export{t as driverRoutes};

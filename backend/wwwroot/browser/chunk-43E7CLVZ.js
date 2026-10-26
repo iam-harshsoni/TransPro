@@ -1,0 +1,1 @@
+import"./chunk-7CGTOI24.js";var t=[{path:"",loadComponent:()=>import("./chunk-RUFR6G6G.js").then(o=>o.RouteListComponent)},{path:"create",loadComponent:()=>import("./chunk-BBND6TCF.js").then(o=>o.RouteFormComponent)},{path:"edit/:id",loadComponent:()=>import("./chunk-BBND6TCF.js").then(o=>o.RouteFormComponent)}];export{t as routesRoutes};

@@ -1,0 +1,1 @@
+import"./chunk-7CGTOI24.js";var t=[{path:"",loadComponent:()=>import("./chunk-E56TUK2H.js").then(o=>o.TruckListComponent)},{path:"create",loadComponent:()=>import("./chunk-S2C4N2LM.js").then(o=>o.TruckFormComponent)},{path:"edit/:id",loadComponent:()=>import("./chunk-S2C4N2LM.js").then(o=>o.TruckFormComponent)}];export{t as truckRoutes};
