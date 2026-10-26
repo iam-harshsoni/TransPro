@@ -6,8 +6,6 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <NoWarn>$(NoWarn);1591</NoWarn>
-
-    <BuildAngular Condition="'$(BuildAngular)' == ''">true</BuildAngular>
   </PropertyGroup>
 
   <ItemGroup>
@@ -50,22 +48,18 @@
     <Exec WorkingDirectory="../frontend" Command="npm run build" />
   </Target> -->
 
-	<Target Name="BuildAngularFrontend"
-        BeforeTargets="Build"
-        Condition="'$(BuildAngular)' == 'true'">
-
-		<Exec WorkingDirectory="../frontend"
-			  Command="npm install" />
-
-		<Exec WorkingDirectory="../frontend"
-			  Command="npm run build -- --configuration=$(AngularConfiguration)" />
-
-	</Target>
-
 	<PropertyGroup>
-		<!-- Map .NET configurations to Angular configurations -->
+		<BuildAngular Condition="'$(BuildAngular)' == '' AND '$(Configuration)' != 'Release'">true</BuildAngular>
+		<BuildAngular Condition="'$(BuildAngular)' == ''">false</BuildAngular>
+
 		<AngularConfiguration Condition="'$(Configuration)' == 'Debug'">development</AngularConfiguration>
 		<AngularConfiguration Condition="'$(Configuration)' == 'Release'">production</AngularConfiguration>
 	</PropertyGroup>
 
+	<Target Name="BuildAngularFrontend" BeforeTargets="Build" Condition="'$(BuildAngular)' == 'true' AND Exists('../frontend')">
+
+		<Exec WorkingDirectory="../frontend" Command="npm install" />
+		<Exec WorkingDirectory="../frontend" Command="npm run build -- --configuration=$(AngularConfiguration)" />
+	</Target>
+	
 </Project>
