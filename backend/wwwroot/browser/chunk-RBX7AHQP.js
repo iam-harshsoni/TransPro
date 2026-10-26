@@ -1,0 +1,1 @@
+import{k as i}from"./chunk-EUCYYDSL.js";import{Ga as t}from"./chunk-EUCSOOPU.js";var n=class r{datePipe=new i("en-US");transform(e){return e?this.datePipe.transform(e,"yyyy-MM-dd")??"":""}static \u0275fac=function(a){return new(a||r)};static \u0275pipe=t({name:"formatDate",type:r,pure:!0})};export{n as a};

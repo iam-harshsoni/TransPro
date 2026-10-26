@@ -7,8 +7,7 @@
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <NoWarn>$(NoWarn);1591</NoWarn>
 
-    <BuildAngular Condition="'$(BuildAngular)' == '' AND '$(Configuration)' != 'Release'">true</BuildAngular>
-    <BuildAngular Condition="'$(BuildAngular)' == ''">false</BuildAngular>
+    <BuildAngular Condition="'$(BuildAngular)' == ''">true</BuildAngular>
   </PropertyGroup>
 
   <ItemGroup>
@@ -51,8 +50,22 @@
     <Exec WorkingDirectory="../frontend" Command="npm run build" />
   </Target> -->
 
-  <Target Name="PublishAngular" AfterTargets="Build" Condition="'$(BuildAngular)' == 'true'">
-    <Exec Command="ng build --configuration=development" WorkingDirectory="../frontend" />
-  </Target>
+	<Target Name="BuildAngularFrontend"
+        BeforeTargets="Build"
+        Condition="'$(BuildAngular)' == 'true'">
+
+		<Exec WorkingDirectory="../frontend"
+			  Command="npm install" />
+
+		<Exec WorkingDirectory="../frontend"
+			  Command="npm run build -- --configuration=$(AngularConfiguration)" />
+
+	</Target>
+
+	<PropertyGroup>
+		<!-- Map .NET configurations to Angular configurations -->
+		<AngularConfiguration Condition="'$(Configuration)' == 'Debug'">development</AngularConfiguration>
+		<AngularConfiguration Condition="'$(Configuration)' == 'Release'">production</AngularConfiguration>
+	</PropertyGroup>
 
 </Project>
