@@ -3,6 +3,18 @@
   "WorkspaceRootPath": "D:\\Learnings\\Learn_Dotnet\\1.PracticeProjects\\WebApiProj\\TransProAPI\\backend\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|d:\\learnings\\learn_dotnet\\1.practiceprojects\\webapiproj\\transproapi\\backend\\infrastructure\\configuration\\services\\corsextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|solutionrelative:infrastructure\\configuration\\services\\corsextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|d:\\learnings\\learn_dotnet\\1.practiceprojects\\webapiproj\\transproapi\\backend\\features\\auth\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|solutionrelative:features\\auth\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|d:\\learnings\\learn_dotnet\\1.practiceprojects\\webapiproj\\transproapi\\backend\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|d:\\learnings\\learn_dotnet\\1.practiceprojects\\webapiproj\\transproapi\\backend\\dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}",
       "RelativeMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|solutionrelative:dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
@@ -25,10 +37,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|d:\\learnings\\learn_dotnet\\1.practiceprojects\\webapiproj\\transproapi\\backend\\migrations\\20260923162923_addsothertables.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|solutionrelative:migrations\\20260923162923_addsothertables.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|d:\\learnings\\learn_dotnet\\1.practiceprojects\\webapiproj\\transproapi\\backend\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -38,28 +46,54 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "CorsExtensions.cs",
+              "DocumentMoniker": "D:\\Learnings\\Learn_Dotnet\\1.PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Infrastructure\\Configuration\\Services\\CorsExtensions.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Configuration\\Services\\CorsExtensions.cs",
+              "ToolTip": "D:\\Learnings\\Learn_Dotnet\\1.PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Infrastructure\\Configuration\\Services\\CorsExtensions.cs",
+              "RelativeToolTip": "Infrastructure\\Configuration\\Services\\CorsExtensions.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-26T15:31:10.571Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{0174dea2-fdbe-4ef1-8f99-c0beae78880f}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "D:\\Learnings\\Learn_Dotnet\\1.PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Features\\Auth\\AuthController.cs",
+              "RelativeDocumentMoniker": "Features\\Auth\\AuthController.cs",
+              "ToolTip": "D:\\Learnings\\Learn_Dotnet\\1.PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Features\\Auth\\AuthController.cs",
+              "RelativeToolTip": "Features\\Auth\\AuthController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAA7AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-26T15:31:20.489Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "Dockerfile",
               "DocumentMoniker": "D:\\Learnings\\Learn_Dotnet\\1.PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Dockerfile",
               "RelativeDocumentMoniker": "Dockerfile",
               "ToolTip": "D:\\Learnings\\Learn_Dotnet\\1.PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Dockerfile",
               "RelativeToolTip": "Dockerfile",
-              "ViewState": "AgIAAA4AAAAAAAAAAAAcwBcAAAAkAAAAAAAAAA==",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAcwCMAAABJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2026-10-26T15:23:52.598Z",
+              "WhenOpened": "2026-10-26T15:28:23.895Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "launchSettings.json",
               "DocumentMoniker": "D:\\Learnings\\Learn_Dotnet\\1.PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Properties\\launchSettings.json",
               "RelativeDocumentMoniker": "Properties\\launchSettings.json",
@@ -72,20 +106,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 2,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\Learnings\\Learn_Dotnet\\1.PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
               "ToolTip": "D:\\Learnings\\Learn_Dotnet\\1.PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-10-26T14:45:51.828Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 7,
               "Title": "VesselwiseSummaryHandler.cs",
               "DocumentMoniker": "D:\\Learnings\\Learn_Dotnet\\1.PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Features\\Reports\\Stevedoring\\VesselwiseSummaryHandler.cs",
               "RelativeDocumentMoniker": "Features\\Reports\\Stevedoring\\VesselwiseSummaryHandler.cs",
@@ -98,7 +132,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "TransProAPI.csproj",
               "DocumentMoniker": "D:\\Learnings\\Learn_Dotnet\\1.PracticeProjects\\WebApiProj\\TransProAPI\\backend\\TransProAPI.csproj",
               "RelativeDocumentMoniker": "TransProAPI.csproj",
@@ -111,7 +145,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 8,
               "Title": "20260923162923_AddsOthertables.cs",
               "DocumentMoniker": "D:\\Learnings\\Learn_Dotnet\\1.PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Migrations\\20260923162923_AddsOthertables.cs",
               "RelativeDocumentMoniker": "Migrations\\20260923162923_AddsOthertables.cs",
@@ -124,7 +158,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 6,
               "Title": "VesselwiseSummaryController.cs",
               "DocumentMoniker": "D:\\Learnings\\Learn_Dotnet\\1.PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Features\\Reports\\Stevedoring\\VesselwiseSummaryController.cs",
               "RelativeDocumentMoniker": "Features\\Reports\\Stevedoring\\VesselwiseSummaryController.cs",
