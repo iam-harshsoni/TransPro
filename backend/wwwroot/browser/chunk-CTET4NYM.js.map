@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/pipes/format-date-pipe.ts"],
+  "sourcesContent": ["import { Pipe, PipeTransform } from '@angular/core';\r\nimport { DatePipe } from '@angular/common';\r\n\r\n@Pipe({\r\n  name: 'formatDate',\r\n  standalone: true\r\n})\r\nexport class FormatDatePipe implements PipeTransform {\r\n\r\n  private datePipe = new DatePipe('en-US');\r\n\r\n  transform(value: Date | string | null | undefined): string {\r\n    if (!value) {\r\n      return '';\r\n    }\r\n\r\n    return this.datePipe.transform(value, 'yyyy-MM-dd') ?? '';\r\n  }\r\n}\r\n"],
+  "mappings": ";;;;;;;;;;AAOM,IAAO,iBAAP,MAAO,gBAAc;EAEjB,WAAW,IAAI,SAAS,OAAO;EAEvC,UAAU,OAAuC;AAC/C,QAAI,CAAC,OAAO;AACV,aAAO;IACT;AAEA,WAAO,KAAK,SAAS,UAAU,OAAO,YAAY,KAAK;EACzD;;qCAVW,iBAAc;EAAA;yFAAd,iBAAc,MAAA,KAAA,CAAA;;;sEAAd,gBAAc,CAAA;UAJ1B;WAAK;MACJ,MAAM;MACN,YAAY;KACb;;;",
+  "names": []
+}
