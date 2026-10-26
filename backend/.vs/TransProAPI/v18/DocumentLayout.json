@@ -3,32 +3,24 @@
   "WorkspaceRootPath": "D:\\Learnings\\Learn_Dotnet\\1.PracticeProjects\\WebApiProj\\TransProAPI\\backend\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|d:\\learnings\\learn_dotnet\\1.practiceprojects\\webapiproj\\transproapi\\backend\\features\\reports\\stevedoring\\vesselwisesummarydtos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|solutionrelative:features\\reports\\stevedoring\\vesselwisesummarydtos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|d:\\learnings\\learn_dotnet\\1.practiceprojects\\webapiproj\\transproapi\\backend\\common\\pagedresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|solutionrelative:common\\pagedresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|d:\\learnings\\learn_dotnet\\1.practiceprojects\\webapiproj\\transproapi\\backend\\features\\reports\\stevedoring\\vesselwisesummaryhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|solutionrelative:features\\reports\\stevedoring\\vesselwisesummaryhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|d:\\learnings\\learn_dotnet\\1.practiceprojects\\webapiproj\\transproapi\\backend\\infrastructure\\configuration\\middleware\\appinitializationextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|solutionrelative:infrastructure\\configuration\\middleware\\appinitializationextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|d:\\learnings\\learn_dotnet\\1.practiceprojects\\webapiproj\\transproapi\\backend\\features\\reports\\stevedoring\\vesselwisesummarycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|solutionrelative:features\\reports\\stevedoring\\vesselwisesummarycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|d:\\learnings\\learn_dotnet\\1.practiceprojects\\webapiproj\\transproapi\\backend\\common\\paginationrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|solutionrelative:common\\paginationrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|d:\\learnings\\learn_dotnet\\1.practiceprojects\\webapiproj\\transproapi\\backend\\features\\customer\\searhcustomeroptions\\searchcustomeroptionsrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|solutionrelative:features\\customer\\searhcustomeroptions\\searchcustomeroptionsrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|d:\\learnings\\learn_dotnet\\1.practiceprojects\\webapiproj\\transproapi\\backend\\common\\apiresponses.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|solutionrelative:common\\apiresponses.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|d:\\learnings\\learn_dotnet\\1.practiceprojects\\webapiproj\\transproapi\\backend\\features\\customer\\customerscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|solutionrelative:features\\customer\\customerscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|d:\\learnings\\learn_dotnet\\1.practiceprojects\\webapiproj\\transproapi\\backend\\features\\customer\\searhcustomeroptions\\searchcustomeroptionshandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|solutionrelative:features\\customer\\searhcustomeroptions\\searchcustomeroptionshandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|d:\\learnings\\learn_dotnet\\1.practiceprojects\\webapiproj\\transproapi\\backend\\domain\\entities\\vesselinvoice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|solutionrelative:domain\\entities\\vesselinvoice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|d:\\learnings\\learn_dotnet\\1.practiceprojects\\webapiproj\\transproapi\\backend\\infrastructure\\configuration\\middleware\\startupextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|solutionrelative:infrastructure\\configuration\\middleware\\startupextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3AFF3051-9DAA-00C6-180B-9DD90DF656A2}|TransProAPI.csproj|d:\\learnings\\learn_dotnet\\1.practiceprojects\\webapiproj\\transproapi\\backend\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -42,7 +34,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -50,107 +42,77 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Program.cs",
-              "DocumentMoniker": "D:\\Learnings\\Learn_Dotnet\\1.PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "D:\\Learnings\\Learn_Dotnet\\1.PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Program.cs",
-              "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAqwB0AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-18T11:16:51.171Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "CustomersController.cs",
-              "DocumentMoniker": "D:\\Learnings\\Learn_Dotnet\\1.PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Features\\Customer\\CustomersController.cs",
-              "RelativeDocumentMoniker": "Features\\Customer\\CustomersController.cs",
-              "ToolTip": "D:\\Learnings\\Learn_Dotnet\\1.PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Features\\Customer\\CustomersController.cs",
-              "RelativeToolTip": "Features\\Customer\\CustomersController.cs",
-              "ViewState": "AgIAAB4AAAAAAAAAAAAcwCwAAABMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-18T11:15:37.031Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "VesselwiseSummaryController.cs",
-              "DocumentMoniker": "D:\\Learnings\\Learn_Dotnet\\1.PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Features\\Reports\\Stevedoring\\VesselwiseSummaryController.cs",
-              "RelativeDocumentMoniker": "Features\\Reports\\Stevedoring\\VesselwiseSummaryController.cs",
-              "ToolTip": "D:\\Learnings\\Learn_Dotnet\\1.PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Features\\Reports\\Stevedoring\\VesselwiseSummaryController.cs",
-              "RelativeToolTip": "Features\\Reports\\Stevedoring\\VesselwiseSummaryController.cs",
-              "ViewState": "AgIAACkAAAAAAAAAAAA1wDMAAABbAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-18T11:06:52.297Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "VesselwiseSummaryHandler.cs",
-              "DocumentMoniker": "D:\\Learnings\\Learn_Dotnet\\1.PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Features\\Reports\\Stevedoring\\VesselwiseSummaryHandler.cs",
-              "RelativeDocumentMoniker": "Features\\Reports\\Stevedoring\\VesselwiseSummaryHandler.cs",
-              "ToolTip": "D:\\Learnings\\Learn_Dotnet\\1.PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Features\\Reports\\Stevedoring\\VesselwiseSummaryHandler.cs",
-              "RelativeToolTip": "Features\\Reports\\Stevedoring\\VesselwiseSummaryHandler.cs",
-              "ViewState": "AgIAAF8AAAAAAAAAAAAQwGwAAAArAAAAAAAAAA==",
+              "Title": "AppInitializationExtensions.cs",
+              "DocumentMoniker": "D:\\Learnings\\Learn_Dotnet\\1.PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Infrastructure\\Configuration\\Middleware\\AppInitializationExtensions.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Configuration\\Middleware\\AppInitializationExtensions.cs",
+              "ToolTip": "D:\\Learnings\\Learn_Dotnet\\1.PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Infrastructure\\Configuration\\Middleware\\AppInitializationExtensions.cs",
+              "RelativeToolTip": "Infrastructure\\Configuration\\Middleware\\AppInitializationExtensions.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAABOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-18T10:56:55.221Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "VesselInvoice.cs",
-              "DocumentMoniker": "D:\\Learnings\\Learn_Dotnet\\1.PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Domain\\Entities\\VesselInvoice.cs",
-              "RelativeDocumentMoniker": "Domain\\Entities\\VesselInvoice.cs",
-              "ToolTip": "D:\\Learnings\\Learn_Dotnet\\1.PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Domain\\Entities\\VesselInvoice.cs",
-              "RelativeToolTip": "Domain\\Entities\\VesselInvoice.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAeAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-18T11:01:16.202Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "SearchCustomerOptionsHandler.cs",
-              "DocumentMoniker": "D:\\Learnings\\Learn_Dotnet\\1.PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Features\\Customer\\SearhCustomerOptions\\SearchCustomerOptionsHandler.cs",
-              "RelativeDocumentMoniker": "Features\\Customer\\SearhCustomerOptions\\SearchCustomerOptionsHandler.cs",
-              "ToolTip": "D:\\Learnings\\Learn_Dotnet\\1.PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Features\\Customer\\SearhCustomerOptions\\SearchCustomerOptionsHandler.cs",
-              "RelativeToolTip": "Features\\Customer\\SearhCustomerOptions\\SearchCustomerOptionsHandler.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-18T10:58:24.313Z",
+              "WhenOpened": "2026-10-20T13:59:38.651Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "VesselwiseSummaryDtos.cs",
-              "DocumentMoniker": "D:\\Learnings\\Learn_Dotnet\\1.PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Features\\Reports\\Stevedoring\\VesselwiseSummaryDtos.cs",
-              "RelativeDocumentMoniker": "Features\\Reports\\Stevedoring\\VesselwiseSummaryDtos.cs",
-              "ToolTip": "D:\\Learnings\\Learn_Dotnet\\1.PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Features\\Reports\\Stevedoring\\VesselwiseSummaryDtos.cs",
-              "RelativeToolTip": "Features\\Reports\\Stevedoring\\VesselwiseSummaryDtos.cs",
-              "ViewState": "AgIAAAIAAAAAAAAAAAApwBAAAAAkAAAAAAAAAA==",
+              "Title": "PagedResponse.cs",
+              "DocumentMoniker": "D:\\Learnings\\Learn_Dotnet\\1.PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Common\\PagedResponse.cs",
+              "RelativeDocumentMoniker": "Common\\PagedResponse.cs",
+              "ToolTip": "D:\\Learnings\\Learn_Dotnet\\1.PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Common\\PagedResponse.cs",
+              "RelativeToolTip": "Common\\PagedResponse.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-18T10:55:32.584Z",
+              "WhenOpened": "2026-10-20T07:55:36.943Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "SearchCustomerOptionsRequest.cs",
-              "DocumentMoniker": "D:\\Learnings\\Learn_Dotnet\\1.PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Features\\Customer\\SearhCustomerOptions\\SearchCustomerOptionsRequest.cs",
-              "RelativeDocumentMoniker": "Features\\Customer\\SearhCustomerOptions\\SearchCustomerOptionsRequest.cs",
-              "ToolTip": "D:\\Learnings\\Learn_Dotnet\\1.PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Features\\Customer\\SearhCustomerOptions\\SearchCustomerOptionsRequest.cs",
-              "RelativeToolTip": "Features\\Customer\\SearhCustomerOptions\\SearchCustomerOptionsRequest.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "PaginationRequest.cs",
+              "DocumentMoniker": "D:\\Learnings\\Learn_Dotnet\\1.PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Common\\PaginationRequest.cs",
+              "RelativeDocumentMoniker": "Common\\PaginationRequest.cs",
+              "ToolTip": "D:\\Learnings\\Learn_Dotnet\\1.PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Common\\PaginationRequest.cs",
+              "RelativeToolTip": "Common\\PaginationRequest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAkAAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-18T11:25:23.91Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-20T14:33:58.754Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "StartupExtensions.cs",
+              "DocumentMoniker": "D:\\Learnings\\Learn_Dotnet\\1.PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Infrastructure\\Configuration\\Middleware\\StartupExtensions.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Configuration\\Middleware\\StartupExtensions.cs",
+              "ToolTip": "D:\\Learnings\\Learn_Dotnet\\1.PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Infrastructure\\Configuration\\Middleware\\StartupExtensions.cs",
+              "RelativeToolTip": "Infrastructure\\Configuration\\Middleware\\StartupExtensions.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAApwA0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-20T14:00:10.618Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\Learnings\\Learn_Dotnet\\1.PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "D:\\Learnings\\Learn_Dotnet\\1.PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAABkAAAAAAAAAAAAxwBYAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-20T13:58:15.545Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ApiResponses.cs",
+              "DocumentMoniker": "D:\\Learnings\\Learn_Dotnet\\1.PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Common\\ApiResponses.cs",
+              "RelativeDocumentMoniker": "Common\\ApiResponses.cs",
+              "ToolTip": "D:\\Learnings\\Learn_Dotnet\\1.PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Common\\ApiResponses.cs",
+              "RelativeToolTip": "Common\\ApiResponses.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAADwvwkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-20T07:54:01.192Z"
             }
           ]
         }

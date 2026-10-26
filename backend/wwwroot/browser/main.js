@@ -1,6 +1,6 @@
 import {
   FormatDatePipe
-} from "./chunk-XDYFINZB.js";
+} from "./chunk-CTET4NYM.js";
 import {
   AuthService
 } from "./chunk-ISI3QN75.js";
@@ -737,7 +737,7 @@ var routes = [
         children: [
           {
             path: "vesselwisesummary",
-            loadChildren: () => import("./chunk-TG7KNIKT.js").then((m4) => m4.vesselwiseSummaryRoutes)
+            loadChildren: () => import("./chunk-APBIHGTM.js").then((m4) => m4.vesselwiseSummaryRoutes)
           }
         ]
       },
