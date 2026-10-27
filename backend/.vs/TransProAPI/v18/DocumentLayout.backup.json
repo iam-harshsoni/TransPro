@@ -60,7 +60,7 @@
               "RelativeDocumentMoniker": "Infrastructure\\Configuration\\Services\\CorsExtensions.cs",
               "ToolTip": "D:\\Learnings\\Learn_Dotnet\\1.PracticeProjects\\WebApiProj\\TransProAPI\\backend\\Infrastructure\\Configuration\\Services\\CorsExtensions.cs",
               "RelativeToolTip": "Infrastructure\\Configuration\\Services\\CorsExtensions.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAQwAoAAAB/AAAAAAAAAA==",
+              "ViewState": "AgIAAAEAAAAAAAAAAAA0wBAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-10-26T15:31:10.571Z",
               "EditorCaption": ""
@@ -75,8 +75,7 @@
               "RelativeToolTip": "Features\\Auth\\AuthController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAA7AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-26T15:31:20.489Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-26T15:31:20.489Z"
             },
             {
               "$type": "Document",
@@ -88,8 +87,7 @@
               "RelativeToolTip": "Dockerfile",
               "ViewState": "AgIAAA4AAAAAAAAAAAAcwCMAAABJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2026-10-26T15:28:23.895Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-26T15:28:23.895Z"
             },
             {
               "$type": "Document",
@@ -101,8 +99,7 @@
               "RelativeToolTip": "Properties\\launchSettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2026-10-26T15:04:17.238Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-26T15:04:17.238Z"
             },
             {
               "$type": "Document",
@@ -114,8 +111,7 @@
               "RelativeToolTip": "Program.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-26T14:45:51.828Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-26T14:45:51.828Z"
             },
             {
               "$type": "Document",
@@ -127,8 +123,7 @@
               "RelativeToolTip": "Features\\Reports\\Stevedoring\\VesselwiseSummaryHandler.cs",
               "ViewState": "AgIAAMIAAAAAAAAAAAAAAM8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-26T04:20:37.948Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-26T04:20:37.948Z"
             },
             {
               "$type": "Document",
@@ -140,8 +135,7 @@
               "RelativeToolTip": "TransProAPI.csproj",
               "ViewState": "AgIAACoAAAAAAAAAAAA1wD8AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2026-10-26T04:13:18.153Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-26T04:13:18.153Z"
             },
             {
               "$type": "Document",
@@ -153,8 +147,7 @@
               "RelativeToolTip": "Migrations\\20260923162923_AddsOthertables.cs",
               "ViewState": "AgIAADQAAAAAAAAAAAAjwEkAAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-26T14:49:44.629Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-26T14:49:44.629Z"
             },
             {
               "$type": "Document",
@@ -166,8 +159,7 @@
               "RelativeToolTip": "Features\\Reports\\Stevedoring\\VesselwiseSummaryController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAABsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-26T04:20:30.283Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-26T04:20:30.283Z"
             }
           ]
         }

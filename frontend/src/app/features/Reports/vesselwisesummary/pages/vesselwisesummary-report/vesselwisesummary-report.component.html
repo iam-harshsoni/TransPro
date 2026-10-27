@@ -11,55 +11,43 @@
 </div>
 
 <div class="card">
-    <form [formGroup]="form" (ngSubmit)="onSubmit()">
-        <p-toolbar class="!flex-nowrap gap-3">
-            <ng-template #start>
-                <div class="flex flex-nowrap items-end gap-3">
-                    <div class="flex flex-col gap-1">
-                        <p-datepicker inputId="fromDate" formControlName="fromDate" dateFormat="dd/mm/yy"
-                            placeholder="dd/mm/yyyy" [showIcon]="true" [maxDate]="form.value.toDate" class="w-44" />
-                    </div>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="report-filters">
 
-                    <div class="flex flex-col gap-1">
-                        <p-datepicker inputId="toDate" formControlName="toDate" dateFormat="dd/mm/yy"
-                            placeholder="dd/mm/yyyy" [showIcon]="true" [minDate]="form.value.fromDate" class="w-44" />
-                    </div>
+        <!-- Row 1 -->
+        <div class="rf-row-top">
+            <div class="rf-left">
+                <p-datepicker class="rf-date" inputId="fromDate" formControlName="fromDate" dateFormat="dd/mm/yy"
+                    placeholder="dd/mm/yyyy" [showIcon]="true" [maxDate]="form.value.toDate" />
 
-                    <div class="flex gap-2">
-                        <p-button label="Search" icon="pi pi-search" type="submit" [loading]="isLoading" />
-                        <p-button label="Reset" icon="pi pi-refresh" severity="secondary" [outlined]="true"
-                            type="button" (onClick)="onReset()" />
-                        <p-button pTooltip="Excel" tooltipPosition="top" icon="pi pi-file-excel" [loading]="exporting"
-                            severity="contrast" [outlined]="true" (onClick)="exportExcel()">
-                        </p-button>
-                    </div>
+                <p-datepicker class="rf-date" inputId="toDate" formControlName="toDate" dateFormat="dd/mm/yy"
+                    placeholder="dd/mm/yyyy" [showIcon]="true" [minDate]="form.value.fromDate" />
+
+                <div class="rf-actions">
+                    <p-button label="Search" icon="pi pi-search" type="submit" [loading]="isLoading" />
+                    <p-button label="Reset" icon="pi pi-refresh" severity="secondary" [outlined]="true" type="button"
+                        (onClick)="onReset()" />
+                    <p-button pTooltip="Excel" tooltipPosition="top" icon="pi pi-file-excel" [loading]="exporting"
+                        severity="contrast" [outlined]="true" type="button" (onClick)="exportExcel()" />
                 </div>
-            </ng-template>
+            </div>
 
-            <ng-template #end>
-                <p-iconfield>
-                    <p-inputicon class="pi pi-search" />
-                    <input pInputText type="text" class="w-64" placeholder="Search invoice or party..."
-                        (input)="onSearch($event)" />
-                </p-iconfield>
-            </ng-template>
-        </p-toolbar>
+            <p-iconfield class="rf-search">
+                <p-inputicon class="pi pi-search" />
+                <input pInputText type="text" placeholder="Search invoice or party..." (input)="onSearch($event)" />
+            </p-iconfield>
+        </div>
 
-        <p-toolbar>
-            <ng-template #start>
-                <div class="toolbar-filters">
-                    <p-multiSelect [options]="customers()" optionLabel="fullName" optionValue="id"
-                        formControlName="selectedCustomerIds" [filter]="true" (onFilter)="onCustomerSearch($event)"
-                        display="chip" placeholder="Search customers">
-                    </p-multiSelect>
+        <!-- Row 2 -->
+        <div class="rf-row-filters">
+            <p-multiSelect class="rf-filter" [options]="customers()" optionLabel="fullName" optionValue="id"
+                formControlName="selectedCustomerIds" [filter]="true" (onFilter)="onCustomerSearch($event)"
+                display="chip" placeholder="Search customers" />
 
-                    <p-multiSelect [options]="invoiceNos()" optionLabel="name" optionValue="id"
-                        formControlName="selectedInvoiceNos" [filter]="true" (onFilter)="onInvoiceNoSearch($event)"
-                        display="chip" placeholder="Search Invoice No">
-                    </p-multiSelect>
-                </div>
-            </ng-template>
-        </p-toolbar>
+            <p-multiSelect class="rf-filter" [options]="invoiceNos()" optionLabel="name" optionValue="id"
+                formControlName="selectedInvoiceNos" [filter]="true" (onFilter)="onInvoiceNoSearch($event)"
+                display="chip" placeholder="Search Invoice No" />
+        </div>
+
     </form>
 
     <p-table #dt [value]="vesselwiseSummary()" [lazy]="true" [loading]="isLoading" (onLazyLoad)="onLazyLoad($event)"

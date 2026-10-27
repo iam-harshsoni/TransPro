@@ -2368,3 +2368,103 @@ html, body {
   gap: 0.75rem;
   flex-wrap: wrap;
 }
+
+
+// ===== REPORT FILTERS (reusable for all reports) =====
+.report-filters {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
+  background: #ffffff;
+  border-bottom: 1px solid #f1f5f9;
+
+  // Row 1: [dates + buttons] ........ [search]
+  .rf-row-top {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+  }
+
+  .rf-left {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem;
+    min-width: 0;
+  }
+
+  .rf-date {
+    flex: 0 0 11rem;
+    width: 11rem !important;
+    min-width: 0;
+  }
+
+  .rf-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .rf-search {
+    flex: 0 1 18rem;
+    width: 18rem;
+    min-width: 0;
+    margin-left: auto;
+  }
+
+  // Row 2: filters
+  .rf-row-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .rf-filter {
+    flex: 0 1 16rem;
+    width: 16rem !important;
+    min-width: 0 !important;
+    max-width: 100%;
+  }
+
+  // ===== Mobile / small tablet =====
+  @media (max-width: 768px) {
+    .rf-row-top,
+    .rf-left {
+      flex-direction: row;
+      width: 100%;
+    }
+
+    // Two dates side by side
+    .rf-date {
+      flex: 1 1 calc(50% - 0.375rem);
+      width: auto !important;
+    }
+
+    // Buttons: full row, equal width
+    .rf-actions {
+      flex: 1 1 100%;
+
+      .p-button {
+        flex: 1 1 auto;
+        justify-content: center;
+      }
+    }
+
+    // Search: full width
+    .rf-search {
+      flex: 1 1 100%;
+      width: 100%;
+      margin-left: 0;
+    }
+
+    // Filters: one per line
+    .rf-filter {
+      flex: 1 1 100%;
+      width: 100% !important;
+    }
+  }
+}
